@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Kevin Stone</title>
+    <meta name="description" content="">
+    <meta name="author" content="Kevin Stone">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="../theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="../theme/bootstrap.min.css" rel="stylesheet">
+    <link href="../theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="../theme/local.css" rel="stylesheet">
+    <link href="../theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href="..">Kevin Stone</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+            
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+    <div class='article'>
+        <div class="content-title">
+            <h1>Django Model Behaviors</h1>
+Sun 12 May 2013
+
+by <a class="url fn" href="../author/kevin-stone.html">Kevin Stone</a>
+ 
+
+
+        </div>
+	
+        <div><p>As Django projects scale in complexity beyond the neat and tidy tutorial phase, how can we structure our models to keep things manageable?</p>
+<h2 id="compositional-model-behaviors">Compositional Model Behaviors</h2>
+<p>The Compositional Model pattern allows you to manage the complexity of your models through compartmentalization of functionality into manageable components.</p>
+<h3 id="the-benefits-of-fat-models">The Benefits of Fat Models</h3>
+<ul>
+<li>Encapsulation</li>
+<li>Single Path</li>
+<li>Separation of Concerns (MVC)</li>
+</ul>
+<h3 id="without-the-maintenance-cost">Without the Maintenance Cost</h3>
+<ul>
+<li>DRY</li>
+<li>Readability</li>
+<li>Reusability</li>
+<li>Single Responsibility Principle</li>
+<li>Testability</li>
+</ul>
+<h3 id="traditional-model">Traditional Model</h3>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">BlogPost</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+    <span class="n">slug</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">SlugField</span><span class="p">()</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">&#39;posts&#39;</span><span class="p">)</span>
+    <span class="n">create_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">modified_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">publish_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="decomposed-into-discrete-behaviors">Decomposed into Discrete Behaviors</h3>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">.behaviors</span> <span class="kn">import</span> <span class="n">Authorable</span><span class="p">,</span> <span class="n">Permalinkable</span><span class="p">,</span> <span class="n">Timestampable</span><span class="p">,</span> <span class="n">Publishable</span>
+
+
+<span class="k">class</span> <span class="nc">BlogPost</span><span class="p">(</span><span class="n">Authorable</span><span class="p">,</span> <span class="n">Permalinkable</span><span class="p">,</span> <span class="n">Timestampable</span><span class="p">,</span> <span class="n">Publishable</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="reusable-behaviors">Reusable Behaviors</h3>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Authorable</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">abstract</span> <span class="o">=</span> <span class="bp">True</span>
+
+
+<span class="k">class</span> <span class="nc">Permalinkable</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">slug</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">SlugField</span><span class="p">()</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">abstract</span> <span class="o">=</span> <span class="bp">True</span>
+
+
+<span class="k">class</span> <span class="nc">Publishable</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">publish_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">abstract</span> <span class="o">=</span> <span class="bp">True</span>
+
+
+<span class="k">class</span> <span class="nc">Timestampable</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">create_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">modified_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">abstract</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+
+
+<h2 id="models-are-more-than-just-fields">Models are more than just Fields</h2>
+<p>Our first cut at common behaviors just captured common fields, but what about everything else models encapsulate?</p>
+<ul>
+<li>Properties</li>
+<li>Custom Methods</li>
+<li>Method Overloads (save(), etc...)</li>
+<li>Validation</li>
+<li>Querysets</li>
+</ul>
+<h3 id="lets-extend-our-traditional-fat-model-with-some-of-these-encapsulated-busuiness-logic">Let's extend our traditional fat model with some of these encapsulated busuiness logic</h3>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">BlogPost</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="o">...</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_published</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">timezone</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">publish_date</span> <span class="o">&lt;</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+
+    <span class="nd">@models.permalink</span>
+    <span class="k">def</span> <span class="nf">get_absolute_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="s">&#39;blog-post&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{</span>
+            <span class="s">&quot;slug&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">slug</span><span class="p">,</span>
+        <span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">pre_save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">add</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">django.utils.text</span> <span class="kn">import</span> <span class="n">slugify</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">instance</span><span class="o">.</span><span class="n">slug</span><span class="p">:</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">slug</span> <span class="o">=</span> <span class="n">slugify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="in-actuality-these-same-methods-can-be-generalized-and-extracted-into-our-behavior-models">In actuality, these same methods can be generalized and extracted into our behavior models</h3>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Permalinkable</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">slug</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">SlugField</span><span class="p">()</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">abstract</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">get_url_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;url_kwargs&#39;</span><span class="p">,</span> <span class="p">{}))</span>
+        <span class="k">return</span> <span class="n">kwargs</span>
+
+    <span class="nd">@models.permalink</span>
+    <span class="k">def</span> <span class="nf">get_absolute_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">url_kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_url_kwargs</span><span class="p">(</span><span class="n">slug</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">slug</span><span class="p">)</span>        
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url_name</span><span class="p">,</span> <span class="p">(),</span> <span class="n">url_kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">pre_save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">add</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">django.utils.text</span> <span class="kn">import</span> <span class="n">slugify</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">instance</span><span class="o">.</span><span class="n">slug</span><span class="p">:</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">slug</span> <span class="o">=</span> <span class="n">slugify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slug_source</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Publishable</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">publish_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">abstract</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">PassThroughManager</span><span class="o">.</span><span class="n">for_queryset_class</span><span class="p">(</span><span class="n">PublishableQuerySet</span><span class="p">)()</span>
+
+    <span class="k">def</span> <span class="nf">publish_on</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">timezone</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">date</span><span class="p">:</span>
+            <span class="n">date</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">publish_date</span> <span class="o">=</span> <span class="n">date</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_published</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">timezone</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">publish_date</span> <span class="o">&lt;</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="finally-wire-up-the-concrete-model">Finally, wire up the concrete model</h3>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">.behaviors</span> <span class="kn">import</span> <span class="n">Authorable</span><span class="p">,</span> <span class="n">Permalinkable</span><span class="p">,</span> <span class="n">Timestampable</span><span class="p">,</span> <span class="n">Publishable</span>
+
+
+<span class="k">class</span> <span class="nc">BlogPost</span><span class="p">(</span><span class="n">Authorable</span><span class="p">,</span> <span class="n">Permalinkable</span><span class="p">,</span> <span class="n">Timestampable</span><span class="p">,</span> <span class="n">Publishable</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+
+    <span class="n">url_name</span> <span class="o">=</span> <span class="s">&quot;blog-post&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">slug_source</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
+</pre></div>
+
+
+<h2 id="naming-tips">Naming Tips</h2>
+<p>Use "&lt;verb&gt;-able" naming pattern for behaviors.  The "-able" suffix ensures the behaviors are readily identifiable.  It also prevents yet another use of the word Mixin.  (Don't worry when the naming deviates from decent english such as in the case of <code>OptionallyGenericRelateable</code>)</p></div>
+	
+        <hr>
+    	   
+        <h2>Comments</h2>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="kevinastone">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'kevinastone'; 
+    var disqus_title = 'Django Model Behaviors';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="../">Archives</a>
+                <li><a href="../tags.html">Tags</a>
+                <li><a href="http://kevinastone.github.io/None" rel="alternate">Atom feed</a></li>
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                <li><a href="../category/misc.html">misc</a></li>
+                   
+            </ul>
+            </div>
+
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Links
+                </li>
+            
+                <li><a href="http://subblime.com">Subblime</a></li>
+            </ul>
+            </div>
+
+
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                <li><a href="http://github.com/kevinastone">GitHub</a></li>
+                <li><a href="https://twitter.com/kevinastone">Twitter</a></li>
+                <li><a href="http://www.linkedin.com/in/kevinastone">LinkedIn</a></li>
+            </ul>
+            </div>
+            </div>
+
+        </div>  
+    </div>     </div> 
+<footer>
+<br />
+<p><a href="..">Kevin Stone</a> &copy; Kevin Stone 2012</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<script>var _gaq=[['_setAccount','UA-44610401-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+<a href="http://github.com/kevinastone"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+ 
+</body>
+</html>
