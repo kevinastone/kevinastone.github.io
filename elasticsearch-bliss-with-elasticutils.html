@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ElasticSearch Bliss with ElasticUtils</title>
+    <meta name="description" content="">
+    <meta name="author" content="Kevin Stone">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="./theme/html5.js"></script>
+    <![endif]-->
+
+    <link href="https://blog.kevinastone.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Kevin Stone Full Atom Feed" />
+    <link href="https://blog.kevinastone.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Kevin Stone Full RSS Feed" />
+    <link href="https://blog.kevinastone.com/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Kevin Stone Categories Atom Feed" />
+    <link href="https://blog.kevinastone.com/feeds/{slug}.rss.xml" type="application/rss+xml" rel="alternate" title="Kevin Stone Categories RSS Feed" />
+
+
+    <!-- Le styles -->
+
+    <link href="./theme/dist/css/main.d647f715f58900baa686.css" rel="stylesheet">
+    <link href="./theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body >
+
+<header class="navigation navigation--float" role="banner">
+  <div class="navigation-wrapper">
+    <div class="logo">
+        <a href="." class="logo">Kevin Stone</a>
+    </div>
+    <div class="nav-right">
+      <div class="search-bar">
+          <div id="search-form" class="js-d-search-form" data-index-url="https://blog.kevinastone.com/feeds/index.all.atom.xml.json"></div>
+      </div>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
+      <nav class="navigation-tools" role="navigation">
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          <li class="nav-link"><a href="./archives.html">Archives</a></li>
+          <li class="nav-link more"><a href="./tags.html">Tags</a>
+              <ul class="submenu">
+                  <li><a href="./tag/angularjs.html">AngularJS</a></li>
+                  <li><a href="./tag/django.html">Django</a></li>
+                  <li><a href="./tag/elasticsearch.html">ElasticSearch</a></li>
+                  <li><a href="./tag/python.html">Python</a></li>
+                  <li><a href="./tag/rest.html">ReST</a></li>
+                  <li><a href="./tag/subblime.html">Subblime</a></li>
+              </ul>
+          </li>
+          <li class="nav-link more"><a href="./links.html">Links</a>
+                <ul class="submenu">
+                    <li><a href="http://github.com/kevinastone">GitHub</a></li>
+                    <li><a href="https://twitter.com/kevinastone">Twitter</a></li>
+                    <li><a href="http://www.linkedin.com/in/kevinastone">LinkedIn</a></li>
+                    <li><a href="http://stackoverflow.com/users/2089197/kevin-stone">Stack Overflow</a></li>
+                    <li><a href="http://slid.es/kevinastone">Slid.es</a></li>
+                </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div class="hero trianglify-background" data-seed="elasticsearch-bliss-with-elasticutils">
+    <div class="hero-inner">
+        <div class="hero-copy">
+            <h1>ElasticSearch Bliss with ElasticUtils</h1>
+<div class="text-right">
+by <a class="url fn" href="./author/kevin-stone.html">Kevin Stone</a>
+<br>
+ 
+December 30, 2013
+</div>        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content"><article class="article">
+    <div><p>While <a href="http://haystacksearch.org">Django Haystack</a> remains the go to recommendation for adding simple search indexing to your Django sites, you can quickly outgrow the simplified "bag of text" data model that haystack attempts to unify the various supported indexing engines.  Depending on your use case, you eventually need to customize the tokenizers, scoring, spell correct, autocomplete, etc.  These more advanced use cases no longer work commonly across backends forcing you to leave the comfort of Haystack for native APIs for your chosen indexer.  <a href="https://github.com/mozilla/elasticutils">ElasticUtils</a> is a newer project from the fine folks at <a href="http://www.mozilla.org/">Mozilla</a> that exposes much of the rich capabilities of <a href="http://www.elasticsearch.org">ElasticSearch</a> in a more elegant, pythonic interface.  Much like an <a href="http://en.wikipedia.org/wiki/Object-relational_mapping">ORM</a> can simplify the process of generating SQL for your databsae queries, ElasticUtils provides a streamlined interface for generating search queries for the <a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl.html">ElasticSearch Query DSL</a>.</p>
+
+<h1 id="why-elasticsearch">Why ElasticSearch</h1>
+<p>Why <a href="http://www.elasticsearch.org">ElasticSearch</a> could really be its own blog post.  It's an immensely powerful search indexing system built on top of the rock solid <a href="http://lucene.apache.org">Lucene</a> library.  It features a considerable number of built in query and filter types that allow great range in the type of search conditions allowed.  In addition, it has many customizable tokenizers, analyzers and filters to transform your documents into readily identified search results.  It's most frequently compared to <a href="http://lucene.apache.org/solr/">SOLR</a> (which is also Lucene based), which provides similar features.  Comparatively, the ReST based API interface of ElasticSearch shifts much of the data definition and configuration to the client, eliminating the burdensome and more rigid system administration challenges of SOLR.  Finally, ElasticSearch (as the name gives away), was built with clustering in mind from the start, providing a pathway to sharding your dataset relatively seamlessly for scalability as your system grows.</p>
+<p>Having said that, ElasticSearch is a powerful, but intricate search system.  Don't expect to be able to bolt it on to a project for a simple full-text search, there's likely easier solutions on the market.  There's a lot of knobs and parameters, and you're going to need to make an investment to fully understand the ElasticSearch architecture.  ElasticUtils doesn't really attempt to abstract away those details in the way that <a href="http://haystacksearch.org">Django Haystack</a> may.  It does have rather sensible defaults though, that make getting started more of a weekend project than a month long sabbatical.</p>
+<p>Ironically, ElasticSearch's flexibility has opened it up to non-traditional indexing use cases such as <a href="http://logstash.net">log management</a>, analytics and data mining.</p>
+<h1 id="elasticutils-in-action">ElasticUtils in Action</h1>
+<p><a href="http://www.elasticsearch.org">ElasticSearch</a> allows creating rich, complex search queries using a <a href="http://en.wikipedia.org/wiki/Representational_state_transfer" title="Representational State Transfer">ReSTful API</a>.  Beyond the basic, find documents that match the given terms, you can filter your searches by categories or other criteria (usually called faceting, such as those tag clouds or drill-downs).  It features considerable function to develop powerful and specialized search applications.</p>
+<p>The challenge with many rich, expressive query languages, is how to generate these expressions reliability without a significant maintenance cost to the development team.  Enter <a href="https://github.com/mozilla/elasticutils">ElasticUtils</a>, which provides access to most of ElasticSearch's features, but using a chainable queryset-like expression API for generating search parameters.</p>
+<p>As a case, here's an actual (relatively simply) query generated from our search system looking for products related to "nike air max" (a line of shoes):</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">"filter"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"term"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">"is_visible"</span><span class="p">:</span> <span class="kc">true</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">"query"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"query_string"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">"default_field"</span><span class="p">:</span> <span class="s2">"_all"</span><span class="p">,</span>
+            <span class="nt">"query"</span><span class="p">:</span> <span class="s2">"nike air max"</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>This query, takes our user supplied input: "nike air max", and generates a <code>query_string</code> type query against the <code>_all</code> field (which is a combination of all the indexed fields), and filters the results to ones that are marked public (<code>is_visible = true</code>).</p>
+<p>As you can see, ElasticSearch queries are a highly nested JSON structure.  Having to manage all these nodes and keep them in order can be complex and error prone.</p>
+<p>Contrast the same query using ElasticUtils:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">elasticutils</span> <span class="kn">import</span> <span class="n">S</span>
+
+<span class="n">query</span> <span class="o">=</span> <span class="n">S</span><span class="p">()</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">is_visible</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">_all__query_string</span><span class="o">=</span><span class="s1">'nike air max'</span><span class="p">)</span>
+</pre></div>
+<p>Notice how we can construct the same nested structure, in a chainable fashion that allows us to augment or enhance our existing queries?  What if we wanted to restrict our query just to products in our <code>shoes</code> category?</p>
+<div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">category</span><span class="o">=</span><span class="s2">"shoes"</span><span class="p">)</span>
+</pre></div>
+<h1 id="django-integration">Django Integration</h1>
+<p>While <a href="https://github.com/mozilla/elasticutils">ElasticUtils</a> is a general python library, it comes with some django integration out of the box to simplify integration.  First, if you use the django-ized versions of the API constructs (<code>S</code>, <code>F</code>, etc), they will leverage the django settings system for configuration like ElasticSearch server URLs.</p>
+<p>Second, ElasticUtils has pre-defined <a href="http://www.celeryproject.org">Celery</a> tasks for indexing and un-indexing your django models.  This Makes it really straightforward to hook up a <code>post_save</code> signal handler to your models to have them re-indexed when updated in real-time (vs the traditional overnight batch re-index).</p>
+<p>The one missing out-of-the-box component for Django is a management command for indexing your data.  There's an incomplete <a href="https://github.com/mozilla/elasticutils/pull/168">pull-request</a> that's unfortunately been sidelined for now.  Hopefully the team behind ElasticUtils can come together and finish it off.  In the meantime, you can easily roll your own in less than 100 lines of code.</p>
+<h1 id="indexing-your-data">Indexing your Data</h1>
+<h2 id="assembling-your-mappings">Assembling your Mappings</h2>
+<p>To define your indexes in <a href="https://github.com/mozilla/elasticutils">ElasticUtils</a>, you define a <code>MappingType</code> class much like in the Django ORM, you'd define a <code>Model</code>.  This allows you to provide the necessary parameters to ElasticSearch to define the properties of the index and provide helper methods to perform the indexing and construct the searches.</p>
+<p>The amount of boilerplate code required depends on whether you're using the base <code>MappingType</code> or the django-ized version.  The django version leverages the Django ORM for retrieval of documents to index as an example.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">elasticutils.contrib.django</span> <span class="kn">import</span> <span class="n">Indexable</span><span class="p">,</span> <span class="n">MappingType</span>
+<span class="kn">from</span> <span class="nn">example.product.models</span> <span class="kn">import</span> <span class="n">Product</span>
+
+
+<span class="k">class</span> <span class="nc">ProductMapping</span><span class="p">(</span><span class="n">MappingType</span><span class="p">,</span> <span class="n">Indexable</span><span class="p">):</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_index</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">'products'</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_mapping_type_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"product"</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Product</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_mapping</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="c1"># TBD</span>
+        <span class="p">}</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">extract_document</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">obj_id</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="c1"># TBD</span>
+        <span class="p">}</span>
+</pre></div>
+<p>There's a couple methods with TBDs (<code>extract_document()</code>, <code>get_mapping()</code>) in there that we'll revisit individually, but you can see much of this is scaffolding not unlike the <code>Meta</code> class on Django models (but using classmethods rather than a nested inner class).  These configuration methods for the most part just convert their output to JSON and are delivered to ElasticSearch un-modified.</p>
+<h2 id="defining-your-data-mapping">Defining your Data Mapping</h2>
+<p>The mapping configuration ultimately defines how ElasticSearch stores and indexes your data.  It needs to know what fields are available in a given index, and parameters on how to consume and process those fields.  If you've ever used <a href="http://lucene.apache.org/solr/">Apache SOLR</a>, you'll be relieved how much easier this configuration is compared to the XML-hell that you've surely experienced.</p>
+<p>For our example Product index, let's create some common fields that might be associated with a product listing.  This isn't designed to be a full tutorial on elasticsearch, so we'll have to skip over some of the more complex configuration options around analyzers, tokenizers and other indexing controls.</p>
+<div class="highlight"><pre><span></span><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">get_mapping</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">'properties'</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'name'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">'type'</span><span class="p">:</span> <span class="s1">'string'</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s1">'description'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">'type'</span><span class="p">:</span> <span class="s1">'string'</span><span class="p">,</span>
+                <span class="s1">'analyzer'</span><span class="p">:</span> <span class="s1">'snowball'</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s1">'sku'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">'type'</span><span class="p">:</span> <span class="s1">'string'</span><span class="p">,</span>
+                <span class="s1">'index'</span><span class="p">:</span> <span class="s1">'not_analyzed'</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s1">'price'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">'type'</span><span class="p">:</span> <span class="s1">'integer'</span><span class="p">,</span>
+                <span class="s1">'index'</span><span class="p">:</span> <span class="s1">'not_analyzed'</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s1">'category'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">'type'</span><span class="p">:</span> <span class="s1">'string'</span><span class="p">,</span>
+                <span class="s1">'index'</span><span class="p">:</span> <span class="s1">'not_analyzed'</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+<p>Most of our fields are designated as type <code>string</code>, while our <em>price</em> field is an integer (it will be number of cents, so <code>price_in_dollars * 100</code>).  You'll notice that many of the fields have an attribute <code>analyzer: not_analyzed</code>.  This is an instruction to ElasticSearch not to attempt to parse the field and just leave it as is.  Normally, ElasticSearch would split the field into terms based on word boundaries (see the <a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html">standard analyzer</a> which is the default).  But for many of the fields, we want to it to be indexed and stored exactly as we delivered (such as for <em>sku</em> which should be treated as a single term).  For <em>description</em>, we've used the <a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/analysis-snowball-analyzer.html">snowball analyzer</a> which provides additional filtering around stop words and stemming.  You can also create your own analyzers for more custom indexing of a given field.</p>
+<p>This is just the tip of the iceberg.  There's a multitude of configuration parameters for each field in your mapping.</p>
+<h2 id="extracting-fields-during-indexing">Extracting Fields during Indexing</h2>
+<p>After defining the index mapping fields, let's implement the other un-implemented method, <code>extract_document()</code>, that captures and prepares your data into the relevant fields.  This provides you the control in extracting and transforming your data prior to ingestion by elasticsearch.</p>
+<div class="highlight"><pre><span></span>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">extract_document</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">obj_id</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_model</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">obj_id</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">'id'</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">pk</span><span class="p">,</span>
+            <span class="s1">'name'</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s1">'description'</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+            <span class="s1">'sku'</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">sku</span><span class="p">,</span>
+            <span class="s1">'price'</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">price</span> <span class="o">*</span> <span class="mi">100</span><span class="p">),</span>  <span class="c1"># Convert to cents</span>
+            <span class="s1">'category'</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">category</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>   <span class="c1"># assuming `category` is a foreign key</span>
+        <span class="p">}</span>
+</pre></div>
+<p>Here we've extracted several attributes on our model as well the product category from a related model.</p>
+<h2 id="create-indexes">Create Indexes</h2>
+<p>Finally, With all your mappings configured, you can now create or update your indexes using elasticsearch.  We simply generate a settings configuration based on the elasticsearch options and elasticutils does the work for us.</p>
+<div class="highlight"><pre><span></span><span class="n">es</span> <span class="o">=</span> <span class="n">ProductMapping</span><span class="o">.</span><span class="n">get_es</span><span class="p">()</span>
+<span class="n">settings</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Add our mapping configuration to the index settings</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ProductMapping</span><span class="o">.</span><span class="n">get_mapping</span><span class="p">())</span>
+
+<span class="c1"># TBD: Add index settings here such as custom analyzers</span>
+
+<span class="n">es</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="n">ProductMapping</span><span class="o">.</span><span class="n">get_index</span><span class="p">(),</span> <span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">)</span>
+</pre></div>
+<p>Finally, let's leverage the built-in celery tasks to perform the index on our model data.  To index a model, you simply provide its primary key to the <code>index_objects</code> task, which as we've defined above in <code>extract_document()</code>, will pull it from the database and extract the fields for indexing.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">elasticutils.contrib.django</span> <span class="kn">import</span> <span class="n">tasks</span>
+
+
+<span class="n">model_objs</span> <span class="o">=</span> <span class="n">ProductMapping</span><span class="o">.</span><span class="n">get_model</span><span class="p">()</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="n">model_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model_objs</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">'pk'</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+<span class="n">tasks</span><span class="o">.</span><span class="n">index_objects</span><span class="p">(</span><span class="n">ProductMapping</span><span class="p">,</span> <span class="n">model_ids</span><span class="p">)</span>
+</pre></div>
+<h1 id="searching-your-index">Searching your Index</h1>
+<p>Now that we've indexed our data, let's walk through a couple example searches that can demonstration the richness of the ElasticSearch and  ElasticUtils query expression API.</p>
+<p>Couple of notes on the ElasticUtils <code>S</code> class that handles your search queries.  They mimic many of the attributes of Django's querysets.</p>
+<ul>
+<li>They're chainable, so you can build up your search parameters through successive calls to add filters, queries and other parameters.  Likewise, you can build-up common base search parameters and re-use it for a number of sub-queries that share those common parameters.</li>
+<li>They're lazy, so search is only performed when you try to act on the data such as iterating, or calling specific methods like <code>count()</code>.</li>
+</ul>
+<h2 id="search-for-matching-terms">Search for Matching Terms</h2>
+<p>Let's start with the obvious use case, we want to find all products who's name contains the key search terms.  With <a href="http://lucene.apache.org">Lucene</a> based indexes, you usually can choose between a rich user supplied query language like a google search or constructing your search parameters more programatically (or a combination of both).  If you're looking to give your users a free-form input (again, like Google) to specify their search parameters with operators and other modifiers (for example: <code>nike AND "air max" or category:shoes</code>), you're like going to want to use ElasticSearch's <a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html">query string query</a>.  On the other hand, if your interface is more data oriented (say a bunch of checkboxes and sliders for controlling the search parameters), you'll want more exact search controls, you'll want to leverage ElasticSearch's <a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-queries.html">many other queries</a> including <code>match</code>, <code>range</code> and <code>bool</code> queries.</p>
+<p>ElasticUtils takes a cue from django's querysets and allows you to specify the type of query using a double underscore qualifier.  So you can search a given field using a type of query like: <code>[field_name]__[query_type]</code>.</p>
+<div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">ProductMapping</span><span class="o">.</span><span class="n">search</span><span class="p">()</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">name__query_string</span><span class="o">=</span><span class="s1">'nike "air max" or category:shoes'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+    <span class="c1"># process the results</span>
+</pre></div>
+<p>If instead of a free-form query string, we could instead build up a search programmatically using another query type.  ElasticSearch provides a <a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-prefix-query.html">prefix query</a> that can provide a good way to autocomplete search terms that begin with the inputted search phrase.  They're are more efficient methods using ngrams, but this will suffice for our example.</p>
+<div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">ProductMapping</span><span class="o">.</span><span class="n">search</span><span class="p">()</span>
+<span class="c1"># Returns all results that start with 'nik' in the `shoes` category</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">name__prefix</span><span class="o">=</span><span class="s1">'nik'</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">category</span><span class="o">=</span><span class="s1">'shoes'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+    <span class="c1"># process the results</span>
+</pre></div>
+<h2 id="faceted-search-results">Faceted Search Results</h2>
+<p>One of the powerful features of ElasticSearch is the ability to quickly generate facets based on your indexed fields.  If you're unfamiliar with facets, think of a tag cloud, or a list of categories (such as brands on an e-commerce site) that allow you to drill-down through a list of results to find your intended document.</p>
+<p>In our example mapping, we have a <em>category</em> field that would be a nice facet to help our users select which category they're looking for within our search results.  Let's first search for "nike" and then display a list of categories that have matches for that product name.</p>
+<div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">ProductMapping</span><span class="o">.</span><span class="n">search</span><span class="p">()</span>
+<span class="c1"># Add facet results for `category`</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'nike'</span><span class="p">)</span><span class="o">.</span><span class="n">facet</span><span class="p">(</span><span class="s1">'category'</span><span class="p">)</span>
+<span class="n">facets</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">facet_counts</span><span class="p">()</span>
+<span class="c1"># Let's iterate the category facets</span>
+<span class="k">for</span> <span class="n">facet</span> <span class="ow">in</span> <span class="n">facets</span><span class="p">[</span><span class="s1">'category'</span><span class="p">]:</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="n">facet</span><span class="p">[</span><span class="s1">'term'</span><span class="p">]</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">facet</span><span class="p">[</span><span class="s1">'count'</span><span class="p">]</span>
+</pre></div>
+<h2 id="counts">Counts</h2>
+<p>Sometimes, you don't necessarily need to retrieve the search results, but just want to display the number of results.  Like the Django ORM, you can call <code>.count()</code> to retrieve the number of results for a given query.</p>
+<div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">ProductMapping</span><span class="o">.</span><span class="n">search</span><span class="p">()</span>
+<span class="c1"># Returns all results that start with 'nik' in the `shoes` category</span>
+<span class="n">num_results</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">name__prefix</span><span class="o">=</span><span class="s1">'nik'</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">category</span><span class="o">=</span><span class="s1">'shoes'</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+<p>Again, this is just a sampler.  There are numerous ways to search in elasticsearch and these are but a few simple examples.  As your queries grow in complexity, the chain-ability of ElasticUtils search API keeps everything manageable.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>There you have it, a method to build complex search systems using the powerful <a href="http://www.elasticsearch.org">ElasticSearch</a> systsem in a very pythonic manner.  If you're familiar with the common Django ORM patterns, it's even better.</p>
+<p>Hopefully this gives you an overview of the <a href="https://github.com/mozilla/elasticutils">ElasticUtils</a> python library as a powerful interface to the ElasticSearch indexing and retrieval system.  Much like the Django ORM makes working with databases easier compared with raw SQL, ElasticUtils makes performing complex search queries easier than building your own ElasticSearch ReST calls.</p>
+<p>This was really just an introduction, we only showed simple field extraction and text searching.  Much of the power of elasticsearch is realized when you start implementing more complex patterns like faceting, range queries, autocomplete, spell correction and suggestions.  If there's interest (leave me a comment), I'll work on follow-up posts on how to construct those patterns on top of ElasticUtils.</p>
+<h2 id="caveats">Caveats</h2>
+<p>I wrote this guide based on ElasticUtils v0.80.  The development trunk recently ported from the underlying <a href="https://github.com/rhec/pyelasticsearch">pyelasticsearch</a> library, to the officially blessed, <a href="https://github.com/elasticsearch/elasticsearch-py">elasticsearch-py</a> python bindings.  While ElasticUtils for the most part masks the need to understand the underlying library, esoteric or management commands may require direct library access.</p></div>
+
+    <hr>
+       
+    <h2>Comments</h2>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="kevinastone">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'kevinstone';
+    var disqus_identifier = 'elasticsearch-bliss-with-elasticutils';
+    var disqus_title = 'ElasticSearch Bliss with ElasticUtils';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+
+</div>
+</div>
+
+
+<footer class="footer" role="contentinfo">
+    <div class="footer-links">
+        <ul>
+            <li><h3>Content</h3></li>
+            <li><a href="./archives.html">Archives</a></li>
+        </ul>
+        <ul>
+            <li><h3>Tags</h3></li>
+            <li><a href="./tag/angularjs.html">AngularJS</a></li>
+            <li><a href="./tag/django.html">Django</a></li>
+            <li><a href="./tag/elasticsearch.html">ElasticSearch</a></li>
+            <li><a href="./tag/python.html">Python</a></li>
+            <li><a href="./tag/rest.html">ReST</a></li>
+            <li><a href="./tag/subblime.html">Subblime</a></li>
+        </ul>
+        <ul>
+            <li><h3>Links</h3></li>
+            <li><a href="http://github.com/kevinastone">GitHub</a></li>
+            <li><a href="https://twitter.com/kevinastone">Twitter</a></li>
+            <li><a href="http://www.linkedin.com/in/kevinastone">LinkedIn</a></li>
+            <li><a href="http://stackoverflow.com/users/2089197/kevin-stone">Stack Overflow</a></li>
+            <li><a href="http://slid.es/kevinastone">Slid.es</a></li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <p>&copy; Kevin Stone 2013-2019</p>
+</footer>
+
+
+
+<script src="./theme/dist/js/runtime.8db8c9afbf4f91bacfee.js" defer async></script>
+<script src="./theme/dist/js/vendors~search.92c2fcc9438374ad808f.js" defer async></script>
+<script src="./theme/dist/js/search.1f82199c9b87bdbbc671.js" defer async></script>
+<script src="./theme/dist/js/vendors~refills.e6a2772013145367b32b.js" defer async></script>
+<script src="./theme/dist/js/refills.612949b632008505a5e9.js" defer async></script>
+<script src="./theme/dist/js/vendors~trianglify.8c5bb6f6ad77a3cd4e64.js" defer async></script>
+<script src="./theme/dist/js/trianglify.b06c0f32ff3274042100.js" defer async></script>
+
+<script>var _gaq=[['_setAccount','UA-44610401-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>

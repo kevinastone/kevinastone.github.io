@@ -1,0 +1,44 @@
+article, .article {
+
+    // Headline Styling Overridde
+    h1, h2, h3 {
+        
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+    }
+
+    ul {
+
+        @extend %default-ul;
+    }
+
+    ol {
+
+        @extend %default-ol;
+    }
+
+    // Ensure the Images are responsive
+    img {
+
+        margin-top: 10px;
+        margin-bottom: 10px;
+        
+        max-width: 100%;
+
+        @include media($medium-screen-up) {
+            // If we have two images, place them side-by-side
+            &:first-child:nth-last-child(2) {
+
+                &, ~ img {
+                    max-width: 49%;
+                }
+
+            }
+        }
+
+        &:first-child:nth-last-child(1) {
+
+            max-width: 100%;
+        }
+    }
+}

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Generate Your Tests</title>
+    <meta name="description" content="">
+    <meta name="author" content="Kevin Stone">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="./theme/html5.js"></script>
+    <![endif]-->
+
+    <link href="https://blog.kevinastone.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Kevin Stone Full Atom Feed" />
+    <link href="https://blog.kevinastone.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Kevin Stone Full RSS Feed" />
+    <link href="https://blog.kevinastone.com/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Kevin Stone Categories Atom Feed" />
+    <link href="https://blog.kevinastone.com/feeds/{slug}.rss.xml" type="application/rss+xml" rel="alternate" title="Kevin Stone Categories RSS Feed" />
+
+
+    <!-- Le styles -->
+
+    <link href="./theme/dist/css/main.d647f715f58900baa686.css" rel="stylesheet">
+    <link href="./theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body >
+
+<header class="navigation navigation--float" role="banner">
+  <div class="navigation-wrapper">
+    <div class="logo">
+        <a href="." class="logo">Kevin Stone</a>
+    </div>
+    <div class="nav-right">
+      <div class="search-bar">
+          <div id="search-form" class="js-d-search-form" data-index-url="https://blog.kevinastone.com/feeds/index.all.atom.xml.json"></div>
+      </div>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
+      <nav class="navigation-tools" role="navigation">
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          <li class="nav-link"><a href="./archives.html">Archives</a></li>
+          <li class="nav-link more"><a href="./tags.html">Tags</a>
+              <ul class="submenu">
+                  <li><a href="./tag/angularjs.html">AngularJS</a></li>
+                  <li><a href="./tag/django.html">Django</a></li>
+                  <li><a href="./tag/elasticsearch.html">ElasticSearch</a></li>
+                  <li><a href="./tag/python.html">Python</a></li>
+                  <li><a href="./tag/rest.html">ReST</a></li>
+                  <li><a href="./tag/subblime.html">Subblime</a></li>
+              </ul>
+          </li>
+          <li class="nav-link more"><a href="./links.html">Links</a>
+                <ul class="submenu">
+                    <li><a href="http://github.com/kevinastone">GitHub</a></li>
+                    <li><a href="https://twitter.com/kevinastone">Twitter</a></li>
+                    <li><a href="http://www.linkedin.com/in/kevinastone">LinkedIn</a></li>
+                    <li><a href="http://stackoverflow.com/users/2089197/kevin-stone">Stack Overflow</a></li>
+                    <li><a href="http://slid.es/kevinastone">Slid.es</a></li>
+                </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div class="hero trianglify-background" style="background-image: url('/images/backgrounds/Transmission_Lines.jpg'), filter(url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACAWGBwYFCAcGhwkIiAmMFA0MCwsMGJGSjpQdGZ6eHJmcG6AkLicgIiuim5woNqirr7EztDOfJri8uDI8LjKzsb/2wBDASIkJDAqMF40NF7GhHCExsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsbGxsb/wAARCAAbACoDASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAAIFAwEE/8QAIhAAAgIBBAEFAAAAAAAAAAAAAQIAEQMEITGRURIUIlNx/8QAFwEBAQEBAAAAAAAAAAAAAAAAAQAEA//EABsRAAMAAwEBAAAAAAAAAAAAAAABEyFBUQMx/9oADAMBAAIRAxEAPwDQCNFG06WAFzCbhqiuwVbMZGDcTuRAUa/EN5BszDqzUCOI1CIgVyzekDjaaRZLJ4jqBezjuA1CAN8x3JsJqmjhZ8KuPVIq0cgv9j5NVibGVDiztzI8ISX0rPhUXPjRzTrRHmP7nH9i9yRCUkK9mtH/2Q=='), blur(20px));" data-seed="generate-your-tests">
+    <div class="hero-inner">
+        <div class="hero-copy">
+            <h1>Generate Your Tests</h1>
+<div class="text-right">
+by <a class="url fn" href="./author/kevin-stone.html">Kevin Stone</a>
+<br>
+ 
+October 12, 2015
+</div>        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content"><article class="article">
+    <div><p>When testing your application, you'll often come across the need to test that
+your application behaves correct across a range of inputs or conditions.
+Instead of repetitively defining the same test scaffolding, let's use some
+meta-programming to build our tests methods from a list of parameters.
+<a href="https://nose.readthedocs.org/en/latest/">Nose</a> has support for <a href="https://nose.readthedocs.org/en/latest/writing_tests.html#test-generators">Generator Tests</a>, but they don't
+work with python's <code>unittest</code> framework.  Let's walk-through how to build our
+own test generator that does.</p>
+
+<h1 id="our-test-case">Our Test Case</h1>
+<p>So let's write a simple application for demonstration.  We want to see if our
+input string is alphabetized.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_alphabetized</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">value</span><span class="p">))</span> <span class="o">==</span> <span class="n">value</span>
+</pre></div>
+<p>Now let's write a unit test case to check our implementation:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+
+<span class="k">class</span> <span class="nc">IsAlphabetizedTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_is_alphabetized</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">is_alphabetized</span><span class="p">(</span><span class="s1">'abcd'</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">test_is_not_alphabetized</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">is_alphabetized</span><span class="p">(</span><span class="s1">'zyxw'</span><span class="p">))</span>
+</pre></div>
+<p>We can go ahead and run these tests and they should pass:</p>
+<div class="highlight"><pre><span></span>&gt; nosetests example
+..
+----------------------------------------------------------------------
+Ran <span class="m">2</span> tests in <span class="m">0</span>.000s
+
+OK
+</pre></div>
+<p>But as you can see, our two test methods only tested simple examples.  What we
+really want to test is our function over a wide range of inputs to ensure our
+implementation is robust.</p>
+<p>At this point, your thought is usually to iterate over a range of cases in your method, and assert that each of them works as desired:</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IsAlphabetizedTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_is_alphabetized</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">''</span><span class="p">,</span>
+            <span class="s1">'a'</span><span class="p">,</span>
+            <span class="s1">'aaaaa'</span><span class="p">,</span>
+            <span class="s1">'ab'</span><span class="p">,</span>
+            <span class="s1">'abcd'</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">is_alphabetized</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span>
+</pre></div>
+<p>But you lose the benefit of having a single assertion in your test.  You can't
+isolate your test run to a single input.  What if your test requires a setup
+or teardown after each case?  You can't use all the advantages of the test
+framework.</p>
+<p>Let's say you have this setup and you get bug report that our naive
+implementation above doesn't work correctly for <code>A-Cert</code> as well as one for <code>iOS</code>.  Since we're big fans
+of TDD, we'll plug that in our test case of expected inputs:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.alphabetical</span> <span class="kn">import</span> <span class="n">is_alphabetized</span>
+
+<span class="kn">import</span> <span class="nn">unittest</span>
+
+
+<span class="k">class</span> <span class="nc">IsAlphabetizedTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_is_alphabetized</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">''</span><span class="p">,</span>
+            <span class="s1">'a'</span><span class="p">,</span>
+            <span class="s1">'aaaaa'</span><span class="p">,</span>
+            <span class="s1">'ab'</span><span class="p">,</span>
+            <span class="s1">'abcd'</span><span class="p">,</span>
+            <span class="s1">'A-Cert'</span><span class="p">,</span>
+            <span class="s1">'iOS'</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">is_alphabetized</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span>
+</pre></div>
+<p>And give it a run:</p>
+<div class="highlight"><pre><span></span><span class="o">======================================================================</span>
+FAIL: test_is_alphabetized <span class="o">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="o">)</span>
+----------------------------------------------------------------------
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"example/test_alphabetical.py"</span>, line <span class="m">34</span>, in test_is_alphabetized
+    self.assertTrue<span class="o">(</span>is_alphabetized<span class="o">(</span>input<span class="o">))</span>
+AssertionError: False is not <span class="nb">true</span>
+
+----------------------------------------------------------------------
+</pre></div>
+<p>But as you can see, we don't know which test failed.  We should update our
+test case to indicate which word failed:</p>
+<div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">test_is_alphabetized</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">''</span><span class="p">,</span>
+            <span class="s1">'a'</span><span class="p">,</span>
+            <span class="s1">'aaaaa'</span><span class="p">,</span>
+            <span class="s1">'ab'</span><span class="p">,</span>
+            <span class="s1">'abcd'</span><span class="p">,</span>
+            <span class="s1">'A-Cert'</span><span class="p">,</span>
+            <span class="s1">'iOS'</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">is_alphabetized</span><span class="p">(</span><span class="nb">input</span><span class="p">),</span> <span class="sa">u</span><span class="s1">'{} was not considered alphabetized'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="o">======================================================================</span>
+FAIL: test_is_alphabetized <span class="o">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="o">)</span>
+----------------------------------------------------------------------
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"example/test_alphabetical.py"</span>, line <span class="m">46</span>, in test_is_alphabetized
+    self.assertTrue<span class="o">(</span>is_alphabetized<span class="o">(</span>input<span class="o">)</span>, u<span class="s1">'{} was not considered alphabetized'</span>.format<span class="o">(</span>input<span class="o">))</span>
+AssertionError: A-Cert was not considered alphabetized
+
+----------------------------------------------------------------------
+</pre></div>
+<p>Now we at least know which word failed.  But what about <code>iOS</code>?  Because the
+test exits on the first failure, we're unsure if that bug report was valid or
+not.</p>
+<p>Before we go fixing our <code>is_alphabetical</code> implementation to handle the
+punctuation and capitalization, let's figure out how to get both inputs to
+fail.</p>
+<p>Instead of looping in our test method, we could instead write separate test methods for each input:</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IsAlphabetizedTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">test_is_alphabetized_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">is_alphabetized</span><span class="p">(</span><span class="s1">''</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">test_is_alphabetized_a</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">is_alphabetized</span><span class="p">(</span><span class="s1">'a'</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">test_is_alphabetized_aaaaa</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">is_alphabetized</span><span class="p">(</span><span class="s1">'aaaaa'</span><span class="p">))</span>
+
+    <span class="o">...</span>
+</pre></div>
+<p>But boy is that exhausting having to repeat ourselves for each test.  Instead,
+we'd like to provide the list of inputs as before, but have individual test
+methods generated for us.  Nose actually supports this out of the box with
+<a href="https://nose.readthedocs.org/en/latest/writing_tests.html#test-generators">Generator Tests</a>, but you can't use them with python
+<code>unittest.TestCase</code> and we'd lose any of help we get using the framework.</p>
+<p>But we can work around that limitation.  We just need to define a new test
+method on our test class for each input and nose will run them just like any
+other test method.</p>
+<p>What we need to do is transform that list of inputs into individual test
+methods.  Instead of us manually writing all those test methods, what if we
+wrote a function that wrote the test class for us?</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IsAlphabetizedTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="k">def</span> <span class="nf">add_methods</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Take a TestCase and add a test method for each input</span>
+<span class="sd">    """</span>
+    <span class="k">for</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">test_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">is_alphabetized</span><span class="p">(</span><span class="nb">input</span><span class="p">),</span> <span class="sa">u</span><span class="s1">'{} was not considered alphabetized'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span>
+
+        <span class="n">klass</span><span class="o">.</span><span class="n">test_input</span> <span class="o">=</span> <span class="n">test_input</span>
+
+
+<span class="n">add_methods</span><span class="p">(</span>
+    <span class="n">IsAlphabetizedTestCase</span><span class="p">,</span>
+    <span class="s1">''</span><span class="p">,</span>
+    <span class="s1">'a'</span><span class="p">,</span>
+    <span class="s1">'aaaaa'</span><span class="p">,</span>
+    <span class="s1">'ab'</span><span class="p">,</span>
+    <span class="s1">'abcd'</span><span class="p">,</span>
+    <span class="s1">'A-Cert'</span><span class="p">,</span>
+    <span class="s1">'iOS'</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+<p>Running those tests, we see:</p>
+<div class="highlight"><pre><span></span><span class="o">======================================================================</span>
+FAIL: test_input <span class="o">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="o">)</span>
+----------------------------------------------------------------------
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"example/test_alphabetical.py"</span>, line <span class="m">16</span>, in test_input
+    self.assertTrue<span class="o">(</span>is_alphabetized<span class="o">(</span>input<span class="o">)</span>, u<span class="s1">'{} was not considered alphabetized'</span>.format<span class="o">(</span>input<span class="o">))</span>
+AssertionError: iOS was not considered alphabetized
+
+----------------------------------------------------------------------
+Ran <span class="m">2</span> tests in <span class="m">0</span>.001s
+
+FAILED <span class="o">(</span><span class="nv">errors</span><span class="o">=</span><span class="m">1</span>, <span class="nv">failures</span><span class="o">=</span><span class="m">1</span><span class="o">)</span>
+</pre></div>
+<p>What happened?  Shouldn't there be more tests?  Well, we kept clobbering our
+test in the klass.  The trick is to give each test a unique name.</p>
+<p>Let's assign the test to the class using <code>setattr</code> with a custom name:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_methods</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Take a TestCase and add a test method for each input</span>
+<span class="sd">    """</span>
+    <span class="k">for</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
+        <span class="n">test_name</span> <span class="o">=</span> <span class="s1">'test_alphabetical_{}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">test_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">is_alphabetized</span><span class="p">(</span><span class="nb">input</span><span class="p">),</span> <span class="sa">u</span><span class="s1">'{} was not considered alphabetized'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span>
+
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="n">test_name</span><span class="p">,</span> <span class="n">test_input</span><span class="p">)</span>
+</pre></div>
+<p>Now running the tests:</p>
+<div class="highlight"><pre><span></span><span class="o">======================================================================</span>
+FAIL: test_alphabetical_ <span class="o">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="o">)</span>
+----------------------------------------------------------------------
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"example/test_alphabetical.py"</span>, line <span class="m">18</span>, in test_input
+    self.assertTrue<span class="o">(</span>is_alphabetized<span class="o">(</span>input<span class="o">)</span>, u<span class="s1">'{} was not considered alphabetized'</span>.format<span class="o">(</span>input<span class="o">))</span>
+AssertionError: iOS was not considered <span class="nv">alphabetized</span>
+
+<span class="o">======================================================================</span>
+FAIL: test_alphabetical_A-Cert <span class="o">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="o">)</span>
+----------------------------------------------------------------------
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"example/test_alphabetical.py"</span>, line <span class="m">18</span>, in test_input
+    self.assertTrue<span class="o">(</span>is_alphabetized<span class="o">(</span>input<span class="o">)</span>, u<span class="s1">'{} was not considered alphabetized'</span>.format<span class="o">(</span>input<span class="o">))</span>
+AssertionError: iOS was not considered alphabetized
+
+<span class="o">[</span>...<span class="o">]</span>
+
+----------------------------------------------------------------------
+Ran <span class="m">7</span> tests in <span class="m">0</span>.001s
+
+FAILED <span class="o">(</span><span class="nv">failures</span><span class="o">=</span><span class="m">7</span><span class="o">)</span>
+</pre></div>
+<p>Why are all tests failing with <code>iOS</code>?  It should be running with each variant
+of our input.  Turns out this is due to variable scoping in python.  In
+python2, there's only two levels of scoping: function and global.  So as we
+loop and define <code>test_input</code>, the value of <code>input</code> is being updated.  When our
+test methods are actually evaluated, it's always equal to the last value
+(<code>iOS</code>).</p>
+<p>To fix that, we'll define yet another function to capture the value of input
+(remember there's function scoping):</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_method</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="n">test_name</span> <span class="o">=</span> <span class="s1">'test_alphabetical_{}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">is_alphabetized</span><span class="p">(</span><span class="nb">input</span><span class="p">),</span> <span class="sa">u</span><span class="s1">'{} was not considered alphabetized'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">test_name</span><span class="p">,</span> <span class="n">test_input</span>
+
+
+<span class="k">def</span> <span class="nf">add_methods</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Take a TestCase and add a test method for each input</span>
+<span class="sd">    """</span>
+    <span class="k">for</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
+        <span class="n">test_name</span><span class="p">,</span> <span class="n">test_input</span> <span class="o">=</span> <span class="n">make_method</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="n">test_name</span><span class="p">,</span> <span class="n">test_input</span><span class="p">)</span>
+</pre></div>
+<p>With these changes, we finally get the results we expected:</p>
+<div class="highlight"><pre><span></span><span class="o">======================================================================</span>
+FAIL: test_alphabetical_A-Cert <span class="o">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="o">)</span>
+----------------------------------------------------------------------
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"example/test_alphabetical.py"</span>, line <span class="m">14</span>, in test_input
+    self.assertTrue<span class="o">(</span>is_alphabetized<span class="o">(</span>input<span class="o">)</span>, u<span class="s1">'{} was not considered alphabetized'</span>.format<span class="o">(</span>input<span class="o">))</span>
+AssertionError: A-Cert was not considered <span class="nv">alphabetized</span>
+
+<span class="o">======================================================================</span>
+FAIL: test_alphabetical_iOS <span class="o">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="o">)</span>
+----------------------------------------------------------------------
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"example/test_alphabetical.py"</span>, line <span class="m">14</span>, in test_input
+    self.assertTrue<span class="o">(</span>is_alphabetized<span class="o">(</span>input<span class="o">)</span>, u<span class="s1">'{} was not considered alphabetized'</span>.format<span class="o">(</span>input<span class="o">))</span>
+AssertionError: iOS was not considered alphabetized
+
+----------------------------------------------------------------------
+Ran <span class="m">7</span> tests in <span class="m">0</span>.001s
+
+FAILED <span class="o">(</span><span class="nv">failures</span><span class="o">=</span><span class="m">2</span><span class="o">)</span>
+</pre></div>
+<p>There you go, we are able to generate N test methods to validate our
+alphabetical function.  Adding a new test is as simple as extending the list
+of inputs.</p>
+<h1 id="improving-the-test-generation">Improving the Test Generation</h1>
+<p>So we now have the ability to generate tests from an input list, but it
+involves a few methods and our test is now deeply nested in a helper factory.
+Let's improve this so we can use this more universally.</p>
+<p>First thing to notice is that <code>add_methods</code> takes a class as the first
+argument.  That looks awfully like a decorator.  Let's make a few tweaks so we
+can use it to decorate our test class:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_methods</span><span class="p">(</span><span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Take a TestCase and add a test method for each input</span>
+<span class="sd">    """</span>
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">klass</span><span class="p">):</span>
+        <span class="k">for</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
+            <span class="n">test_name</span><span class="p">,</span> <span class="n">test_input</span> <span class="o">=</span> <span class="n">make_method</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="n">test_name</span><span class="p">,</span> <span class="n">test_input</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">klass</span>
+
+    <span class="k">return</span> <span class="n">decorator</span>
+
+
+<span class="nd">@add_methods</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="s1">'aaaaa'</span><span class="p">,</span> <span class="s1">'ab'</span><span class="p">,</span> <span class="s1">'abcd'</span><span class="p">,</span> <span class="s1">'A-Cert'</span><span class="p">,</span> <span class="s1">'iOS'</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">IsAlphabetizedTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+<p>All we did was wrap our method generation in a <code>decorator</code> function that takes
+an input class, adds the method and returns the class.</p>
+<h2 id="naming-the-test-functions">Naming the Test Functions</h2>
+<p>if you inspect the test class, even though we have methods under unique names
+based on the input (like <code>test_input_iOS</code>), we can't reference those class
+names when using nose because they all are still just named <code>test_input</code>:</p>
+<div class="highlight"><pre><span></span><span class="n">ipdb</span><span class="o">&gt;</span> <span class="n">pp</span> <span class="n">IsAlphabetizedTestCase</span><span class="o">.</span><span class="n">test_alphabetical_iOS</span>
+<span class="o">&lt;</span><span class="n">unbound</span> <span class="n">method</span> <span class="n">IsAlphabetizedTestCase</span><span class="o">.</span><span class="n">test_input</span><span class="o">&gt;</span>
+</pre></div>
+<p>To fix this, we need to set the <code>__name__</code> attribute on the function when
+generating it.  This has the extra benefit of not needing to return a name for
+the assignment, we can just use the same:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_method</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">is_alphabetized</span><span class="p">(</span><span class="nb">input</span><span class="p">),</span> <span class="sa">u</span><span class="s1">'{} was not considered alphabetized'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span>
+
+    <span class="n">test_input</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="s1">'test_alphabetical_{}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">test_input</span>
+
+
+<span class="k">def</span> <span class="nf">add_methods</span><span class="p">(</span><span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Take a TestCase and add a test method for each input</span>
+<span class="sd">    """</span>
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">klass</span><span class="p">):</span>
+        <span class="k">for</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
+            <span class="n">test_input</span> <span class="o">=</span> <span class="n">make_method</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="n">test_input</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">test_input</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">klass</span>
+
+    <span class="k">return</span> <span class="n">decorator</span>
+</pre></div>
+<p>Now with the function named accurately, we can specify a single test method to run:</p>
+<div class="highlight"><pre><span></span>nosetests example/test_alphabetical.py:IsAlphabetizedTestCase.test_alphabetical_iOS
+<span class="nv">F</span>
+<span class="o">======================================================================</span>
+FAIL: test_alphabetical_iOS <span class="o">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="o">)</span>
+----------------------------------------------------------------------
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"example/test_alphabetical.py"</span>, line <span class="m">8</span>, in test_input
+    self.assertTrue<span class="o">(</span>is_alphabetized<span class="o">(</span>input<span class="o">)</span>, u<span class="s1">'{} was not considered alphabetized'</span>.format<span class="o">(</span>input<span class="o">))</span>
+AssertionError: iOS was not considered alphabetized
+
+----------------------------------------------------------------------
+Ran <span class="m">1</span> <span class="nb">test</span> in <span class="m">0</span>.001s
+
+FAILED <span class="o">(</span><span class="nv">failures</span><span class="o">=</span><span class="m">1</span><span class="o">)</span>
+</pre></div>
+<h1 id="generalize-the-test-method-factory">Generalize the Test Method Factory</h1>
+<p>So our class decorator works well for our single test method generator.  But
+what if we have multiple test methods we want to generate?  Remember our
+initial example also included expected False results?  Let's make it so we can
+pass in the test method:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.alphabetical</span> <span class="kn">import</span> <span class="n">is_alphabetized</span>
+
+<span class="kn">import</span> <span class="nn">unittest</span>
+
+
+<span class="k">def</span> <span class="nf">assert_is_alphabetized</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">is_alphabetized</span><span class="p">(</span><span class="nb">input</span><span class="p">),</span> <span class="sa">u</span><span class="s1">'{} was not considered alphabetized'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">assert_is_not_alphabetized</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">is_alphabetized</span><span class="p">(</span><span class="nb">input</span><span class="p">),</span> <span class="sa">u</span><span class="s1">'{} was considered alphabetized'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">make_method</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">test_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+
+    <span class="n">test_input</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="s1">'test_{func}_{input}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="nb">input</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">test_input</span>
+
+
+<span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Take a TestCase and add a test method for each input</span>
+<span class="sd">    """</span>
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">klass</span><span class="p">):</span>
+        <span class="k">for</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
+            <span class="n">test_input</span> <span class="o">=</span> <span class="n">make_method</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="n">test_input</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">test_input</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">klass</span>
+
+    <span class="k">return</span> <span class="n">decorator</span>
+
+
+<span class="nd">@generate</span><span class="p">(</span><span class="n">assert_is_alphabetized</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="s1">'aaaaa'</span><span class="p">,</span> <span class="s1">'ab'</span><span class="p">,</span> <span class="s1">'abcd'</span><span class="p">,</span> <span class="s1">'A-Cert'</span><span class="p">,</span> <span class="s1">'iOS'</span><span class="p">)</span>
+<span class="nd">@generate</span><span class="p">(</span><span class="n">assert_is_not_alphabetized</span><span class="p">,</span> <span class="s1">'ba'</span><span class="p">,</span> <span class="s1">'aba'</span><span class="p">,</span> <span class="s1">'bob'</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">IsAlphabetizedTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+<p>Now we can run all </p>
+<div class="highlight"><pre><span></span><span class="o">======================================================================</span>
+FAIL: test_assert_is_alphabetized_A-Cert <span class="o">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="o">)</span>
+----------------------------------------------------------------------
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"example/test_alphabetical.py"</span>, line <span class="m">17</span>, in test_input
+    func<span class="o">(</span>self, input<span class="o">)</span>
+  File <span class="s2">"example/test_alphabetical.py"</span>, line <span class="m">7</span>, in assert_is_alphabetized
+    self.assertTrue<span class="o">(</span>is_alphabetized<span class="o">(</span>input<span class="o">)</span>, u<span class="s1">'{} was not considered alphabetized'</span>.format<span class="o">(</span>input<span class="o">))</span>
+AssertionError: A-Cert was not considered <span class="nv">alphabetized</span>
+
+<span class="o">======================================================================</span>
+FAIL: test_assert_is_alphabetized_iOS <span class="o">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="o">)</span>
+----------------------------------------------------------------------
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"example/test_alphabetical.py"</span>, line <span class="m">17</span>, in test_input
+    func<span class="o">(</span>self, input<span class="o">)</span>
+  File <span class="s2">"example/test_alphabetical.py"</span>, line <span class="m">7</span>, in assert_is_alphabetized
+    self.assertTrue<span class="o">(</span>is_alphabetized<span class="o">(</span>input<span class="o">)</span>, u<span class="s1">'{} was not considered alphabetized'</span>.format<span class="o">(</span>input<span class="o">))</span>
+AssertionError: iOS was not considered alphabetized
+
+----------------------------------------------------------------------
+Ran <span class="m">10</span> tests in <span class="m">0</span>.001s
+
+FAILED <span class="o">(</span><span class="nv">failures</span><span class="o">=</span><span class="m">2</span><span class="o">)</span>
+</pre></div>
+<h1 id="conclusion">Conclusion</h1>
+<p>Now with these handy generated test methods, we can make the necessary fixes
+to our <code>is_alphabetical</code> function:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">is_alphabetized</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">'[^a-z]'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">value</span><span class="p">))</span> <span class="o">==</span> <span class="n">value</span>
+</pre></div>
+<div class="highlight"><pre><span></span>----------------------------------------------------------------------
+Ran <span class="m">10</span> tests in <span class="m">0</span>.001s
+
+OK
+</pre></div>
+<p>Ah, so satisfying....</p></div>
+
+    <hr>
+       
+    <h2>Comments</h2>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="kevinastone">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'kevinstone';
+    var disqus_identifier = 'generate-your-tests';
+    var disqus_title = 'Generate Your Tests';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+
+</div>
+</div>
+
+
+<footer class="footer" role="contentinfo">
+    <div class="footer-links">
+        <ul>
+            <li><h3>Content</h3></li>
+            <li><a href="./archives.html">Archives</a></li>
+        </ul>
+        <ul>
+            <li><h3>Tags</h3></li>
+            <li><a href="./tag/angularjs.html">AngularJS</a></li>
+            <li><a href="./tag/django.html">Django</a></li>
+            <li><a href="./tag/elasticsearch.html">ElasticSearch</a></li>
+            <li><a href="./tag/python.html">Python</a></li>
+            <li><a href="./tag/rest.html">ReST</a></li>
+            <li><a href="./tag/subblime.html">Subblime</a></li>
+        </ul>
+        <ul>
+            <li><h3>Links</h3></li>
+            <li><a href="http://github.com/kevinastone">GitHub</a></li>
+            <li><a href="https://twitter.com/kevinastone">Twitter</a></li>
+            <li><a href="http://www.linkedin.com/in/kevinastone">LinkedIn</a></li>
+            <li><a href="http://stackoverflow.com/users/2089197/kevin-stone">Stack Overflow</a></li>
+            <li><a href="http://slid.es/kevinastone">Slid.es</a></li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <p>&copy; Kevin Stone 2013-2019</p>
+</footer>
+
+
+
+<script src="./theme/dist/js/runtime.8db8c9afbf4f91bacfee.js" defer async></script>
+<script src="./theme/dist/js/vendors~search.92c2fcc9438374ad808f.js" defer async></script>
+<script src="./theme/dist/js/search.1f82199c9b87bdbbc671.js" defer async></script>
+<script src="./theme/dist/js/vendors~refills.e6a2772013145367b32b.js" defer async></script>
+<script src="./theme/dist/js/refills.612949b632008505a5e9.js" defer async></script>
+<script src="./theme/dist/js/vendors~trianglify.8c5bb6f6ad77a3cd4e64.js" defer async></script>
+<script src="./theme/dist/js/trianglify.b06c0f32ff3274042100.js" defer async></script>
+
+<script>var _gaq=[['_setAccount','UA-44610401-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>

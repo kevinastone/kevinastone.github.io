@@ -1,0 +1,14 @@
+ul.list-group {
+
+    li {
+
+        padding: 0.25em;
+        line-height: 1.5;
+        vertical-align: middle;
+
+        .badge {
+
+            float: right;
+        }
+    }
+}

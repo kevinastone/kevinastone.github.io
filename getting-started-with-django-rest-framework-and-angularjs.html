@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Getting Started with Django Rest Framework and AngularJS</title>
+    <meta name="description" content="">
+    <meta name="author" content="Kevin Stone">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="./theme/html5.js"></script>
+    <![endif]-->
+
+    <link href="https://blog.kevinastone.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Kevin Stone Full Atom Feed" />
+    <link href="https://blog.kevinastone.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Kevin Stone Full RSS Feed" />
+    <link href="https://blog.kevinastone.com/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Kevin Stone Categories Atom Feed" />
+    <link href="https://blog.kevinastone.com/feeds/{slug}.rss.xml" type="application/rss+xml" rel="alternate" title="Kevin Stone Categories RSS Feed" />
+
+
+    <!-- Le styles -->
+
+    <link href="./theme/dist/css/main.d647f715f58900baa686.css" rel="stylesheet">
+    <link href="./theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body >
+
+<header class="navigation navigation--float" role="banner">
+  <div class="navigation-wrapper">
+    <div class="logo">
+        <a href="." class="logo">Kevin Stone</a>
+    </div>
+    <div class="nav-right">
+      <div class="search-bar">
+          <div id="search-form" class="js-d-search-form" data-index-url="https://blog.kevinastone.com/feeds/index.all.atom.xml.json"></div>
+      </div>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
+      <nav class="navigation-tools" role="navigation">
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          <li class="nav-link"><a href="./archives.html">Archives</a></li>
+          <li class="nav-link more"><a href="./tags.html">Tags</a>
+              <ul class="submenu">
+                  <li><a href="./tag/angularjs.html">AngularJS</a></li>
+                  <li><a href="./tag/django.html">Django</a></li>
+                  <li><a href="./tag/elasticsearch.html">ElasticSearch</a></li>
+                  <li><a href="./tag/python.html">Python</a></li>
+                  <li><a href="./tag/rest.html">ReST</a></li>
+                  <li><a href="./tag/subblime.html">Subblime</a></li>
+              </ul>
+          </li>
+          <li class="nav-link more"><a href="./links.html">Links</a>
+                <ul class="submenu">
+                    <li><a href="http://github.com/kevinastone">GitHub</a></li>
+                    <li><a href="https://twitter.com/kevinastone">Twitter</a></li>
+                    <li><a href="http://www.linkedin.com/in/kevinastone">LinkedIn</a></li>
+                    <li><a href="http://stackoverflow.com/users/2089197/kevin-stone">Stack Overflow</a></li>
+                    <li><a href="http://slid.es/kevinastone">Slid.es</a></li>
+                </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div class="hero trianglify-background" data-seed="getting-started-with-django-rest-framework-and-angularjs">
+    <div class="hero-inner">
+        <div class="hero-copy">
+            <h1>Getting Started with Django Rest Framework and AngularJS</h1>
+<div class="text-right">
+by <a class="url fn" href="./author/kevin-stone.html">Kevin Stone</a>
+<br>
+ 
+October 02, 2013
+</div>        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content"><article class="article">
+    <div><p>A <a href="http://en.wikipedia.org/wiki/Representational_state_transfer" title="Representational State Transfer">ReSTful API</a> is becoming a standard component of any modern web application.  The <a href="http://django-rest-framework.org" title="Django Rest Framework">Django Rest Framework</a> is powerful framework for developing ReST endpoints for your Django based project.  <a href="http://angularjs.org" title="Angular JS">AngularJS</a> is modern javascript framework for creating complex web applications within the browser.  It focuses on strong separation of concerns (MVC) and dependency injection to encourage creating maintainable (and testable) modules that can be integrated to develop rich client side functionality.</p>
+<p>In this blog post, I'll walk through creating a sample project that exposes a ReST API consumed by AngularJS on the client to showcase how to combine the frontend and backend frameworks to simplify creating complex applications.  I'll make heavy use of code examples to demonstrate both the solution and the process and there's a companion <a href="https://github.com/kevinastone/django-api-rest-and-angular">Github project</a> with all the code.</p>
+
+<h1 id="lets-build-a-sample-django-project">Let's Build a Sample Django Project</h1>
+<p>For a sample project, let's create a simple photo-sharing app (not unlike a rudimentary Instagram) and build a feed view for a given user to scan through all the photos shared on the site.</p>
+<p>All the sample code for this project is available on a <a href="https://github.com/kevinastone/django-api-rest-and-angular">GitHub repository</a>.  To setup the sample project in your own environment, consult the <a href="https://github.com/kevinastone/django-api-rest-and-angular/blob/master/Readme.markdown">installation instructions</a> included in the repository.  This includes installing AngularJS (and other javascript assets) via <a href="http://yeoman.io">bower+grunt</a>.</p>
+<p>Finally, there's some sample data in fixtures available to demonstrate the API.  We have a few users (<code>['Bob', 'Sally', 'Joe', 'Rachel']</code>), two posts (<code>['This is a great post', 'Another thing I wanted to share']</code>) and some sample photos as well.  The included Makefile builds the sample data for you.</p>
+<p>Couple notes about the sample code:</p>
+<ul>
+<li>I'll skip over the details on configuring, building and running the sample application.  There's <a href="https://github.com/kevinastone/django-api-rest-and-angular/blob/master/Readme.markdown">instructions</a> in the <a href="https://github.com/kevinastone/django-api-rest-and-angular">repository</a> that covers many of these details.  Please report any issues on GitHub and I'll be sure to fix them.</li>
+<li>I've written the frontend code using <a href="http://coffeescript.org">Coffee-Script</a> since I find it more legible and more efficient (and a bit more Pythonic).  There's a supplied Grunt task that collects all the coffee script files and concats them into a single <code>script.js</code> file for inclusion.</li>
+</ul>
+<h2 id="project-data-layer-the-models">Project Data Layer (the Models)</h2>
+<p>Our model layer is straightforward to what you might find in an introductory tutorial for Django.  You have three models of note: <code>User</code>, <code>Post</code>, and <code>Photo</code>.  A user can author many posts (as well as have many followers) and a post can showcase many photos (such as a collection or gallery) along with a title and optional description/body.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">AbstractUser</span>
+
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">AbstractUser</span><span class="p">):</span>
+    <span class="n">followers</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="s1">'self'</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">'followees'</span><span class="p">,</span> <span class="n">symmetrical</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">'posts'</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Photo</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">post</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Post</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">'photos'</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ImageField</span><span class="p">(</span><span class="n">upload_to</span><span class="o">=</span><span class="s2">"%Y/%m/</span><span class="si">%d</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+<h2 id="django-rest-framework-based-api">Django Rest Framework based API</h2>
+<p>The <a href="http://django-rest-framework.org" title="Django Rest Framework">Django Rest Framework (DRF)</a> provides a clean architecture to develop both simple, turn-key API endpoints as well as more complex ReST constructs.  The key is a clean separation with <code>Serializer</code> which describes the mapping between a model and the generalized wire representation (be it JSON, XML or whatever) and separate set of generic Class-Based-Views that can be extended to meet the needs of the specific API endpoint.  You also define your own URL structure rather than rely on an auto-generated one.  This is what separates DRF from other frameworks like <a href="http://tastypieapi.org">Tastypie</a> and <a href="https://bitbucket.org/jespern/django-piston/wiki/Home">Piston</a> that automate much of the conversion from django models to ReST endpoints, but come at the cost of flexibility in adapting to different use cases (especially around permissions and nested resources).</p>
+<h2 id="model-serializers">Model Serializers</h2>
+<p>The <code>Serializers</code> in DRF focus on the responsibility to convert django model instances into their representation in the API.  This gives us the opportunity to convert any data types, or provide supplemental information in a given model.  For example, for the user, we only included some of the fields, stripping private attributes such as <code>password</code> and <code>email</code>.  For the photo, we converted the <code>ImageField</code> to return the url of the image (rather than the media path location).</p>
+<p>For the <code>PostSerializer</code>, we elected to embed the author directly in the Post (rather the the common case to provide a hyperlink).  This makes that information readily accessible to our client rather than requiring extra API requests at the cost of duplicating users on each post.  The alternative hyperlink is listed with a comment for comparison.  The power of serializers is that you can extend them to create a derivative version, that uses hyperlinks instead of nested records (say, for the case of listing posts by a specific users' feed).</p>
+<p>To assign the <code>author</code> to the <code>PostSerializer</code>, we're gonna have that provided by the API View.  So we'll make it optional (<code>required=False</code>) in our serializer and add it to the validation exclusion.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">serializers</span>
+
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">Post</span><span class="p">,</span> <span class="n">Photo</span>
+
+
+<span class="k">class</span> <span class="nc">UserSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="n">posts</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedIdentityField</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">,</span> <span class="n">view_name</span><span class="o">=</span><span class="s1">'userpost-list'</span><span class="p">,</span> <span class="n">lookup_field</span><span class="o">=</span><span class="s1">'username'</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'username'</span><span class="p">,</span> <span class="s1">'first_name'</span><span class="p">,</span> <span class="s1">'last_name'</span><span class="p">,</span> <span class="s1">'posts'</span><span class="p">,</span> <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">PostSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="n">UserSerializer</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">photos</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedIdentityField</span><span class="p">(</span><span class="s1">'photos'</span><span class="p">,</span> <span class="n">view_name</span><span class="o">=</span><span class="s1">'postphoto-list'</span><span class="p">)</span>
+    <span class="c1"># author = serializers.HyperlinkedRelatedField(view_name='user-detail', lookup_field='username')</span>
+
+    <span class="k">def</span> <span class="nf">get_validation_exclusions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Need to exclude `author` since we'll add that later based off the request</span>
+        <span class="n">exclusions</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">PostSerializer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_validation_exclusions</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">exclusions</span> <span class="o">+</span> <span class="p">[</span><span class="s1">'author'</span><span class="p">]</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Post</span>
+
+
+<span class="k">class</span> <span class="nc">PhotoSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="s1">'image.url'</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Photo</span>
+</pre></div>
+<p>Okay, given our samples are fixtures are loaded, let's play with these serializers.  You'll likely see <code>DeprecationWarning</code> because we're using <code>HyperlinkedIdentityField</code> without providing a request object to construct the URL.  In the actual views, this is provided, so you can safely ignore.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">example.api.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s1">'bob'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Need to generate a fake request for our hyperlinked results</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">django.test.client</span> <span class="kn">import</span> <span class="n">RequestFactory</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">example.api.serializers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">context</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">request</span><span class="o">=</span><span class="n">RequestFactory</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">serializer</span> <span class="o">=</span> <span class="n">UserSerializer</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">serializer</span><span class="o">.</span><span class="n">data</span>
+<span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'username'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'bob'</span><span class="p">,</span> <span class="s1">'first_name'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'Bob'</span><span class="p">,</span> <span class="s1">'last_name'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">''</span><span class="p">,</span> <span class="s1">'posts'</span><span class="p">:</span> <span class="s1">'http://testserver/api/users/bob/posts'</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">post</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">posts</span><span class="o">.</span><span class="n">all</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">PostSerializer</span><span class="p">(</span><span class="n">post</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<span class="p">{</span><span class="s1">'author'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'username'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'bob'</span><span class="p">,</span> <span class="s1">'first_name'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'Bob'</span><span class="p">,</span> <span class="s1">'last_name'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">''</span><span class="p">,</span> <span class="s1">'posts'</span><span class="p">:</span> <span class="s1">'http://testserver/api/users/bob/posts'</span><span class="p">},</span> <span class="s1">'photos'</span><span class="p">:</span> <span class="s1">'http://testserver/api/posts/2/photos'</span><span class="p">,</span> <span class="sa">u</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'title'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'Title #2'</span><span class="p">,</span> <span class="s1">'body'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'Another thing I wanted to share'</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">serializer</span> <span class="o">=</span> <span class="n">PostSerializer</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">posts</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="n">many</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">serializer</span><span class="o">.</span><span class="n">data</span>
+<span class="p">[{</span><span class="s1">'author'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'username'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'bob'</span><span class="p">,</span> <span class="s1">'first_name'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'Bob'</span><span class="p">,</span> <span class="s1">'last_name'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">''</span><span class="p">,</span> <span class="s1">'posts'</span><span class="p">:</span> <span class="s1">'http://testserver/api/users/bob/posts'</span><span class="p">},</span> <span class="s1">'photos'</span><span class="p">:</span> <span class="s1">'http://testserver/api/posts/2/photos'</span><span class="p">,</span> <span class="sa">u</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'title'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'Title #2'</span><span class="p">,</span> <span class="s1">'body'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'Another thing I wanted to share'</span><span class="p">}]</span>
+</pre></div>
+<h2 id="api-url-structure">API URL Structure</h2>
+<p>For our API structure, we want to maintain a relatively flat structure to try to define canonical endpoints for given resources, but also provide some convenient nested listings for common filterings (such as posts for a given user and photos in a given post).  Note that we use model primary keys as the identifier, but for users, we use their username since that's also unique identifying (we'll see this later in the views).</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">include</span>
+
+<span class="kn">from</span> <span class="nn">.api</span> <span class="kn">import</span> <span class="n">UserList</span><span class="p">,</span> <span class="n">UserDetail</span>
+<span class="kn">from</span> <span class="nn">.api</span> <span class="kn">import</span> <span class="n">PostList</span><span class="p">,</span> <span class="n">PostDetail</span><span class="p">,</span> <span class="n">UserPostList</span>
+<span class="kn">from</span> <span class="nn">.api</span> <span class="kn">import</span> <span class="n">PhotoList</span><span class="p">,</span> <span class="n">PhotoDetail</span><span class="p">,</span> <span class="n">PostPhotoList</span>
+
+<span class="n">user_urls</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">'^/(?P&lt;username&gt;[0-9a-zA-Z_-]+)/posts$'</span><span class="p">,</span> <span class="n">UserPostList</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">'userpost-list'</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">'^/(?P&lt;username&gt;[0-9a-zA-Z_-]+)$'</span><span class="p">,</span> <span class="n">UserDetail</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">'user-detail'</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">'^$'</span><span class="p">,</span> <span class="n">UserList</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">'user-list'</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">post_urls</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">'^/(?P&lt;pk&gt;\d+)/photos$'</span><span class="p">,</span> <span class="n">PostPhotoList</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">'postphoto-list'</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">'^/(?P&lt;pk&gt;\d+)$'</span><span class="p">,</span> <span class="n">PostDetail</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">'post-detail'</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">'^$'</span><span class="p">,</span> <span class="n">PostList</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">'post-list'</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">photo_urls</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">'^/(?P&lt;pk&gt;\d+)$'</span><span class="p">,</span> <span class="n">PhotoDetail</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">'photo-detail'</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">'^$'</span><span class="p">,</span> <span class="n">PhotoList</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">'photo-list'</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">'^users'</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">user_urls</span><span class="p">)),</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">'^posts'</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">post_urls</span><span class="p">)),</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">'^photos'</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">photo_urls</span><span class="p">)),</span>
+<span class="p">)</span>
+</pre></div>
+<h2 id="api-views">API Views</h2>
+<p>Much of the power of Django Rest Framework is that the generic views make it easy to work with the common <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> cases with little or no modifications.  For the simplest views, you provide a <code>model</code> and a <code>serializer_class</code> and extend one of the built in generics (like <code>ListAPIView</code> or <code>RetrieveAPIView</code>).</p>
+<p>For our use case, we have a couple customizations.  First, for users, we wanted to use <code>username</code> as the lookup field rather than <code>pk</code>.  So we set <code>lookup_field</code> on the view (by default it's both the <code>url_kwarg</code> and the field name on the model).</p>
+<p>We also wanted to create nested versions of the views for a given user's posts or the photos within a post.  You simply override <code>get_queryset</code> on the view to customize the queryset to filter down the results based on the nested parameters (<code>username</code> and <code>pk</code> respectively).</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">generics</span><span class="p">,</span> <span class="n">permissions</span>
+
+
+<span class="kn">from</span> <span class="nn">.serializers</span> <span class="kn">import</span> <span class="n">UserSerializer</span><span class="p">,</span> <span class="n">PostSerializer</span><span class="p">,</span> <span class="n">PhotoSerializer</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">Post</span><span class="p">,</span> <span class="n">Photo</span>
+
+
+<span class="k">class</span> <span class="nc">UserList</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListCreateAPIView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">UserSerializer</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">permissions</span><span class="o">.</span><span class="n">AllowAny</span>
+    <span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">UserDetail</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">RetrieveAPIView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">UserSerializer</span>
+    <span class="n">lookup_field</span> <span class="o">=</span> <span class="s1">'username'</span>
+
+
+<span class="k">class</span> <span class="nc">PostList</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListCreateAPIView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Post</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PostSerializer</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">permissions</span><span class="o">.</span><span class="n">AllowAny</span>
+    <span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">PostDetail</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">RetrieveUpdateDestroyAPIView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Post</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PostSerializer</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">permissions</span><span class="o">.</span><span class="n">AllowAny</span>
+    <span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">UserPostList</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Post</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PostSerializer</span>
+
+    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">queryset</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">UserPostList</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">author__username</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'username'</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">PhotoList</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListCreateAPIView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Photo</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Photo</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PhotoSerializer</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">permissions</span><span class="o">.</span><span class="n">AllowAny</span>
+    <span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">PhotoDetail</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">RetrieveUpdateDestroyAPIView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Photo</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Photo</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PhotoSerializer</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">permissions</span><span class="o">.</span><span class="n">AllowAny</span>
+    <span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">PostPhotoList</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Photo</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Photo</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PhotoSerializer</span>
+
+    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">queryset</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">PostPhotoList</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">post__pk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'pk'</span><span class="p">))</span>
+</pre></div>
+<h2 id="interlude-built-in-api-browser">Interlude: Built-in API Browser</h2>
+<p>One of the benefits of Django Rest Framework, is that it comes with a built-in API browser for testing out your API.  Much like Django's admin, this can help with initial development.</p>
+<p>Simple load one of your API endpoints in the browser, and through content-negotiation, DRF will present to you a handy client interface to interact with your API.</p>
+<p><img alt="API Browser Example for Users" src="./images/django-rest-framework-and-angular-js/browser_users.png"/>
+<img alt="API Browser Example for User Posts" src="./images/django-rest-framework-and-angular-js/browser_user_posts.png"/></p>
+<h2 id="add-permissions-and-ownership-to-api">Add Permissions and Ownership to API</h2>
+<p>As previously written, our API Views allow anyone to create anything on our site.  Some of the advantages of using Django Rest Framework, is that the generic views make it easy to control permissions in the view without impact the underlying model and serializers.  To incorporate some control over who is allowed to edit our API resources, we can created some permission classes that provide the authorization controls to restrict.  They should return a boolean for the given request.  This gives us access to the full request including cookies, the authenticated user and more.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">permissions</span>
+
+
+<span class="k">class</span> <span class="nc">SafeMethodsOnlyPermission</span><span class="p">(</span><span class="n">permissions</span><span class="o">.</span><span class="n">BasePermission</span><span class="p">):</span>
+    <span class="sd">"""Only can access non-destructive methods (like GET and HEAD)"""</span>
+    <span class="k">def</span> <span class="nf">has_permission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">view</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_object_permission</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">view</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">has_object_permission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="ow">in</span> <span class="n">permissions</span><span class="o">.</span><span class="n">SAFE_METHODS</span>
+
+
+<span class="k">class</span> <span class="nc">PostAuthorCanEditPermission</span><span class="p">(</span><span class="n">SafeMethodsOnlyPermission</span><span class="p">):</span>
+    <span class="sd">"""Allow everyone to list or view, but only the other can modify existing instances"""</span>
+    <span class="k">def</span> <span class="nf">has_object_permission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># Either a list or a create, so no author</span>
+            <span class="n">can_edit</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">can_edit</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span> <span class="o">==</span> <span class="n">obj</span><span class="o">.</span><span class="n">author</span>
+        <span class="k">return</span> <span class="n">can_edit</span> <span class="ow">or</span> <span class="nb">super</span><span class="p">(</span><span class="n">PostAuthorCanEditPermission</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">has_object_permission</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
+</pre></div>
+<p>Besides simple authorization decisions, we also want to pre-fill values on save depending on who makes the requests.  When someone creates a new <code>Post</code>, we want to assign them as the author.  Because of the duplication between <code>PostList</code> and <code>PostDetail</code>, we can create a mixin class that holds all the common configuration (you can also use [ViewSets][viewsets] to accomplish similar consolidation).</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PostMixin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Post</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PostSerializer</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">PostAuthorCanEditPermission</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">perform_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serializer</span><span class="p">):</span>
+        <span class="sd">"""Force author to the current user on save"""</span>
+        <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">author</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">PostList</span><span class="p">(</span><span class="n">PostMixin</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">ListCreateAPIView</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">PostDetail</span><span class="p">(</span><span class="n">PostMixin</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">RetrieveUpdateDestroyAPIView</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+<h1 id="consume-the-api-using-angularjs">Consume the API using AngularJS</h1>
+<p>With the advent of more interactive web applications, a ReSTful API can be leveraged by rich client interfaces to expose and interact with your application's data model.  AngularJS is a great companion because of its clean separation of controls.  AngularJS's modular architecture involves a little bit of setup.  Your app is composed of modules which define services, directives and controllers that compartmentalize the functionality for cleaner separation.</p>
+<p>Part of the power of AngularJS, is that it provides <a href="http://en.wikipedia.org/wiki/Reactive_programming">reactive programming</a> leveraging their javascript-like expression language.  We can simply define a template that references variables, and our page will automatically refresh when changes are made to those variables.</p>
+<p>For the <em>hello world</em> style intro, we'll simply list the posts in our sample application.  Here is a bare bones template in AngularJS.  First, at the top level on the body tag, we specify which angular app we are using to run this page (<code>example.app.basic</code>), which is where we'll define the root module.  Second, we need to specific the controller to manage our section (<code>AppController</code>).  The controller in AngularJS parlance is really more like the model+controller in the traditional MVC (with the injected <code>$scope</code> containing the model state).  Controllers define scopes that hold the actual model instances and they can be nested to narrow the scope of your system as your go down the DOM.  Finally, we leverage an Angular directive (<code>ng-repeat</code>) which is a control structure to iterate over our <code>posts</code> model stored in the <code>$state</code>.  Within that iteration, we define a few tags and use the angular expression syntax (kinda like django template tags) to print out the username of the author, and the title and body of the post.</p>
+<p>*Note: Use verbatim tags to encapsulate the AngularJS expressions so that django doesn't attempt to render them.</p>
+<p>*Note: I've enclosed some sections in Django <code>{% block %}</code> tags so I can extend this template for each example.</p>
+<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">load</span> <span class="nv">staticfiles</span> <span class="cp">%}</span>
+
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">"stylesheet"</span> <span class="na">type</span><span class="o">=</span><span class="s">"text/css"</span> <span class="na">href</span><span class="o">=</span><span class="s">"</span><span class="cp">{%</span> <span class="k">static</span> <span class="s2">"bootstrap/dist/css/bootstrap.css"</span> <span class="cp">%}</span><span class="s">"</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span> <span class="na">ng-app</span><span class="o">=</span><span class="s">"</span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">ng_app</span> <span class="cp">%}</span><span class="s">example.app.static</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="s">"</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"content"</span> <span class="na">ng-controller</span><span class="o">=</span><span class="s">"</span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">ng_controller</span> <span class="cp">%}</span><span class="s">AppController</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="s">"</span><span class="p">&gt;</span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span>
+<span class="cp">{%</span> <span class="k">verbatim</span> <span class="cp">%}</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"panel"</span> <span class="na">ng-repeat</span><span class="o">=</span><span class="s">"post in posts"</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"panel-heading clearfix"</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">h3</span> <span class="na">class</span><span class="o">=</span><span class="s">"panel-title"</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">post.title</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">author</span> <span class="na">class</span><span class="o">=</span><span class="s">"pull-right"</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">post.author.username</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">author</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">"well"</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">post.body</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="cp">{%</span> <span class="k">endverbatim</span> <span class="cp">%}</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"</span><span class="cp">{%</span> <span class="k">static</span> <span class="s2">"underscore/underscore.js"</span> <span class="cp">%}</span><span class="s">"</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"</span><span class="cp">{%</span> <span class="k">static</span> <span class="s2">"angular/angular.js"</span> <span class="cp">%}</span><span class="s">"</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"</span><span class="cp">{%</span> <span class="k">static</span> <span class="s2">"angular-resource/angular-resource.js"</span> <span class="cp">%}</span><span class="s">"</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"</span><span class="cp">{%</span> <span class="k">static</span> <span class="s2">"js/script.js"</span> <span class="cp">%}</span><span class="s">"</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+<p>Now, let's pair this template with a simple controller that will supply the list of posts.  We'll hard-code the posts for now and then pull them in with Ajax in the next step.</p>
+<div class="highlight"><pre><span></span><span class="nv">app = </span><span class="nx">angular</span><span class="p">.</span><span class="nx">module</span> <span class="s">'example.app.static'</span><span class="p">,</span> <span class="p">[]</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">controller</span> <span class="s">'AppController'</span><span class="p">,</span> <span class="p">[</span><span class="s">'$scope'</span><span class="p">,</span> <span class="s">'$http'</span><span class="p">,</span> <span class="nf">($scope, $http) -&gt;</span>
+    <span class="nv">$scope.posts = </span><span class="p">[</span>
+        <span class="nv">author:</span>
+            <span class="nv">username: </span><span class="s">'Joe'</span>
+        <span class="nv">title: </span><span class="s">'Sample Post #1'</span>
+        <span class="nv">body: </span><span class="s">'This is the first sample post'</span>
+    <span class="p">,</span>
+        <span class="nv">author:</span>
+            <span class="nv">username: </span><span class="s">'Karen'</span>
+        <span class="nv">title: </span><span class="s">'Sample Post #2'</span>
+        <span class="nv">body: </span><span class="s">'This is another sample post'</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+</pre></div>
+<p>If you've got everything setup and run grunt to compile this down to javascript, you should see our <a href="http://localhost:8000/static">hard-coded template</a> rendered as such:</p>
+<p><img alt="Basic Post List - Hard Coded" src="./images/django-rest-framework-and-angular-js/example_static.png"/></p>
+<h3 id="using-xhr-to-pull-posts-from-the-api">Using XHR to Pull Posts from the API</h3>
+<p>Now, let's go ahead and update or controller to instead grab the list of posts from our API endpoint.  The <code>$http</code> service for AngularJS is similar to jQuery's <code>$.ajax</code> or other XHR implementations.  Notice, with AngularJS, we simply updated our model (<code>$scope.posts</code>) with the result of the ajax call, and our view is automatically updated in sync.  No need to manipulate the DOM.  This reactive style allows us to develop complex UIs with interdependencies between our data model and have the UI components respond  appropriately without directly managing those connections, keeping our views and model layers loosely-coupled.</p>
+<p>*Note the use of the promise chaining (<code>.then()</code>) on the <code>$http</code> call.  You could just as easily pass a callback.  You can take advantage of promise chaining to develop more complex API workflows such as creating a new post and then saving 3 photos.</p>
+<div class="highlight"><pre><span></span><span class="nv">app = </span><span class="nx">angular</span><span class="p">.</span><span class="nx">module</span> <span class="s">'example.app.basic'</span><span class="p">,</span> <span class="p">[]</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">controller</span> <span class="s">'AppController'</span><span class="p">,</span> <span class="p">[</span><span class="s">'$scope'</span><span class="p">,</span> <span class="s">'$http'</span><span class="p">,</span> <span class="nf">($scope, $http) -&gt;</span>
+    <span class="nv">$scope.posts = </span><span class="p">[]</span>
+    <span class="nx">$http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">'/api/posts'</span><span class="p">).</span><span class="nx">then</span> <span class="nf">(result) -&gt;</span>
+        <span class="nx">angular</span><span class="p">.</span><span class="nx">forEach</span> <span class="nx">result</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span> <span class="nf">(item) -&gt;</span>
+            <span class="nx">$scope</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">push</span> <span class="nx">item</span>
+<span class="p">]</span>
+</pre></div>
+<p>With <code>$http</code> pulling the list of posts from our API, our <a href="http://localhost:8000/basic">example page</a> now shows a feed of posts from the server.</p>
+<p><img alt="Basic Post List - XHR" src="./images/django-rest-framework-and-angular-js/example_basic.png"/></p>
+<h2 id="leveraging-angular-resource-for-api">Leveraging Angular-Resource for API</h2>
+<p>While <code>$http</code> allows us to make the XHR calls to pull the API data into our app, it's forcing us to hard code many details about our API, including constructing the URLs, http verbs and other aspects that could be encapsulated in a higher level construct.  Enter <a href="http://docs.angularjs.org/api/ngResource">Angular-Resource</a>, which provides a mechanism to define our API through Angular services that manage much of the lower level http requirements for us leaving simple ReSTful verbs to interact with the API.</p>
+<p>To work with Angular-Resource (or ngResource), you simply define the mapping between your API endpoints and the parameters in the URL pattern (much like Django <code>urlpatterns</code>).  Unfortunately, it's not terribly easy to convert between Django and the ngResource definitions, so the DRY isn't quite there.</p>
+<p>When you define your resources (using <code>$resource</code>), you simple provide a url pattern, a list of default parameter mappings, and optionally some additional http methods.  In our case, we want the resource for <code>User</code> to pull the <code>:username</code> parameter in the URL from the <code>username</code> field on our resource instance.  <code>Post</code> and <code>Photo</code> use the <code>id</code> field on the instance accordingly as the primary key.</p>
+<div class="highlight"><pre><span></span><span class="nv">app = </span><span class="nx">angular</span><span class="p">.</span><span class="nx">module</span> <span class="s">'example.api'</span><span class="p">,</span> <span class="p">[</span><span class="s">'ngResource'</span><span class="p">]</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">factory</span> <span class="s">'User'</span><span class="p">,</span> <span class="p">[</span><span class="s">'$resource'</span><span class="p">,</span> <span class="nf">($resource) -&gt;</span>
+    <span class="nx">$resource</span> <span class="s">'/api/users/:username'</span><span class="p">,</span> <span class="nv">username: </span><span class="s">'@username'</span>
+<span class="p">]</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">factory</span> <span class="s">'Post'</span><span class="p">,</span> <span class="p">[</span><span class="s">'$resource'</span><span class="p">,</span> <span class="nf">($resource) -&gt;</span>
+    <span class="nx">$resource</span> <span class="s">'/api/posts/:id'</span><span class="p">,</span> <span class="nv">id: </span><span class="s">'@id'</span>
+<span class="p">]</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">factory</span> <span class="s">'Photo'</span><span class="p">,</span> <span class="p">[</span><span class="s">'$resource'</span><span class="p">,</span> <span class="nf">($resource) -&gt;</span>
+    <span class="nx">$resource</span> <span class="s">'/api/photos/:id'</span><span class="p">,</span> <span class="nv">id: </span><span class="s">'@id'</span>
+<span class="p">]</span>
+</pre></div>
+<p>Now that we've defined our api module, we can use it as a dependency in our controller module and inject those API resources as services that our controller can use to access the API.  We add <code>example.api</code> as a dependent module and list any API resources as dependencies in our controller definition.  By default, your resources have many of the basic CRUD methods including <code>query()</code> (for retrieving a collection), <code>get()</code> (for individual items), <code>save()</code>, <code>delete()</code>, and so on.</p>
+<div class="highlight"><pre><span></span><span class="nv">app = </span><span class="nx">angular</span><span class="p">.</span><span class="nx">module</span> <span class="s">'example.app.resource'</span><span class="p">,</span> <span class="p">[</span><span class="s">'example.api'</span><span class="p">]</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">controller</span> <span class="s">'AppController'</span><span class="p">,</span> <span class="p">[</span><span class="s">'$scope'</span><span class="p">,</span> <span class="s">'Post'</span><span class="p">,</span> <span class="nf">($scope, Post) -&gt;</span>
+    <span class="nv">$scope.posts = </span><span class="nx">Post</span><span class="p">.</span><span class="nx">query</span><span class="p">()</span>
+<span class="p">]</span>
+</pre></div>
+<p>Which results in the same list of Posts as above on the <a href="http://localhost:8000/resource">example page</a>.</p>
+<p><img alt="Basic Post List - Resource" src="./images/django-rest-framework-and-angular-js/example_resource.png"/></p>
+<h2 id="add-the-photos-to-our-post-feed">Add the Photos to our Post Feed</h2>
+<p>We now have our feed of posts displaying using <code>ngResource</code> API calls, but we're simply making one call to retrieve the data.  In real applications, your data is rarely stored at only a single resource endpoint and will require coordinated API calls to construct your applications model state.  Let's enhance our app to also retrieve the photos from each post and display them as well to explore this.</p>
+<p>First, let's add two other resources for the nested API calls:</p>
+<div class="highlight"><pre><span></span><span class="nx">app</span><span class="p">.</span><span class="nx">factory</span> <span class="s">'UserPost'</span><span class="p">,</span> <span class="p">[</span><span class="s">'$resource'</span><span class="p">,</span> <span class="nf">($resource) -&gt;</span>
+    <span class="nx">$resource</span> <span class="s">'/api/users/:username/posts/:id'</span>
+<span class="p">]</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">factory</span> <span class="s">'PostPhoto'</span><span class="p">,</span> <span class="p">[</span><span class="s">'$resource'</span><span class="p">,</span> <span class="nf">($resource) -&gt;</span>
+    <span class="nx">$resource</span> <span class="s">'/api/posts/:post_id/photos/:id'</span>
+<span class="p">]</span>
+</pre></div>
+<p>This will provide two more services (<code>UserPost</code> and <code>PostPhoto</code>) that we can query to retrieve resources for a given user and post respectively.  As nested resources, we want to wire up AngularJS to load them after loading the base resource (another option is to use angular's <code>$watch</code> mechanism to response to changes and trigger additional API calls).  For this, we want to leverage Angular's <code>$q</code> service which provides a Promise/Deferred implementation allowing us to chain calls.  Starting with ngResource-1.1+, each resource provides a $promise attribute which you can chain against.  We are going to leverage that interface to make a follow on API call to retrieve photos for a given post.</p>
+<p>You have a couple of choices on how to handle the nesting of resources.  For this case, we will simply create another container on our <code>$scope</code> for the photos and use the post_id as the identifier.  Angular's expression and template language ignores missing keys, so we can simply iterate over <code>photos[post.id]</code> to retrieve the photos in the template.  Notice how we don't have to signal to change the view/template.  Angular's <code>$digest</code> process detects the updates (it's also well integrated with <code>ngResoruce</code> and <code>$q</code>s).</p>
+<div class="highlight"><pre><span></span><span class="nv">app = </span><span class="nx">angular</span><span class="p">.</span><span class="nx">module</span> <span class="s">'example.app.photos'</span><span class="p">,</span> <span class="p">[</span><span class="s">'example.api'</span><span class="p">]</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">controller</span> <span class="s">'AppController'</span><span class="p">,</span> <span class="p">[</span><span class="s">'$scope'</span><span class="p">,</span> <span class="s">'Post'</span><span class="p">,</span> <span class="s">'PostPhoto'</span><span class="p">,</span> <span class="nf">($scope, Post, PostPhoto) -&gt;</span>
+    <span class="nv">$scope.photos = </span><span class="p">{}</span>
+    <span class="nv">$scope.posts = </span><span class="nx">Post</span><span class="p">.</span><span class="nx">query</span><span class="p">()</span>
+    <span class="nx">$scope</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">$promise</span><span class="p">.</span><span class="nx">then</span> <span class="nf">(results) -&gt;</span>
+        <span class="c1"># Load the photos</span>
+        <span class="nx">angular</span><span class="p">.</span><span class="nx">forEach</span> <span class="nx">results</span><span class="p">,</span> <span class="nf">(post) -&gt;</span>
+            <span class="nx">$scope</span><span class="p">.</span><span class="nx">photos</span><span class="p">[</span><span class="nx">post</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">PostPhoto</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nv">post_id: </span><span class="nx">post</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+<p>And also update our template to iterate over this model to display photos in each post.  Notice how AngularJS re-renders the view as the data is loaded from the API.  In this case, we are iterating over the photos object referenced by the id of the post we were iterating in the parent <code>ng-repeat</code>.  We also used <code>ng-src</code> instead of <code>src</code> because it prevents browsers from attempting to load an image before the angular expression language has been evaluated (you'll see 404s in your logs around can't find: '/media/{{ photo.image }}').</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"panel"</span> <span class="na">ng-repeat</span><span class="o">=</span><span class="s">"post in posts"</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"panel-heading clearfix"</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h3</span> <span class="na">class</span><span class="o">=</span><span class="s">"pull-left panel-title"</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">post.title</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">author</span> <span class="na">class</span><span class="o">=</span><span class="s">"pull-right"</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">post.author.username</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">author</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">"well"</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">post.body</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">"photo"</span> <span class="na">ng-repeat</span><span class="o">=</span><span class="s">"photo in photos[post.id]"</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">img</span> <span class="na">class</span><span class="o">=</span><span class="s">"img-thumbnail"</span> <span class="na">ng-src</span><span class="o">=</span><span class="s">"</span><span class="cp">{{</span> <span class="nv">photo.image</span> <span class="cp">}}</span><span class="s">"</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+<p>And finally, our updated <a href="http://localhost:8000/photos">example page</a> rendered with photos.</p>
+<p><img alt="Basic Post List - Photos" src="./images/django-rest-framework-and-angular-js/example_photos.png"/></p>
+<h2 id="interlude-angularjs-csrf-protection">Interlude: AngularJS + CSRF Protection</h2>
+<p>Django Rest Framework extends Django's <a href="https://docs.djangoproject.com/en/dev/ref/contrib/csrf/">Cross Site Request Forgery</a> protection when using <code>SessionAuthentication</code> (such as our case using the same browser session as the web application).  This helps ensure malicious scripts can't coax our users into making inadvertent calls to our API by forcing the scripts to return a server provided token on each call.  AngularJS's modular architecture and dependency injection configuration make this simple to configure our API calls to include the CSRF Token in a header (you can also use a cookie if you prefer).</p>
+<p>In our django template, simply add a <code>&lt;script&gt;</code> tag to configure the <code>$http</code> provider (AngularJS parlance for the implementation of the <code>$http</code> dependency) and customize it to use the Django <code>{{ csrf_token }}</code> template variable to set the CSRF Header on all API calls.</p>
+<p>*Note: Make sure this script is loaded <strong>after</strong> your module definitions.</p>
+<p>*Note: You can pass the CSRF token between Angular and Django through cookies or other mechanisms.  This explicit header mechanism just ensures the <code>csrf token</code> is generated on every request.</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="c1">// Add the CSRF Token</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'example.app'</span><span class="p">);</span> <span class="c1">// Not including a list of dependent modules (2nd parameter to `module`) "re-opens" the module for additional configuration</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">config</span><span class="p">([</span><span class="s1">'$httpProvider'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$httpProvider</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$httpProvider</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">common</span><span class="p">[</span><span class="s1">'X-CSRFToken'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'{{ csrf_token|escapejs }}'</span><span class="p">;</span>
+<span class="p">}]);</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+<h1 id="creatingmodifying-api-resource-using-angularjs">Creating/Modifying API Resource using AngularJS</h1>
+<p>Let's now build an editor in our feed view to publish a new post (such as a Facebook status update).  While most Angular tutorials would just add the functionality to the existing controller on the page, we want to show how to keep your controllers lean and modular, so we'll create a separate controller for this post editor and show how controllers leverage the nesting of the model scopes to extend functionality.  This also gives a chance to extend our existing module <code>example.app.photos</code> which provides our base <code>AppController</code> for the feed.</p>
+<p>First, we need to extend our base template, and add the html template for the editor.  We also add the CSRF token from the above instructions since we'll now send unsafe methods to our API to save the new posts.</p>
+<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">'base.html'</span> <span class="cp">%}</span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">ng_app</span> <span class="cp">%}</span>example.app.editor<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span>
+<span class="cp">{%</span> <span class="k">verbatim</span> <span class="cp">%}</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">ng-controller</span><span class="o">=</span><span class="s">"EditController"</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h5</span><span class="p">&gt;</span>Create a New Post<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">class</span><span class="o">=</span><span class="s">"form-inline"</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"form-group block-level"</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"text"</span> <span class="na">class</span><span class="o">=</span><span class="s">"form-control"</span> <span class="na">ng-model</span><span class="o">=</span><span class="s">"newPost.title"</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">"Title"</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"form-group"</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"text"</span> <span class="na">class</span><span class="o">=</span><span class="s">"form-control"</span> <span class="na">ng-model</span><span class="o">=</span><span class="s">"newPost.body"</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">"Body"</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"form-group"</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">"btn btn-default"</span> <span class="na">ng-click</span><span class="o">=</span><span class="s">"save()"</span><span class="p">&gt;</span>Add Post<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="cp">{%</span> <span class="k">endverbatim</span> <span class="cp">%}</span>
+<span class="cp">{{</span> <span class="nb">block</span><span class="nv">.super</span> <span class="cp">}}</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">js</span> <span class="cp">%}</span>
+<span class="cp">{{</span> <span class="nb">block</span><span class="nv">.super</span> <span class="cp">}}</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="c1">// Add the CSRF Token</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'example.app.editor'</span><span class="p">);</span> <span class="c1">// Not including a list of dependent modules (2nd parameter to `module`) "re-opens" the module for additional configuration</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">config</span><span class="p">([</span><span class="s1">'$httpProvider'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$httpProvider</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$httpProvider</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">common</span><span class="p">[</span><span class="s1">'X-CSRFToken'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'</span><span class="cp">{{</span> <span class="nv">csrf_token</span><span class="o">|</span><span class="nf">escapejs</span> <span class="cp">}}</span><span class="s1">'</span><span class="p">;</span>
+<span class="p">}]);</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
+</pre></div>
+<p>Now, we have our editor, let's build the controller to wire this up.  Notice that we depend on two modules now, the base module for our feed and the api module that contains all our <code>$resource</code> definitions.</p>
+<div class="highlight"><pre><span></span><span class="nv">app = </span><span class="nx">angular</span><span class="p">.</span><span class="nx">module</span> <span class="s">'example.app.editor'</span><span class="p">,</span> <span class="p">[</span><span class="s">'example.api'</span><span class="p">,</span> <span class="s">'example.app.photos'</span><span class="p">]</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">controller</span> <span class="s">'EditController'</span><span class="p">,</span> <span class="p">[</span><span class="s">'$scope'</span><span class="p">,</span> <span class="s">'Post'</span><span class="p">,</span> <span class="nf">($scope, Post) -&gt;</span>
+
+    <span class="nv">$scope.newPost = </span><span class="k">new</span> <span class="nx">Post</span><span class="p">()</span>
+    <span class="nv">$scope.save = </span><span class="nf">-&gt;</span>
+        <span class="nx">$scope</span><span class="p">.</span><span class="nx">newPost</span><span class="p">.</span><span class="nx">$save</span><span class="p">().</span><span class="nx">then</span> <span class="nf">(result) -&gt;</span>
+            <span class="nx">$scope</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">push</span> <span class="nx">result</span>
+        <span class="p">.</span><span class="nx">then</span> <span class="nf">-&gt;</span>
+            <span class="c1"># Reset our editor to a new blank post</span>
+            <span class="nv">$scope.newPost = </span><span class="k">new</span> <span class="nx">Post</span><span class="p">()</span>
+<span class="p">]</span>
+</pre></div>
+<p>Previously, in the API Views, we added some permission constraints to prevent other users from modifying someone's posts.  Up until now, it didn't matter what user were acting as.  Now that we want to create users, we need to ensure that we're authenticated as a valid user (or our API request to create a post will be denied).  For this demonstration, there's a quick hack Django Authentication Backend that automatically logs you in root.  Obviously, don't run this in production or any untrusted environment.  This is just to help test our sandbox app without dealing with user registration and authentication.</p>
+<p><img alt="Basic Post List - Editor" src="./images/django-rest-framework-and-angular-js/example_editor.png"/></p>
+<h2 id="error-handling">Error Handling</h2>
+<p>If you're following along, have you tried creating a post without a title?  We set that as a required field in the Django model, and Django Rest Framework will validate before creating the resource.  If you try to create a Post without a title (say, using the API Browser or our new form), you'd see a 400 Bad Request response, with content that the reasons for the failed request.  Let's leverage that response to inform the user.</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">"title"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">"This field is required."</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+<p>To inform the user, let's amend our API call.  Since we're using Promises, we can simply add an error callback to capture that response and notify the user by capturing the response in our <code>$scope</code> which our template can them update to show the messages to the user.</p>
+<div class="highlight"><pre><span></span><span class="nv">app = </span><span class="nx">angular</span><span class="p">.</span><span class="nx">module</span> <span class="s">'example.app.editor'</span><span class="p">,</span> <span class="p">[</span><span class="s">'example.api'</span><span class="p">,</span> <span class="s">'example.app.photos'</span><span class="p">]</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">controller</span> <span class="s">'EditController'</span><span class="p">,</span> <span class="p">[</span><span class="s">'$scope'</span><span class="p">,</span> <span class="s">'Post'</span><span class="p">,</span> <span class="nf">($scope, Post) -&gt;</span>
+
+    <span class="nv">$scope.newPost = </span><span class="k">new</span> <span class="nx">Post</span><span class="p">()</span>
+    <span class="nv">$scope.save = </span><span class="nf">-&gt;</span>
+        <span class="nx">$scope</span><span class="p">.</span><span class="nx">newPost</span><span class="p">.</span><span class="nx">$save</span><span class="p">().</span><span class="nx">then</span> <span class="nf">(result) -&gt;</span>
+            <span class="nx">$scope</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">push</span> <span class="nx">result</span>
+        <span class="p">.</span><span class="nx">then</span> <span class="nf">-&gt;</span>
+            <span class="c1"># Reset our editor to a new blank post</span>
+            <span class="nv">$scope.newPost = </span><span class="k">new</span> <span class="nx">Post</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">then</span> <span class="nf">-&gt;</span>
+            <span class="c1"># Clear any errors</span>
+            <span class="nv">$scope.errors = </span><span class="kc">null</span>
+        <span class="p">,</span> <span class="nf">(rejection) -&gt;</span>
+            <span class="nv">$scope.errors = </span><span class="nx">rejection</span><span class="p">.</span><span class="nx">data</span>
+<span class="p">]</span>
+</pre></div>
+<p>And also update our template to include a handy error display:</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span> <span class="na">ng-repeat</span><span class="o">=</span><span class="s">"(name, errs) in errors"</span> <span class="na">class</span><span class="o">=</span><span class="s">"alert alert-danger"</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">name</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>: <span class="cp">{{</span> <span class="nv">errs.join</span><span class="o">(</span><span class="s1">', '</span><span class="o">)</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+<p>By leveraging promise APIs, it makes it straightforward to add UI elements to give feedback about the progress (loading indicators, progress bars) by simply chaining them.  AngularJS has a fairly complete Promises/A spec ensuring errors (or rejections) fall-through the chain making error handling simpler.</p>
+<p>For this simple demonstration, we just enumerate the errors in bootstrap alert boxes.  Because the errors are identified by attribute name, you can easily update your template to show errors in-line next the form fields they correspond with.</p>
+<p><img alt="Basic Post List - Error" src="./images/django-rest-framework-and-angular-js/example_error.png"/></p>
+<h2 id="remove-your-posts">Remove Your Posts</h2>
+<p>To compliment the editor, we need a way to delete any posts, but only added by the current user.  We already instrumented the API to prevent users from trying to modify/delete resources they don't own.  When you're new to AngularJS, the modular nature makes it difficult to understand how to provide some initial data to the controller.  In our case, we need to know who the current user is, so we can control what posts are available to be deleted.</p>
+<p>The key to understanding this is to try to de-compose your controllers into many services/factories (they're basically synonymous in angular) that handle the actual logic.  The controller (much like a view in Django) should really only focus on wiring together different components.  In Django, you attempt to integrate as much of your business logic in the model (the fat-model pattern).  In Angular, you similarly want to compartmentalize your logic into composable services.</p>
+<p>To add the ability to remove posts, let's first add a module extending our editor and adding an extra controller for handling the removal.  We will depend on a service named <code>AuthUser</code> which the template will provide with the current user from the Django template context.  In this case, it will simply contain a single <code>username</code> attribute for the current user (our empty if no user).  We added two functions on the scope, <code>canDelete</code> to determine if a given post can be removed by the user, and <code>delete</code> to remove the post.  Both take a <code>post</code> argument which we will supply in our template.</p>
+<p>Again, we used the Promises interface of the <code>$resource</code> and only after successful confirmation from the server do we remove the post from our feed view.  As above, there's opportunity for capturing failure results and providing feedback to the user that we've skipped in this simple example.</p>
+<div class="highlight"><pre><span></span><span class="nv">app = </span><span class="nx">angular</span><span class="p">.</span><span class="nx">module</span> <span class="s">'example.app.manage'</span><span class="p">,</span> <span class="p">[</span><span class="s">'example.api'</span><span class="p">,</span> <span class="s">'example.app.editor'</span><span class="p">]</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">controller</span> <span class="s">'DeleteController'</span><span class="p">,</span> <span class="p">[</span><span class="s">'$scope'</span><span class="p">,</span> <span class="s">'AuthUser'</span><span class="p">,</span> <span class="nf">($scope, AuthUser) -&gt;</span>
+    <span class="nv">$scope.canDelete = </span><span class="nf">(post) -&gt;</span>
+        <span class="k">return</span> <span class="nx">post</span><span class="p">.</span><span class="nx">author</span><span class="p">.</span><span class="nx">username</span> <span class="o">==</span> <span class="nx">AuthUser</span><span class="p">.</span><span class="nx">username</span>
+
+    <span class="nv">$scope.delete = </span><span class="nf">(post) -&gt;</span>
+        <span class="nx">post</span><span class="p">.</span><span class="nx">$delete</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">then</span> <span class="nf">-&gt;</span>
+            <span class="c1"># Remove it from the list on success</span>
+            <span class="nv">idx = </span><span class="nx">$scope</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">post</span><span class="p">)</span>
+            <span class="nx">$scope</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+<p>With the controller defined, let's update our Post template to include a close button (with the condition that <code>canDelete</code> is true).</p>
+<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s1">'editor.html'</span> <span class="cp">%}</span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">ng_app</span> <span class="cp">%}</span>example.app.manage<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">post_header</span> <span class="cp">%}</span>
+
+<span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">"button"</span> <span class="na">class</span><span class="o">=</span><span class="s">"close"</span> <span class="na">ng-controller</span><span class="o">=</span><span class="s">"DeleteController"</span> <span class="na">ng-click</span><span class="o">=</span><span class="s">"delete(post)"</span> <span class="na">ng-show</span><span class="o">=</span><span class="s">"canDelete(post)"</span><span class="p">&gt;</span><span class="ni">&amp;times;</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="cp">{{</span> <span class="nb">block</span><span class="nv">.super</span> <span class="cp">}}</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">js</span> <span class="cp">%}</span>
+<span class="cp">{{</span> <span class="nb">block</span><span class="nv">.super</span> <span class="cp">}}</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="c1">// Configure the current user</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'example.app.manage'</span><span class="p">);</span> <span class="c1">// Not including a list of dependent modules (2nd parameter to `module`) "re-opens" the module for </span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">factory</span><span class="p">(</span><span class="s1">'AuthUser'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">username</span><span class="o">:</span> <span class="s2">"</span><span class="cp">{{</span> <span class="nv">user.username</span><span class="o">|</span><span class="nf">default</span><span class="s1">:''</span><span class="o">|</span><span class="nf">escapejs</span> <span class="cp">}}</span><span class="s2">"</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
+</pre></div>
+<p>And, when you load the <a href="http://localhost:8000/manage">example page</a>, there's an <em>'X'</em> next to the post by <code>root</code>, but not next to the post by <code>bob</code>.  Clicking the X calls our API and deletes the post.</p>
+<p><img alt="Basic Post List - Removal" src="./images/django-rest-framework-and-angular-js/example_managed.png"/></p>
+<p>And with that, we have a simple shared feed for a users to share messages.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Alright, let's reflect. With a small amount of code (~100 lines of frontend, ~200 lines of backend), leveraging Django Rest Frameowrk (+Django itself) and AngularJS, we were able to quickly create a sample application to create simple postings.  DRF makes it simple to export our Django data models through a ReSTful API layer with opportunities to customize the interfaces based on our use cases.  AngularJS makes it easier to consume and interact with the API in a manner that is more modular and structured to help us add incremental capability to our web apps without creating spaghetti code.</p>
+<p>All the code referenced in this article is available on a <a href="https://github.com/kevinastone/django-api-rest-and-angular">GitHub project</a>.  You're encouraged to checkout the repository and setup your own working copy to experiment.  If you see any mistakes, please leave an Issue (or better yet, a Pull-Request) and I'll be sure to correct it.  If you have any questions, please leave me a comment (or hit me up on Twitter at <a href="https://twitter.com/kevinastone">@kevinastone</a>).  I intend to follow this article up with more solutions for DRF+Angular that I've come across, including:</p>
+<ul>
+<li>Pagination</li>
+<li>Singleton Endpoints (toggle follow/unfollow)</li>
+<li>More Complex Permissions</li>
+<li>Richer Validation</li>
+<li>Testing</li>
+</ul></div>
+
+    <hr>
+       
+    <h2>Comments</h2>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="kevinastone">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'kevinstone';
+    var disqus_identifier = 'getting-started-with-django-rest-framework-and-angularjs';
+    var disqus_title = 'Getting Started with Django Rest Framework and AngularJS';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+
+</div>
+</div>
+
+
+<footer class="footer" role="contentinfo">
+    <div class="footer-links">
+        <ul>
+            <li><h3>Content</h3></li>
+            <li><a href="./archives.html">Archives</a></li>
+        </ul>
+        <ul>
+            <li><h3>Tags</h3></li>
+            <li><a href="./tag/angularjs.html">AngularJS</a></li>
+            <li><a href="./tag/django.html">Django</a></li>
+            <li><a href="./tag/elasticsearch.html">ElasticSearch</a></li>
+            <li><a href="./tag/python.html">Python</a></li>
+            <li><a href="./tag/rest.html">ReST</a></li>
+            <li><a href="./tag/subblime.html">Subblime</a></li>
+        </ul>
+        <ul>
+            <li><h3>Links</h3></li>
+            <li><a href="http://github.com/kevinastone">GitHub</a></li>
+            <li><a href="https://twitter.com/kevinastone">Twitter</a></li>
+            <li><a href="http://www.linkedin.com/in/kevinastone">LinkedIn</a></li>
+            <li><a href="http://stackoverflow.com/users/2089197/kevin-stone">Stack Overflow</a></li>
+            <li><a href="http://slid.es/kevinastone">Slid.es</a></li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <p>&copy; Kevin Stone 2013-2019</p>
+</footer>
+
+
+
+<script src="./theme/dist/js/runtime.8db8c9afbf4f91bacfee.js" defer async></script>
+<script src="./theme/dist/js/vendors~search.92c2fcc9438374ad808f.js" defer async></script>
+<script src="./theme/dist/js/search.1f82199c9b87bdbbc671.js" defer async></script>
+<script src="./theme/dist/js/vendors~refills.e6a2772013145367b32b.js" defer async></script>
+<script src="./theme/dist/js/refills.612949b632008505a5e9.js" defer async></script>
+<script src="./theme/dist/js/vendors~trianglify.8c5bb6f6ad77a3cd4e64.js" defer async></script>
+<script src="./theme/dist/js/trianglify.b06c0f32ff3274042100.js" defer async></script>
+
+<script>var _gaq=[['_setAccount','UA-44610401-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+
+.summary {
+
+    $summary-background-color: lighten($light-gray, 10);
+
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+
+    border-bottom: 1px solid transparentize($base-font-color, .9);
+
+    h2 {
+
+        margin-top: 0.5em;
+        font-size: 1.5em;
+
+        @include media($medium-screen-up) {
+
+            display: inline-block;
+        }
+    }
+
+    aside {
+
+        margin-top: 0.5em;
+        font-size: 0.75em;
+        font-weight: 800;
+        text-transform: uppercase;
+
+        @include media($medium-screen-up) {
+
+            margin-left: 1em;
+            display: inline-block;
+        }
+    }
+
+    p {
+
+        font-size: 0.875em;
+    }
+}

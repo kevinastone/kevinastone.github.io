@@ -1,0 +1,36 @@
+$code-font-ratio: 0.875;
+
+pre, code {
+
+    $code-border-color: $base-border-color;
+    $code-border: 1px solid $code-border-color;
+
+    font-size: $base-font-size * $code-font-ratio;
+    line-height: 1.428571429;
+    color: #333333;
+    word-break: normal;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+
+    border-radius: $base-border-radius;
+    border: $code-border;
+}
+
+pre {
+
+    margin: 1em 0;
+    padding: 1em;
+
+    .highlight > & {
+        // Syntax Highlighting
+        word-wrap: normal;
+        white-space: pre;
+        overflow: auto;
+    }
+}
+
+code {
+
+    white-space: normal;
+    padding: $base-font-size * ((1 - $code-font-ratio) / 2) 0.2em;
+}

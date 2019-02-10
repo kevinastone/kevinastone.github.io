@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Batteries Included Django</title>
+    <meta name="description" content="">
+    <meta name="author" content="Kevin Stone">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="./theme/html5.js"></script>
+    <![endif]-->
+
+    <link href="https://blog.kevinastone.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Kevin Stone Full Atom Feed" />
+    <link href="https://blog.kevinastone.com/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Kevin Stone Full RSS Feed" />
+    <link href="https://blog.kevinastone.com/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Kevin Stone Categories Atom Feed" />
+    <link href="https://blog.kevinastone.com/feeds/{slug}.rss.xml" type="application/rss+xml" rel="alternate" title="Kevin Stone Categories RSS Feed" />
+
+
+    <!-- Le styles -->
+
+    <link href="./theme/dist/css/main.d647f715f58900baa686.css" rel="stylesheet">
+    <link href="./theme/pygments.css" rel="stylesheet">
+
+</head>
+
+<body >
+
+<header class="navigation navigation--float" role="banner">
+  <div class="navigation-wrapper">
+    <div class="logo">
+        <a href="." class="logo">Kevin Stone</a>
+    </div>
+    <div class="nav-right">
+      <div class="search-bar">
+          <div id="search-form" class="js-d-search-form" data-index-url="https://blog.kevinastone.com/feeds/index.all.atom.xml.json"></div>
+      </div>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
+      <nav class="navigation-tools" role="navigation">
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          <li class="nav-link"><a href="./archives.html">Archives</a></li>
+          <li class="nav-link more"><a href="./tags.html">Tags</a>
+              <ul class="submenu">
+                  <li><a href="./tag/angularjs.html">AngularJS</a></li>
+                  <li><a href="./tag/django.html">Django</a></li>
+                  <li><a href="./tag/elasticsearch.html">ElasticSearch</a></li>
+                  <li><a href="./tag/python.html">Python</a></li>
+                  <li><a href="./tag/rest.html">ReST</a></li>
+                  <li><a href="./tag/subblime.html">Subblime</a></li>
+              </ul>
+          </li>
+          <li class="nav-link more"><a href="./links.html">Links</a>
+                <ul class="submenu">
+                    <li><a href="http://github.com/kevinastone">GitHub</a></li>
+                    <li><a href="https://twitter.com/kevinastone">Twitter</a></li>
+                    <li><a href="http://www.linkedin.com/in/kevinastone">LinkedIn</a></li>
+                    <li><a href="http://stackoverflow.com/users/2089197/kevin-stone">Stack Overflow</a></li>
+                    <li><a href="http://slid.es/kevinastone">Slid.es</a></li>
+                </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div class="hero trianglify-background" data-seed="batteries-included-django">
+    <div class="hero-inner">
+        <div class="hero-copy">
+            <h1>Batteries Included Django</h1>
+<div class="text-right">
+by <a class="url fn" href="./author/kevin-stone.html">Kevin Stone</a>
+<br>
+ 
+July 16, 2013
+</div>        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content"><article class="article">
+    <div><p>A key benefit to using Python and/or Django for your next project, is the wealth of high quality 3rd party libraries that can help accelerate your development.  Python has a rich ecosystem of 3rd party libraries including often offical bindings for an external service.  This offers you significant tools to building rich, complex systems based on the available open source solutions.  Django's popularity and architecture provides the opportuntiy to find many existing solutions to common problems.</p>
+<p>For education and discussion, I thought it would be helpful to enumerate the many libraries we currently use on <a href="http://subblime.com" title="Subblime">Subblime</a> to leverage the power of of the Python/Django ecosystem.  A what's in our toolbox sort of post.</p>
+
+<h2 id="requirementstxt">Requirements.txt</h2>
+<div class="highlight"><pre><span></span>distribute&gt;<span class="o">=</span><span class="m">0</span>.6.28
+mysql-python&gt;<span class="o">=</span><span class="m">1</span>.2.4
+Django&gt;<span class="o">=</span><span class="m">1</span>.5.4
+pillow
+Werkzeug
+south&gt;<span class="o">=</span><span class="m">0</span>.8,&lt;<span class="m">2</span>.0
+sorl-thumbnail
+hamlpy
+requests&gt;<span class="o">=</span><span class="m">1</span>.0
+djangorestframework&gt;<span class="o">=</span><span class="m">2</span>.3.4
+djangorestframework-csv
+unicodecsv
+<span class="c1"># pynliner</span>
+<span class="c1"># # Use our fork that leverages lxml, tinycss and cssselect</span>
+https://github.com/subblime/pynliner/tarball/master#egg<span class="o">=</span>pynliner
+cssutils
+
+<span class="c1"># Django Enhancements</span>
+django-extensions&gt;1.2.1 <span class="c1"># 1.2.0 included a unicode bug (see https://github.com/django-extensions/django-extensions/pull/366)</span>
+django-model-utils
+django-templated-email
+django-grappelli&gt;<span class="o">=</span><span class="m">2</span>.4.5
+django-floppyforms
+django-filter&gt;<span class="o">=</span><span class="m">0</span>.7
+django-braces
+django-autoslug
+
+<span class="c1"># Datetime</span>
+pytz&gt;<span class="o">=</span>2013d
+iso8601
+python-dateutil&gt;<span class="o">=</span><span class="m">1</span>.5,&lt;<span class="m">2</span>.0   <span class="c1"># 2.1 includes breaking changes</span>
+
+<span class="c1"># Deployment</span>
+uwsgi
+fabric
+
+<span class="c1"># Caching</span>
+redis
+hiredis
+django-redis-cache
+<span class="c1"># johnny-cache</span>
+<span class="c1"># Patch to skip caching ORDER BY RAND() queries</span>
+https://github.com/subblime/johnny-cache/tarball/master#egg<span class="o">=</span>johnny-cache
+
+<span class="c1"># Django Compressor</span>
+django-compressor&gt;<span class="o">=</span><span class="m">1</span>.3  <span class="c1"># Need recent django-compressor for precompile filter support</span>
+lxml
+BeautifulSoup&lt;<span class="m">4</span>.0
+cssselect
+cssmin
+tinycss
+slimit
+django-sekizai
+
+<span class="c1"># Celery</span>
+django-celery-with-redis    <span class="c1"># includes celery and django-celery</span>
+flower
+django-celery-transactions
+
+<span class="c1"># YouTube</span>
+gdata
+google-api-python-client
+oauth2client
+django-social-auth&gt;<span class="o">=</span><span class="m">0</span>.7.22  <span class="c1"># v0.7.22 removed social_auth.signals.pre_update which we now support through pipeline stages</span>
+
+<span class="c1"># Social</span>
+facepy
+twitter
+
+<span class="c1"># Mixpanel</span>
+<span class="c1"># v0.6 introduced Celery 3.0 support</span>
+mixpanel-celery&gt;<span class="o">=</span><span class="m">0</span>.6.0
+
+<span class="c1"># For Sentry</span>
+raven&gt;<span class="o">=</span><span class="m">3</span>.0
+
+<span class="c1"># Lettuce</span>
+<span class="c1"># Need version of Lettuce that supports proper Background sections including xunit support</span>
+lettuce&gt;<span class="o">=</span><span class="m">0</span>.2.18
+
+<span class="c1"># Charting</span>
+numpy
+pandas&gt;<span class="o">=</span><span class="m">0</span>.12
+sqlalchemy
+
+<span class="c1"># Search</span>
+django-haystack
+pyelasticsearch
+celery-haystack
+</pre></div>
+<h3 id="testing-requirementstxt">Testing Requirements.txt</h3>
+<div class="highlight"><pre><span></span>factory_boy&gt;<span class="o">=</span><span class="m">1</span>.3,&lt;<span class="m">2</span>.0   <span class="c1"># Guard against potential 2.0 breaking changes</span>
+mock
+<span class="c1">#pytimecop</span>
+
+<span class="c1"># Nose</span>
+nose&lt;<span class="m">1</span>.3    <span class="c1"># Nose 1.3 breaks our test discovery somehow</span>
+django-nose
+coverage
+nose-exclude
+nose-progressive&gt;<span class="o">=</span><span class="m">1</span>.4.1
+nosexcover
+yanc
+xtraceback
+
+<span class="c1"># Validaiton</span>
+pep8
+flake8
+</pre></div>
+<h3 id="lettuce-requirementstxt">Lettuce Requirements.txt</h3>
+<div class="highlight"><pre><span></span><span class="c1"># Make sure you have Chromium installed (or appropriate for your dev platform)</span>
+splinter&gt;<span class="o">=</span><span class="m">0</span>.5    <span class="c1"># Need 0.5 for PhantomJS support</span>
+selenium&gt;<span class="o">=</span><span class="m">2</span>.28  <span class="c1"># Need 2.28 for PhantomJS support</span>
+</pre></div>
+<h1 id="basic-includes-for-every-project">Basic Includes for Every Project</h1>
+<p>These are requirements I type before I even start a project.  You're just likely to need them with some part of your problem set.</p>
+<ul>
+<li><a href="https://github.com/python-imaging/Pillow">Pillow</a> (Image Manipulation)</li>
+<li><a href="https://github.com/sorl/sorl-thumbnail">sorl-thumbnail</a> (Thumbnail Generation)</li>
+<li><a href="http://south.aeracode.org">South</a> (DB Migrations)</li>
+<li><a href="http://python-requests.org">Requests</a> (HTTP client)</li>
+<li><a href="http://django-rest-framework.org">Django-Rest-Framework</a> (ReST API endpoint)</li>
+</ul>
+<h3 id="datetime-fixes">DateTime Fixes</h3>
+<ul>
+<li><a href="http://pytz.sourceforge.net">pytz</a> (Timezone support)</li>
+<li><a href="https://bitbucket.org/micktwomey/pyiso8601">iso8601</a> (date formatting and parsing)</li>
+<li><a href="http://labix.org/python-dateutil">dateutil</a> (parsing and translation)</li>
+</ul>
+<p>You always end up exporting importing to CSV</p>
+<ul>
+<li><a href="https://github.com/jdunck/python-unicodecsv">unicodecsv</a> (Fixes encoding for CSV import/export)</li>
+</ul>
+<h2 id="general-django-helpers">General Django Helpers</h2>
+<p>Some utility knife style general enhancements to Django</p>
+<ul>
+<li><a href="https://github.com/django-extensions/django-extensions">django-extensions</a><ul>
+<li>runserver_plus + shell_plus management commands (Werkzeug Debugger)</li>
+<li>Useful generic model fields (CreationDateTimeField, etc)</li>
+</ul>
+</li>
+<li><a href="https://github.com/carljm/django-model-utils">django-model-utils</a><ul>
+<li>Improved Querysets (PassThroughManager, InheritanceManager)</li>
+</ul>
+</li>
+<li><a href="https://github.com/brack3t/django-braces">django-braces</a><ul>
+<li>CBV Mixins (instead of ugly decorators)</li>
+</ul>
+</li>
+</ul>
+<h2 id="django-crud-helpers">Django CRUD Helpers</h2>
+<ul>
+<li><a href="https://github.com/alex/django-filter">django-filter</a><ul>
+<li>Don't write your own query string parameterizations until you've tried django-filter</li>
+</ul>
+</li>
+<li><a href="https://github.com/brutasse/django-floppyforms">django-floppyforms</a><ul>
+<li>Better templates for django forms</li>
+<li>import floppyforms as forms</li>
+</ul>
+</li>
+</ul>
+<h3 id="admin-tools">Admin Tools</h3>
+<ul>
+<li><a href="http://www.grappelliproject.com">django-grappelli</a> (nicer skin)</li>
+<li><a href="https://github.com/django-extensions/django-extensions">django-extensions</a> (again)<ul>
+<li>ForeignKeyAutocompleteAdmin makes admin useable for relations (search field instead of dropdown)</li>
+</ul>
+</li>
+</ul>
+<h1 id="batch-processing">Batch Processing</h1>
+<h3 id="celery">Celery</h3>
+<ul>
+<li><a href="http://celeryproject.org">django-celery</a></li>
+<li><a href="https://github.com/chrisdoble/django-celery-transactions">django-celery-transactions</a><ul>
+<li>Delays task delivery until transactions commit to eliminate race conditions</li>
+</ul>
+</li>
+</ul>
+<h3 id="email">Email</h3>
+<ul>
+<li><a href="https://github.com/bradwhittington/django-templated-email">django-templated-email</a><ul>
+<li>Template support for mail subjects, and HTML + Plain versions</li>
+</ul>
+</li>
+<li><a href="https://github.com/rennat/pynliner">pynliner</a><ul>
+<li>inline your CSS for to re-use your css in mail templates</li>
+</ul>
+</li>
+</ul>
+<h1 id="cleaner-frontend-code">Cleaner Frontend Code</h1>
+<ul>
+<li><a href="https://github.com/jessemiller/HamlPy">HamlPy</a> (Template loader)<ul>
+<li>More readable and concise html generation</li>
+<li>(Also more version control friendly since it's line based)</li>
+</ul>
+</li>
+<li><a href="https://github.com/jezdez/django_compressor">Django Compressor</a><ul>
+<li>Supports LessCSS and Coffeescript</li>
+<li>lxml, BeautifulSoup, cssmin, slimit for minification</li>
+<li>NPM Packages: less, jshint, recess, uglify-js, coffee-script</li>
+</ul>
+</li>
+<li><a href="https://github.com/ojii/django-sekizai">django-sekizai</a><ul>
+<li>Adding resources in template fragments on demand</li>
+</ul>
+</li>
+</ul>
+<h3 id="haml-templates">Haml Templates</h3>
+<p>Regular Django HTML</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;p&gt;</span>A bunch of placeholder text about your company.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"actions"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"action-container pull-left"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"flat-button block-level call-to-action"</span> <span class="na">href=</span><span class="s">"{% url "</span><span class="err">join"</span> <span class="err">%}"</span><span class="nt">&gt;</span>Join our Site!<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"action-container pull-right"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"flat-button block-level call-to-action"</span> <span class="na">href=</span><span class="s">"{% url "</span><span class="err">login"</span> <span class="err">%}"</span><span class="nt">&gt;</span>Sign In<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+<p>Updated for Haml</p>
+<div class="highlight"><pre><span></span><span class="nt">%p</span>
+    A bunch of placeholder text about your company.
+<span class="nc">.actions</span>
+    <span class="nc">.action-container.pull-left</span>
+        <span class="nt">%a</span><span class="nc">.flat-button.block-level.call-to-action</span><span class="p">{</span><span class="s1">'href'</span><span class="p">:</span> <span class="err">'</span><span class="p">{</span><span class="o">%</span> <span class="n">url</span> <span class="s2">"join"</span> <span class="o">%</span><span class="p">}</span>'}
+            Join our Site!
+    <span class="nc">.action-container.pull-right</span>
+        <span class="nt">%a</span><span class="nc">.flat-button.block-level.call-to-action</span><span class="p">{</span><span class="s1">'href'</span><span class="p">:</span> <span class="err">'</span><span class="p">{</span><span class="o">%</span> <span class="n">url</span> <span class="s2">"login"</span> <span class="o">%</span><span class="p">}</span>'}
+            Sign In
+</pre></div>
+<h3 id="another-example">Another Example</h3>
+<div class="highlight"><pre><span></span><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-information-container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"product-information"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h4&gt;</span>
+            <span class="cp">{%</span> <span class="k">if</span> <span class="nv">headline</span> <span class="cp">%}{{</span> <span class="nv">headline</span> <span class="cp">}}{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+            <span class="cp">{%</span> <span class="k">if</span> <span class="nv">url</span> <span class="cp">%}</span>
+            <span class="nt">&lt;p&gt;</span>
+                <span class="nt">&lt;p&gt;</span>
+                    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"</span><span class="cp">{{</span> <span class="nv">url</span> <span class="cp">}}</span><span class="s">"</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">url</span><span class="o">|</span><span class="nf">format_url</span> <span class="cp">}}</span><span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/p&gt;</span>
+            <span class="nt">&lt;/p&gt;</span>
+            <span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+        <span class="nt">&lt;/h4&gt;</span>
+        <span class="cp">{%</span> <span class="k">if</span> <span class="nv">description</span> <span class="cp">%}</span>
+        <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"description"</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">description</span> <span class="cp">}}</span><span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="nc">.product-information-container</span>
+    <span class="nc">.product-information</span>
+        <span class="nt">%h4</span>
+            <span class="p">-</span> <span class="k">if</span> <span class="n">headline</span>
+                <span class="p">=</span> <span class="n">headline</span>
+            <span class="p">-</span> <span class="k">if</span> <span class="n">url</span>
+                <span class="nt">%p</span>
+                    <span class="nt">%a</span><span class="p">{</span><span class="s1">'href'</span><span class="p">:</span> <span class="err">'</span><span class="o">=</span><span class="p">{</span><span class="n">url</span><span class="p">}</span>'}
+                        <span class="p">=</span> <span class="n">url</span><span class="o">|</span><span class="n">format_url</span>
+        <span class="p">-</span> <span class="k">if</span> <span class="n">description</span>
+            <span class="nt">%p</span><span class="nc">.description</span>&lt;
+                <span class="p">=</span> <span class="n">description</span>
+</pre></div>
+<h3 id="django-sekizai">Django Sekizai</h3>
+<p>Sekizai allows you to specify assets (css, js) anywhere in your templates and capture them to include in the base template.</p>
+<p>In Your Base Template:</p>
+<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">render_block</span> <span class="s2">"js"</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+<p>or with Django Compressor Processors (say for Coffeescript)</p>
+<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">render_block</span> <span class="s2">"js"</span> <span class="nv">postprocessor</span> <span class="s2">"compressor.contrib.sekizai.compress"</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+<p>Included Fragment Example</p>
+<div class="highlight"><pre><span></span><span class="p">-</span> <span class="n">addtoblock</span> <span class="s2">"js"</span>
+    <span class="nt">%script</span><span class="p">{</span><span class="s1">'type'</span><span class="p">:</span> <span class="s1">'text/javascript'</span><span class="p">,</span> <span class="s1">'src'</span><span class="p">:</span> <span class="err">'</span><span class="p">{</span><span class="o">%</span> <span class="n">static</span> <span class="s2">"js/jquery/jquery.timeago.js"</span> <span class="o">%</span><span class="p">}</span>'}
+<span class="p">-</span> <span class="n">endaddtoblock</span> <span class="s2">"js"</span>
+</pre></div>
+<p>Included Fragment Example (Coffeescript)</p>
+<div class="highlight"><pre><span></span>{% addtoblock "js" %}
+    <span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">"text/coffeescript"</span> <span class="na">src=</span><span class="s">"{% static "</span><span class="err">js/directives/date.coffee"</span> <span class="err">%}"</span><span class="nt">&gt;&lt;/script&gt;</span>
+{% endaddtoblock "js" %}
+</pre></div>
+<h1 id="backend-services">Backend Services</h1>
+<h2 id="algorithmicdata-science">Algorithmic/Data Science</h2>
+<ul>
+<li><a href="http://www.numpy.org">NumPy</a></li>
+<li><a href="http://pandas.pydata.org">Pandas</a><ul>
+<li>Powerful data transformations (esp. for time series data)</li>
+</ul>
+</li>
+</ul>
+<h3 id="other-useful-libs">Other Useful Libs</h3>
+<ul>
+<li><a href="http://www.scipy.org">SciPy</a><ul>
+<li>Algorithms galore</li>
+</ul>
+</li>
+<li><a href="http://nltk.org">NLTK</a> (language processing + statistics primitives)</li>
+<li><a href="https://github.com/pymc-devs/pymc">PyMC</a> (Bayesian inference)</li>
+</ul>
+<h2 id="caching">Caching</h2>
+<ul>
+<li><a href="https://github.com/andymccurdy/redis-py">redis-py</a></li>
+<li><a href="https://github.com/pietern/hiredis-py">hiredis-py</a> (faster bindings for redis)</li>
+<li>
+<p><a href="https://github.com/sebleier/django-redis-cache">django-redis-cache</a> (cache backend using redis)</p>
+</li>
+<li>
+<p>johnny-cache (transparent queryset caching)</p>
+</li>
+</ul>
+<h2 id="apis-and-authentication">APIs and Authentication</h2>
+<ul>
+<li><a href="https://github.com/omab/django-social-auth">django-social-auth</a> (oauth consumers) - now <a href="https://github.com/omab/python-social-auth">python-social-auth</a></li>
+<li>Google<ul>
+<li><a href="https://developers.google.com/api-client-library/python/">oauth2client</a></li>
+<li><a href="https://code.google.com/p/google-api-python-client/">google-api-python-client</a></li>
+<li><a href="https://code.google.com/p/gdata-python-client/">gdata</a></li>
+</ul>
+</li>
+<li>Facebook<ul>
+<li><a href="https://github.com/jgorset/facepy">facepy</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="trackingreporting">Tracking/Reporting</h3>
+<ul>
+<li><a href="https://github.com/winhamwr/mixpanel-celery">mixpanel-celery</a> (background mixpanel tracking)</li>
+<li><a href="https://github.com/getsentry/raven-python">raven</a> (for Sentry)</li>
+</ul>
+<h1 id="deployment-and-testing">Deployment and Testing</h1>
+<ul>
+<li><a href="http://fabfile.org/">Fabric</a> (automation)</li>
+<li><a href="http://projects.unbit.it/uwsgi">uWSGi</a> (WSGi container)</li>
+<li><a href="http://werkzeug.pocoo.org">Werkzeug</a> (Lightweight WSGi framework)</li>
+</ul>
+<h2 id="testing">Testing</h2>
+<ul>
+<li><a href="https://github.com/dnerdy/factory_boy">Factory-boy</a> (Fixtures)</li>
+<li><a href="http://www.voidspace.org.uk/python/mock/">mock</a> (Mocking and Stubbing)</li>
+</ul>
+<h3 id="feature-tests">Feature Tests</h3>
+<ul>
+<li><a href="http://lettuce.it">lettuce</a></li>
+<li><a href="https://github.com/baijum/selenium-python">selenium</a> (web browser automation)</li>
+<li><a href="http://splinter.cobrateam.info">splinter</a> (selenium wrapper)</li>
+</ul>
+<h3 id="validation">Validation</h3>
+<ul>
+<li><a href="https://github.com/jcrocholl/pep8">pep8</a> (coding standards)</li>
+<li><a href="http://flake8.readthedocs.org/en/latest/">flake8</a> (static analysis based on PyFlakes)</li>
+</ul>
+<h2 id="nose-plugins">Nose Plugins</h2>
+<ul>
+<li><a href="https://github.com/nose-devs/nose">nose</a></li>
+<li><a href="https://github.com/jbalogh/django-nose">django-nose</a><ul>
+<li>Nose based Test Runner for Django</li>
+</ul>
+</li>
+<li><a href="http://nedbatchelder.com/code/coverage/">coverage</a><ul>
+<li>Code Coverage</li>
+</ul>
+</li>
+<li><a href="https://bitbucket.org/kgrandis/nose-exclude">nose-exclude</a><ul>
+<li>Adds --exclude-dir= flags to skip certain dirs</li>
+</ul>
+</li>
+<li><a href="https://github.com/erikrose/nose-progressive">nose-progressive</a><ul>
+<li>Progress bar for test runner</li>
+</ul>
+</li>
+<li><a href="https://github.com/cmheisel/nose-xcover">nosexcover</a> (worst package name ever)<ul>
+<li>Code coverage for xunit results (for Jenkins)</li>
+</ul>
+</li>
+<li><a href="https://github.com/0compute/yanc">yanc</a><ul>
+<li>Output Color-izer</li>
+</ul>
+</li>
+<li><a href="https://github.com/ischium/xtraceback">xtraceback</a><ul>
+<li>Better Test Tracebacks</li>
+</ul>
+</li>
+</ul></div>
+
+    <hr>
+       
+    <h2>Comments</h2>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="kevinastone">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'kevinstone';
+    var disqus_identifier = 'batteries-included-django';
+    var disqus_title = 'Batteries Included Django';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</article>
+
+</div>
+</div>
+
+
+<footer class="footer" role="contentinfo">
+    <div class="footer-links">
+        <ul>
+            <li><h3>Content</h3></li>
+            <li><a href="./archives.html">Archives</a></li>
+        </ul>
+        <ul>
+            <li><h3>Tags</h3></li>
+            <li><a href="./tag/angularjs.html">AngularJS</a></li>
+            <li><a href="./tag/django.html">Django</a></li>
+            <li><a href="./tag/elasticsearch.html">ElasticSearch</a></li>
+            <li><a href="./tag/python.html">Python</a></li>
+            <li><a href="./tag/rest.html">ReST</a></li>
+            <li><a href="./tag/subblime.html">Subblime</a></li>
+        </ul>
+        <ul>
+            <li><h3>Links</h3></li>
+            <li><a href="http://github.com/kevinastone">GitHub</a></li>
+            <li><a href="https://twitter.com/kevinastone">Twitter</a></li>
+            <li><a href="http://www.linkedin.com/in/kevinastone">LinkedIn</a></li>
+            <li><a href="http://stackoverflow.com/users/2089197/kevin-stone">Stack Overflow</a></li>
+            <li><a href="http://slid.es/kevinastone">Slid.es</a></li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <p>&copy; Kevin Stone 2013-2019</p>
+</footer>
+
+
+
+<script src="./theme/dist/js/runtime.8db8c9afbf4f91bacfee.js" defer async></script>
+<script src="./theme/dist/js/vendors~search.92c2fcc9438374ad808f.js" defer async></script>
+<script src="./theme/dist/js/search.1f82199c9b87bdbbc671.js" defer async></script>
+<script src="./theme/dist/js/vendors~refills.e6a2772013145367b32b.js" defer async></script>
+<script src="./theme/dist/js/refills.612949b632008505a5e9.js" defer async></script>
+<script src="./theme/dist/js/vendors~trianglify.8c5bb6f6ad77a3cd4e64.js" defer async></script>
+<script src="./theme/dist/js/trianglify.b06c0f32ff3274042100.js" defer async></script>
+
+<script>var _gaq=[['_setAccount','UA-44610401-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>
