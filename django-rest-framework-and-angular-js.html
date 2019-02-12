@@ -1,0 +1,827 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/app.b6f197430f783b3e67aa.css">code[class*=language-],pre[class*=language-]{color:#f8f8f2;background:none;text-shadow:0 1px rgba(0,0,0,.3);font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#272822}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#f8f8f2}.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#f92672}.token.boolean,.token.number{color:#ae81ff}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a6e22e}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f8f8f2}.token.atrule,.token.attr-value,.token.class-name,.token.function{color:#e6db74}.token.keyword{color:#66d9ef}.token.important,.token.regex{color:#fd971f}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="generator" content="Gatsby 2.0.118"/><link rel="alternate" type="application/rss+xml" href="/rss.xml"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><title data-react-helmet="true">Getting Started with Django Rest Framework and AngularJS | Kevin Stone</title><meta data-react-helmet="true" name="description" content="A  ReSTful API  is becoming a standard component of any modern web application. The  Django Rest Framework  is powerful framework for…"/><meta data-react-helmet="true" property="og:title" content="Getting Started with Django Rest Framework and AngularJS"/><meta data-react-helmet="true" property="og:description" content="A  ReSTful API  is becoming a standard component of any modern web application. The  Django Rest Framework  is powerful framework for…"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Kevin Stone"/><meta data-react-helmet="true" name="twitter:title" content="Getting Started with Django Rest Framework and AngularJS"/><meta data-react-helmet="true" name="twitter:description" content="A  ReSTful API  is becoming a standard component of any modern web application. The  Django Rest Framework  is powerful framework for…"/><meta data-react-helmet="true" name="keywords" content="Django, Python, AngularJS, ReST"/><style type="text/css">
+    .anchor {
+      float: left;
+      padding-right: 4px;
+      margin-left: -20px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var offset = element.offsetTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 0)
+          }), 0)
+        }
+      }
+    })
+  </script><style id="typography.js">html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{font:112.5%/1.78 'Merriweather','Georgia',serif;box-sizing:border-box;overflow-y:scroll;}*{box-sizing:inherit;}*:before{box-sizing:inherit;}*:after{box-sizing:inherit;}body{color:hsla(0,0%,0%,0.9);font-family:'Merriweather','Georgia',serif;font-weight:300;word-wrap:break-word;font-kerning:normal;-moz-font-feature-settings:"kern", "liga", "clig", "calt";-ms-font-feature-settings:"kern", "liga", "clig", "calt";-webkit-font-feature-settings:"kern", "liga", "clig", "calt";font-feature-settings:"kern", "liga", "clig", "calt";}img{max-width:100%;margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;}h1{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;color:inherit;font-family:'Open Sans',sans-serif;font-weight:700;text-rendering:optimizeLegibility;font-size:2.2974rem;line-height:2.67rem;letter-spacing:-2px;}h2{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;color:inherit;font-family:'Open Sans',sans-serif;font-weight:700;text-rendering:optimizeLegibility;font-size:1.51572rem;line-height:1.1;}h3{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;color:inherit;font-family:'Open Sans',sans-serif;font-weight:700;text-rendering:optimizeLegibility;font-size:1.31951rem;line-height:1.1;}h4{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;color:inherit;font-family:'Open Sans',sans-serif;font-weight:700;text-rendering:optimizeLegibility;font-size:1rem;line-height:1.1;}h5{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;color:inherit;font-family:'Open Sans',sans-serif;font-weight:700;text-rendering:optimizeLegibility;font-size:0.87055rem;line-height:1.1;}h6{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;color:inherit;font-family:'Open Sans',sans-serif;font-weight:700;text-rendering:optimizeLegibility;font-size:0.81225rem;line-height:1.1;font-style:italic;}hgroup{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;}ul{margin-left:1.78rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;list-style-position:outside;list-style-image:none;list-style:disc;}ol{margin-left:1.78rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;list-style-position:outside;list-style-image:none;}dl{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;}dd{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;}p{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;}figure{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;}pre{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;font-size:0.85rem;line-height:1.78rem;}table{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;font-size:1rem;line-height:1.78rem;border-collapse:collapse;width:100%;}fieldset{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;}blockquote{margin-left:0;margin-right:1.78rem;margin-top:0;padding-bottom:0;padding-left:1.44625rem;padding-right:0;padding-top:0;margin-bottom:1.78rem;font-size:1.1487rem;line-height:1.78rem;color:hsla(0,0%,0%,0.59);font-style:italic;border-left:0.33375rem solid hsla(0,0%,0%,0.2);}form{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;}noscript{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;}iframe{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;}hr{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:calc(1.78rem - 1px);background:hsla(0,0%,0%,0.2);border:none;height:1px;}address{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.78rem;}b{font-weight:700;}strong{font-weight:700;}dt{font-weight:700;}th{font-weight:700;}li{margin-bottom:calc(1.78rem / 2);}ol li{padding-left:0;}ul li{padding-left:0;}li > ol{margin-left:1.78rem;margin-bottom:calc(1.78rem / 2);margin-top:calc(1.78rem / 2);}li > ul{margin-left:1.78rem;margin-bottom:calc(1.78rem / 2);margin-top:calc(1.78rem / 2);}blockquote *:last-child{margin-bottom:0;}li *:last-child{margin-bottom:0;}p *:last-child{margin-bottom:0;}li > p{margin-bottom:calc(1.78rem / 2);}code{font-size:0.917rem;line-height:1.78rem;border-radius:2px;color:#333333;background-color:#f5f5f5;padding:0.2225rem;}kbd{font-size:0.85rem;line-height:1.78rem;}samp{font-size:0.85rem;line-height:1.78rem;}abbr{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}acronym{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}abbr[title]{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;text-decoration:none;}thead{text-align:left;}td,th{text-align:left;border-bottom:1px solid hsla(0,0%,0%,0.12);font-feature-settings:"tnum";-moz-font-feature-settings:"tnum";-ms-font-feature-settings:"tnum";-webkit-font-feature-settings:"tnum";padding-left:1.18667rem;padding-right:1.18667rem;padding-top:0.89rem;padding-bottom:calc(0.89rem - 1px);}th:first-child,td:first-child{padding-left:0;}th:last-child,td:last-child{padding-right:0;}a{color:#ff6f69;text-decoration:none;}a:hover,a:active{text-decoration:underline;}blockquote > :last-child{margin-bottom:0;}blockquote cite{font-size:1rem;line-height:1.78rem;color:hsla(0,0%,0%,0.9);font-weight:300;}blockquote cite:before{content:"— ";}ul,ol{margin-left:0;}@media only screen and (max-width:480px){ul,ol{margin-left:1.78rem;}blockquote{margin-left:-1.335rem;margin-right:0;padding-left:1.00125rem;}}@media only screen and (max-width:768px){h1{font-size:2rem;line-height:2.67rem;}}h1,h2,h3,h4,h5,h6{margin-top:3.56rem;}</style><link href="//fonts.googleapis.com/css?family=Open+Sans:700|Merriweather:300,300i,700,700i" rel="stylesheet" type="text/css"/><link as="script" rel="preload" href="/webpack-runtime-a2655a30bb7197352115.js"/><link as="script" rel="preload" href="/app-afb9916d2951c913f20b.js"/><link as="script" rel="preload" href="/0-1f8fe471db81b6f24482.js"/><link as="script" rel="preload" href="/7-da21abf33a3cf79d910c.js"/><link as="script" rel="preload" href="/component---src-components-blog-post-js-60f52d47430214c29272.js"/><link as="fetch" rel="preload" href="/static/d/505/path---django-rest-framework-and-angular-js-983-09a-S3yMMuB6739LvAFQ18oy40CwJoM.json" crossOrigin="use-credentials"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group"><style data-emotion-css="tpuo40">.css-tpuo40{background-color:#ff6f69;background:linear-gradient( to right,#0e9aa7,#96ceb4,#ffcc5c,#ff6f69,#ced07d );box-shadow:0px 2px 2px 0px #ccc;}</style><header class="css-tpuo40"><style data-emotion-css="8ii2k6">.css-8ii2k6{padding-top:0.89rem;padding-bottom:0.89rem;}</style><style data-emotion-css="15aqxzt">.css-15aqxzt{margin:0 auto;max-width:960px;padding:0 1.78rem;padding-top:0.89rem;padding-bottom:0.89rem;}</style><div class="css-15aqxzt e1wsq9gq0"><h3 style="margin:0"><a style="color:white;text-decoration:none" href="/">Kevin Stone</a></h3></div></header><main><style data-emotion-css="1qxvkam">.css-1qxvkam{padding:3.56rem 0;margin-bottom:2.67rem;text-align:center;box-shadow:0px 2px 2px 0px #ccc;background-color:#ff6f69;background:linear-gradient( to right,#0e9aa7,#96ceb4,#ffcc5c,#ff6f69,#ced07d );background-size:cover;background-position:center;color:white;}</style><div class="css-1qxvkam"><style data-emotion-css="14wh5x3">.css-14wh5x3{margin:0 auto;max-width:960px;padding:0 1.78rem;}</style><div class="css-14wh5x3 e1wsq9gq0"><h1 class="css-0 eywqi3t0">Getting Started with Django Rest Framework and AngularJS</h1><style data-emotion-css="2552nd">.css-2552nd{margin-top:-0.89rem;}</style><p class="css-2552nd">October 02, 2013</p></div></div><style data-emotion-css="150a3em">.css-150a3em{padding-top:0rem;}</style><style data-emotion-css="axvb6x">.css-axvb6x{margin:0 auto;max-width:960px;padding:0 1.78rem;padding-top:0rem;}</style><div class="css-axvb6x e1wsq9gq0"><style data-emotion-css="17krvi4">.css-17krvi4 h1,.css-17krvi4 h2,.css-17krvi4 h3,.css-17krvi4 h4,.css-17krvi4 h5,.css-17krvi4 h6{color:#ff6f69;}</style><div class="css-17krvi4 ec32is30"><p>A <a href="http://en.wikipedia.org/wiki/Representational_state_transfer" title="Representational State Transfer">ReSTful API</a> is becoming a standard component of any modern web application. The <a href="http://django-rest-framework.org" title="Django Rest Framework">Django Rest Framework</a> is powerful framework for developing ReST endpoints for your Django based project. <a href="http://angularjs.org" title="Angular JS">AngularJS</a> is modern javascript framework for creating complex web applications within the browser. It focuses on strong separation of concerns (MVC) and dependency injection to encourage creating maintainable (and testable) modules that can be integrated to develop rich client side functionality.</p>
+<p>In this blog post, I'll walk through creating a sample project that exposes a ReST API consumed by AngularJS on the client to showcase how to combine the frontend and backend frameworks to simplify creating complex applications. I'll make heavy use of code examples to demonstrate both the solution and the process and there's a companion <a href="https://github.com/kevinastone/django-api-rest-and-angular">Github project</a> with all the code.</p>
+<h2 id="lets-build-a-sample-django-project"><a href="#lets-build-a-sample-django-project" aria-label="lets build a sample django project permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Let's Build a Sample Django Project</h2>
+<p>For a sample project, let's create a simple photo-sharing app (not unlike a rudimentary Instagram) and build a feed view for a given user to scan through all the photos shared on the site.</p>
+<p>All the sample code for this project is available on a <a href="https://github.com/kevinastone/django-api-rest-and-angular">GitHub repository</a>. To setup the sample project in your own environment, consult the <a href="https://github.com/kevinastone/django-api-rest-and-angular/blob/master/Readme.markdown">installation instructions</a> included in the repository. This includes installing AngularJS (and other javascript assets) via <a href="http://yeoman.io">bower+grunt</a>.</p>
+<p>Finally, there's some sample data in fixtures available to demonstrate the API. We have a few users (<code>['Bob', 'Sally', 'Joe', 'Rachel']</code>), two posts (<code>['This is a great post', 'Another thing I wanted to share']</code>) and some sample photos as well. The included Makefile builds the sample data for you.</p>
+<p>Couple notes about the sample code:</p>
+<ul>
+<li>I'll skip over the details on configuring, building and running the sample application. There's <a href="https://github.com/kevinastone/django-api-rest-and-angular/blob/master/Readme.markdown">instructions</a> in the <a href="https://github.com/kevinastone/django-api-rest-and-angular">repository</a> that covers many of these details. Please report any issues on GitHub and I'll be sure to fix them.</li>
+<li>I've written the frontend code using <a href="http://coffeescript.org">Coffee-Script</a> since I find it more legible and more efficient (and a bit more Pythonic). There's a supplied Grunt task that collects all the coffee script files and concats them into a single <code>script.js</code> file for inclusion.</li>
+</ul>
+<h3 id="project-data-layer-the-models"><a href="#project-data-layer-the-models" aria-label="project data layer the models permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Project Data Layer (the Models)</h3>
+<p>Our model layer is straightforward to what you might find in an introductory tutorial for Django. You have three models of note: <code>User</code>, <code>Post</code>, and <code>Photo</code>. A user can author many posts (as well as have many followers) and a post can showcase many photos (such as a collection or gallery) along with a title and optional description/body.</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>db <span class="token keyword">import</span> models
+
+<span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib<span class="token punctuation">.</span>auth<span class="token punctuation">.</span>models <span class="token keyword">import</span> AbstractUser
+
+
+<span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>AbstractUser<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    followers <span class="token operator">=</span> models<span class="token punctuation">.</span>ManyToManyField<span class="token punctuation">(</span><span class="token string">'self'</span><span class="token punctuation">,</span> related_name<span class="token operator">=</span><span class="token string">'followees'</span><span class="token punctuation">,</span> symmetrical<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Post</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    author <span class="token operator">=</span> models<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span>User<span class="token punctuation">,</span> related_name<span class="token operator">=</span><span class="token string">'posts'</span><span class="token punctuation">)</span>
+    title <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">255</span><span class="token punctuation">)</span>
+    body <span class="token operator">=</span> models<span class="token punctuation">.</span>TextField<span class="token punctuation">(</span>blank<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> null<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Photo</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    post <span class="token operator">=</span> models<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span>Post<span class="token punctuation">,</span> related_name<span class="token operator">=</span><span class="token string">'photos'</span><span class="token punctuation">)</span>
+    image <span class="token operator">=</span> models<span class="token punctuation">.</span>ImageField<span class="token punctuation">(</span>upload_to<span class="token operator">=</span><span class="token string">"%Y/%m/%d"</span><span class="token punctuation">)</span></code></pre></div>
+<h3 id="django-rest-framework-based-api"><a href="#django-rest-framework-based-api" aria-label="django rest framework based api permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Django Rest Framework based API</h3>
+<p>The <a href="http://django-rest-framework.org" title="Django Rest Framework">Django Rest Framework (DRF)</a> provides a clean architecture to develop both simple, turn-key API endpoints as well as more complex ReST constructs. The key is a clean separation with <code>Serializer</code> which describes the mapping between a model and the generalized wire representation (be it JSON, XML or whatever) and separate set of generic Class-Based-Views that can be extended to meet the needs of the specific API endpoint. You also define your own URL structure rather than rely on an auto-generated one. This is what separates DRF from other frameworks like <a href="http://tastypieapi.org">Tastypie</a> and <a href="https://bitbucket.org/jespern/django-piston/wiki/Home">Piston</a> that automate much of the conversion from django models to ReST endpoints, but come at the cost of flexibility in adapting to different use cases (especially around permissions and nested resources).</p>
+<h3 id="model-serializers"><a href="#model-serializers" aria-label="model serializers permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Model Serializers</h3>
+<p>The <code>Serializers</code> in DRF focus on the responsibility to convert django model instances into their representation in the API. This gives us the opportunity to convert any data types, or provide supplemental information in a given model. For example, for the user, we only included some of the fields, stripping private attributes such as <code>password</code> and <code>email</code>. For the photo, we converted the <code>ImageField</code> to return the url of the image (rather than the media path location).</p>
+<p>For the <code>PostSerializer</code>, we elected to embed the author directly in the Post (rather the the common case to provide a hyperlink). This makes that information readily accessible to our client rather than requiring extra API requests at the cost of duplicating users on each post. The alternative hyperlink is listed with a comment for comparison. The power of serializers is that you can extend them to create a derivative version, that uses hyperlinks instead of nested records (say, for the case of listing posts by a specific users' feed).</p>
+<p>To assign the <code>author</code> to the <code>PostSerializer</code>, we're gonna have that provided by the API View. So we'll make it optional (<code>required=False</code>) in our serializer and add it to the validation exclusion.</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">from</span> rest_framework <span class="token keyword">import</span> serializers
+
+<span class="token keyword">from</span> <span class="token punctuation">.</span>models <span class="token keyword">import</span> User<span class="token punctuation">,</span> Post<span class="token punctuation">,</span> Photo
+
+
+<span class="token keyword">class</span> <span class="token class-name">UserSerializer</span><span class="token punctuation">(</span>serializers<span class="token punctuation">.</span>ModelSerializer<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    posts <span class="token operator">=</span> serializers<span class="token punctuation">.</span>HyperlinkedIdentityField<span class="token punctuation">(</span><span class="token string">'posts'</span><span class="token punctuation">,</span> view_name<span class="token operator">=</span><span class="token string">'userpost-list'</span><span class="token punctuation">,</span> lookup_field<span class="token operator">=</span><span class="token string">'username'</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">Meta</span><span class="token punctuation">:</span>
+        model <span class="token operator">=</span> User
+        fields <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">,</span> <span class="token string">'username'</span><span class="token punctuation">,</span> <span class="token string">'first_name'</span><span class="token punctuation">,</span> <span class="token string">'last_name'</span><span class="token punctuation">,</span> <span class="token string">'posts'</span><span class="token punctuation">,</span> <span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">PostSerializer</span><span class="token punctuation">(</span>serializers<span class="token punctuation">.</span>ModelSerializer<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    author <span class="token operator">=</span> UserSerializer<span class="token punctuation">(</span>required<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+    photos <span class="token operator">=</span> serializers<span class="token punctuation">.</span>HyperlinkedIdentityField<span class="token punctuation">(</span><span class="token string">'photos'</span><span class="token punctuation">,</span> view_name<span class="token operator">=</span><span class="token string">'postphoto-list'</span><span class="token punctuation">)</span>
+    <span class="token comment"># author = serializers.HyperlinkedRelatedField(view_name='user-detail', lookup_field='username')</span>
+
+    <span class="token keyword">def</span> <span class="token function">get_validation_exclusions</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># Need to exclude `author` since we'll add that later based off the request</span>
+        exclusions <span class="token operator">=</span> <span class="token builtin">super</span><span class="token punctuation">(</span>PostSerializer<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>get_validation_exclusions<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> exclusions <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token string">'author'</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">Meta</span><span class="token punctuation">:</span>
+        model <span class="token operator">=</span> Post
+
+
+<span class="token keyword">class</span> <span class="token class-name">PhotoSerializer</span><span class="token punctuation">(</span>serializers<span class="token punctuation">.</span>ModelSerializer<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    image <span class="token operator">=</span> serializers<span class="token punctuation">.</span>Field<span class="token punctuation">(</span><span class="token string">'image.url'</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">Meta</span><span class="token punctuation">:</span>
+        model <span class="token operator">=</span> Photo</code></pre></div>
+<p>Okay, given our samples are fixtures are loaded, let's play with these serializers. You'll likely see <code>DeprecationWarning</code> because we're using <code>HyperlinkedIdentityField</code> without providing a request object to construct the URL. In the actual views, this is provided, so you can safely ignore.</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">from</span> example<span class="token punctuation">.</span>api<span class="token punctuation">.</span>models <span class="token keyword">import</span> User
+<span class="token operator">>></span><span class="token operator">></span> user <span class="token operator">=</span> User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>get<span class="token punctuation">(</span>username<span class="token operator">=</span><span class="token string">'bob'</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token comment"># Need to generate a fake request for our hyperlinked results</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">from</span> django<span class="token punctuation">.</span>test<span class="token punctuation">.</span>client <span class="token keyword">import</span> RequestFactory
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">from</span> example<span class="token punctuation">.</span>api<span class="token punctuation">.</span>serializers <span class="token keyword">import</span> <span class="token operator">*</span>
+<span class="token operator">>></span><span class="token operator">></span> context <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span>request<span class="token operator">=</span>RequestFactory<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> serializer <span class="token operator">=</span> UserSerializer<span class="token punctuation">(</span>user<span class="token punctuation">,</span> context<span class="token operator">=</span>context<span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> serializer<span class="token punctuation">.</span>data
+<span class="token punctuation">{</span><span class="token string">'id'</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'username'</span><span class="token punctuation">:</span> u<span class="token string">'bob'</span><span class="token punctuation">,</span> <span class="token string">'first_name'</span><span class="token punctuation">:</span> u<span class="token string">'Bob'</span><span class="token punctuation">,</span> <span class="token string">'last_name'</span><span class="token punctuation">:</span> u<span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">'posts'</span><span class="token punctuation">:</span> <span class="token string">'http://testserver/api/users/bob/posts'</span><span class="token punctuation">}</span>
+<span class="token operator">>></span><span class="token operator">></span> post <span class="token operator">=</span> user<span class="token punctuation">.</span>posts<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token operator">>></span><span class="token operator">></span> PostSerializer<span class="token punctuation">(</span>post<span class="token punctuation">,</span> context<span class="token operator">=</span>context<span class="token punctuation">)</span><span class="token punctuation">.</span>data
+<span class="token punctuation">{</span><span class="token string">'author'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">'id'</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'username'</span><span class="token punctuation">:</span> u<span class="token string">'bob'</span><span class="token punctuation">,</span> <span class="token string">'first_name'</span><span class="token punctuation">:</span> u<span class="token string">'Bob'</span><span class="token punctuation">,</span> <span class="token string">'last_name'</span><span class="token punctuation">:</span> u<span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">'posts'</span><span class="token punctuation">:</span> <span class="token string">'http://testserver/api/users/bob/posts'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'photos'</span><span class="token punctuation">:</span> <span class="token string">'http://testserver/api/posts/2/photos'</span><span class="token punctuation">,</span> u<span class="token string">'id'</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'title'</span><span class="token punctuation">:</span> u<span class="token string">'Title #2'</span><span class="token punctuation">,</span> <span class="token string">'body'</span><span class="token punctuation">:</span> u<span class="token string">'Another thing I wanted to share'</span><span class="token punctuation">}</span>
+<span class="token operator">>></span><span class="token operator">></span> serializer <span class="token operator">=</span> PostSerializer<span class="token punctuation">(</span>user<span class="token punctuation">.</span>posts<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> many<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> context<span class="token operator">=</span>context<span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> serializer<span class="token punctuation">.</span>data
+<span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">'author'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">'id'</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'username'</span><span class="token punctuation">:</span> u<span class="token string">'bob'</span><span class="token punctuation">,</span> <span class="token string">'first_name'</span><span class="token punctuation">:</span> u<span class="token string">'Bob'</span><span class="token punctuation">,</span> <span class="token string">'last_name'</span><span class="token punctuation">:</span> u<span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">'posts'</span><span class="token punctuation">:</span> <span class="token string">'http://testserver/api/users/bob/posts'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'photos'</span><span class="token punctuation">:</span> <span class="token string">'http://testserver/api/posts/2/photos'</span><span class="token punctuation">,</span> u<span class="token string">'id'</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'title'</span><span class="token punctuation">:</span> u<span class="token string">'Title #2'</span><span class="token punctuation">,</span> <span class="token string">'body'</span><span class="token punctuation">:</span> u<span class="token string">'Another thing I wanted to share'</span><span class="token punctuation">}</span><span class="token punctuation">]</span></code></pre></div>
+<h3 id="api-url-structure"><a href="#api-url-structure" aria-label="api url structure permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>API URL Structure</h3>
+<p>For our API structure, we want to maintain a relatively flat structure to try to define canonical endpoints for given resources, but also provide some convenient nested listings for common filterings (such as posts for a given user and photos in a given post). Note that we use model primary keys as the identifier, but for users, we use their username since that's also unique identifying (we'll see this later in the views).</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>conf<span class="token punctuation">.</span>urls <span class="token keyword">import</span> patterns<span class="token punctuation">,</span> url<span class="token punctuation">,</span> include
+
+<span class="token keyword">from</span> <span class="token punctuation">.</span>api <span class="token keyword">import</span> UserList<span class="token punctuation">,</span> UserDetail
+<span class="token keyword">from</span> <span class="token punctuation">.</span>api <span class="token keyword">import</span> PostList<span class="token punctuation">,</span> PostDetail<span class="token punctuation">,</span> UserPostList
+<span class="token keyword">from</span> <span class="token punctuation">.</span>api <span class="token keyword">import</span> PhotoList<span class="token punctuation">,</span> PhotoDetail<span class="token punctuation">,</span> PostPhotoList
+
+user_urls <span class="token operator">=</span> patterns<span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">(</span>r<span class="token string">'^/(?P&lt;username>[0-9a-zA-Z_-]+)/posts$'</span><span class="token punctuation">,</span> UserPostList<span class="token punctuation">.</span>as_view<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'userpost-list'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">(</span>r<span class="token string">'^/(?P&lt;username>[0-9a-zA-Z_-]+)$'</span><span class="token punctuation">,</span> UserDetail<span class="token punctuation">.</span>as_view<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'user-detail'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">(</span>r<span class="token string">'^$'</span><span class="token punctuation">,</span> UserList<span class="token punctuation">.</span>as_view<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'user-list'</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+post_urls <span class="token operator">=</span> patterns<span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">(</span>r<span class="token string">'^/(?P&lt;pk>\d+)/photos$'</span><span class="token punctuation">,</span> PostPhotoList<span class="token punctuation">.</span>as_view<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'postphoto-list'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">(</span>r<span class="token string">'^/(?P&lt;pk>\d+)$'</span><span class="token punctuation">,</span> PostDetail<span class="token punctuation">.</span>as_view<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'post-detail'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">(</span>r<span class="token string">'^$'</span><span class="token punctuation">,</span> PostList<span class="token punctuation">.</span>as_view<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'post-list'</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+photo_urls <span class="token operator">=</span> patterns<span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">(</span>r<span class="token string">'^/(?P&lt;pk>\d+)$'</span><span class="token punctuation">,</span> PhotoDetail<span class="token punctuation">.</span>as_view<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'photo-detail'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">(</span>r<span class="token string">'^$'</span><span class="token punctuation">,</span> PhotoList<span class="token punctuation">.</span>as_view<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'photo-list'</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+urlpatterns <span class="token operator">=</span> patterns<span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">(</span>r<span class="token string">'^users'</span><span class="token punctuation">,</span> include<span class="token punctuation">(</span>user_urls<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">(</span>r<span class="token string">'^posts'</span><span class="token punctuation">,</span> include<span class="token punctuation">(</span>post_urls<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">(</span>r<span class="token string">'^photos'</span><span class="token punctuation">,</span> include<span class="token punctuation">(</span>photo_urls<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span></code></pre></div>
+<h3 id="api-views"><a href="#api-views" aria-label="api views permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>API Views</h3>
+<p>Much of the power of Django Rest Framework is that the generic views make it easy to work with the common <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> cases with little or no modifications. For the simplest views, you provide a <code>model</code> and a <code>serializer_class</code> and extend one of the built in generics (like <code>ListAPIView</code> or <code>RetrieveAPIView</code>).</p>
+<p>For our use case, we have a couple customizations. First, for users, we wanted to use <code>username</code> as the lookup field rather than <code>pk</code>. So we set <code>lookup_field</code> on the view (by default it's both the <code>url_kwarg</code> and the field name on the model).</p>
+<p>We also wanted to create nested versions of the views for a given user's posts or the photos within a post. You simply override <code>get_queryset</code> on the view to customize the queryset to filter down the results based on the nested parameters (<code>username</code> and <code>pk</code> respectively).</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">from</span> rest_framework <span class="token keyword">import</span> generics<span class="token punctuation">,</span> permissions
+
+
+<span class="token keyword">from</span> <span class="token punctuation">.</span>serializers <span class="token keyword">import</span> UserSerializer<span class="token punctuation">,</span> PostSerializer<span class="token punctuation">,</span> PhotoSerializer
+<span class="token keyword">from</span> <span class="token punctuation">.</span>models <span class="token keyword">import</span> User<span class="token punctuation">,</span> Post<span class="token punctuation">,</span> Photo
+
+
+<span class="token keyword">class</span> <span class="token class-name">UserList</span><span class="token punctuation">(</span>generics<span class="token punctuation">.</span>ListCreateAPIView<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    model <span class="token operator">=</span> User
+    queryset <span class="token operator">=</span> User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    serializer_class <span class="token operator">=</span> UserSerializer
+    permission_classes <span class="token operator">=</span> <span class="token punctuation">[</span>
+        permissions<span class="token punctuation">.</span>AllowAny
+    <span class="token punctuation">]</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">UserDetail</span><span class="token punctuation">(</span>generics<span class="token punctuation">.</span>RetrieveAPIView<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    model <span class="token operator">=</span> User
+    queryset <span class="token operator">=</span> User<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    serializer_class <span class="token operator">=</span> UserSerializer
+    lookup_field <span class="token operator">=</span> <span class="token string">'username'</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">PostList</span><span class="token punctuation">(</span>generics<span class="token punctuation">.</span>ListCreateAPIView<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    model <span class="token operator">=</span> Post
+    queryset <span class="token operator">=</span> Post<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    serializer_class <span class="token operator">=</span> PostSerializer
+    permission_classes <span class="token operator">=</span> <span class="token punctuation">[</span>
+        permissions<span class="token punctuation">.</span>AllowAny
+    <span class="token punctuation">]</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">PostDetail</span><span class="token punctuation">(</span>generics<span class="token punctuation">.</span>RetrieveUpdateDestroyAPIView<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    model <span class="token operator">=</span> Post
+    queryset <span class="token operator">=</span> Post<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    serializer_class <span class="token operator">=</span> PostSerializer
+    permission_classes <span class="token operator">=</span> <span class="token punctuation">[</span>
+        permissions<span class="token punctuation">.</span>AllowAny
+    <span class="token punctuation">]</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">UserPostList</span><span class="token punctuation">(</span>generics<span class="token punctuation">.</span>ListAPIView<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    model <span class="token operator">=</span> Post
+    queryset <span class="token operator">=</span> Post<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    serializer_class <span class="token operator">=</span> PostSerializer
+
+    <span class="token keyword">def</span> <span class="token function">get_queryset</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        queryset <span class="token operator">=</span> <span class="token builtin">super</span><span class="token punctuation">(</span>UserPostList<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>get_queryset<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> queryset<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>author__username<span class="token operator">=</span>self<span class="token punctuation">.</span>kwargs<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">PhotoList</span><span class="token punctuation">(</span>generics<span class="token punctuation">.</span>ListCreateAPIView<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    model <span class="token operator">=</span> Photo
+    queryset <span class="token operator">=</span> Photo<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    serializer_class <span class="token operator">=</span> PhotoSerializer
+    permission_classes <span class="token operator">=</span> <span class="token punctuation">[</span>
+        permissions<span class="token punctuation">.</span>AllowAny
+    <span class="token punctuation">]</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">PhotoDetail</span><span class="token punctuation">(</span>generics<span class="token punctuation">.</span>RetrieveUpdateDestroyAPIView<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    model <span class="token operator">=</span> Photo
+    queryset <span class="token operator">=</span> Photo<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    serializer_class <span class="token operator">=</span> PhotoSerializer
+    permission_classes <span class="token operator">=</span> <span class="token punctuation">[</span>
+        permissions<span class="token punctuation">.</span>AllowAny
+    <span class="token punctuation">]</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">PostPhotoList</span><span class="token punctuation">(</span>generics<span class="token punctuation">.</span>ListAPIView<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    model <span class="token operator">=</span> Photo
+    queryset <span class="token operator">=</span> Photo<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    serializer_class <span class="token operator">=</span> PhotoSerializer
+
+    <span class="token keyword">def</span> <span class="token function">get_queryset</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        queryset <span class="token operator">=</span> <span class="token builtin">super</span><span class="token punctuation">(</span>PostPhotoList<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>get_queryset<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> queryset<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>post__pk<span class="token operator">=</span>self<span class="token punctuation">.</span>kwargs<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'pk'</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre></div>
+<h3 id="interlude-built-in-api-browser"><a href="#interlude-built-in-api-browser" aria-label="interlude built in api browser permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Interlude: Built-in API Browser</h3>
+<p>One of the benefits of Django Rest Framework, is that it comes with a built-in API browser for testing out your API. Much like Django's admin, this can help with initial development.</p>
+<p>Simple load one of your API endpoints in the browser, and through content-negotiation, DRF will present to you a handy client interface to interact with your API.</p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/c4d77c9226edabdadcc50d6a3b0176dd/e7629/browser_users.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 650px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsSAAALEgHS3X78AAAB4klEQVQ4y52SzW7TQBSF/TRh0QWoShfAgg1C8ECo78BrINQ9r0BLY8dpxSYhxMQppG5CEsfO/Njjv9PrsZPSKg0Rlj7fo/k5PnPHxotGA2+bTbw7OtL1zeEh6SZeP3uKVwcHePmksZVy3/PGXV1rw+p0cNZqaVrtNkzb1pxbFr6aJk7rub8px2zbxLdLCx3bwuWFRbqNNnkZoEcphYQo8lyzz+MsEpy6AoN5govrCOdXUo8bcRzDpCTdbhe9Xg/9fh9FUSDLskcBcpycTfH+0xAfv0zw4fMvHJ+48JmCkaYZ/GWAZRAiCFaIY0Ukj6JUVZGlQEHmeVpBuihyGOUXhZBgjEOKiDakUPXGNduMo5JIbaok8rw2dJwhvv8YwpvM9AIhYzAegdMHJGm9cQ9qwxyDgYO+M4I7nsIZzzG68THzGWZLpo11AjLexcawfHEudWRJ6biIwWmB0r1UG7Ndye4Mi8pQm4UcjBLpSR79M81Dfc9Q920RYtV1wX5PIQKGKEkR0YVUtdZ1fZh4u+E8AP85Bht54N4cnIz59Qzc9bQW3qyqk8XuhAW9BN2mWPexXMikboGmbENQ67KuxH5Hlv4K4dUEnJIK0vqIcf2f3UPteWQ/BCt7OLoB/7OsFv3HpdwCmphOdfYa17MAAAAASUVORK5CYII='); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="API Browser Example for Users"
+        title=""
+        src="/static/c4d77c9226edabdadcc50d6a3b0176dd/20c2c/browser_users.png"
+        srcset="/static/c4d77c9226edabdadcc50d6a3b0176dd/af027/browser_users.png 163w,
+/static/c4d77c9226edabdadcc50d6a3b0176dd/4658c/browser_users.png 325w,
+/static/c4d77c9226edabdadcc50d6a3b0176dd/20c2c/browser_users.png 650w,
+/static/c4d77c9226edabdadcc50d6a3b0176dd/e7629/browser_users.png 800w"
+        sizes="(max-width: 650px) 100vw, 650px"
+      />
+  </span>
+  </a>
+<a
+    class="gatsby-resp-image-link"
+    href="/static/73ca60045f3922a7e942eeba4137a5b2/e7629/browser_user_posts.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 650px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsSAAALEgHS3X78AAACFklEQVQ4y42STXPSUBSG+TW40IUu2hl148ZRf5Djf/BvOE73rruhBFpSaMdFmyoRaC0FmhA+7ke+eT33pNAOKDUzb87JTe5z3nNuSq/KZbzf2cGH3V3WO5OT3r54jjfPnuL1k/JfZfa9LN/HZV6yWy3UDw5Qr1ZhVSqw9vdRbzRQqdVQsSxYR0eorcmsNZsNfD+10WraOD2xKT/GMbFKoCvRmhVJiUgIZGmKNEmw7XLHCayuQttPcNIPcXipeb0URREato2z83NWk6o4Fw4cx0GWZcjz/C5mHI2AHHu1ET5+7eBLdYjP367waa+LQMQopWmGIJhiOp1jNhPw/THHKIpJyYbiuIjUBrAgeJ4WonyxyFEyFZXSEEJCSgWtQ4YlScqbl4B1hUZhvIqaZLphoOt2cPGzg8HQQxSnUDqCkCGkCqlAVGz8D90Bc7TbLn64PXR/j+Be++gNAniBgDcRDGYHBN6mFdDcpNRsWZF9pQpnMc8wXsG2ObsHLgqggemZhLoNoCg3betHXD0EbQC5kpkbtTy7voXyp1BUIIwfDD5axmTD9RpwwTCzWd14EGcdiKshu9WCRiEUu9dzVcjkKnzcoZmdGgUsSU7l5QDyV58lnB5k96Z47vQZuh1o3HlTzMmhGs/IqQ81HNPaBLLvsXM1oOd+8d58z7P816EUwAm3Ko16gwJsHFPU9PuEdFA80yjeeih/ADnnSshnzt9gAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="API Browser Example for User Posts"
+        title=""
+        src="/static/73ca60045f3922a7e942eeba4137a5b2/20c2c/browser_user_posts.png"
+        srcset="/static/73ca60045f3922a7e942eeba4137a5b2/af027/browser_user_posts.png 163w,
+/static/73ca60045f3922a7e942eeba4137a5b2/4658c/browser_user_posts.png 325w,
+/static/73ca60045f3922a7e942eeba4137a5b2/20c2c/browser_user_posts.png 650w,
+/static/73ca60045f3922a7e942eeba4137a5b2/e7629/browser_user_posts.png 800w"
+        sizes="(max-width: 650px) 100vw, 650px"
+      />
+  </span>
+  </a></p>
+<h3 id="add-permissions-and-ownership-to-api"><a href="#add-permissions-and-ownership-to-api" aria-label="add permissions and ownership to api permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add Permissions and Ownership to API</h3>
+<p>As previously written, our API Views allow anyone to create anything on our site. Some of the advantages of using Django Rest Framework, is that the generic views make it easy to control permissions in the view without impact the underlying model and serializers. To incorporate some control over who is allowed to edit our API resources, we can created some permission classes that provide the authorization controls to restrict. They should return a boolean for the given request. This gives us access to the full request including cookies, the authenticated user and more.</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">from</span> rest_framework <span class="token keyword">import</span> permissions
+
+
+<span class="token keyword">class</span> <span class="token class-name">SafeMethodsOnlyPermission</span><span class="token punctuation">(</span>permissions<span class="token punctuation">.</span>BasePermission<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""Only can access non-destructive methods (like GET and HEAD)"""</span>
+    <span class="token keyword">def</span> <span class="token function">has_permission</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">,</span> view<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>has_object_permission<span class="token punctuation">(</span>request<span class="token punctuation">,</span> view<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">has_object_permission</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">,</span> view<span class="token punctuation">,</span> obj<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> request<span class="token punctuation">.</span>method <span class="token keyword">in</span> permissions<span class="token punctuation">.</span>SAFE_METHODS
+
+
+<span class="token keyword">class</span> <span class="token class-name">PostAuthorCanEditPermission</span><span class="token punctuation">(</span>SafeMethodsOnlyPermission<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""Allow everyone to list or view, but only the other can modify existing instances"""</span>
+    <span class="token keyword">def</span> <span class="token function">has_object_permission</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">,</span> view<span class="token punctuation">,</span> obj<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> obj <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token comment"># Either a list or a create, so no author</span>
+            can_edit <span class="token operator">=</span> <span class="token boolean">True</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            can_edit <span class="token operator">=</span> request<span class="token punctuation">.</span>user <span class="token operator">==</span> obj<span class="token punctuation">.</span>author
+        <span class="token keyword">return</span> can_edit <span class="token operator">or</span> <span class="token builtin">super</span><span class="token punctuation">(</span>PostAuthorCanEditPermission<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>has_object_permission<span class="token punctuation">(</span>request<span class="token punctuation">,</span> view<span class="token punctuation">,</span> obj<span class="token punctuation">)</span></code></pre></div>
+<p>Besides simple authorization decisions, we also want to pre-fill values on save depending on who makes the requests. When someone creates a new <code>Post</code>, we want to assign them as the author. Because of the duplication between <code>PostList</code> and <code>PostDetail</code>, we can create a mixin class that holds all the common configuration (you can also use [ViewSets][viewsets] to accomplish similar consolidation).</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">PostMixin</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    model <span class="token operator">=</span> Post
+    queryset <span class="token operator">=</span> Post<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    serializer_class <span class="token operator">=</span> PostSerializer
+    permission_classes <span class="token operator">=</span> <span class="token punctuation">[</span>
+        PostAuthorCanEditPermission
+    <span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">perform_create</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> serializer<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""Force author to the current user on save"""</span>
+        serializer<span class="token punctuation">.</span>save<span class="token punctuation">(</span>author<span class="token operator">=</span>self<span class="token punctuation">.</span>request<span class="token punctuation">.</span>user<span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">PostList</span><span class="token punctuation">(</span>PostMixin<span class="token punctuation">,</span> generics<span class="token punctuation">.</span>ListCreateAPIView<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">PostDetail</span><span class="token punctuation">(</span>PostMixin<span class="token punctuation">,</span> generics<span class="token punctuation">.</span>RetrieveUpdateDestroyAPIView<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">pass</span></code></pre></div>
+<h2 id="consume-the-api-using-angularjs"><a href="#consume-the-api-using-angularjs" aria-label="consume the api using angularjs permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Consume the API using AngularJS</h2>
+<p>With the advent of more interactive web applications, a ReSTful API can be leveraged by rich client interfaces to expose and interact with your application's data model. AngularJS is a great companion because of its clean separation of controls. AngularJS's modular architecture involves a little bit of setup. Your app is composed of modules which define services, directives and controllers that compartmentalize the functionality for cleaner separation.</p>
+<p>Part of the power of AngularJS, is that it provides <a href="http://en.wikipedia.org/wiki/Reactive_programming">reactive programming</a> leveraging their javascript-like expression language. We can simply define a template that references variables, and our page will automatically refresh when changes are made to those variables.</p>
+<p>For the <em>hello world</em> style intro, we'll simply list the posts in our sample application. Here is a bare bones template in AngularJS. First, at the top level on the body tag, we specify which angular app we are using to run this page (<code>example.app.basic</code>), which is where we'll define the root module. Second, we need to specific the controller to manage our section (<code>AppController</code>). The controller in AngularJS parlance is really more like the model+controller in the traditional MVC (with the injected <code>$scope</code> containing the model state). Controllers define scopes that hold the actual model instances and they can be nested to narrow the scope of your system as your go down the DOM. Finally, we leverage an Angular directive (<code>ng-repeat</code>) which is a control structure to iterate over our <code>posts</code> model stored in the <code>$state</code>. Within that iteration, we define a few tags and use the angular expression syntax (kinda like django template tags) to print out the username of the author, and the title and body of the post.</p>
+<p>*Note: Use verbatim tags to encapsulate the AngularJS expressions so that django doesn't attempt to render them.</p>
+<p>*Note: I've enclosed some sections in Django <code>{% block %}</code> tags so I can extend this template for each example.</p>
+<div class="gatsby-highlight" data-language="html+django"><pre class="language-html+django"><code class="language-html+django">{% load staticfiles %}
+
+&lt;html&gt;
+&lt;head&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;{% static &quot;bootstrap/dist/css/bootstrap.css&quot; %}&quot;&gt;
+&lt;/head&gt;
+&lt;body ng-app=&quot;{% block ng_app %}example.app.static{% endblock %}&quot;&gt;
+&lt;div class=&quot;content&quot; ng-controller=&quot;{% block ng_controller %}AppController{% endblock %}&quot;&gt;{% block content %}
+{% verbatim %}
+    &lt;div class=&quot;panel&quot; ng-repeat=&quot;post in posts&quot;&gt;
+        &lt;div class=&quot;panel-heading clearfix&quot;&gt;
+            &lt;h3 class=&quot;panel-title&quot;&gt;{{ post.title }}&lt;/h3&gt;
+            &lt;author class=&quot;pull-right&quot;&gt;{{ post.author.username }}&lt;/author&gt;
+        &lt;/div&gt;
+        &lt;p class=&quot;well&quot;&gt;{{ post.body }}&lt;/p&gt;
+    &lt;/div&gt;
+{% endverbatim %}
+{% endblock %}&lt;/div&gt;
+&lt;script src=&quot;{% static &quot;underscore/underscore.js&quot; %}&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;{% static &quot;angular/angular.js&quot; %}&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;{% static &quot;angular-resource/angular-resource.js&quot; %}&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;{% static &quot;js/script.js&quot; %}&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+<p>Now, let's pair this template with a simple controller that will supply the list of posts. We'll hard-code the posts for now and then pull them in with Ajax in the next step.</p>
+<div class="gatsby-highlight" data-language="coffeescript"><pre class="language-coffeescript"><code class="language-coffeescript">app <span class="token operator">=</span> angular<span class="token punctuation">.</span>module <span class="token string">'example.app.static'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+app<span class="token punctuation">.</span>controller <span class="token string">'AppController'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'$scope'</span><span class="token punctuation">,</span> <span class="token string">'$http'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>$scope<span class="token punctuation">,</span> $http<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+    $scope<span class="token punctuation">.</span>posts <span class="token operator">=</span> <span class="token punctuation">[</span>
+        <span class="token property">author</span><span class="token punctuation">:</span>
+            <span class="token property">username</span><span class="token punctuation">:</span> <span class="token string">'Joe'</span>
+        <span class="token property">title</span><span class="token punctuation">:</span> <span class="token string">'Sample Post #1'</span>
+        <span class="token property">body</span><span class="token punctuation">:</span> <span class="token string">'This is the first sample post'</span>
+    <span class="token punctuation">,</span>
+        <span class="token property">author</span><span class="token punctuation">:</span>
+            <span class="token property">username</span><span class="token punctuation">:</span> <span class="token string">'Karen'</span>
+        <span class="token property">title</span><span class="token punctuation">:</span> <span class="token string">'Sample Post #2'</span>
+        <span class="token property">body</span><span class="token punctuation">:</span> <span class="token string">'This is another sample post'</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">]</span></code></pre></div>
+<p>If you've got everything setup and run grunt to compile this down to javascript, you should see our <a href="http://localhost:8000/static">hard-coded template</a> rendered as such:</p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/570122ead4dbdf83617e543618dfc096/2ebe8/example_static.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 400px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 66.5%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAABVklEQVQ4y61Ta4+CMBDs//9tXk4EBMSTxJyKyEPkUZDHXHfVizEC9+E2mey2NO3O7CCKooDruljZNjzPw3a7xWbjIU0voOi6TqFH3w+Dzux23yhLCVEUJa7XK282TcNo21bt1ZBSQlaVOlgiz3PQ40Oo65qzyLILbNWdaRhYrSibMFRtmCY0bcH71DG9TpeOIcsyCCrSNEUcRUiSBEmcII5jRGodhiHn8/nMr091Sd8F0WtJp76763XDq0Z87g8QGImxQTzjOUSlhCdqRJvoEd04ipnm49KpoKGRfsRE5Goo2lzDx2wGy7J4QLquY78/PNmmG+3OPxzgOA6qqoaQshqkSxYiS5GFqIshkGWatmGb3Wxj3WzjODbmn3Msl0te64sFd71ef/1O8S0U3ewOQYtIaXg6nVjL4zFQdYggCOD7PmfSdsqDDwii9WqXd/XjL5qCwD/HD/ax7UF0rvaTAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="Basic Post List - Hard Coded"
+        title=""
+        src="/static/570122ead4dbdf83617e543618dfc096/2ebe8/example_static.png"
+        srcset="/static/570122ead4dbdf83617e543618dfc096/37351/example_static.png 163w,
+/static/570122ead4dbdf83617e543618dfc096/6d4f3/example_static.png 325w,
+/static/570122ead4dbdf83617e543618dfc096/2ebe8/example_static.png 400w"
+        sizes="(max-width: 400px) 100vw, 400px"
+      />
+  </span>
+  </a></p>
+<h4 id="using-xhr-to-pull-posts-from-the-api"><a href="#using-xhr-to-pull-posts-from-the-api" aria-label="using xhr to pull posts from the api permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using XHR to Pull Posts from the API</h4>
+<p>Now, let's go ahead and update or controller to instead grab the list of posts from our API endpoint. The <code>$http</code> service for AngularJS is similar to jQuery's <code>$.ajax</code> or other XHR implementations. Notice, with AngularJS, we simply updated our model (<code>$scope.posts</code>) with the result of the ajax call, and our view is automatically updated in sync. No need to manipulate the DOM. This reactive style allows us to develop complex UIs with interdependencies between our data model and have the UI components respond appropriately without directly managing those connections, keeping our views and model layers loosely-coupled.</p>
+<p>*Note the use of the promise chaining (<code>.then()</code>) on the <code>$http</code> call. You could just as easily pass a callback. You can take advantage of promise chaining to develop more complex API workflows such as creating a new post and then saving 3 photos.</p>
+<div class="gatsby-highlight" data-language="coffeescript"><pre class="language-coffeescript"><code class="language-coffeescript">app <span class="token operator">=</span> angular<span class="token punctuation">.</span>module <span class="token string">'example.app.basic'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+app<span class="token punctuation">.</span>controller <span class="token string">'AppController'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'$scope'</span><span class="token punctuation">,</span> <span class="token string">'$http'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>$scope<span class="token punctuation">,</span> $http<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+    $scope<span class="token punctuation">.</span>posts <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    $http<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/api/posts'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">then</span> <span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+        angular<span class="token punctuation">.</span>forEach result<span class="token punctuation">.</span>data<span class="token punctuation">,</span> <span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+            $scope<span class="token punctuation">.</span>posts<span class="token punctuation">.</span>push item
+<span class="token punctuation">]</span></code></pre></div>
+<p>With <code>$http</code> pulling the list of posts from our API, our <a href="http://localhost:8000/basic">example page</a> now shows a feed of posts from the server.</p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/ae1cbeb03e544fe4765a3db5f7d274a6/2ebe8/example_basic.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 400px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 65.49999999999999%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAABQklEQVQ4y5WS6Y6CMBRG+/4vN0iguML8wEQ2E2WRluWbfjUYNTpikwNdbkvv5QilWkTRL+I4RlVVYBvHEd+0YRhQFAWU0hB91yGMIoRhiLqubgGEB38G6PsO8X6Py6WFqKoaWmsz2aNVCm3bmoWLpa7rjzArvpXZy7coyxKr5RK+52O73eDHceD70uDjfD7fNs2BZwl2TqeTrcHxeESW57ZPpq/PhfGCqZJXdZvWvkE8/7F5P+KR+yaozeGQoMgLW7NvtJnixnEwe8vrDftOQ0qJxcJFmqYP2jzz7nZUb7PeoDFmCD7uBaVCWit0Johcx1eapnkLY6maYJrSKOIsHCxlgMAotNvt4HkeXNfFarU2GfiQQWC1eKcR16w2fGRZhiRNkBtlEpN2mmZ2jiXgHPtkjouCV7X1GcaXNbsfT2X4jz+HLPAO+KD9UAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="Basic Post List - XHR"
+        title=""
+        src="/static/ae1cbeb03e544fe4765a3db5f7d274a6/2ebe8/example_basic.png"
+        srcset="/static/ae1cbeb03e544fe4765a3db5f7d274a6/37351/example_basic.png 163w,
+/static/ae1cbeb03e544fe4765a3db5f7d274a6/6d4f3/example_basic.png 325w,
+/static/ae1cbeb03e544fe4765a3db5f7d274a6/2ebe8/example_basic.png 400w"
+        sizes="(max-width: 400px) 100vw, 400px"
+      />
+  </span>
+  </a></p>
+<h3 id="leveraging-angular-resource-for-api"><a href="#leveraging-angular-resource-for-api" aria-label="leveraging angular resource for api permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Leveraging Angular-Resource for API</h3>
+<p>While <code>$http</code> allows us to make the XHR calls to pull the API data into our app, it's forcing us to hard code many details about our API, including constructing the URLs, http verbs and other aspects that could be encapsulated in a higher level construct. Enter <a href="http://docs.angularjs.org/api/ngResource">Angular-Resource</a>, which provides a mechanism to define our API through Angular services that manage much of the lower level http requirements for us leaving simple ReSTful verbs to interact with the API.</p>
+<p>To work with Angular-Resource (or ngResource), you simply define the mapping between your API endpoints and the parameters in the URL pattern (much like Django <code>urlpatterns</code>). Unfortunately, it's not terribly easy to convert between Django and the ngResource definitions, so the DRY isn't quite there.</p>
+<p>When you define your resources (using <code>$resource</code>), you simple provide a url pattern, a list of default parameter mappings, and optionally some additional http methods. In our case, we want the resource for <code>User</code> to pull the <code>:username</code> parameter in the URL from the <code>username</code> field on our resource instance. <code>Post</code> and <code>Photo</code> use the <code>id</code> field on the instance accordingly as the primary key.</p>
+<div class="gatsby-highlight" data-language="coffeescript"><pre class="language-coffeescript"><code class="language-coffeescript">app <span class="token operator">=</span> angular<span class="token punctuation">.</span>module <span class="token string">'example.api'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'ngResource'</span><span class="token punctuation">]</span>
+
+app<span class="token punctuation">.</span>factory <span class="token string">'User'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'$resource'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>$resource<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+    $resource <span class="token string">'/api/users/:username'</span><span class="token punctuation">,</span> <span class="token property">username</span><span class="token punctuation">:</span> <span class="token string">'@username'</span>
+<span class="token punctuation">]</span>
+
+app<span class="token punctuation">.</span>factory <span class="token string">'Post'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'$resource'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>$resource<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+    $resource <span class="token string">'/api/posts/:id'</span><span class="token punctuation">,</span> <span class="token property">id</span><span class="token punctuation">:</span> <span class="token string">'@id'</span>
+<span class="token punctuation">]</span>
+
+app<span class="token punctuation">.</span>factory <span class="token string">'Photo'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'$resource'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>$resource<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+    $resource <span class="token string">'/api/photos/:id'</span><span class="token punctuation">,</span> <span class="token property">id</span><span class="token punctuation">:</span> <span class="token string">'@id'</span>
+<span class="token punctuation">]</span></code></pre></div>
+<p>Now that we've defined our api module, we can use it as a dependency in our controller module and inject those API resources as services that our controller can use to access the API. We add <code>example.api</code> as a dependent module and list any API resources as dependencies in our controller definition. By default, your resources have many of the basic CRUD methods including <code>query()</code> (for retrieving a collection), <code>get()</code> (for individual items), <code>save()</code>, <code>delete()</code>, and so on.</p>
+<div class="gatsby-highlight" data-language="coffeescript"><pre class="language-coffeescript"><code class="language-coffeescript">app <span class="token operator">=</span> angular<span class="token punctuation">.</span>module <span class="token string">'example.app.resource'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'example.api'</span><span class="token punctuation">]</span>
+
+app<span class="token punctuation">.</span>controller <span class="token string">'AppController'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'$scope'</span><span class="token punctuation">,</span> <span class="token string">'Post'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>$scope<span class="token punctuation">,</span> Post<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+    $scope<span class="token punctuation">.</span>posts <span class="token operator">=</span> Post<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span></code></pre></div>
+<p>Which results in the same list of Posts as above on the <a href="http://localhost:8000/resource">example page</a>.</p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/99534fc95fcd247925c58be2dc0da4c5/2ebe8/example_resource.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 400px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 66.5%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAABM0lEQVQ4y62S626DMAyF8/4vN0AQoBT6Z5VKgErcw/UsDmJqq7Jl0ix9udkOsTlsniYklwuSJEHbNiBblkWzrqsBwDxP+Lxe0fcSrGlajOOoDmfIYYCUUjl6Tdu2v9I0jZ4HlUszq+saYRDAcz2czxE+LAuexxUeqqr6TjKB7mK0KMsSRVHgfr8jy3O9Jvavm0LxjEol3vVt9/0Fhhcz+xHPPBobBonbLUWRF7pn+6Umtset66Jy6+2F8zSCcw7bdiCEeJLNK0evI+lFpwidUgajYTdKIgmN44BJBRHbfqPrukMolqTGqEyuJGLZFgLuw1cSiuMYruvCcRyE4UlV4IH7vpbFkYzIp2VDQ5ZlSEWKXEkmVWULkekzagGd0Zow0SKjp+r+LOvbnj3u9zb8BMM/2xfcMfFCu00lRwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="Basic Post List - Resource"
+        title=""
+        src="/static/99534fc95fcd247925c58be2dc0da4c5/2ebe8/example_resource.png"
+        srcset="/static/99534fc95fcd247925c58be2dc0da4c5/37351/example_resource.png 163w,
+/static/99534fc95fcd247925c58be2dc0da4c5/6d4f3/example_resource.png 325w,
+/static/99534fc95fcd247925c58be2dc0da4c5/2ebe8/example_resource.png 400w"
+        sizes="(max-width: 400px) 100vw, 400px"
+      />
+  </span>
+  </a></p>
+<h3 id="add-the-photos-to-our-post-feed"><a href="#add-the-photos-to-our-post-feed" aria-label="add the photos to our post feed permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add the Photos to our Post Feed</h3>
+<p>We now have our feed of posts displaying using <code>ngResource</code> API calls, but we're simply making one call to retrieve the data. In real applications, your data is rarely stored at only a single resource endpoint and will require coordinated API calls to construct your applications model state. Let's enhance our app to also retrieve the photos from each post and display them as well to explore this.</p>
+<p>First, let's add two other resources for the nested API calls:</p>
+<div class="gatsby-highlight" data-language="coffeescript"><pre class="language-coffeescript"><code class="language-coffeescript">app<span class="token punctuation">.</span>factory <span class="token string">'UserPost'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'$resource'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>$resource<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+    $resource <span class="token string">'/api/users/:username/posts/:id'</span>
+<span class="token punctuation">]</span>
+
+app<span class="token punctuation">.</span>factory <span class="token string">'PostPhoto'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'$resource'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>$resource<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+    $resource <span class="token string">'/api/posts/:post_id/photos/:id'</span>
+<span class="token punctuation">]</span></code></pre></div>
+<p>This will provide two more services (<code>UserPost</code> and <code>PostPhoto</code>) that we can query to retrieve resources for a given user and post respectively. As nested resources, we want to wire up AngularJS to load them after loading the base resource (another option is to use angular's <code>$watch</code> mechanism to response to changes and trigger additional API calls). For this, we want to leverage Angular's <code>$q</code> service which provides a Promise/Deferred implementation allowing us to chain calls. Starting with ngResource-1.1+, each resource provides a $promise attribute which you can chain against. We are going to leverage that interface to make a follow on API call to retrieve photos for a given post.</p>
+<p>You have a couple of choices on how to handle the nesting of resources. For this case, we will simply create another container on our <code>$scope</code> for the photos and use the post_id as the identifier. Angular's expression and template language ignores missing keys, so we can simply iterate over <code>photos[post.id]</code> to retrieve the photos in the template. Notice how we don't have to signal to change the view/template. Angular's <code>$digest</code> process detects the updates (it's also well integrated with <code>ngResoruce</code> and <code>$q</code>s).</p>
+<div class="gatsby-highlight" data-language="coffeescript"><pre class="language-coffeescript"><code class="language-coffeescript">app <span class="token operator">=</span> angular<span class="token punctuation">.</span>module <span class="token string">'example.app.photos'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'example.api'</span><span class="token punctuation">]</span>
+
+app<span class="token punctuation">.</span>controller <span class="token string">'AppController'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'$scope'</span><span class="token punctuation">,</span> <span class="token string">'Post'</span><span class="token punctuation">,</span> <span class="token string">'PostPhoto'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>$scope<span class="token punctuation">,</span> Post<span class="token punctuation">,</span> PostPhoto<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+    $scope<span class="token punctuation">.</span>photos <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    $scope<span class="token punctuation">.</span>posts <span class="token operator">=</span> Post<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    $scope<span class="token punctuation">.</span>posts<span class="token punctuation">.</span>$promise<span class="token punctuation">.</span><span class="token keyword">then</span> <span class="token punctuation">(</span>results<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+        <span class="token comment"># Load the photos</span>
+        angular<span class="token punctuation">.</span>forEach results<span class="token punctuation">,</span> <span class="token punctuation">(</span>post<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+            $scope<span class="token punctuation">.</span>photos<span class="token punctuation">[</span>post<span class="token punctuation">.</span>id<span class="token punctuation">]</span> <span class="token operator">=</span> PostPhoto<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token property">post_id</span><span class="token punctuation">:</span> post<span class="token punctuation">.</span>id<span class="token punctuation">)</span>
+<span class="token punctuation">]</span></code></pre></div>
+<p>And also update our template to iterate over this model to display photos in each post. Notice how AngularJS re-renders the view as the data is loaded from the API. In this case, we are iterating over the photos object referenced by the id of the post we were iterating in the parent <code>ng-repeat</code>. We also used <code>ng-src</code> instead of <code>src</code> because it prevents browsers from attempting to load an image before the angular expression language has been evaluated (you'll see 404s in your logs around can't find: '/media/{{ photo.image }}').</p>
+<div class="gatsby-highlight" data-language="html+django"><pre class="language-html+django"><code class="language-html+django">&lt;div class=&quot;panel&quot; ng-repeat=&quot;post in posts&quot;&gt;
+    &lt;div class=&quot;panel-heading clearfix&quot;&gt;
+        &lt;h3 class=&quot;pull-left panel-title&quot;&gt;{{ post.title }}&lt;/h3&gt;
+        &lt;author class=&quot;pull-right&quot;&gt;{{ post.author.username }}&lt;/author&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;well&quot;&gt;{{ post.body }}&lt;/p&gt;
+    &lt;span class=&quot;photo&quot; ng-repeat=&quot;photo in photos[post.id]&quot;&gt;
+        &lt;img class=&quot;img-thumbnail&quot; ng-src=&quot;{{ photo.image }}&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+<p>And finally, our updated <a href="http://localhost:8000/photos">example page</a> rendered with photos.</p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/6378ce0216924d6c73835c4ab1ebfad0/2ebe8/example_photos.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 400px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAADLUlEQVQ4y6WUW0wUVxzG50VfjKmJLz6obz403hNebIgJPrRGJSZ4bzDeucsKoiJiTJAVDRJRSY2madJWC6RWsca2JAheMSRGV2RXWMyuJqgPLDA7O7s7w87ur+fssnQrRmh6ki/nzLn8z3/+5/s+xTQNvN43DAwMoOs6ssViMf5Li0ajDA0NYZqjKFYkgsfrxePxEAzq4xskZODJAZYVYeDdO8JhA0XXg4yOjopJC8M0MQxDLITjCAaDk0L+lexNcVb2SiCg0dvbi7Onh9f9/Tx3OHA6XQJONE0bPzQVBAIBmaGOqqr4fEMMizoMDg7Gxz6fL7FRbPoXgvr4fHAsu9Rslc9WO+VxomMgImoWS4xlmT6Gcrf9KVev3eXmjU5+v9nJ7d/u0XK9g1+utuJ66abdVsiL/D14Sgt5e7QI71/fof14kcHqSixR548vVpoab2HLq+H4oXoqbLUcLzlNSb6dndkVdPx5n8szptGkKHTNno5j7kxubJjH/QMr8a5chqWp4zRLQmlouERRbgHlZUf4dlMuObtzsBWWkbe/nLY/2ridsYJHxbt4fDifxrTFXJkziwtzv+DnpQsw/OoE3ioHD5xgXcZq9u3YwoasTOprCjhTnUPG18u51XKdXy9fovVOM08e3KHdXsGzk6W416TzPH0ppmDIhAyL9h8hfVUa9rrtNP5URkvTMfILvmHRkoU0NzdRbiumvLiAuqpKztdU0lBXzd5VX3Huy/lYw8MTM9QkFUIjWNEQZlhSQkMLqEjCj4yMUHvmNA8f3KPOXs3ZGjs/fH+FshOVXDh6mJigiQwVS1GWwv9osU/oXjGMMH1uN/1CJZLMSS0nayK5Fdf2WJ/MRn7/Yw4W799/wBQSViKRhLCl2/hVdULAVCRNIxWJSyN8EAGlF8SlJ40gFArFpSP1KzUpIcdJyO/P6ViaSlx6crPL5cTxwkHvq1c4XS7c4vd7hFl0d3fT1+cW6y5cYi3pLPonNJyEIm+W5uD3++OZyF5CziXmE3OqwFQcZ9JXTn3FqRiuUnWqirUb17Itdysbd2WxZU8W2/M2sz47k86ux/FAVtSaMpX+BlT5lFpmq/N6AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="Basic Post List - Photos"
+        title=""
+        src="/static/6378ce0216924d6c73835c4ab1ebfad0/2ebe8/example_photos.png"
+        srcset="/static/6378ce0216924d6c73835c4ab1ebfad0/37351/example_photos.png 163w,
+/static/6378ce0216924d6c73835c4ab1ebfad0/6d4f3/example_photos.png 325w,
+/static/6378ce0216924d6c73835c4ab1ebfad0/2ebe8/example_photos.png 400w"
+        sizes="(max-width: 400px) 100vw, 400px"
+      />
+  </span>
+  </a></p>
+<h3 id="interlude-angularjs--csrf-protection"><a href="#interlude-angularjs--csrf-protection" aria-label="interlude angularjs  csrf protection permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Interlude: AngularJS + CSRF Protection</h3>
+<p>Django Rest Framework extends Django's <a href="https://docs.djangoproject.com/en/dev/ref/contrib/csrf/">Cross Site Request Forgery</a> protection when using <code>SessionAuthentication</code> (such as our case using the same browser session as the web application). This helps ensure malicious scripts can't coax our users into making inadvertent calls to our API by forcing the scripts to return a server provided token on each call. AngularJS's modular architecture and dependency injection configuration make this simple to configure our API calls to include the CSRF Token in a header (you can also use a cookie if you prefer).</p>
+<p>In our django template, simply add a <code>&#x3C;script></code> tag to configure the <code>$http</code> provider (AngularJS parlance for the implementation of the <code>$http</code> dependency) and customize it to use the Django <code>{{ csrf_token }}</code> template variable to set the CSRF Header on all API calls.</p>
+<p>*Note: Make sure this script is loaded <strong>after</strong> your module definitions.</p>
+<p>*Note: You can pass the CSRF token between Angular and Django through cookies or other mechanisms. This explicit header mechanism just ensures the <code>csrf token</code> is generated on every request.</p>
+<div class="gatsby-highlight" data-language="html"><pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+    <span class="token comment">// Add the CSRF Token</span>
+    <span class="token keyword">var</span> app <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'example.app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Not including a list of dependent modules (2nd parameter to `module`) "re-opens" the module for additional configuration</span>
+    app<span class="token punctuation">.</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+        <span class="token string">'$httpProvider'</span><span class="token punctuation">,</span>
+        <span class="token keyword">function</span><span class="token punctuation">(</span>$httpProvider<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            $httpProvider<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>headers<span class="token punctuation">.</span>common<span class="token punctuation">[</span><span class="token string">'X-CSRFToken'</span><span class="token punctuation">]</span> <span class="token operator">=</span>
+                <span class="token string">'{{ csrf_token|escapejs }}'</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre></div>
+<h2 id="creatingmodifying-api-resource-using-angularjs"><a href="#creatingmodifying-api-resource-using-angularjs" aria-label="creatingmodifying api resource using angularjs permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating/Modifying API Resource using AngularJS</h2>
+<p>Let's now build an editor in our feed view to publish a new post (such as a Facebook status update). While most Angular tutorials would just add the functionality to the existing controller on the page, we want to show how to keep your controllers lean and modular, so we'll create a separate controller for this post editor and show how controllers leverage the nesting of the model scopes to extend functionality. This also gives a chance to extend our existing module <code>example.app.photos</code> which provides our base <code>AppController</code> for the feed.</p>
+<p>First, we need to extend our base template, and add the html template for the editor. We also add the CSRF token from the above instructions since we'll now send unsafe methods to our API to save the new posts.</p>
+<div class="gatsby-highlight" data-language="html+django"><pre class="language-html+django"><code class="language-html+django">{% extends &#39;base.html&#39; %} {% block ng_app %}example.app.editor{% endblock %} {%
+block content %} {% verbatim %}
+&lt;div ng-controller=&quot;EditController&quot;&gt;
+    &lt;h5&gt;Create a New Post&lt;/h5&gt;
+    &lt;form class=&quot;form-inline&quot;&gt;
+        &lt;div class=&quot;form-group block-level&quot;&gt;
+            &lt;input
+                type=&quot;text&quot;
+                class=&quot;form-control&quot;
+                ng-model=&quot;newPost.title&quot;
+                placeholder=&quot;Title&quot;
+            /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+            &lt;input
+                type=&quot;text&quot;
+                class=&quot;form-control&quot;
+                ng-model=&quot;newPost.body&quot;
+                placeholder=&quot;Body&quot;
+            /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+            &lt;button class=&quot;btn btn-default&quot; ng-click=&quot;save()&quot;&gt;Add Post&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+{% endverbatim %} {{ block.super }} {% endblock %} {% block js %} {{ block.super
+}}
+&lt;script&gt;
+    // Add the CSRF Token
+    var app = angular.module(&#39;example.app.editor&#39;); // Not including a list of dependent modules (2nd parameter to `module`) &quot;re-opens&quot; the module for additional configuration
+    app.config([
+        &#39;$httpProvider&#39;,
+        function($httpProvider) {
+            $httpProvider.defaults.headers.common[&#39;X-CSRFToken&#39;] =
+                &#39;{{ csrf_token|escapejs }}&#39;;
+        },
+    ]);
+&lt;/script&gt;
+{% endblock %}</code></pre></div>
+<p>Now, we have our editor, let's build the controller to wire this up. Notice that we depend on two modules now, the base module for our feed and the api module that contains all our <code>$resource</code> definitions.</p>
+<div class="gatsby-highlight" data-language="coffeescript"><pre class="language-coffeescript"><code class="language-coffeescript">app <span class="token operator">=</span> angular<span class="token punctuation">.</span>module <span class="token string">'example.app.editor'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'example.api'</span><span class="token punctuation">,</span> <span class="token string">'example.app.photos'</span><span class="token punctuation">]</span>
+
+app<span class="token punctuation">.</span>controller <span class="token string">'EditController'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'$scope'</span><span class="token punctuation">,</span> <span class="token string">'Post'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>$scope<span class="token punctuation">,</span> Post<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+
+    $scope<span class="token punctuation">.</span>newPost <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Post</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    $scope<span class="token punctuation">.</span>save <span class="token operator">=</span> <span class="token operator">-</span><span class="token operator">></span>
+        $scope<span class="token punctuation">.</span>newPost<span class="token punctuation">.</span><span class="token function">$save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">then</span> <span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+            $scope<span class="token punctuation">.</span>posts<span class="token punctuation">.</span>push result
+        <span class="token punctuation">.</span><span class="token keyword">then</span> <span class="token operator">-</span><span class="token operator">></span>
+            <span class="token comment"># Reset our editor to a new blank post</span>
+            $scope<span class="token punctuation">.</span>newPost <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Post</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span></code></pre></div>
+<p>Previously, in the API Views, we added some permission constraints to prevent other users from modifying someone's posts. Up until now, it didn't matter what user were acting as. Now that we want to create users, we need to ensure that we're authenticated as a valid user (or our API request to create a post will be denied). For this demonstration, there's a quick hack Django Authentication Backend that automatically logs you in root. Obviously, don't run this in production or any untrusted environment. This is just to help test our sandbox app without dealing with user registration and authentication.</p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/75bd3b717869107aad8528955c1c8a34/2ebe8/example_editor.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 400px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAACvUlEQVQ4y51TXUhTURy/9NKLj73VS7WXnpI+HgJfehKC2EOUbhlKlqbCmooY5ipCZTkwxZAMoUJZEUo9pE1FMR+URWZtONC18mPeqfvQ3X3ebXe/zjnj2g2pNg/87vm4//M7v/8XF41Gsbz8Eyurq+DX18l6GWtrbng8HuxncPF4DG63GzzPY2tri5Dy8Hl9bJ1KpZBMJrOGJEng0uk0IpEIdnaCe16jBtlCfpyjm0QiAVFM5KTmrwolKYVwOAxBENghfWk/kO8yhZTM7w8o5Es5uSu7vEso0Q15QRRF5j49o7HdDzgafJ5fx9LiIpacTvgDAZYQ+jPbobTlMnKTu1mlsZANslWlJGYKBSHECnl7OwCRuJyrQtocNFxMISMMhWC327BCuiQaizEyOdjZqFslXUaTygipizFConSZJiZTmyIr+v+B2sbj8Uxh01QH/D7YbTa4XD/gcCzARtYLCw44nd/ZBVqn/0KIeEjBCOlHCAqkd73w+fwk4x4Szw1sbGzCS3o6TI2DQYRlCAQhITOT+lUSM8KcykMxp2iICPa0HvX/g8WK98NWjI/NY2L8CyZGrbAMz8Ay+gmuuXlY7zbC1WKAu+U+VnpasTnzFqHeLgQGzXvqkRCKeGR8Bn21CYb6TjTpTGiubUdV6T1U1xgx+7If3RyHkQMc7IcOYk6Vh3f6fHy9ehbem1qm9o9OEcU4DM0P0VjXAL2uEWWaW6i8UQVdTQNqm4z4bH6FoVMnMF1ehKlKLfqPHUEnIX58OA/jZRpZ2m/CKMniJXUpyouKUaIphuayGj0ddWi+Uwr1lUJMWyx43t6KybEhzI68gaW+Evba6/h28ihsFSWZuCoJI5EoCgou4HzhabSYtBjo0+P1i9u4qD6D4yoVpqcm0WVsQ7epDea+JxgceIrejlY8OJePjxXXdpMkE/4CFR61Oh8pigAAAAAASUVORK5CYII='); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="Basic Post List - Editor"
+        title=""
+        src="/static/75bd3b717869107aad8528955c1c8a34/2ebe8/example_editor.png"
+        srcset="/static/75bd3b717869107aad8528955c1c8a34/37351/example_editor.png 163w,
+/static/75bd3b717869107aad8528955c1c8a34/6d4f3/example_editor.png 325w,
+/static/75bd3b717869107aad8528955c1c8a34/2ebe8/example_editor.png 400w"
+        sizes="(max-width: 400px) 100vw, 400px"
+      />
+  </span>
+  </a></p>
+<h3 id="error-handling"><a href="#error-handling" aria-label="error handling permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Error Handling</h3>
+<p>If you're following along, have you tried creating a post without a title? We set that as a required field in the Django model, and Django Rest Framework will validate before creating the resource. If you try to create a Post without a title (say, using the API Browser or our new form), you'd see a 400 Bad Request response, with content that the reasons for the failed request. Let's leverage that response to inform the user.</p>
+<div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"title"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"This field is required."</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>To inform the user, let's amend our API call. Since we're using Promises, we can simply add an error callback to capture that response and notify the user by capturing the response in our <code>$scope</code> which our template can them update to show the messages to the user.</p>
+<div class="gatsby-highlight" data-language="coffeescript"><pre class="language-coffeescript"><code class="language-coffeescript">app <span class="token operator">=</span> angular<span class="token punctuation">.</span>module <span class="token string">'example.app.editor'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'example.api'</span><span class="token punctuation">,</span> <span class="token string">'example.app.photos'</span><span class="token punctuation">]</span>
+
+app<span class="token punctuation">.</span>controller <span class="token string">'EditController'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'$scope'</span><span class="token punctuation">,</span> <span class="token string">'Post'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>$scope<span class="token punctuation">,</span> Post<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+
+    $scope<span class="token punctuation">.</span>newPost <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Post</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    $scope<span class="token punctuation">.</span>save <span class="token operator">=</span> <span class="token operator">-</span><span class="token operator">></span>
+        $scope<span class="token punctuation">.</span>newPost<span class="token punctuation">.</span><span class="token function">$save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">then</span> <span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+            $scope<span class="token punctuation">.</span>posts<span class="token punctuation">.</span>push result
+        <span class="token punctuation">.</span><span class="token keyword">then</span> <span class="token operator">-</span><span class="token operator">></span>
+            <span class="token comment"># Reset our editor to a new blank post</span>
+            $scope<span class="token punctuation">.</span>newPost <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Post</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token keyword">then</span> <span class="token operator">-</span><span class="token operator">></span>
+            <span class="token comment"># Clear any errors</span>
+            $scope<span class="token punctuation">.</span>errors <span class="token operator">=</span> <span class="token keyword">null</span>
+        <span class="token punctuation">,</span> <span class="token punctuation">(</span>rejection<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+            $scope<span class="token punctuation">.</span>errors <span class="token operator">=</span> rejection<span class="token punctuation">.</span>data
+<span class="token punctuation">]</span></code></pre></div>
+<p>And also update our template to include a handy error display:</p>
+<div class="gatsby-highlight" data-language="html+django"><pre class="language-html+django"><code class="language-html+django">&lt;p ng-repeat=&quot;(name, errs) in errors&quot; class=&quot;alert alert-danger&quot;&gt;
+    &lt;strong&gt;{{ name }}&lt;/strong&gt;: {{ errs.join(&#39;, &#39;) }}
+&lt;/p&gt;</code></pre></div>
+<p>By leveraging promise APIs, it makes it straightforward to add UI elements to give feedback about the progress (loading indicators, progress bars) by simply chaining them. AngularJS has a fairly complete Promises/A spec ensuring errors (or rejections) fall-through the chain making error handling simpler.</p>
+<p>For this simple demonstration, we just enumerate the errors in bootstrap alert boxes. Because the errors are identified by attribute name, you can easily update your template to show errors in-line next the form fields they correspond with.</p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/0fbea6ce559516a374d0865c7e8a4e0b/2ebe8/example_error.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 400px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAACOElEQVQ4y51UPW8TQRC9H0JDRYug4z/Q8RcoaSj4AwgUKSJCQIsQEigSQkh00ESmciKSSI5DQYx9js++c5zz+T583x+PmbX3bGHhxLfS087t7bx5uzOzShAE6HZVnPd60AcDsrvQtD4Mw0CVoURRiH6/D13XMRqNiFSHeWkKO8sypGl6beR5DqUoCvi+D9t2VqLxhutCBlf4I0kSxHGykZr/KszzDNPpFK7rikWOVAXSVyhksvHYWpKfb3RceeSSUEaI41gcn9f4bqtA4cs3KMOtszO0Wn9gWRORkALVhlAolQmQUmZbRJ3brDov1oMVZmEIj4rZ7XRms6oK21UXttc9h6dp8Kj41yElLkF4sV9H7/s3mg+g/6hhUKvhor4/s/f2cHl0BKfdhk3XYrdaK3B4pn8JVYuSRRGC4RA+tZpvDIUtMVtbXf8Xch9ziaTw2auOZc8yy6Zp4vDwJ9ok3afHYtMgmtbD2LJmWWZHzrJt2/CowGUdLnfAVeDG4PdAKOQFz3MxmUzgOA7NllDMnWNRVG7Lq8BPIBOKx4FVWGMTzZMmOm0VzeYJGo0GTk9/iULnjVPPW2ANcUkYUXb4I0liOn40L/JYIKSyCulKSkQxAq6MeD6TOol5LxfkRD9Ddk6InEC2REqO2dRDSojorrLAB3kjp+vJ6HFe6WVWt/NyF8+ffcSrnc94/eIT3mx/wNbTd9ja3sXBl694f/MG6ndu4fe92zi+fxfHbx9Df/gAxpNHsl5Kwr/OUvxDvFLkOwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="Basic Post List - Error"
+        title=""
+        src="/static/0fbea6ce559516a374d0865c7e8a4e0b/2ebe8/example_error.png"
+        srcset="/static/0fbea6ce559516a374d0865c7e8a4e0b/37351/example_error.png 163w,
+/static/0fbea6ce559516a374d0865c7e8a4e0b/6d4f3/example_error.png 325w,
+/static/0fbea6ce559516a374d0865c7e8a4e0b/2ebe8/example_error.png 400w"
+        sizes="(max-width: 400px) 100vw, 400px"
+      />
+  </span>
+  </a></p>
+<h3 id="remove-your-posts"><a href="#remove-your-posts" aria-label="remove your posts permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Remove Your Posts</h3>
+<p>To compliment the editor, we need a way to delete any posts, but only added by the current user. We already instrumented the API to prevent users from trying to modify/delete resources they don't own. When you're new to AngularJS, the modular nature makes it difficult to understand how to provide some initial data to the controller. In our case, we need to know who the current user is, so we can control what posts are available to be deleted.</p>
+<p>The key to understanding this is to try to de-compose your controllers into many services/factories (they're basically synonymous in angular) that handle the actual logic. The controller (much like a view in Django) should really only focus on wiring together different components. In Django, you attempt to integrate as much of your business logic in the model (the fat-model pattern). In Angular, you similarly want to compartmentalize your logic into composable services.</p>
+<p>To add the ability to remove posts, let's first add a module extending our editor and adding an extra controller for handling the removal. We will depend on a service named <code>AuthUser</code> which the template will provide with the current user from the Django template context. In this case, it will simply contain a single <code>username</code> attribute for the current user (our empty if no user). We added two functions on the scope, <code>canDelete</code> to determine if a given post can be removed by the user, and <code>delete</code> to remove the post. Both take a <code>post</code> argument which we will supply in our template.</p>
+<p>Again, we used the Promises interface of the <code>$resource</code> and only after successful confirmation from the server do we remove the post from our feed view. As above, there's opportunity for capturing failure results and providing feedback to the user that we've skipped in this simple example.</p>
+<div class="gatsby-highlight" data-language="coffeescript"><pre class="language-coffeescript"><code class="language-coffeescript">app <span class="token operator">=</span> angular<span class="token punctuation">.</span>module <span class="token string">'example.app.manage'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'example.api'</span><span class="token punctuation">,</span> <span class="token string">'example.app.editor'</span><span class="token punctuation">]</span>
+
+app<span class="token punctuation">.</span>controller <span class="token string">'DeleteController'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'$scope'</span><span class="token punctuation">,</span> <span class="token string">'AuthUser'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>$scope<span class="token punctuation">,</span> AuthUser<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+    $scope<span class="token punctuation">.</span>canDelete <span class="token operator">=</span> <span class="token punctuation">(</span>post<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+        <span class="token keyword">return</span> post<span class="token punctuation">.</span>author<span class="token punctuation">.</span>username <span class="token operator">==</span> AuthUser<span class="token punctuation">.</span>username
+
+    $scope<span class="token punctuation">.</span><span class="token keyword">delete</span> <span class="token operator">=</span> <span class="token punctuation">(</span>post<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>
+        post<span class="token punctuation">.</span>$<span class="token keyword">delete</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token keyword">then</span> <span class="token operator">-</span><span class="token operator">></span>
+            <span class="token comment"># Remove it from the list on success</span>
+            idx <span class="token operator">=</span> $scope<span class="token punctuation">.</span>posts<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>post<span class="token punctuation">)</span>
+            $scope<span class="token punctuation">.</span>posts<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>idx<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span></code></pre></div>
+<p>With the controller defined, let's update our Post template to include a close button (with the condition that <code>canDelete</code> is true).</p>
+<div class="gatsby-highlight" data-language="html+django"><pre class="language-html+django"><code class="language-html+django">{% extends &#39;editor.html&#39; %} {% block ng_app %}example.app.manage{% endblock %}
+{% block post_header %}
+
+&lt;button
+    type=&quot;button&quot;
+    class=&quot;close&quot;
+    ng-controller=&quot;DeleteController&quot;
+    ng-click=&quot;delete(post)&quot;
+    ng-show=&quot;canDelete(post)&quot;
+&gt;
+    &amp;times;
+&lt;/button&gt;
+{{ block.super }} {% endblock %} {% block js %} {{ block.super }}
+&lt;script&gt;
+    // Configure the current user
+    var app = angular.module(&#39;example.app.manage&#39;); // Not including a list of dependent modules (2nd parameter to `module`) &quot;re-opens&quot; the module for
+
+    app.factory(&#39;AuthUser&#39;, function() {
+        return {
+            username: &quot;{{ user.username|default:&#39;&#39;|escapejs }}&quot;,
+        };
+    });
+&lt;/script&gt;
+{% endblock %}</code></pre></div>
+<p>And, when you load the <a href="http://localhost:8000/manage">example page</a>, there's an <em>'X'</em> next to the post by <code>root</code>, but not next to the post by <code>bob</code>. Clicking the X calls our API and deletes the post.</p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/6d53a374f3fedf95b9bc730aeba2b345/2ebe8/example_managed.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 400px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 150%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAACXBIWXMAAAsSAAALEgHS3X78AAAD4UlEQVRIx52WXUybVRjHa7LMC6M3E5PFxIs5d+VXvHBXRi+82eLmYG7dYCPgBGXODQNxyjDbcDYIyqK7MNNkLiO6ROO82MwUCJDNmLgPRtsVKQVpKW2BftDvD0r5ec4pby3CspY3ed5zzntO/+d/nuf5P6e6eDyO3T6OY2ICt8sl+naczkk8Hg+reXTJZILJyUncbjczMzMC1I3P61P9+fl50ul0wZbJZNAtLCwQi8UIBkPLdpMLCjVtc50czM3NkUrNFcXmngwzmXmi0SjhcFh9lDutxrTfKoYSzO8P5NHPFHVc7cg5wIwciB1SqZQ6vvwmfbsa00nnu90uRqxWRmw2/IGACoicXFXaaHS1qGr9YlhpT45hOBxRiRycDRBPJJSDi2Eo10oyiqEGaDaZcE448Pp8BEOh3KJC2KUX/a8A5SCZTGaPvAgiLZ2eUwGS0izUVJTlK+D3KYZjY/8wNGTBJPoWyxA226hSkczTQkwpRb6CwSBTU9P4fH5cQstut0f4dEro2UskEiEi5nMWChINh4gKt6j2/4BFOT+vlbmQWfTfEulJP/X03qare4D+fjPX+k1c7xugt/smvX13sBvNDBhasHe04upow3nuNN6/fiV6/iyzl39eFm0BmKLV8A1H6tppbviSpsOirW+jruo4dQdb+fN8J2d0Oq4+oMO8bi23Nz7E5YYXMO97EX9NuWK7RCmpVJKTJww0NTbRWN/EW/sPUVfzLocPfkDjx23c+uEiPz39JH3l2+mvfoPvNzxOR8laTj/xMD3V5Rq1/wDjIoplr1fypn43FXo9u0q3cab9fY4draJ0z1au/3aVzrZT/NF/hVvdl/j9yAHMhyoxPbcB8zuVWb/mA8ZicV55eRuvbtlMS2s5F76t58cLDewo28xTmzbR29NFy0dH+ezEMc5+8SkXz33F1+0naX52I137duaClAOUeWgZtuD0/E0oNIHf6xBXgg3riJnxcTs3b9zgw8YGrvxyifeqq2g3fILBcIqK6v10Hm/OCSIHeL+0yZ/PKihbSBfSKxcRpeXZ2VkcDrtIbg8BUb6kLjUJ5t8thRQJBSjVYLUOC1AHU9PTarxSIVipUufPKUB5BKlXWSASonRp2o1EsvdMvsmN7qVjOaekJ/3h83kxGo2YzCZGhq0MGmWhGFMF4+5dC6Ojo9wZHFR/AuLxxCJITG2u2ZLiIHeXBSIkBJ/fX/ZNtPetNoUUB21NQZeUpFtVK1RRUcqe2t3sqNiOvqaMvbU72XtAj0/UykIvLQUYjoQpWf8YujU6Hly3hpJnHuHt715j1+cvsf75R3F5XLnUKYThv/TQlygVe6eGAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="Basic Post List - Removal"
+        title=""
+        src="/static/6d53a374f3fedf95b9bc730aeba2b345/2ebe8/example_managed.png"
+        srcset="/static/6d53a374f3fedf95b9bc730aeba2b345/37351/example_managed.png 163w,
+/static/6d53a374f3fedf95b9bc730aeba2b345/6d4f3/example_managed.png 325w,
+/static/6d53a374f3fedf95b9bc730aeba2b345/2ebe8/example_managed.png 400w"
+        sizes="(max-width: 400px) 100vw, 400px"
+      />
+  </span>
+  </a></p>
+<p>And with that, we have a simple shared feed for a users to share messages.</p>
+<h2 id="conclusion"><a href="#conclusion" aria-label="conclusion permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conclusion</h2>
+<p>Alright, let's reflect. With a small amount of code (~100 lines of frontend, ~200 lines of backend), leveraging Django Rest Frameowrk (+Django itself) and AngularJS, we were able to quickly create a sample application to create simple postings. DRF makes it simple to export our Django data models through a ReSTful API layer with opportunities to customize the interfaces based on our use cases. AngularJS makes it easier to consume and interact with the API in a manner that is more modular and structured to help us add incremental capability to our web apps without creating spaghetti code.</p>
+<p>All the code referenced in this article is available on a <a href="https://github.com/kevinastone/django-api-rest-and-angular">GitHub project</a>. You're encouraged to checkout the repository and setup your own working copy to experiment. If you see any mistakes, please leave an Issue (or better yet, a Pull-Request) and I'll be sure to correct it. If you have any questions, please leave me a comment (or hit me up on Twitter at <a href="https://twitter.com/kevinastone">@kevinastone</a>). I intend to follow this article up with more solutions for DRF+Angular that I've come across, including:</p>
+<ul>
+<li>Pagination</li>
+<li>Singleton Endpoints (toggle follow/unfollow)</li>
+<li>More Complex Permissions</li>
+<li>Richer Validation</li>
+<li>Testing</li>
+</ul></div><div id="disqus_thread"></div> </div></main><style data-emotion-css="fm7bya">.css-fm7bya{text-align:center;padding:1.78rem;}</style><style data-emotion-css="1qpm2xl">.css-1qpm2xl{margin:0 auto;max-width:960px;padding:0 1.78rem;text-align:center;padding:1.78rem;}</style><footer class="css-1qpm2xl e1wsq9gq0">© <!-- -->Kevin Stone<!-- --> <!-- -->2019<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a></footer></div></div><script>
+  
+  
+  if(true) {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  }
+  if (typeof ga === "function") {
+    ga('create', 'UA-44610401-1', 'auto', {});
+      
+      
+      
+      }
+      </script><script id="gatsby-script-loader">/*<![CDATA[*/window.page={"componentChunkName":"component---src-components-blog-post-js","jsonName":"django-rest-framework-and-angular-js-983","path":"/django-rest-framework-and-angular-js"};window.dataPath="505/path---django-rest-framework-and-angular-js-983-09a-S3yMMuB6739LvAFQ18oy40CwJoM";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app.b6f197430f783b3e67aa.css","/app-afb9916d2951c913f20b.js"],"component---src-components-blog-post-js":["/component---src-components-blog-post-js-60f52d47430214c29272.js"],"component---src-pages-404-js":["/component---src-pages-404-js-17913502c528c0f4bec2.js"],"component---src-pages-index-js":["/component---src-pages-index-js-b05cb2bc368ecf4d2950.js"],"pages-manifest":["/pages-manifest-1ed1354bfa2614fe3016.js"]};/*]]>*/</script><script src="/component---src-components-blog-post-js-60f52d47430214c29272.js" async=""></script><script src="/7-da21abf33a3cf79d910c.js" async=""></script><script src="/0-1f8fe471db81b6f24482.js" async=""></script><script src="/app-afb9916d2951c913f20b.js" async=""></script><script src="/webpack-runtime-a2655a30bb7197352115.js" async=""></script></body></html>
