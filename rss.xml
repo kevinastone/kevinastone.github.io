@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Kevin Stone]]></title><description><![CDATA[Personal blog for Kevin Stone.]]></description><link>https://blog.kevinastone.com</link><generator>RSS for Node</generator><lastBuildDate>Thu, 25 Jul 2019 02:03:43 GMT</lastBuildDate><item><title><![CDATA[Generate Your Tests]]></title><description><![CDATA[When testing your application, you'll often come across the need to test that
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Kevin Stone]]></title><description><![CDATA[Personal blog for Kevin Stone.]]></description><link>https://blog.kevinastone.com</link><generator>RSS for Node</generator><lastBuildDate>Thu, 25 Jul 2019 02:08:47 GMT</lastBuildDate><item><title><![CDATA[Generate Your Tests]]></title><description><![CDATA[When testing your application, you'll often come across the need to test that
 your application behaves correct across a range of inputs or…]]></description><link>https://blog.kevinastone.com/generator-tests</link><guid isPermaLink="false">https://blog.kevinastone.com/generator-tests</guid><pubDate>Mon, 12 Oct 2015 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;When testing your application, you&apos;ll often come across the need to test that
 your application behaves correct across a range of inputs or conditions.
 Instead of repetitively defining the same test scaffolding, let&apos;s use some
@@ -24,7 +24,7 @@ input string is alphabetized.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; nosetests example
 &lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;
 ----------------------------------------------------------------------
-Ran 2 tests &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; 0.000s
+Ran &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; tests &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.000s
 
 OK&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;But as you can see, our two test methods only tested simple examples. What we
@@ -72,7 +72,7 @@ of TDD, we&apos;ll plug that in our test case of expected inputs:&lt;/p&gt;
 FAIL: test_is_alphabetized &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;example.test_alphabetical.IsAlphabetizedTestCase&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 ----------------------------------------------------------------------
 Traceback &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;:
-  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line 34, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_is_alphabetized
+  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;34&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_is_alphabetized
     self.assertTrue&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;is_alphabetized&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;))&lt;/span&gt;
 AssertionError: False is not &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
 
@@ -95,7 +95,7 @@ test case to indicate which word failed:&lt;/p&gt;
 FAIL: test_is_alphabetized &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;example.test_alphabetical.IsAlphabetizedTestCase&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 ----------------------------------------------------------------------
 Traceback &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;:
-  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line 46, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_is_alphabetized
+  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;46&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_is_alphabetized
     self.assertTrue&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;is_alphabetized&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, u&lt;span class=&quot;token string&quot;&gt;&apos;{} was not considered alphabetized&apos;&lt;/span&gt;.format&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;))&lt;/span&gt;
 AssertionError: A-Cert was not considered alphabetized
 
@@ -160,14 +160,14 @@ add_methods&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
 FAIL: test_input &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;example.test_alphabetical.IsAlphabetizedTestCase&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 ----------------------------------------------------------------------
 Traceback &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;:
-  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line 16, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_input
+  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;16&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_input
     self.assertTrue&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;is_alphabetized&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, u&lt;span class=&quot;token string&quot;&gt;&apos;{} was not considered alphabetized&apos;&lt;/span&gt;.format&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;))&lt;/span&gt;
 AssertionError: iOS was not considered alphabetized
 
 ----------------------------------------------------------------------
-Ran 2 tests &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; 0.001s
+Ran &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; tests &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.001s
 
-FAILED &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;errors&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1, failures&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+FAILED &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;errors&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;token assign-left variable&quot;&gt;failures&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;What happened? Shouldn&apos;t there be more tests? Well, we kept clobbering our
 test in the klass. The trick is to give each test a unique name.&lt;/p&gt;
 &lt;p&gt;Let&apos;s assign the test to the class using &lt;code&gt;setattr&lt;/code&gt; with a custom name:&lt;/p&gt;
@@ -187,7 +187,7 @@ test in the klass. The trick is to give each test a unique name.&lt;/p&gt;
 FAIL: test_alphabetical_ &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;example.test_alphabetical.IsAlphabetizedTestCase&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 ----------------------------------------------------------------------
 Traceback &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;:
-  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line 18, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_input
+  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_input
     self.assertTrue&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;is_alphabetized&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, u&lt;span class=&quot;token string&quot;&gt;&apos;{} was not considered alphabetized&apos;&lt;/span&gt;.format&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;))&lt;/span&gt;
 AssertionError: iOS was not considered alphabetized
 
@@ -195,16 +195,16 @@ AssertionError: iOS was not considered alphabetized
 FAIL: test_alphabetical_A-Cert &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;example.test_alphabetical.IsAlphabetizedTestCase&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 ----------------------------------------------------------------------
 Traceback &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;:
-  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line 18, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_input
+  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_input
     self.assertTrue&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;is_alphabetized&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, u&lt;span class=&quot;token string&quot;&gt;&apos;{} was not considered alphabetized&apos;&lt;/span&gt;.format&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;))&lt;/span&gt;
 AssertionError: iOS was not considered alphabetized
 
 &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
 
 ----------------------------------------------------------------------
-Ran 7 tests &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; 0.001s
+Ran &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt; tests &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.001s
 
-FAILED &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;failures&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;7&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+FAILED &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;failures&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Why are all tests failing with &lt;code&gt;iOS&lt;/code&gt;? It should be running with each variant
 of our input. Turns out this is due to variable scoping in python. In
 python2, there&apos;s only two levels of scoping: function and global. So as we
@@ -234,7 +234,7 @@ test methods are actually evaluated, it&apos;s always equal to the last value
 FAIL: test_alphabetical_A-Cert &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;example.test_alphabetical.IsAlphabetizedTestCase&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 ----------------------------------------------------------------------
 Traceback &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;:
-  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line 14, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_input
+  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;14&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_input
     self.assertTrue&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;is_alphabetized&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, u&lt;span class=&quot;token string&quot;&gt;&apos;{} was not considered alphabetized&apos;&lt;/span&gt;.format&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;))&lt;/span&gt;
 AssertionError: A-Cert was not considered alphabetized
 
@@ -242,14 +242,14 @@ AssertionError: A-Cert was not considered alphabetized
 FAIL: test_alphabetical_iOS &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;example.test_alphabetical.IsAlphabetizedTestCase&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 ----------------------------------------------------------------------
 Traceback &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;:
-  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line 14, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_input
+  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;14&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_input
     self.assertTrue&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;is_alphabetized&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, u&lt;span class=&quot;token string&quot;&gt;&apos;{} was not considered alphabetized&apos;&lt;/span&gt;.format&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;))&lt;/span&gt;
 AssertionError: iOS was not considered alphabetized
 
 ----------------------------------------------------------------------
-Ran 7 tests &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; 0.001s
+Ran &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt; tests &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.001s
 
-FAILED &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;failures&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;2&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+FAILED &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;failures&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;There you go, we are able to generate N test methods to validate our
 alphabetical function. Adding a new test is as simple as extending the list
 of inputs.&lt;/p&gt;
@@ -313,14 +313,14 @@ F
 FAIL: test_alphabetical_iOS &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;example.test_alphabetical.IsAlphabetizedTestCase&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 ----------------------------------------------------------------------
 Traceback &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;:
-  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line 8, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_input
+  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_input
     self.assertTrue&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;is_alphabetized&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, u&lt;span class=&quot;token string&quot;&gt;&apos;{} was not considered alphabetized&apos;&lt;/span&gt;.format&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;))&lt;/span&gt;
 AssertionError: iOS was not considered alphabetized
 
 ----------------------------------------------------------------------
-Ran 1 &lt;span class=&quot;token function&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; 0.001s
+Ran &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.001s
 
-FAILED &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;failures&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+FAILED &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;failures&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&quot;generalize-the-test-method-factory&quot;&gt;&lt;a href=&quot;#generalize-the-test-method-factory&quot; aria-label=&quot;generalize the test method factory permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Generalize the Test Method Factory&lt;/h2&gt;
 &lt;p&gt;So our class decorator works well for our single test method generator. But
 what if we have multiple test methods we want to generate? Remember our
@@ -370,9 +370,9 @@ pass in the test method:&lt;/p&gt;
 FAIL: test_assert_is_alphabetized_A-Cert &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;example.test_alphabetical.IsAlphabetizedTestCase&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 ----------------------------------------------------------------------
 Traceback &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;:
-  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line 17, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_input
+  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;17&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_input
     func&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;self, input&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line 7, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; assert_is_alphabetized
+  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; assert_is_alphabetized
     self.assertTrue&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;is_alphabetized&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, u&lt;span class=&quot;token string&quot;&gt;&apos;{} was not considered alphabetized&apos;&lt;/span&gt;.format&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;))&lt;/span&gt;
 AssertionError: A-Cert was not considered alphabetized
 
@@ -380,16 +380,16 @@ AssertionError: A-Cert was not considered alphabetized
 FAIL: test_assert_is_alphabetized_iOS &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;example.test_alphabetical.IsAlphabetizedTestCase&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 ----------------------------------------------------------------------
 Traceback &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;:
-  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line 17, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_input
+  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;17&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; test_input
     func&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;self, input&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line 7, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; assert_is_alphabetized
+  File &lt;span class=&quot;token string&quot;&gt;&quot;example/test_alphabetical.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; assert_is_alphabetized
     self.assertTrue&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;is_alphabetized&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, u&lt;span class=&quot;token string&quot;&gt;&apos;{} was not considered alphabetized&apos;&lt;/span&gt;.format&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input&lt;span class=&quot;token punctuation&quot;&gt;))&lt;/span&gt;
 AssertionError: iOS was not considered alphabetized
 
 ----------------------------------------------------------------------
-Ran 10 tests &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; 0.001s
+Ran &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt; tests &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.001s
 
-FAILED &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;failures&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;2&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+FAILED &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;failures&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&quot;conclusion&quot;&gt;&lt;a href=&quot;#conclusion&quot; aria-label=&quot;conclusion permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;Now with these handy generated test methods, we can make the necessary fixes
 to our &lt;code&gt;is_alphabetical&lt;/code&gt; function:&lt;/p&gt;
@@ -400,7 +400,7 @@ to our &lt;code&gt;is_alphabetical&lt;/code&gt; function:&lt;/p&gt;
     value &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; re&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;sub&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;r&apos;[^a-z]&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;join&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; value&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;----------------------------------------------------------------------
-Ran 10 tests &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; 0.001s
+Ran &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt; tests &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.001s
 
 OK&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Ah, so satisfying....&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Django Model Descriptors]]></title><description><![CDATA[How can we enhance our Django model fields to act beyond simple database types
@@ -1108,7 +1108,11 @@ urlpatterns &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; patterns
 &lt;h3 id=&quot;interlude-built-in-api-browser&quot;&gt;&lt;a href=&quot;#interlude-built-in-api-browser&quot; aria-label=&quot;interlude built in api browser permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Interlude: Built-in API Browser&lt;/h3&gt;
 &lt;p&gt;One of the benefits of Django Rest Framework, is that it comes with a built-in API browser for testing out your API. Much like Django&apos;s admin, this can help with initial development.&lt;/p&gt;
 &lt;p&gt;Simple load one of your API endpoints in the browser, and through content-negotiation, DRF will present to you a handy client interface to interact with your API.&lt;/p&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/static/c4d77c9226edabdadcc50d6a3b0176dd/128a0/browser_users.png&quot;
     style=&quot;display: block&quot;
@@ -1116,18 +1120,13 @@ urlpatterns &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; patterns
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsSAAALEgHS3X78AAAB4klEQVQ4y52SzW7TQBSF/TRh0QWoShfAgg1C8ECo78BrINQ9r0BLY8dpxSYhxMQppG5CEsfO/Njjv9PrsZPSKg0Rlj7fo/k5PnPHxotGA2+bTbw7OtL1zeEh6SZeP3uKVwcHePmksZVy3/PGXV1rw+p0cNZqaVrtNkzb1pxbFr6aJk7rub8px2zbxLdLCx3bwuWFRbqNNnkZoEcphYQo8lyzz+MsEpy6AoN5govrCOdXUo8bcRzDpCTdbhe9Xg/9fh9FUSDLskcBcpycTfH+0xAfv0zw4fMvHJ+48JmCkaYZ/GWAZRAiCFaIY0Ukj6JUVZGlQEHmeVpBuihyGOUXhZBgjEOKiDakUPXGNduMo5JIbaok8rw2dJwhvv8YwpvM9AIhYzAegdMHJGm9cQ9qwxyDgYO+M4I7nsIZzzG68THzGWZLpo11AjLexcawfHEudWRJ6biIwWmB0r1UG7Ndye4Mi8pQm4UcjBLpSR79M81Dfc9Q920RYtV1wX5PIQKGKEkR0YVUtdZ1fZh4u+E8AP85Bht54N4cnIz59Qzc9bQW3qyqk8XuhAW9BN2mWPexXMikboGmbENQ67KuxH5Hlv4K4dUEnJIK0vqIcf2f3UPteWQ/BCt7OLoB/7OsFv3HpdwCmphOdfYa17MAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsSAAALEgHS3X78AAAB4klEQVQ4y52SzW7TQBSF/TRh0QWoShfAgg1C8ECo78BrINQ9r0BLY8dpxSYhxMQppG5CEsfO/Njjv9PrsZPSKg0Rlj7fo/k5PnPHxotGA2+bTbw7OtL1zeEh6SZeP3uKVwcHePmksZVy3/PGXV1rw+p0cNZqaVrtNkzb1pxbFr6aJk7rub8px2zbxLdLCx3bwuWFRbqNNnkZoEcphYQo8lyzz+MsEpy6AoN5govrCOdXUo8bcRzDpCTdbhe9Xg/9fh9FUSDLskcBcpycTfH+0xAfv0zw4fMvHJ+48JmCkaYZ/GWAZRAiCFaIY0Ukj6JUVZGlQEHmeVpBuihyGOUXhZBgjEOKiDakUPXGNduMo5JIbaok8rw2dJwhvv8YwpvM9AIhYzAegdMHJGm9cQ9qwxyDgYO+M4I7nsIZzzG68THzGWZLpo11AjLexcawfHEudWRJ6biIwWmB0r1UG7Ndye4Mi8pQm4UcjBLpSR79M81Dfc9Q920RYtV1wX5PIQKGKEkR0YVUtdZ1fZh4u+E8AP85Bht54N4cnIz59Qzc9bQW3qyqk8XuhAW9BN2mWPexXMikboGmbENQ67KuxH5Hlv4K4dUEnJIK0vqIcf2f3UPteWQ/BCt7OLoB/7OsFv3HpdwCmphOdfYa17MAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;API Browser Example for Users&quot;
-        title=&quot;&quot;
+        title=&quot;API Browser Example for Users&quot;
         src=&quot;/static/c4d77c9226edabdadcc50d6a3b0176dd/ed7b0/browser_users.png&quot;
         srcset=&quot;/static/c4d77c9226edabdadcc50d6a3b0176dd/128ea/browser_users.png 163w,
 /static/c4d77c9226edabdadcc50d6a3b0176dd/1f057/browser_users.png 325w,
@@ -1135,9 +1134,13 @@ urlpatterns &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; patterns
 /static/c4d77c9226edabdadcc50d6a3b0176dd/128a0/browser_users.png 800w&quot;
         sizes=&quot;(max-width: 650px) 100vw, 650px&quot;
       /&gt;
-  &lt;/span&gt;
   &lt;/a&gt;
-&lt;a
+    &lt;/span&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/static/73ca60045f3922a7e942eeba4137a5b2/128a0/browser_user_posts.png&quot;
     style=&quot;display: block&quot;
@@ -1145,18 +1148,13 @@ urlpatterns &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; patterns
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 650px;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsSAAALEgHS3X78AAACFklEQVQ4y42STXPSUBSG+TW40IUu2hl148ZRf5Djf/BvOE73rruhBFpSaMdFmyoRaC0FmhA+7ke+eT33pNAOKDUzb87JTe5z3nNuSq/KZbzf2cGH3V3WO5OT3r54jjfPnuL1k/JfZfa9LN/HZV6yWy3UDw5Qr1ZhVSqw9vdRbzRQqdVQsSxYR0eorcmsNZsNfD+10WraOD2xKT/GMbFKoCvRmhVJiUgIZGmKNEmw7XLHCayuQttPcNIPcXipeb0URREato2z83NWk6o4Fw4cx0GWZcjz/C5mHI2AHHu1ET5+7eBLdYjP367waa+LQMQopWmGIJhiOp1jNhPw/THHKIpJyYbiuIjUBrAgeJ4WonyxyFEyFZXSEEJCSgWtQ4YlScqbl4B1hUZhvIqaZLphoOt2cPGzg8HQQxSnUDqCkCGkCqlAVGz8D90Bc7TbLn64PXR/j+Be++gNAniBgDcRDGYHBN6mFdDcpNRsWZF9pQpnMc8wXsG2ObsHLgqggemZhLoNoCg3betHXD0EbQC5kpkbtTy7voXyp1BUIIwfDD5axmTD9RpwwTCzWd14EGcdiKshu9WCRiEUu9dzVcjkKnzcoZmdGgUsSU7l5QDyV58lnB5k96Z47vQZuh1o3HlTzMmhGs/IqQ81HNPaBLLvsXM1oOd+8d58z7P816EUwAm3Ko16gwJsHFPU9PuEdFA80yjeeih/ADnnSshnzt9gAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsSAAALEgHS3X78AAACFklEQVQ4y42STXPSUBSG+TW40IUu2hl148ZRf5Djf/BvOE73rruhBFpSaMdFmyoRaC0FmhA+7ke+eT33pNAOKDUzb87JTe5z3nNuSq/KZbzf2cGH3V3WO5OT3r54jjfPnuL1k/JfZfa9LN/HZV6yWy3UDw5Qr1ZhVSqw9vdRbzRQqdVQsSxYR0eorcmsNZsNfD+10WraOD2xKT/GMbFKoCvRmhVJiUgIZGmKNEmw7XLHCayuQttPcNIPcXipeb0URREato2z83NWk6o4Fw4cx0GWZcjz/C5mHI2AHHu1ET5+7eBLdYjP367waa+LQMQopWmGIJhiOp1jNhPw/THHKIpJyYbiuIjUBrAgeJ4WonyxyFEyFZXSEEJCSgWtQ4YlScqbl4B1hUZhvIqaZLphoOt2cPGzg8HQQxSnUDqCkCGkCqlAVGz8D90Bc7TbLn64PXR/j+Be++gNAniBgDcRDGYHBN6mFdDcpNRsWZF9pQpnMc8wXsG2ObsHLgqggemZhLoNoCg3betHXD0EbQC5kpkbtTy7voXyp1BUIIwfDD5axmTD9RpwwTCzWd14EGcdiKshu9WCRiEUu9dzVcjkKnzcoZmdGgUsSU7l5QDyV58lnB5k96Z47vQZuh1o3HlTzMmhGs/IqQ81HNPaBLLvsXM1oOd+8d58z7P816EUwAm3Ko16gwJsHFPU9PuEdFA80yjeeih/ADnnSshnzt9gAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;API Browser Example for User Posts&quot;
-        title=&quot;&quot;
+        title=&quot;API Browser Example for User Posts&quot;
         src=&quot;/static/73ca60045f3922a7e942eeba4137a5b2/ed7b0/browser_user_posts.png&quot;
         srcset=&quot;/static/73ca60045f3922a7e942eeba4137a5b2/128ea/browser_user_posts.png 163w,
 /static/73ca60045f3922a7e942eeba4137a5b2/1f057/browser_user_posts.png 325w,
@@ -1164,8 +1162,8 @@ urlpatterns &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; patterns
 /static/73ca60045f3922a7e942eeba4137a5b2/128a0/browser_user_posts.png 800w&quot;
         sizes=&quot;(max-width: 650px) 100vw, 650px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h3 id=&quot;add-permissions-and-ownership-to-api&quot;&gt;&lt;a href=&quot;#add-permissions-and-ownership-to-api&quot; aria-label=&quot;add permissions and ownership to api permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Add Permissions and Ownership to API&lt;/h3&gt;
 &lt;p&gt;As previously written, our API Views allow anyone to create anything on our site. Some of the advantages of using Django Rest Framework, is that the generic views make it easy to control permissions in the view without impact the underlying model and serializers. To incorporate some control over who is allowed to edit our API resources, we can created some permission classes that provide the authorization controls to restrict. They should return a boolean for the given request. This gives us access to the full request including cookies, the authenticated user and more.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; rest_framework &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; permissions
@@ -1256,7 +1254,11 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you&apos;ve got everything setup and run grunt to compile this down to javascript, you should see our &lt;a href=&quot;http://localhost:8000/static&quot;&gt;hard-coded template&lt;/a&gt; rendered as such:&lt;/p&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 400px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/static/570122ead4dbdf83617e543618dfc096/ef30a/example_static.png&quot;
     style=&quot;display: block&quot;
@@ -1264,26 +1266,21 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 400px;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 66.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAABVklEQVQ4y61Ta4+CMBDs//9tXk4EBMSTxJyKyEPkUZDHXHfVizEC9+E2mey2NO3O7CCKooDruljZNjzPw3a7xWbjIU0voOi6TqFH3w+Dzux23yhLCVEUJa7XK282TcNo21bt1ZBSQlaVOlgiz3PQ40Oo65qzyLILbNWdaRhYrSibMFRtmCY0bcH71DG9TpeOIcsyCCrSNEUcRUiSBEmcII5jRGodhiHn8/nMr091Sd8F0WtJp76763XDq0Z87g8QGImxQTzjOUSlhCdqRJvoEd04ipnm49KpoKGRfsRE5Goo2lzDx2wGy7J4QLquY78/PNmmG+3OPxzgOA6qqoaQshqkSxYiS5GFqIshkGWatmGb3Wxj3WzjODbmn3Msl0te64sFd71ef/1O8S0U3ewOQYtIaXg6nVjL4zFQdYggCOD7PmfSdsqDDwii9WqXd/XjL5qCwD/HD/ax7UF0rvaTAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 66.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAABVklEQVQ4y61Ta4+CMBDs//9tXk4EBMSTxJyKyEPkUZDHXHfVizEC9+E2mey2NO3O7CCKooDruljZNjzPw3a7xWbjIU0voOi6TqFH3w+Dzux23yhLCVEUJa7XK282TcNo21bt1ZBSQlaVOlgiz3PQ40Oo65qzyLILbNWdaRhYrSibMFRtmCY0bcH71DG9TpeOIcsyCCrSNEUcRUiSBEmcII5jRGodhiHn8/nMr091Sd8F0WtJp76763XDq0Z87g8QGImxQTzjOUSlhCdqRJvoEd04ipnm49KpoKGRfsRE5Goo2lzDx2wGy7J4QLquY78/PNmmG+3OPxzgOA6qqoaQshqkSxYiS5GFqIshkGWatmGb3Wxj3WzjODbmn3Msl0te64sFd71ef/1O8S0U3ewOQYtIaXg6nVjL4zFQdYggCOD7PmfSdsqDDwii9WqXd/XjL5qCwD/HD/ax7UF0rvaTAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Basic Post List - Hard Coded&quot;
-        title=&quot;&quot;
+        title=&quot;Basic Post List - Hard Coded&quot;
         src=&quot;/static/570122ead4dbdf83617e543618dfc096/ef30a/example_static.png&quot;
         srcset=&quot;/static/570122ead4dbdf83617e543618dfc096/128ea/example_static.png 163w,
 /static/570122ead4dbdf83617e543618dfc096/1f057/example_static.png 325w,
 /static/570122ead4dbdf83617e543618dfc096/ef30a/example_static.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h4 id=&quot;using-xhr-to-pull-posts-from-the-api&quot;&gt;&lt;a href=&quot;#using-xhr-to-pull-posts-from-the-api&quot; aria-label=&quot;using xhr to pull posts from the api permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Using XHR to Pull Posts from the API&lt;/h4&gt;
 &lt;p&gt;Now, let&apos;s go ahead and update or controller to instead grab the list of posts from our API endpoint. The &lt;code&gt;$http&lt;/code&gt; service for AngularJS is similar to jQuery&apos;s &lt;code&gt;$.ajax&lt;/code&gt; or other XHR implementations. Notice, with AngularJS, we simply updated our model (&lt;code&gt;$scope.posts&lt;/code&gt;) with the result of the ajax call, and our view is automatically updated in sync. No need to manipulate the DOM. This reactive style allows us to develop complex UIs with interdependencies between our data model and have the UI components respond appropriately without directly managing those connections, keeping our views and model layers loosely-coupled.&lt;/p&gt;
 &lt;p&gt;*Note the use of the promise chaining (&lt;code&gt;.then()&lt;/code&gt;) on the &lt;code&gt;$http&lt;/code&gt; call. You could just as easily pass a callback. You can take advantage of promise chaining to develop more complex API workflows such as creating a new post and then saving 3 photos.&lt;/p&gt;
@@ -1296,7 +1293,11 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
             $scope&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;posts&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;push item
 &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;With &lt;code&gt;$http&lt;/code&gt; pulling the list of posts from our API, our &lt;a href=&quot;http://localhost:8000/basic&quot;&gt;example page&lt;/a&gt; now shows a feed of posts from the server.&lt;/p&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 400px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/static/ae1cbeb03e544fe4765a3db5f7d274a6/ef30a/example_basic.png&quot;
     style=&quot;display: block&quot;
@@ -1304,26 +1305,21 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 400px;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 65.49999999999999%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAABQklEQVQ4y5WS6Y6CMBRG+/4vN0iguML8wEQ2E2WRluWbfjUYNTpikwNdbkvv5QilWkTRL+I4RlVVYBvHEd+0YRhQFAWU0hB91yGMIoRhiLqubgGEB38G6PsO8X6Py6WFqKoaWmsz2aNVCm3bmoWLpa7rjzArvpXZy7coyxKr5RK+52O73eDHceD70uDjfD7fNs2BZwl2TqeTrcHxeESW57ZPpq/PhfGCqZJXdZvWvkE8/7F5P+KR+yaozeGQoMgLW7NvtJnixnEwe8vrDftOQ0qJxcJFmqYP2jzz7nZUb7PeoDFmCD7uBaVCWit0Johcx1eapnkLY6maYJrSKOIsHCxlgMAotNvt4HkeXNfFarU2GfiQQWC1eKcR16w2fGRZhiRNkBtlEpN2mmZ2jiXgHPtkjouCV7X1GcaXNbsfT2X4jz+HLPAO+KD9UAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 65.49999999999999%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAABQklEQVQ4y5WS6Y6CMBRG+/4vN0iguML8wEQ2E2WRluWbfjUYNTpikwNdbkvv5QilWkTRL+I4RlVVYBvHEd+0YRhQFAWU0hB91yGMIoRhiLqubgGEB38G6PsO8X6Py6WFqKoaWmsz2aNVCm3bmoWLpa7rjzArvpXZy7coyxKr5RK+52O73eDHceD70uDjfD7fNs2BZwl2TqeTrcHxeESW57ZPpq/PhfGCqZJXdZvWvkE8/7F5P+KR+yaozeGQoMgLW7NvtJnixnEwe8vrDftOQ0qJxcJFmqYP2jzz7nZUb7PeoDFmCD7uBaVCWit0Johcx1eapnkLY6maYJrSKOIsHCxlgMAotNvt4HkeXNfFarU2GfiQQWC1eKcR16w2fGRZhiRNkBtlEpN2mmZ2jiXgHPtkjouCV7X1GcaXNbsfT2X4jz+HLPAO+KD9UAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Basic Post List - XHR&quot;
-        title=&quot;&quot;
+        title=&quot;Basic Post List - XHR&quot;
         src=&quot;/static/ae1cbeb03e544fe4765a3db5f7d274a6/ef30a/example_basic.png&quot;
         srcset=&quot;/static/ae1cbeb03e544fe4765a3db5f7d274a6/128ea/example_basic.png 163w,
 /static/ae1cbeb03e544fe4765a3db5f7d274a6/1f057/example_basic.png 325w,
 /static/ae1cbeb03e544fe4765a3db5f7d274a6/ef30a/example_basic.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h3 id=&quot;leveraging-angular-resource-for-api&quot;&gt;&lt;a href=&quot;#leveraging-angular-resource-for-api&quot; aria-label=&quot;leveraging angular resource for api permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Leveraging Angular-Resource for API&lt;/h3&gt;
 &lt;p&gt;While &lt;code&gt;$http&lt;/code&gt; allows us to make the XHR calls to pull the API data into our app, it&apos;s forcing us to hard code many details about our API, including constructing the URLs, http verbs and other aspects that could be encapsulated in a higher level construct. Enter &lt;a href=&quot;http://docs.angularjs.org/api/ngResource&quot;&gt;Angular-Resource&lt;/a&gt;, which provides a mechanism to define our API through Angular services that manage much of the lower level http requirements for us leaving simple ReSTful verbs to interact with the API.&lt;/p&gt;
 &lt;p&gt;To work with Angular-Resource (or ngResource), you simply define the mapping between your API endpoints and the parameters in the URL pattern (much like Django &lt;code&gt;urlpatterns&lt;/code&gt;). Unfortunately, it&apos;s not terribly easy to convert between Django and the ngResource definitions, so the DRY isn&apos;t quite there.&lt;/p&gt;
@@ -1348,7 +1344,11 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     $scope&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;posts &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Post&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Which results in the same list of Posts as above on the &lt;a href=&quot;http://localhost:8000/resource&quot;&gt;example page&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 400px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/static/99534fc95fcd247925c58be2dc0da4c5/ef30a/example_resource.png&quot;
     style=&quot;display: block&quot;
@@ -1356,26 +1356,21 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 400px;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 66.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAABM0lEQVQ4y62S626DMAyF8/4vN0AQoBT6Z5VKgErcw/UsDmJqq7Jl0ix9udkOsTlsniYklwuSJEHbNiBblkWzrqsBwDxP+Lxe0fcSrGlajOOoDmfIYYCUUjl6Tdu2v9I0jZ4HlUszq+saYRDAcz2czxE+LAuexxUeqqr6TjKB7mK0KMsSRVHgfr8jy3O9Jvavm0LxjEol3vVt9/0Fhhcz+xHPPBobBonbLUWRF7pn+6Umtset66Jy6+2F8zSCcw7bdiCEeJLNK0evI+lFpwidUgajYTdKIgmN44BJBRHbfqPrukMolqTGqEyuJGLZFgLuw1cSiuMYruvCcRyE4UlV4IH7vpbFkYzIp2VDQ5ZlSEWKXEkmVWULkekzagGd0Zow0SKjp+r+LOvbnj3u9zb8BMM/2xfcMfFCu00lRwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 66.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAABM0lEQVQ4y62S626DMAyF8/4vN0AQoBT6Z5VKgErcw/UsDmJqq7Jl0ix9udkOsTlsniYklwuSJEHbNiBblkWzrqsBwDxP+Lxe0fcSrGlajOOoDmfIYYCUUjl6Tdu2v9I0jZ4HlUszq+saYRDAcz2czxE+LAuexxUeqqr6TjKB7mK0KMsSRVHgfr8jy3O9Jvavm0LxjEol3vVt9/0Fhhcz+xHPPBobBonbLUWRF7pn+6Umtset66Jy6+2F8zSCcw7bdiCEeJLNK0evI+lFpwidUgajYTdKIgmN44BJBRHbfqPrukMolqTGqEyuJGLZFgLuw1cSiuMYruvCcRyE4UlV4IH7vpbFkYzIp2VDQ5ZlSEWKXEkmVWULkekzagGd0Zow0SKjp+r+LOvbnj3u9zb8BMM/2xfcMfFCu00lRwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Basic Post List - Resource&quot;
-        title=&quot;&quot;
+        title=&quot;Basic Post List - Resource&quot;
         src=&quot;/static/99534fc95fcd247925c58be2dc0da4c5/ef30a/example_resource.png&quot;
         srcset=&quot;/static/99534fc95fcd247925c58be2dc0da4c5/128ea/example_resource.png 163w,
 /static/99534fc95fcd247925c58be2dc0da4c5/1f057/example_resource.png 325w,
 /static/99534fc95fcd247925c58be2dc0da4c5/ef30a/example_resource.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h3 id=&quot;add-the-photos-to-our-post-feed&quot;&gt;&lt;a href=&quot;#add-the-photos-to-our-post-feed&quot; aria-label=&quot;add the photos to our post feed permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Add the Photos to our Post Feed&lt;/h3&gt;
 &lt;p&gt;We now have our feed of posts displaying using &lt;code&gt;ngResource&lt;/code&gt; API calls, but we&apos;re simply making one call to retrieve the data. In real applications, your data is rarely stored at only a single resource endpoint and will require coordinated API calls to construct your applications model state. Let&apos;s enhance our app to also retrieve the photos from each post and display them as well to explore this.&lt;/p&gt;
 &lt;p&gt;First, let&apos;s add two other resources for the nested API calls:&lt;/p&gt;
@@ -1410,7 +1405,11 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     &amp;lt;/div&amp;gt;
 &amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And finally, our updated &lt;a href=&quot;http://localhost:8000/photos&quot;&gt;example page&lt;/a&gt; rendered with photos.&lt;/p&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 400px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/static/6378ce0216924d6c73835c4ab1ebfad0/ef30a/example_photos.png&quot;
     style=&quot;display: block&quot;
@@ -1418,26 +1417,21 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 400px;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAADLUlEQVQ4y6WUW0wUVxzG50VfjKmJLz6obz403hNebIgJPrRGJSZ4bzDeucsKoiJiTJAVDRJRSY2madJWC6RWsca2JAheMSRGV2RXWMyuJqgPLDA7O7s7w87ur+fssnQrRmh6ki/nzLn8z3/+5/s+xTQNvN43DAwMoOs6ssViMf5Li0ajDA0NYZqjKFYkgsfrxePxEAzq4xskZODJAZYVYeDdO8JhA0XXg4yOjopJC8M0MQxDLITjCAaDk0L+lexNcVb2SiCg0dvbi7Onh9f9/Tx3OHA6XQJONE0bPzQVBAIBmaGOqqr4fEMMizoMDg7Gxz6fL7FRbPoXgvr4fHAsu9Rslc9WO+VxomMgImoWS4xlmT6Gcrf9KVev3eXmjU5+v9nJ7d/u0XK9g1+utuJ66abdVsiL/D14Sgt5e7QI71/fof14kcHqSixR548vVpoab2HLq+H4oXoqbLUcLzlNSb6dndkVdPx5n8szptGkKHTNno5j7kxubJjH/QMr8a5chqWp4zRLQmlouERRbgHlZUf4dlMuObtzsBWWkbe/nLY/2ridsYJHxbt4fDifxrTFXJkziwtzv+DnpQsw/OoE3ioHD5xgXcZq9u3YwoasTOprCjhTnUPG18u51XKdXy9fovVOM08e3KHdXsGzk6W416TzPH0ppmDIhAyL9h8hfVUa9rrtNP5URkvTMfILvmHRkoU0NzdRbiumvLiAuqpKztdU0lBXzd5VX3Huy/lYw8MTM9QkFUIjWNEQZlhSQkMLqEjCj4yMUHvmNA8f3KPOXs3ZGjs/fH+FshOVXDh6mJigiQwVS1GWwv9osU/oXjGMMH1uN/1CJZLMSS0nayK5Fdf2WJ/MRn7/Yw4W799/wBQSViKRhLCl2/hVdULAVCRNIxWJSyN8EAGlF8SlJ40gFArFpSP1KzUpIcdJyO/P6ViaSlx6crPL5cTxwkHvq1c4XS7c4vd7hFl0d3fT1+cW6y5cYi3pLPonNJyEIm+W5uD3++OZyF5CziXmE3OqwFQcZ9JXTn3FqRiuUnWqirUb17Itdysbd2WxZU8W2/M2sz47k86ux/FAVtSaMpX+BlT5lFpmq/N6AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAADLUlEQVQ4y6WUW0wUVxzG50VfjKmJLz6obz403hNebIgJPrRGJSZ4bzDeucsKoiJiTJAVDRJRSY2madJWC6RWsca2JAheMSRGV2RXWMyuJqgPLDA7O7s7w87ur+fssnQrRmh6ki/nzLn8z3/+5/s+xTQNvN43DAwMoOs6ssViMf5Li0ajDA0NYZqjKFYkgsfrxePxEAzq4xskZODJAZYVYeDdO8JhA0XXg4yOjopJC8M0MQxDLITjCAaDk0L+lexNcVb2SiCg0dvbi7Onh9f9/Tx3OHA6XQJONE0bPzQVBAIBmaGOqqr4fEMMizoMDg7Gxz6fL7FRbPoXgvr4fHAsu9Rslc9WO+VxomMgImoWS4xlmT6Gcrf9KVev3eXmjU5+v9nJ7d/u0XK9g1+utuJ66abdVsiL/D14Sgt5e7QI71/fof14kcHqSixR548vVpoab2HLq+H4oXoqbLUcLzlNSb6dndkVdPx5n8szptGkKHTNno5j7kxubJjH/QMr8a5chqWp4zRLQmlouERRbgHlZUf4dlMuObtzsBWWkbe/nLY/2ridsYJHxbt4fDifxrTFXJkziwtzv+DnpQsw/OoE3ioHD5xgXcZq9u3YwoasTOprCjhTnUPG18u51XKdXy9fovVOM08e3KHdXsGzk6W416TzPH0ppmDIhAyL9h8hfVUa9rrtNP5URkvTMfILvmHRkoU0NzdRbiumvLiAuqpKztdU0lBXzd5VX3Huy/lYw8MTM9QkFUIjWNEQZlhSQkMLqEjCj4yMUHvmNA8f3KPOXs3ZGjs/fH+FshOVXDh6mJigiQwVS1GWwv9osU/oXjGMMH1uN/1CJZLMSS0nayK5Fdf2WJ/MRn7/Yw4W799/wBQSViKRhLCl2/hVdULAVCRNIxWJSyN8EAGlF8SlJ40gFArFpSP1KzUpIcdJyO/P6ViaSlx6crPL5cTxwkHvq1c4XS7c4vd7hFl0d3fT1+cW6y5cYi3pLPonNJyEIm+W5uD3++OZyF5CziXmE3OqwFQcZ9JXTn3FqRiuUnWqirUb17Itdysbd2WxZU8W2/M2sz47k86ux/FAVtSaMpX+BlT5lFpmq/N6AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Basic Post List - Photos&quot;
-        title=&quot;&quot;
+        title=&quot;Basic Post List - Photos&quot;
         src=&quot;/static/6378ce0216924d6c73835c4ab1ebfad0/ef30a/example_photos.png&quot;
         srcset=&quot;/static/6378ce0216924d6c73835c4ab1ebfad0/128ea/example_photos.png 163w,
 /static/6378ce0216924d6c73835c4ab1ebfad0/1f057/example_photos.png 325w,
 /static/6378ce0216924d6c73835c4ab1ebfad0/ef30a/example_photos.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h3 id=&quot;interlude-angularjs--csrf-protection&quot;&gt;&lt;a href=&quot;#interlude-angularjs--csrf-protection&quot; aria-label=&quot;interlude angularjs  csrf protection permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Interlude: AngularJS + CSRF Protection&lt;/h3&gt;
 &lt;p&gt;Django Rest Framework extends Django&apos;s &lt;a href=&quot;https://docs.djangoproject.com/en/dev/ref/contrib/csrf/&quot;&gt;Cross Site Request Forgery&lt;/a&gt; protection when using &lt;code&gt;SessionAuthentication&lt;/code&gt; (such as our case using the same browser session as the web application). This helps ensure malicious scripts can&apos;t coax our users into making inadvertent calls to our API by forcing the scripts to return a server provided token on each call. AngularJS&apos;s modular architecture and dependency injection configuration make this simple to configure our API calls to include the CSRF Token in a header (you can also use a cookie if you prefer).&lt;/p&gt;
 &lt;p&gt;In our django template, simply add a &lt;code&gt;&amp;#x3C;script&gt;&lt;/code&gt; tag to configure the &lt;code&gt;$http&lt;/code&gt; provider (AngularJS parlance for the implementation of the &lt;code&gt;$http&lt;/code&gt; dependency) and customize it to use the Django &lt;code&gt;{{ csrf_token }}&lt;/code&gt; template variable to set the CSRF Header on all API calls.&lt;/p&gt;
@@ -1511,7 +1505,11 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
             $scope&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;newPost &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Previously, in the API Views, we added some permission constraints to prevent other users from modifying someone&apos;s posts. Up until now, it didn&apos;t matter what user were acting as. Now that we want to create users, we need to ensure that we&apos;re authenticated as a valid user (or our API request to create a post will be denied). For this demonstration, there&apos;s a quick hack Django Authentication Backend that automatically logs you in root. Obviously, don&apos;t run this in production or any untrusted environment. This is just to help test our sandbox app without dealing with user registration and authentication.&lt;/p&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 400px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/static/75bd3b717869107aad8528955c1c8a34/ef30a/example_editor.png&quot;
     style=&quot;display: block&quot;
@@ -1519,26 +1517,21 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 400px;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAACvUlEQVQ4y51TXUhTURy/9NKLj73VS7WXnpI+HgJfehKC2EOUbhlKlqbCmooY5ipCZTkwxZAMoUJZEUo9pE1FMR+URWZtONC18mPeqfvQ3X3ebXe/zjnj2g2pNg/87vm4//M7v/8XF41Gsbz8Eyurq+DX18l6GWtrbng8HuxncPF4DG63GzzPY2tri5Dy8Hl9bJ1KpZBMJrOGJEng0uk0IpEIdnaCe16jBtlCfpyjm0QiAVFM5KTmrwolKYVwOAxBENghfWk/kO8yhZTM7w8o5Es5uSu7vEso0Q15QRRF5j49o7HdDzgafJ5fx9LiIpacTvgDAZYQ+jPbobTlMnKTu1mlsZANslWlJGYKBSHECnl7OwCRuJyrQtocNFxMISMMhWC327BCuiQaizEyOdjZqFslXUaTygipizFConSZJiZTmyIr+v+B2sbj8Uxh01QH/D7YbTa4XD/gcCzARtYLCw44nd/ZBVqn/0KIeEjBCOlHCAqkd73w+fwk4x4Szw1sbGzCS3o6TI2DQYRlCAQhITOT+lUSM8KcykMxp2iICPa0HvX/g8WK98NWjI/NY2L8CyZGrbAMz8Ay+gmuuXlY7zbC1WKAu+U+VnpasTnzFqHeLgQGzXvqkRCKeGR8Bn21CYb6TjTpTGiubUdV6T1U1xgx+7If3RyHkQMc7IcOYk6Vh3f6fHy9ehbem1qm9o9OEcU4DM0P0VjXAL2uEWWaW6i8UQVdTQNqm4z4bH6FoVMnMF1ehKlKLfqPHUEnIX58OA/jZRpZ2m/CKMniJXUpyouKUaIphuayGj0ddWi+Uwr1lUJMWyx43t6KybEhzI68gaW+Evba6/h28ihsFSWZuCoJI5EoCgou4HzhabSYtBjo0+P1i9u4qD6D4yoVpqcm0WVsQ7epDea+JxgceIrejlY8OJePjxXXdpMkE/4CFR61Oh8pigAAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAACvUlEQVQ4y51TXUhTURy/9NKLj73VS7WXnpI+HgJfehKC2EOUbhlKlqbCmooY5ipCZTkwxZAMoUJZEUo9pE1FMR+URWZtONC18mPeqfvQ3X3ebXe/zjnj2g2pNg/87vm4//M7v/8XF41Gsbz8Eyurq+DX18l6GWtrbng8HuxncPF4DG63GzzPY2tri5Dy8Hl9bJ1KpZBMJrOGJEng0uk0IpEIdnaCe16jBtlCfpyjm0QiAVFM5KTmrwolKYVwOAxBENghfWk/kO8yhZTM7w8o5Es5uSu7vEso0Q15QRRF5j49o7HdDzgafJ5fx9LiIpacTvgDAZYQ+jPbobTlMnKTu1mlsZANslWlJGYKBSHECnl7OwCRuJyrQtocNFxMISMMhWC327BCuiQaizEyOdjZqFslXUaTygipizFConSZJiZTmyIr+v+B2sbj8Uxh01QH/D7YbTa4XD/gcCzARtYLCw44nd/ZBVqn/0KIeEjBCOlHCAqkd73w+fwk4x4Szw1sbGzCS3o6TI2DQYRlCAQhITOT+lUSM8KcykMxp2iICPa0HvX/g8WK98NWjI/NY2L8CyZGrbAMz8Ay+gmuuXlY7zbC1WKAu+U+VnpasTnzFqHeLgQGzXvqkRCKeGR8Bn21CYb6TjTpTGiubUdV6T1U1xgx+7If3RyHkQMc7IcOYk6Vh3f6fHy9ehbem1qm9o9OEcU4DM0P0VjXAL2uEWWaW6i8UQVdTQNqm4z4bH6FoVMnMF1ehKlKLfqPHUEnIX58OA/jZRpZ2m/CKMniJXUpyouKUaIphuayGj0ddWi+Uwr1lUJMWyx43t6KybEhzI68gaW+Evba6/h28ihsFSWZuCoJI5EoCgou4HzhabSYtBjo0+P1i9u4qD6D4yoVpqcm0WVsQ7epDea+JxgceIrejlY8OJePjxXXdpMkE/4CFR61Oh8pigAAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Basic Post List - Editor&quot;
-        title=&quot;&quot;
+        title=&quot;Basic Post List - Editor&quot;
         src=&quot;/static/75bd3b717869107aad8528955c1c8a34/ef30a/example_editor.png&quot;
         srcset=&quot;/static/75bd3b717869107aad8528955c1c8a34/128ea/example_editor.png 163w,
 /static/75bd3b717869107aad8528955c1c8a34/1f057/example_editor.png 325w,
 /static/75bd3b717869107aad8528955c1c8a34/ef30a/example_editor.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h3 id=&quot;error-handling&quot;&gt;&lt;a href=&quot;#error-handling&quot; aria-label=&quot;error handling permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Error Handling&lt;/h3&gt;
 &lt;p&gt;If you&apos;re following along, have you tried creating a post without a title? We set that as a required field in the Django model, and Django Rest Framework will validate before creating the resource. If you try to create a Post without a title (say, using the API Browser or our new form), you&apos;d see a 400 Bad Request response, with content that the reasons for the failed request. Let&apos;s leverage that response to inform the user.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
@@ -1568,7 +1561,11 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
 &amp;lt;/p&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;By leveraging promise APIs, it makes it straightforward to add UI elements to give feedback about the progress (loading indicators, progress bars) by simply chaining them. AngularJS has a fairly complete Promises/A spec ensuring errors (or rejections) fall-through the chain making error handling simpler.&lt;/p&gt;
 &lt;p&gt;For this simple demonstration, we just enumerate the errors in bootstrap alert boxes. Because the errors are identified by attribute name, you can easily update your template to show errors in-line next the form fields they correspond with.&lt;/p&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 400px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/static/0fbea6ce559516a374d0865c7e8a4e0b/ef30a/example_error.png&quot;
     style=&quot;display: block&quot;
@@ -1576,26 +1573,21 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 400px;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAACOElEQVQ4y51UPW8TQRC9H0JDRYug4z/Q8RcoaSj4AwgUKSJCQIsQEigSQkh00ESmciKSSI5DQYx9js++c5zz+T583x+PmbX3bGHhxLfS087t7bx5uzOzShAE6HZVnPd60AcDsrvQtD4Mw0CVoURRiH6/D13XMRqNiFSHeWkKO8sypGl6beR5DqUoCvi+D9t2VqLxhutCBlf4I0kSxHGykZr/KszzDNPpFK7rikWOVAXSVyhksvHYWpKfb3RceeSSUEaI41gcn9f4bqtA4cs3KMOtszO0Wn9gWRORkALVhlAolQmQUmZbRJ3brDov1oMVZmEIj4rZ7XRms6oK21UXttc9h6dp8Kj41yElLkF4sV9H7/s3mg+g/6hhUKvhor4/s/f2cHl0BKfdhk3XYrdaK3B4pn8JVYuSRRGC4RA+tZpvDIUtMVtbXf8Xch9ziaTw2auOZc8yy6Zp4vDwJ9ok3afHYtMgmtbD2LJmWWZHzrJt2/CowGUdLnfAVeDG4PdAKOQFz3MxmUzgOA7NllDMnWNRVG7Lq8BPIBOKx4FVWGMTzZMmOm0VzeYJGo0GTk9/iULnjVPPW2ANcUkYUXb4I0liOn40L/JYIKSyCulKSkQxAq6MeD6TOol5LxfkRD9Ddk6InEC2REqO2dRDSojorrLAB3kjp+vJ6HFe6WVWt/NyF8+ffcSrnc94/eIT3mx/wNbTd9ja3sXBl694f/MG6ndu4fe92zi+fxfHbx9Df/gAxpNHsl5Kwr/OUvxDvFLkOwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAACOElEQVQ4y51UPW8TQRC9H0JDRYug4z/Q8RcoaSj4AwgUKSJCQIsQEigSQkh00ESmciKSSI5DQYx9js++c5zz+T583x+PmbX3bGHhxLfS087t7bx5uzOzShAE6HZVnPd60AcDsrvQtD4Mw0CVoURRiH6/D13XMRqNiFSHeWkKO8sypGl6beR5DqUoCvi+D9t2VqLxhutCBlf4I0kSxHGykZr/KszzDNPpFK7rikWOVAXSVyhksvHYWpKfb3RceeSSUEaI41gcn9f4bqtA4cs3KMOtszO0Wn9gWRORkALVhlAolQmQUmZbRJ3brDov1oMVZmEIj4rZ7XRms6oK21UXttc9h6dp8Kj41yElLkF4sV9H7/s3mg+g/6hhUKvhor4/s/f2cHl0BKfdhk3XYrdaK3B4pn8JVYuSRRGC4RA+tZpvDIUtMVtbXf8Xch9ziaTw2auOZc8yy6Zp4vDwJ9ok3afHYtMgmtbD2LJmWWZHzrJt2/CowGUdLnfAVeDG4PdAKOQFz3MxmUzgOA7NllDMnWNRVG7Lq8BPIBOKx4FVWGMTzZMmOm0VzeYJGo0GTk9/iULnjVPPW2ANcUkYUXb4I0liOn40L/JYIKSyCulKSkQxAq6MeD6TOol5LxfkRD9Ddk6InEC2REqO2dRDSojorrLAB3kjp+vJ6HFe6WVWt/NyF8+ffcSrnc94/eIT3mx/wNbTd9ja3sXBl694f/MG6ndu4fe92zi+fxfHbx9Df/gAxpNHsl5Kwr/OUvxDvFLkOwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Basic Post List - Error&quot;
-        title=&quot;&quot;
+        title=&quot;Basic Post List - Error&quot;
         src=&quot;/static/0fbea6ce559516a374d0865c7e8a4e0b/ef30a/example_error.png&quot;
         srcset=&quot;/static/0fbea6ce559516a374d0865c7e8a4e0b/128ea/example_error.png 163w,
 /static/0fbea6ce559516a374d0865c7e8a4e0b/1f057/example_error.png 325w,
 /static/0fbea6ce559516a374d0865c7e8a4e0b/ef30a/example_error.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h3 id=&quot;remove-your-posts&quot;&gt;&lt;a href=&quot;#remove-your-posts&quot; aria-label=&quot;remove your posts permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Remove Your Posts&lt;/h3&gt;
 &lt;p&gt;To compliment the editor, we need a way to delete any posts, but only added by the current user. We already instrumented the API to prevent users from trying to modify/delete resources they don&apos;t own. When you&apos;re new to AngularJS, the modular nature makes it difficult to understand how to provide some initial data to the controller. In our case, we need to know who the current user is, so we can control what posts are available to be deleted.&lt;/p&gt;
 &lt;p&gt;The key to understanding this is to try to de-compose your controllers into many services/factories (they&apos;re basically synonymous in angular) that handle the actual logic. The controller (much like a view in Django) should really only focus on wiring together different components. In Django, you attempt to integrate as much of your business logic in the model (the fat-model pattern). In Angular, you similarly want to compartmentalize your logic into composable services.&lt;/p&gt;
@@ -1640,7 +1632,11 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
 &amp;lt;/script&amp;gt;
 {% endblock %}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And, when you load the &lt;a href=&quot;http://localhost:8000/manage&quot;&gt;example page&lt;/a&gt;, there&apos;s an &lt;em&gt;&apos;X&apos;&lt;/em&gt; next to the post by &lt;code&gt;root&lt;/code&gt;, but not next to the post by &lt;code&gt;bob&lt;/code&gt;. Clicking the X calls our API and deletes the post.&lt;/p&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 400px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/static/6d53a374f3fedf95b9bc730aeba2b345/ef30a/example_managed.png&quot;
     style=&quot;display: block&quot;
@@ -1648,26 +1644,21 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 400px;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 150%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAACXBIWXMAAAsSAAALEgHS3X78AAAD4UlEQVRIx52WXUybVRjHa7LMC6M3E5PFxIs5d+VXvHBXRi+82eLmYG7dYCPgBGXODQNxyjDbcDYIyqK7MNNkLiO6ROO82MwUCJDNmLgPRtsVKQVpKW2BftDvD0r5ec4pby3CspY3ed5zzntO/+d/nuf5P6e6eDyO3T6OY2ICt8sl+naczkk8Hg+reXTJZILJyUncbjczMzMC1I3P61P9+fl50ul0wZbJZNAtLCwQi8UIBkPLdpMLCjVtc50czM3NkUrNFcXmngwzmXmi0SjhcFh9lDutxrTfKoYSzO8P5NHPFHVc7cg5wIwciB1SqZQ6vvwmfbsa00nnu90uRqxWRmw2/IGACoicXFXaaHS1qGr9YlhpT45hOBxRiRycDRBPJJSDi2Eo10oyiqEGaDaZcE448Pp8BEOh3KJC2KUX/a8A5SCZTGaPvAgiLZ2eUwGS0izUVJTlK+D3KYZjY/8wNGTBJPoWyxA226hSkczTQkwpRb6CwSBTU9P4fH5cQstut0f4dEro2UskEiEi5nMWChINh4gKt6j2/4BFOT+vlbmQWfTfEulJP/X03qare4D+fjPX+k1c7xugt/smvX13sBvNDBhasHe04upow3nuNN6/fiV6/iyzl39eFm0BmKLV8A1H6tppbviSpsOirW+jruo4dQdb+fN8J2d0Oq4+oMO8bi23Nz7E5YYXMO97EX9NuWK7RCmpVJKTJww0NTbRWN/EW/sPUVfzLocPfkDjx23c+uEiPz39JH3l2+mvfoPvNzxOR8laTj/xMD3V5Rq1/wDjIoplr1fypn43FXo9u0q3cab9fY4draJ0z1au/3aVzrZT/NF/hVvdl/j9yAHMhyoxPbcB8zuVWb/mA8ZicV55eRuvbtlMS2s5F76t58cLDewo28xTmzbR29NFy0dH+ezEMc5+8SkXz33F1+0naX52I137duaClAOUeWgZtuD0/E0oNIHf6xBXgg3riJnxcTs3b9zgw8YGrvxyifeqq2g3fILBcIqK6v10Hm/OCSIHeL+0yZ/PKihbSBfSKxcRpeXZ2VkcDrtIbg8BUb6kLjUJ5t8thRQJBSjVYLUOC1AHU9PTarxSIVipUufPKUB5BKlXWSASonRp2o1EsvdMvsmN7qVjOaekJ/3h83kxGo2YzCZGhq0MGmWhGFMF4+5dC6Ojo9wZHFR/AuLxxCJITG2u2ZLiIHeXBSIkBJ/fX/ZNtPetNoUUB21NQZeUpFtVK1RRUcqe2t3sqNiOvqaMvbU72XtAj0/UykIvLQUYjoQpWf8YujU6Hly3hpJnHuHt715j1+cvsf75R3F5XLnUKYThv/TQlygVe6eGAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 150%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAACXBIWXMAAAsSAAALEgHS3X78AAAD4UlEQVRIx52WXUybVRjHa7LMC6M3E5PFxIs5d+VXvHBXRi+82eLmYG7dYCPgBGXODQNxyjDbcDYIyqK7MNNkLiO6ROO82MwUCJDNmLgPRtsVKQVpKW2BftDvD0r5ec4pby3CspY3ed5zzntO/+d/nuf5P6e6eDyO3T6OY2ICt8sl+naczkk8Hg+reXTJZILJyUncbjczMzMC1I3P61P9+fl50ul0wZbJZNAtLCwQi8UIBkPLdpMLCjVtc50czM3NkUrNFcXmngwzmXmi0SjhcFh9lDutxrTfKoYSzO8P5NHPFHVc7cg5wIwciB1SqZQ6vvwmfbsa00nnu90uRqxWRmw2/IGACoicXFXaaHS1qGr9YlhpT45hOBxRiRycDRBPJJSDi2Eo10oyiqEGaDaZcE448Pp8BEOh3KJC2KUX/a8A5SCZTGaPvAgiLZ2eUwGS0izUVJTlK+D3KYZjY/8wNGTBJPoWyxA226hSkczTQkwpRb6CwSBTU9P4fH5cQstut0f4dEro2UskEiEi5nMWChINh4gKt6j2/4BFOT+vlbmQWfTfEulJP/X03qare4D+fjPX+k1c7xugt/smvX13sBvNDBhasHe04upow3nuNN6/fiV6/iyzl39eFm0BmKLV8A1H6tppbviSpsOirW+jruo4dQdb+fN8J2d0Oq4+oMO8bi23Nz7E5YYXMO97EX9NuWK7RCmpVJKTJww0NTbRWN/EW/sPUVfzLocPfkDjx23c+uEiPz39JH3l2+mvfoPvNzxOR8laTj/xMD3V5Rq1/wDjIoplr1fypn43FXo9u0q3cab9fY4draJ0z1au/3aVzrZT/NF/hVvdl/j9yAHMhyoxPbcB8zuVWb/mA8ZicV55eRuvbtlMS2s5F76t58cLDewo28xTmzbR29NFy0dH+ezEMc5+8SkXz33F1+0naX52I137duaClAOUeWgZtuD0/E0oNIHf6xBXgg3riJnxcTs3b9zgw8YGrvxyifeqq2g3fILBcIqK6v10Hm/OCSIHeL+0yZ/PKihbSBfSKxcRpeXZ2VkcDrtIbg8BUb6kLjUJ5t8thRQJBSjVYLUOC1AHU9PTarxSIVipUufPKUB5BKlXWSASonRp2o1EsvdMvsmN7qVjOaekJ/3h83kxGo2YzCZGhq0MGmWhGFMF4+5dC6Ojo9wZHFR/AuLxxCJITG2u2ZLiIHeXBSIkBJ/fX/ZNtPetNoUUB21NQZeUpFtVK1RRUcqe2t3sqNiOvqaMvbU72XtAj0/UykIvLQUYjoQpWf8YujU6Hly3hpJnHuHt715j1+cvsf75R3F5XLnUKYThv/TQlygVe6eGAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Basic Post List - Removal&quot;
-        title=&quot;&quot;
+        title=&quot;Basic Post List - Removal&quot;
         src=&quot;/static/6d53a374f3fedf95b9bc730aeba2b345/ef30a/example_managed.png&quot;
         srcset=&quot;/static/6d53a374f3fedf95b9bc730aeba2b345/128ea/example_managed.png 163w,
 /static/6d53a374f3fedf95b9bc730aeba2b345/1f057/example_managed.png 325w,
 /static/6d53a374f3fedf95b9bc730aeba2b345/ef30a/example_managed.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;And with that, we have a simple shared feed for a users to share messages.&lt;/p&gt;
 &lt;h2 id=&quot;conclusion&quot;&gt;&lt;a href=&quot;#conclusion&quot; aria-label=&quot;conclusion permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;Alright, let&apos;s reflect. With a small amount of code (~100 lines of frontend, ~200 lines of backend), leveraging Django Rest Frameowrk (+Django itself) and AngularJS, we were able to quickly create a sample application to create simple postings. DRF makes it simple to export our Django data models through a ReSTful API layer with opportunities to customize the interfaces based on our use cases. AngularJS makes it easier to consume and interact with the API in a manner that is more modular and structured to help us add incremental capability to our web apps without creating spaghetti code.&lt;/p&gt;
@@ -1681,16 +1672,16 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Batteries Included Django]]></title><description><![CDATA[A key benefit to using Python and/or Django for your next project, is the wealth of high quality 3rd party libraries that can help…]]></description><link>https://blog.kevinastone.com/batteries-included-django</link><guid isPermaLink="false">https://blog.kevinastone.com/batteries-included-django</guid><pubDate>Tue, 16 Jul 2013 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;A key benefit to using Python and/or Django for your next project, is the wealth of high quality 3rd party libraries that can help accelerate your development. Python has a rich ecosystem of 3rd party libraries including often offical bindings for an external service. This offers you significant tools to building rich, complex systems based on the available open source solutions. Django&apos;s popularity and architecture provides the opportuntiy to find many existing solutions to common problems.&lt;/p&gt;
 &lt;p&gt;For education and discussion, I thought it would be helpful to enumerate the many libraries we currently use on &lt;a href=&quot;http://subblime.com&quot; title=&quot;Subblime&quot;&gt;Subblime&lt;/a&gt; to leverage the power of of the Python/Django ecosystem. A what&apos;s in our toolbox sort of post.&lt;/p&gt;
 &lt;h3 id=&quot;requirementstxt&quot;&gt;&lt;a href=&quot;#requirementstxt&quot; aria-label=&quot;requirementstxt permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Requirements.txt&lt;/h3&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;distribute&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;0.6.28
-mysql-python&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;1.2.4
-Django&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;1.5.4
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;distribute&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.6&lt;/span&gt;.28
+mysql-python&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1.2&lt;/span&gt;.4
+Django&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1.5&lt;/span&gt;.4
 pillow
 Werkzeug
-south&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;0.8,&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;2.0
+south&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.8&lt;/span&gt;,&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2.0&lt;/span&gt;
 sorl-thumbnail
 hamlpy
-requests&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;1.0
-djangorestframework&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;2.3.4
+requests&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1.0&lt;/span&gt;
+djangorestframework&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2.3&lt;/span&gt;.4
 djangorestframework-csv
 unicodecsv
 &lt;span class=&quot;token comment&quot;&gt;# pynliner&lt;/span&gt;
@@ -1699,19 +1690,19 @@ https://github.com/subblime/pynliner/tarball/master&lt;span class=&quot;token co
 cssutils
 
 &lt;span class=&quot;token comment&quot;&gt;# Django Enhancements&lt;/span&gt;
-django-extensions&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;1.2.1	&lt;span class=&quot;token comment&quot;&gt;# 1.2.0 included a unicode bug (see https://github.com/django-extensions/django-extensions/pull/366)&lt;/span&gt;
+django-extensions&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1.2&lt;/span&gt;.1	&lt;span class=&quot;token comment&quot;&gt;# 1.2.0 included a unicode bug (see https://github.com/django-extensions/django-extensions/pull/366)&lt;/span&gt;
 django-model-utils
 django-templated-email
-django-grappelli&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;2.4.5
+django-grappelli&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2.4&lt;/span&gt;.5
 django-floppyforms
-django-filter&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;0.7
+django-filter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.7&lt;/span&gt;
 django-braces
 django-autoslug
 
 &lt;span class=&quot;token comment&quot;&gt;# Datetime&lt;/span&gt;
-pytz&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;2013d
+pytz&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;2013d
 iso8601
-python-dateutil&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;1.5,&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;2.0	&lt;span class=&quot;token comment&quot;&gt;# 2.1 includes breaking changes&lt;/span&gt;
+python-dateutil&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1.5&lt;/span&gt;,&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2.0&lt;/span&gt;	&lt;span class=&quot;token comment&quot;&gt;# 2.1 includes breaking changes&lt;/span&gt;
 
 &lt;span class=&quot;token comment&quot;&gt;# Deployment&lt;/span&gt;
 uwsgi
@@ -1726,9 +1717,9 @@ django-redis-cache
 https://github.com/subblime/johnny-cache/tarball/master&lt;span class=&quot;token comment&quot;&gt;#egg=johnny-cache&lt;/span&gt;
 
 &lt;span class=&quot;token comment&quot;&gt;# Django Compressor&lt;/span&gt;
-django-compressor&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;1.3	&lt;span class=&quot;token comment&quot;&gt;# Need recent django-compressor for precompile filter support&lt;/span&gt;
+django-compressor&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1.3&lt;/span&gt;	&lt;span class=&quot;token comment&quot;&gt;# Need recent django-compressor for precompile filter support&lt;/span&gt;
 lxml
-BeautifulSoup&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;4.0
+BeautifulSoup&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4.0&lt;/span&gt;
 cssselect
 cssmin
 tinycss
@@ -1744,7 +1735,7 @@ django-celery-transactions
 gdata
 google-api-python-client
 oauth2client
-django-social-auth&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;0.7.22	&lt;span class=&quot;token comment&quot;&gt;# v0.7.22 removed social_auth.signals.pre_update which we now support through pipeline stages&lt;/span&gt;
+django-social-auth&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.7&lt;/span&gt;.22	&lt;span class=&quot;token comment&quot;&gt;# v0.7.22 removed social_auth.signals.pre_update which we now support through pipeline stages&lt;/span&gt;
 
 &lt;span class=&quot;token comment&quot;&gt;# Social&lt;/span&gt;
 facepy
@@ -1752,18 +1743,18 @@ twitter
 
 &lt;span class=&quot;token comment&quot;&gt;# Mixpanel&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;# v0.6 introduced Celery 3.0 support&lt;/span&gt;
-mixpanel-celery&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;0.6.0
+mixpanel-celery&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.6&lt;/span&gt;.0
 
 &lt;span class=&quot;token comment&quot;&gt;# For Sentry&lt;/span&gt;
-raven&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;3.0
+raven&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.0&lt;/span&gt;
 
 &lt;span class=&quot;token comment&quot;&gt;# Lettuce&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;# Need version of Lettuce that supports proper Background sections including xunit support&lt;/span&gt;
-lettuce&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;0.2.18
+lettuce&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.2&lt;/span&gt;.18
 
 &lt;span class=&quot;token comment&quot;&gt;# Charting&lt;/span&gt;
 numpy
-pandas&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;0.12
+pandas&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.12&lt;/span&gt;
 sqlalchemy
 
 &lt;span class=&quot;token comment&quot;&gt;# Search&lt;/span&gt;
@@ -1771,16 +1762,16 @@ django-haystack
 pyelasticsearch
 celery-haystack&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4 id=&quot;testing-requirementstxt&quot;&gt;&lt;a href=&quot;#testing-requirementstxt&quot; aria-label=&quot;testing requirementstxt permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Testing Requirements.txt&lt;/h4&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;factory_boy&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;1.3,&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;2.0	&lt;span class=&quot;token comment&quot;&gt;# Guard against potential 2.0 breaking changes&lt;/span&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;factory_boy&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1.3&lt;/span&gt;,&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2.0&lt;/span&gt;	&lt;span class=&quot;token comment&quot;&gt;# Guard against potential 2.0 breaking changes&lt;/span&gt;
 mock
 &lt;span class=&quot;token comment&quot;&gt;#pytimecop&lt;/span&gt;
 
 &lt;span class=&quot;token comment&quot;&gt;# Nose&lt;/span&gt;
-nose&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;1.3	&lt;span class=&quot;token comment&quot;&gt;# Nose 1.3 breaks our test discovery somehow&lt;/span&gt;
+nose&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1.3&lt;/span&gt;	&lt;span class=&quot;token comment&quot;&gt;# Nose 1.3 breaks our test discovery somehow&lt;/span&gt;
 django-nose
 coverage
 nose-exclude
-nose-progressive&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;1.4.1
+nose-progressive&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1.4&lt;/span&gt;.1
 nosexcover
 yanc
 xtraceback
@@ -1790,8 +1781,8 @@ pep8
 flake8&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4 id=&quot;lettuce-requirementstxt&quot;&gt;&lt;a href=&quot;#lettuce-requirementstxt&quot; aria-label=&quot;lettuce requirementstxt permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Lettuce Requirements.txt&lt;/h4&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Make sure you have Chromium installed (or appropriate for your dev platform)&lt;/span&gt;
-splinter&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;0.5    &lt;span class=&quot;token comment&quot;&gt;# Need 0.5 for PhantomJS support&lt;/span&gt;
-selenium&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;2.28	&lt;span class=&quot;token comment&quot;&gt;# Need 2.28 for PhantomJS support&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+splinter&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.5&lt;/span&gt;    &lt;span class=&quot;token comment&quot;&gt;# Need 0.5 for PhantomJS support&lt;/span&gt;
+selenium&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2.28&lt;/span&gt;	&lt;span class=&quot;token comment&quot;&gt;# Need 2.28 for PhantomJS support&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&quot;basic-includes-for-every-project&quot;&gt;&lt;a href=&quot;#basic-includes-for-every-project&quot; aria-label=&quot;basic includes for every project permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Basic Includes for Every Project&lt;/h2&gt;
 &lt;p&gt;These are requirements I type before I even start a project. You&apos;re just likely to need them with some part of your problem set.&lt;/p&gt;
 &lt;ul&gt;
@@ -1923,18 +1914,10 @@ selenium&lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt;2.28	&lt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;caching&quot;&gt;&lt;a href=&quot;#caching&quot; aria-label=&quot;caching permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Caching&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/andymccurdy/redis-py&quot;&gt;redis-py&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/pietern/hiredis-py&quot;&gt;hiredis-py&lt;/a&gt; (faster bindings for redis)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/sebleier/django-redis-cache&quot;&gt;django-redis-cache&lt;/a&gt; (cache backend using redis)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;johnny-cache (transparent queryset caching)&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/andymccurdy/redis-py&quot;&gt;redis-py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/pietern/hiredis-py&quot;&gt;hiredis-py&lt;/a&gt; (faster bindings for redis)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/sebleier/django-redis-cache&quot;&gt;django-redis-cache&lt;/a&gt; (cache backend using redis)&lt;/li&gt;
+&lt;li&gt;johnny-cache (transparent queryset caching)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;apis-and-authentication&quot;&gt;&lt;a href=&quot;#apis-and-authentication&quot; aria-label=&quot;apis and authentication permalink&quot; class=&quot;anchor&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;APIs and Authentication&lt;/h3&gt;
 &lt;ul&gt;
