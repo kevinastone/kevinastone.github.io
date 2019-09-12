@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Kevin Stone]]></title><description><![CDATA[Personal blog for Kevin Stone.]]></description><link>https://blog.kevinastone.com</link><generator>RSS for Node</generator><lastBuildDate>Fri, 16 Aug 2019 00:30:48 GMT</lastBuildDate><item><title><![CDATA[Generate Your Tests]]></title><description><![CDATA[When testing your application, you'll often come across the need to test that
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Kevin Stone]]></title><description><![CDATA[Personal blog for Kevin Stone.]]></description><link>https://blog.kevinastone.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 12 Sep 2019 05:21:09 GMT</lastBuildDate><item><title><![CDATA[Generate Your Tests]]></title><description><![CDATA[When testing your application, you'll often come across the need to test that
 your application behaves correct across a range of inputs or…]]></description><link>https://blog.kevinastone.com/generator-tests</link><guid isPermaLink="false">https://blog.kevinastone.com/generator-tests</guid><pubDate>Mon, 12 Oct 2015 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;When testing your application, you&apos;ll often come across the need to test that
 your application behaves correct across a range of inputs or conditions.
 Instead of repetitively defining the same test scaffolding, let&apos;s use some
@@ -1121,7 +1121,7 @@ urlpatterns &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; patterns
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsSAAALEgHS3X78AAAB4klEQVQ4y52SzW7TQBSF/TRh0QWoShfAgg1C8ECo78BrINQ9r0BLY8dpxSYhxMQppG5CEsfO/Njjv9PrsZPSKg0Rlj7fo/k5PnPHxotGA2+bTbw7OtL1zeEh6SZeP3uKVwcHePmksZVy3/PGXV1rw+p0cNZqaVrtNkzb1pxbFr6aJk7rub8px2zbxLdLCx3bwuWFRbqNNnkZoEcphYQo8lyzz+MsEpy6AoN5govrCOdXUo8bcRzDpCTdbhe9Xg/9fh9FUSDLskcBcpycTfH+0xAfv0zw4fMvHJ+48JmCkaYZ/GWAZRAiCFaIY0Ukj6JUVZGlQEHmeVpBuihyGOUXhZBgjEOKiDakUPXGNduMo5JIbaok8rw2dJwhvv8YwpvM9AIhYzAegdMHJGm9cQ9qwxyDgYO+M4I7nsIZzzG68THzGWZLpo11AjLexcawfHEudWRJ6biIwWmB0r1UG7Ndye4Mi8pQm4UcjBLpSR79M81Dfc9Q920RYtV1wX5PIQKGKEkR0YVUtdZ1fZh4u+E8AP85Bht54N4cnIz59Qzc9bQW3qyqk8XuhAW9BN2mWPexXMikboGmbENQ67KuxH5Hlv4K4dUEnJIK0vqIcf2f3UPteWQ/BCt7OLoB/7OsFv3HpdwCmphOdfYa17MAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsSAAALEgHS3X78AAAB4klEQVQ4y52SzW7TQBSF/TRh0QWoShfAgg1C8ECo78BrINQ9r0BpE8dpxSYhxMQppG6CE8fO/Njjv9PrsZPSKg0Rlj7fo/k5PnPHxotGA2+bTbw7OtL1zeEh6SZeP3uKVwcHePmksZVy3/PGXV1rw+x28bXV0rQ6HbQtS3Numjhrt3Faz/1NOWZZbXy7NNG1TFxemKQ76JCXAXqUUkiIIs81+zz2IsGpIzCcJ7i4jnB+JfW4Eccx2pSk1+uh3+9jMBigKApkWfYoQI6Tsxnefxrh45cpPnz+heMTBz5TMNI0g78MsAxCBMEKcayI5FGUqiqyFCjIPE8rSBdFDqP8ohASjHFIEdGGFKreuGabcVQSqU2VRJ7XhrY9wvcfI7hTTy8QMgbjETh9QJLWG/egNswxHNoY2GM4kxnsyRzjGx+ez+AtmTbWCch4FxvD8sW51JElpeMiBqcFSvdSbcx2JbszLCpDbRZyMEqkJ3n0zzQP9T1D3bdFiFXPAfs9gwgYoiRFRBdS1VrX9WHi7YbzAPznBGzsgrtzcDLm1x6442otXK+q08XuhAW9BN2mWPexXMikboGmbENQ67KuxH5Hlv4K4dUUnJIK0vqIcf2f3UPteWQ/BCt7OL4B/7OsFv3HpdwCnipOdkmZ5iYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
@@ -1133,6 +1133,7 @@ urlpatterns &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; patterns
 /static/c4d77c9226edabdadcc50d6a3b0176dd/ed7b0/browser_users.png 650w,
 /static/c4d77c9226edabdadcc50d6a3b0176dd/128a0/browser_users.png 800w&quot;
         sizes=&quot;(max-width: 650px) 100vw, 650px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;
@@ -1149,7 +1150,7 @@ urlpatterns &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; patterns
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsSAAALEgHS3X78AAACFklEQVQ4y42STXPSUBSG+TW40IUu2hl148ZRf5Djf/BvOE73rruhBFpSaMdFmyoRaC0FmhA+7ke+eT33pNAOKDUzb87JTe5z3nNuSq/KZbzf2cGH3V3WO5OT3r54jjfPnuL1k/JfZfa9LN/HZV6yWy3UDw5Qr1ZhVSqw9vdRbzRQqdVQsSxYR0eorcmsNZsNfD+10WraOD2xKT/GMbFKoCvRmhVJiUgIZGmKNEmw7XLHCayuQttPcNIPcXipeb0URREato2z83NWk6o4Fw4cx0GWZcjz/C5mHI2AHHu1ET5+7eBLdYjP367waa+LQMQopWmGIJhiOp1jNhPw/THHKIpJyYbiuIjUBrAgeJ4WonyxyFEyFZXSEEJCSgWtQ4YlScqbl4B1hUZhvIqaZLphoOt2cPGzg8HQQxSnUDqCkCGkCqlAVGz8D90Bc7TbLn64PXR/j+Be++gNAniBgDcRDGYHBN6mFdDcpNRsWZF9pQpnMc8wXsG2ObsHLgqggemZhLoNoCg3betHXD0EbQC5kpkbtTy7voXyp1BUIIwfDD5axmTD9RpwwTCzWd14EGcdiKshu9WCRiEUu9dzVcjkKnzcoZmdGgUsSU7l5QDyV58lnB5k96Z47vQZuh1o3HlTzMmhGs/IqQ81HNPaBLLvsXM1oOd+8d58z7P816EUwAm3Ko16gwJsHFPU9PuEdFA80yjeeih/ADnnSshnzt9gAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsSAAALEgHS3X78AAACFklEQVQ4y42STXPSUBSG+TW40IUu2hl148ZRf5Djf/BvOE73rruhBFpSaMdFmyoRaC0FmhA+7ke+eT33pNAOKDUzb87JTe5z3nNuSq/KZbzf2cGH3V3WO5OT3r54jjfPnuL1k/JfZfa9LN/HZV6yWy3UDw5Qr1ZhVSqw9vdRbzRQqdVQsSxYR0eorcmsNZsNfD+10WraOD2xKT/GMbFKoCvRmhVJiUgIZGmKNEmw7XLHCayuQttPcNIPcXipeb0URREato2z83NWk6o4Fw4cx0GWZcjz/C5mHI2AHHv1ET5+7eBLdYjP367waa+LQMQopWmGIJhiOp1jNhPw/THHKIpJyYbiuIjUBrAgeJ4WonyxyFEyFZXSEEJCSgWtQ4YlScqbl4B1hUZhvIqaZLphoOt2cPGzg8HQQxSnUDqCkCGkCqlAVGz8D90Bc7TbLn64PXR/j+Be++gNAniBgDcRDGYHBN6mFdDcpNRsWZF9pQpnMc8wXsG2ObsHLgqggemZhLoNoCg3betHXD0EbQC5kpkbtTy7voXyp1BUIIwfDD5axmTD9RpwwTCzWd14EGcdiKshu9WCRiEUu9dzVcjkKnzcoZmdGgUsSU7l5QDyV58lnB5k96Z47vQZuh1o3HlTzMmhGs/IqQ81HNPaBLLvsXM1oOd+8d58z7P816EUwAm3Ko16gwJsHFPU9PuEdFA80yjeeih/AD15Ssm6+OSuAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
@@ -1161,6 +1162,7 @@ urlpatterns &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; patterns
 /static/73ca60045f3922a7e942eeba4137a5b2/ed7b0/browser_user_posts.png 650w,
 /static/73ca60045f3922a7e942eeba4137a5b2/128a0/browser_user_posts.png 800w&quot;
         sizes=&quot;(max-width: 650px) 100vw, 650px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1278,6 +1280,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
 /static/570122ead4dbdf83617e543618dfc096/1f057/example_static.png 325w,
 /static/570122ead4dbdf83617e543618dfc096/ef30a/example_static.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1317,6 +1320,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
 /static/ae1cbeb03e544fe4765a3db5f7d274a6/1f057/example_basic.png 325w,
 /static/ae1cbeb03e544fe4765a3db5f7d274a6/ef30a/example_basic.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1368,6 +1372,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
 /static/99534fc95fcd247925c58be2dc0da4c5/1f057/example_resource.png 325w,
 /static/99534fc95fcd247925c58be2dc0da4c5/ef30a/example_resource.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1429,6 +1434,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
 /static/6378ce0216924d6c73835c4ab1ebfad0/1f057/example_photos.png 325w,
 /static/6378ce0216924d6c73835c4ab1ebfad0/ef30a/example_photos.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1518,7 +1524,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAACvUlEQVQ4y51TXUhTURy/9NKLj73VS7WXnpI+HgJfehKC2EOUbhlKlqbCmooY5ipCZTkwxZAMoUJZEUo9pE1FMR+URWZtONC18mPeqfvQ3X3ebXe/zjnj2g2pNg/87vm4//M7v/8XF41Gsbz8Eyurq+DX18l6GWtrbng8HuxncPF4DG63GzzPY2tri5Dy8Hl9bJ1KpZBMJrOGJEng0uk0IpEIdnaCe16jBtlCfpyjm0QiAVFM5KTmrwolKYVwOAxBENghfWk/kO8yhZTM7w8o5Es5uSu7vEso0Q15QRRF5j49o7HdDzgafJ5fx9LiIpacTvgDAZYQ+jPbobTlMnKTu1mlsZANslWlJGYKBSHECnl7OwCRuJyrQtocNFxMISMMhWC327BCuiQaizEyOdjZqFslXUaTygipizFConSZJiZTmyIr+v+B2sbj8Uxh01QH/D7YbTa4XD/gcCzARtYLCw44nd/ZBVqn/0KIeEjBCOlHCAqkd73w+fwk4x4Szw1sbGzCS3o6TI2DQYRlCAQhITOT+lUSM8KcykMxp2iICPa0HvX/g8WK98NWjI/NY2L8CyZGrbAMz8Ay+gmuuXlY7zbC1WKAu+U+VnpasTnzFqHeLgQGzXvqkRCKeGR8Bn21CYb6TjTpTGiubUdV6T1U1xgx+7If3RyHkQMc7IcOYk6Vh3f6fHy9ehbem1qm9o9OEcU4DM0P0VjXAL2uEWWaW6i8UQVdTQNqm4z4bH6FoVMnMF1ehKlKLfqPHUEnIX58OA/jZRpZ2m/CKMniJXUpyouKUaIphuayGj0ddWi+Uwr1lUJMWyx43t6KybEhzI68gaW+Evba6/h28ihsFSWZuCoJI5EoCgou4HzhabSYtBjo0+P1i9u4qD6D4yoVpqcm0WVsQ7epDea+JxgceIrejlY8OJePjxXXdpMkE/4CFR61Oh8pigAAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAACvElEQVQ4y51TXUhTURy/9NKLj73VS+VLT0kfD4EvPQlB7CFKJ4aSpalgUxHDJkZsMh2YYkiGUKGsCKUe0qaimA/KIrM2FHSt/Jh36j50d593292vc864dmNU2w787vm4//M7v/8XFw6Hsb7+Exubm+C3t8l6HVtbTrhcLuQyuGg0AqfTCZ7nsbe3R0h5eNwetk4kEojH4xlDkiRwyWQSoVAIBwf+tNeoQaaQH+foJhaLQRRjWan5q0JJSiAYDEIQBHZIX8oF8l2mkJJ5vT6FfCkrd2WXDwkluiEviKLI3KdnNLa5gKPB5/ltrK2uYs1uh9fnYwmhPzMdSlsuJTd+mFUaC9kgU1VKYqZQEAKskPf3fRCJy9kqpM1Bw8UUMsJAADabFRukS8KRCCOTg52Juk3SZTSpjJC6GCEkSpdpYlK1KbKi/x+obTQaTRU2TbXP64HNaoXD8QMrK8uwkvXy8grs9u/sAq3TfyFAPKRghPQj+AXSu254PF6ScReJ5w52dnbhJj0dpMZ+P4IyBIKAkJpJ/SqJGWFW5aGYEzREBGmtR/3/YLbg/ZgFU5NLmJ76gukJC8xj8zBPfIJjcQmWBy1w6Nrg1LVjo1+P3fm3CAz0wjdiSqtHQiii0/AMmloj2pp60FpvhLahCzXl7aitM2Dh5RD6OA7jRzjYjh3FYn4e3mkK8LXsItx3SpnaPzpFFKNo0z5CS2MzNPUtqFDfRfXtGtTXNaOh1YDPplcYPXcGc5XFmK0uxdCpE+ghxI+P52GqQi1L+00YJlm8pipHZXEJytQlUF9Xob+7Edr75VDdKMKc2YznXXrMTI5iYfwNzE3VsDXcwrezJ2GtKkvFVUkYCoVRWHgFl4vOQ2csxfCgBq9f3MNV1QWczs/H3OwMeg0d6DN2wDT4BCPDTzHQrcfDSwX4WHXzMEky4S8XUbU8KZdQ0AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
@@ -1529,6 +1535,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
 /static/75bd3b717869107aad8528955c1c8a34/1f057/example_editor.png 325w,
 /static/75bd3b717869107aad8528955c1c8a34/ef30a/example_editor.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1585,6 +1592,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
 /static/0fbea6ce559516a374d0865c7e8a4e0b/1f057/example_error.png 325w,
 /static/0fbea6ce559516a374d0865c7e8a4e0b/ef30a/example_error.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1656,6 +1664,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
 /static/6d53a374f3fedf95b9bc730aeba2b345/1f057/example_managed.png 325w,
 /static/6d53a374f3fedf95b9bc730aeba2b345/ef30a/example_managed.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
