@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Kevin Stone]]></title><description><![CDATA[Personal blog for Kevin Stone.]]></description><link>https://blog.kevinastone.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 14 Oct 2019 01:56:55 GMT</lastBuildDate><item><title><![CDATA[Generate Your Tests]]></title><description><![CDATA[When testing your application, you'll often come across the need to test that
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Kevin Stone]]></title><description><![CDATA[Personal blog for Kevin Stone.]]></description><link>https://blog.kevinastone.com</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 07 Dec 2019 18:51:02 GMT</lastBuildDate><item><title><![CDATA[Generate Your Tests]]></title><description><![CDATA[When testing your application, you'll often come across the need to test that
 your application behaves correct across a range of inputs or…]]></description><link>https://blog.kevinastone.com/generator-tests</link><guid isPermaLink="false">https://blog.kevinastone.com/generator-tests</guid><pubDate>Mon, 12 Oct 2015 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;When testing your application, you&apos;ll often come across the need to test that
 your application behaves correct across a range of inputs or conditions.
 Instead of repetitively defining the same test scaffolding, let&apos;s use some
@@ -1114,7 +1114,7 @@ urlpatterns &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; patterns
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/c4d77c9226edabdadcc50d6a3b0176dd/128a0/browser_users.png&quot;
+    href=&quot;/static/c4d77c9226edabdadcc50d6a3b0176dd/773f9/browser_users.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1127,11 +1127,11 @@ urlpatterns &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; patterns
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;API Browser Example for Users&quot;
         title=&quot;API Browser Example for Users&quot;
-        src=&quot;/static/c4d77c9226edabdadcc50d6a3b0176dd/ed7b0/browser_users.png&quot;
-        srcset=&quot;/static/c4d77c9226edabdadcc50d6a3b0176dd/128ea/browser_users.png 163w,
-/static/c4d77c9226edabdadcc50d6a3b0176dd/1f057/browser_users.png 325w,
-/static/c4d77c9226edabdadcc50d6a3b0176dd/ed7b0/browser_users.png 650w,
-/static/c4d77c9226edabdadcc50d6a3b0176dd/128a0/browser_users.png 800w&quot;
+        src=&quot;/static/c4d77c9226edabdadcc50d6a3b0176dd/8d2e0/browser_users.png&quot;
+        srcset=&quot;/static/c4d77c9226edabdadcc50d6a3b0176dd/0f29f/browser_users.png 163w,
+/static/c4d77c9226edabdadcc50d6a3b0176dd/613b6/browser_users.png 325w,
+/static/c4d77c9226edabdadcc50d6a3b0176dd/8d2e0/browser_users.png 650w,
+/static/c4d77c9226edabdadcc50d6a3b0176dd/773f9/browser_users.png 800w&quot;
         sizes=&quot;(max-width: 650px) 100vw, 650px&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -1143,7 +1143,7 @@ urlpatterns &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; patterns
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/73ca60045f3922a7e942eeba4137a5b2/128a0/browser_user_posts.png&quot;
+    href=&quot;/static/73ca60045f3922a7e942eeba4137a5b2/773f9/browser_user_posts.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1156,11 +1156,11 @@ urlpatterns &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; patterns
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;API Browser Example for User Posts&quot;
         title=&quot;API Browser Example for User Posts&quot;
-        src=&quot;/static/73ca60045f3922a7e942eeba4137a5b2/ed7b0/browser_user_posts.png&quot;
-        srcset=&quot;/static/73ca60045f3922a7e942eeba4137a5b2/128ea/browser_user_posts.png 163w,
-/static/73ca60045f3922a7e942eeba4137a5b2/1f057/browser_user_posts.png 325w,
-/static/73ca60045f3922a7e942eeba4137a5b2/ed7b0/browser_user_posts.png 650w,
-/static/73ca60045f3922a7e942eeba4137a5b2/128a0/browser_user_posts.png 800w&quot;
+        src=&quot;/static/73ca60045f3922a7e942eeba4137a5b2/8d2e0/browser_user_posts.png&quot;
+        srcset=&quot;/static/73ca60045f3922a7e942eeba4137a5b2/0f29f/browser_user_posts.png 163w,
+/static/73ca60045f3922a7e942eeba4137a5b2/613b6/browser_user_posts.png 325w,
+/static/73ca60045f3922a7e942eeba4137a5b2/8d2e0/browser_user_posts.png 650w,
+/static/73ca60045f3922a7e942eeba4137a5b2/773f9/browser_user_posts.png 800w&quot;
         sizes=&quot;(max-width: 650px) 100vw, 650px&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -1262,7 +1262,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/570122ead4dbdf83617e543618dfc096/ef30a/example_static.png&quot;
+    href=&quot;/static/570122ead4dbdf83617e543618dfc096/e3818/example_static.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1275,10 +1275,10 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Basic Post List - Hard Coded&quot;
         title=&quot;Basic Post List - Hard Coded&quot;
-        src=&quot;/static/570122ead4dbdf83617e543618dfc096/ef30a/example_static.png&quot;
-        srcset=&quot;/static/570122ead4dbdf83617e543618dfc096/128ea/example_static.png 163w,
-/static/570122ead4dbdf83617e543618dfc096/1f057/example_static.png 325w,
-/static/570122ead4dbdf83617e543618dfc096/ef30a/example_static.png 400w&quot;
+        src=&quot;/static/570122ead4dbdf83617e543618dfc096/e3818/example_static.png&quot;
+        srcset=&quot;/static/570122ead4dbdf83617e543618dfc096/0f29f/example_static.png 163w,
+/static/570122ead4dbdf83617e543618dfc096/613b6/example_static.png 325w,
+/static/570122ead4dbdf83617e543618dfc096/e3818/example_static.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -1302,7 +1302,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/ae1cbeb03e544fe4765a3db5f7d274a6/ef30a/example_basic.png&quot;
+    href=&quot;/static/ae1cbeb03e544fe4765a3db5f7d274a6/e3818/example_basic.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1315,10 +1315,10 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Basic Post List - XHR&quot;
         title=&quot;Basic Post List - XHR&quot;
-        src=&quot;/static/ae1cbeb03e544fe4765a3db5f7d274a6/ef30a/example_basic.png&quot;
-        srcset=&quot;/static/ae1cbeb03e544fe4765a3db5f7d274a6/128ea/example_basic.png 163w,
-/static/ae1cbeb03e544fe4765a3db5f7d274a6/1f057/example_basic.png 325w,
-/static/ae1cbeb03e544fe4765a3db5f7d274a6/ef30a/example_basic.png 400w&quot;
+        src=&quot;/static/ae1cbeb03e544fe4765a3db5f7d274a6/e3818/example_basic.png&quot;
+        srcset=&quot;/static/ae1cbeb03e544fe4765a3db5f7d274a6/0f29f/example_basic.png 163w,
+/static/ae1cbeb03e544fe4765a3db5f7d274a6/613b6/example_basic.png 325w,
+/static/ae1cbeb03e544fe4765a3db5f7d274a6/e3818/example_basic.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -1354,7 +1354,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/99534fc95fcd247925c58be2dc0da4c5/ef30a/example_resource.png&quot;
+    href=&quot;/static/99534fc95fcd247925c58be2dc0da4c5/e3818/example_resource.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1367,10 +1367,10 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Basic Post List - Resource&quot;
         title=&quot;Basic Post List - Resource&quot;
-        src=&quot;/static/99534fc95fcd247925c58be2dc0da4c5/ef30a/example_resource.png&quot;
-        srcset=&quot;/static/99534fc95fcd247925c58be2dc0da4c5/128ea/example_resource.png 163w,
-/static/99534fc95fcd247925c58be2dc0da4c5/1f057/example_resource.png 325w,
-/static/99534fc95fcd247925c58be2dc0da4c5/ef30a/example_resource.png 400w&quot;
+        src=&quot;/static/99534fc95fcd247925c58be2dc0da4c5/e3818/example_resource.png&quot;
+        srcset=&quot;/static/99534fc95fcd247925c58be2dc0da4c5/0f29f/example_resource.png 163w,
+/static/99534fc95fcd247925c58be2dc0da4c5/613b6/example_resource.png 325w,
+/static/99534fc95fcd247925c58be2dc0da4c5/e3818/example_resource.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -1416,7 +1416,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/6378ce0216924d6c73835c4ab1ebfad0/ef30a/example_photos.png&quot;
+    href=&quot;/static/6378ce0216924d6c73835c4ab1ebfad0/e3818/example_photos.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1429,10 +1429,10 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Basic Post List - Photos&quot;
         title=&quot;Basic Post List - Photos&quot;
-        src=&quot;/static/6378ce0216924d6c73835c4ab1ebfad0/ef30a/example_photos.png&quot;
-        srcset=&quot;/static/6378ce0216924d6c73835c4ab1ebfad0/128ea/example_photos.png 163w,
-/static/6378ce0216924d6c73835c4ab1ebfad0/1f057/example_photos.png 325w,
-/static/6378ce0216924d6c73835c4ab1ebfad0/ef30a/example_photos.png 400w&quot;
+        src=&quot;/static/6378ce0216924d6c73835c4ab1ebfad0/e3818/example_photos.png&quot;
+        srcset=&quot;/static/6378ce0216924d6c73835c4ab1ebfad0/0f29f/example_photos.png 163w,
+/static/6378ce0216924d6c73835c4ab1ebfad0/613b6/example_photos.png 325w,
+/static/6378ce0216924d6c73835c4ab1ebfad0/e3818/example_photos.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -1517,7 +1517,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/75bd3b717869107aad8528955c1c8a34/ef30a/example_editor.png&quot;
+    href=&quot;/static/75bd3b717869107aad8528955c1c8a34/e3818/example_editor.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1530,10 +1530,10 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Basic Post List - Editor&quot;
         title=&quot;Basic Post List - Editor&quot;
-        src=&quot;/static/75bd3b717869107aad8528955c1c8a34/ef30a/example_editor.png&quot;
-        srcset=&quot;/static/75bd3b717869107aad8528955c1c8a34/128ea/example_editor.png 163w,
-/static/75bd3b717869107aad8528955c1c8a34/1f057/example_editor.png 325w,
-/static/75bd3b717869107aad8528955c1c8a34/ef30a/example_editor.png 400w&quot;
+        src=&quot;/static/75bd3b717869107aad8528955c1c8a34/e3818/example_editor.png&quot;
+        srcset=&quot;/static/75bd3b717869107aad8528955c1c8a34/0f29f/example_editor.png 163w,
+/static/75bd3b717869107aad8528955c1c8a34/613b6/example_editor.png 325w,
+/static/75bd3b717869107aad8528955c1c8a34/e3818/example_editor.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -1574,7 +1574,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/0fbea6ce559516a374d0865c7e8a4e0b/ef30a/example_error.png&quot;
+    href=&quot;/static/0fbea6ce559516a374d0865c7e8a4e0b/e3818/example_error.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1587,10 +1587,10 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Basic Post List - Error&quot;
         title=&quot;Basic Post List - Error&quot;
-        src=&quot;/static/0fbea6ce559516a374d0865c7e8a4e0b/ef30a/example_error.png&quot;
-        srcset=&quot;/static/0fbea6ce559516a374d0865c7e8a4e0b/128ea/example_error.png 163w,
-/static/0fbea6ce559516a374d0865c7e8a4e0b/1f057/example_error.png 325w,
-/static/0fbea6ce559516a374d0865c7e8a4e0b/ef30a/example_error.png 400w&quot;
+        src=&quot;/static/0fbea6ce559516a374d0865c7e8a4e0b/e3818/example_error.png&quot;
+        srcset=&quot;/static/0fbea6ce559516a374d0865c7e8a4e0b/0f29f/example_error.png 163w,
+/static/0fbea6ce559516a374d0865c7e8a4e0b/613b6/example_error.png 325w,
+/static/0fbea6ce559516a374d0865c7e8a4e0b/e3818/example_error.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -1646,7 +1646,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/6d53a374f3fedf95b9bc730aeba2b345/ef30a/example_managed.png&quot;
+    href=&quot;/static/6d53a374f3fedf95b9bc730aeba2b345/e3818/example_managed.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1659,10 +1659,10 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;controller &lt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Basic Post List - Removal&quot;
         title=&quot;Basic Post List - Removal&quot;
-        src=&quot;/static/6d53a374f3fedf95b9bc730aeba2b345/ef30a/example_managed.png&quot;
-        srcset=&quot;/static/6d53a374f3fedf95b9bc730aeba2b345/128ea/example_managed.png 163w,
-/static/6d53a374f3fedf95b9bc730aeba2b345/1f057/example_managed.png 325w,
-/static/6d53a374f3fedf95b9bc730aeba2b345/ef30a/example_managed.png 400w&quot;
+        src=&quot;/static/6d53a374f3fedf95b9bc730aeba2b345/e3818/example_managed.png&quot;
+        srcset=&quot;/static/6d53a374f3fedf95b9bc730aeba2b345/0f29f/example_managed.png 163w,
+/static/6d53a374f3fedf95b9bc730aeba2b345/613b6/example_managed.png 325w,
+/static/6d53a374f3fedf95b9bc730aeba2b345/e3818/example_managed.png 400w&quot;
         sizes=&quot;(max-width: 400px) 100vw, 400px&quot;
         loading=&quot;lazy&quot;
       /&gt;
