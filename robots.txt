@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://blog.kevinastone.com/sitemap.xml
+Sitemap: https://blog.kevinastone.com/sitemap-index.xml
 Host: https://blog.kevinastone.com
