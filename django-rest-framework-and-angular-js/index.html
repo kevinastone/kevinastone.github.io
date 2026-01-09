@@ -606,7 +606,7 @@ app<span class="token punctuation">.</span>controller <span class="token string"
     <span class="token keyword">var</span> app <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'example.app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Not including a list of dependent modules (2nd parameter to `module`) "re-opens" the module for additional configuration</span>
     app<span class="token punctuation">.</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
         <span class="token string">'$httpProvider'</span><span class="token punctuation">,</span>
-        <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">$httpProvider</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">$httpProvider</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             $httpProvider<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>headers<span class="token punctuation">.</span>common<span class="token punctuation">[</span><span class="token string">'X-CSRFToken'</span><span class="token punctuation">]</span> <span class="token operator">=</span>
                 <span class="token string">'{{ csrf_token|escapejs }}'</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -865,4 +865,4 @@ app<span class="token punctuation">.</span>controller <span class="token string"
           >
             window.___chunkMapping="{\"app\":[\"/app-ac851a9e8fa70e71d1b6.js\"],\"component---src-components-blog-post-tsx\":[\"/component---src-components-blog-post-tsx-993edd15f88cea3574c8.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-3f3608924dee33eb880e.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-1004f50846544ce9bd9c.js\"]}";
           </script>
-        <script>window.___webpackCompilationHash="893201f74eb677caea64";</script><script src="/webpack-runtime-ce5b0a151b5334beeb48.js" async></script><script src="/app-ac851a9e8fa70e71d1b6.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
+        <script>window.___webpackCompilationHash="e63b802195d483d130c7";</script><script src="/webpack-runtime-80d31d1d5a41135b92de.js" async></script><script src="/app-ac851a9e8fa70e71d1b6.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
