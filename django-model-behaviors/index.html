@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.16.8"><link rel="alternate" type="application/rss+xml" title="Kevin Stone" href="/rss.xml"><title>Django Model Behaviors</title><link rel="canonical" href="https://blog.kevinastone.com/django-model-behaviors/"><meta name="description" content="Personal blog for Kevin Stone."><meta name="robots" content="index, follow"><meta property="og:title" content="Django Model Behaviors"><meta property="og:type" content="article"><meta property="og:image" content><meta property="og:url" content="https://blog.kevinastone.com/django-model-behaviors/"><meta name="twitter:card" content="summary"><meta name="twitter:site" content="@kevinastone"><meta name="keywords"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/assets/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js"></script><style>code[class*=language-],pre[class*=language-]{color:#f8f8f2;background:none;text-shadow:0 1px rgba(0,0,0,.3);font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#272822}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.comment,.token.prolog,.token.doctype,.token.cdata{color:#8292a2}.token.punctuation{color:#f8f8f2}.token.namespace{opacity:.7}.token.property,.token.tag,.token.constant,.token.symbol,.token.deleted{color:#f92672}.token.boolean,.token.number{color:#ae81ff}.token.selector,.token.attr-name,.token.string,.token.char,.token.builtin,.token.inserted{color:#a6e22e}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string,.token.variable{color:#f8f8f2}.token.atrule,.token.attr-value,.token.function,.token.class-name{color:#e6db74}.token.keyword{color:#66d9ef}.token.regex,.token.important{color:#fd971f}.token.important,.token.bold{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.img-wrapper[data-astro-cid-3eui6wlw]{background-color:var(--base);display:flex;position:absolute;overflow:hidden;width:100%;height:100%}.img-wrapper[data-astro-cid-3eui6wlw] .duotone-img{filter:grayscale(100%) contrast(1);mix-blend-mode:multiply;opacity:var(--opacity);object-fit:cover;width:100%;height:100%;display:block}.img-wrapper[data-astro-cid-3eui6wlw]:before{content:"";position:absolute;inset:0;background-color:var(--foreground);mix-blend-mode:overlay;z-index:1;pointer-events:none}/*! tailwindcss v4.1.18 | MIT License | https://tailwindcss.com */@layer properties{@supports (((-webkit-hyphens:none)) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from red r g b)))){*,:before,:after,::backdrop{--tw-font-weight:initial}}}.wrapper[data-astro-cid-vva3ln22]{justify-content:center;align-items:center;width:100%;display:flex;position:relative}.hero[data-astro-cid-vva3ln22]{color:#fff;margin-bottom:var(--spacing-rhythm-1\.5,calc(1.5*var(--spacing-rhythm)));padding-block:var(--spacing-rhythm-2,calc(2*var(--spacing-rhythm)));text-align:center}.hero[data-astro-cid-vva3ln22] h1{margin-top:var(--spacing-rhythm-2,calc(2*var(--spacing-rhythm)));margin-bottom:calc(var(--spacing,.25rem)*8);font-size:var(--text-4xl,2.25rem);line-height:var(--tw-leading,var(--text-4xl--line-height,calc(2.5/2.25)));--tw-font-weight:var(--font-weight-bold,700);font-weight:var(--font-weight-bold,700)}.bg[data-astro-cid-vva3ln22]{z-index:1;object-fit:cover;object-position:center;width:100%;height:100%;position:absolute;inset:0}.content[data-astro-cid-vva3ln22]{z-index:3;position:relative}@property --tw-font-weight{syntax:"*";inherits:false}
+</style>
+<link rel="stylesheet" href="/assets/_id_.B_Iir7RE.css"></head> <body> <header class="brand-bg-gradient" data-astro-cid-3ef6ksr2> <div class="navbar" data-astro-cid-3ef6ksr2> <div class="fixed-width">  <div class="row" data-astro-cid-3ef6ksr2> <div class="brand" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2>Kevin Stone</a> </div> <div class="search" data-astro-cid-3ef6ksr2> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z2vjQsh" prefix="r2" component-url="/assets/app.CymAaFJ5.js" component-export="default" renderer-url="/assets/client.C7vZbhPY.js" props="{&quot;data-astro-cid-3ef6ksr2&quot;:[0,true]}" ssr client="load" opts="{&quot;name&quot;:&quot;Search&quot;,&quot;value&quot;:true}" await-children><form class="relative w-full m-0"><input class="
+        w-full
+        bg-transparent
+        border
+        border-accent
+        rounded-sm
+        text-background
+        m-0
+        outline-none
+        py-1
+        px-3
+        transition-colors
+        duration-500
+        focus:bg-background
+        focus:border-transparent
+        focus:text-primary
+        hover:bg-background
+        hover:border-transparent
+        hover:text-primary
+        not-placeholder-shown:bg-background
+        not-placeholder-shown:text-primary
+      " type="search" name="query" placeholder="Search" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellcheck="false" value=""/><ul class="absolute w-full mt-1 overflow-hidden list-none p-0 bg-background rounded-md shadow-lg z-50"></ul></form><!--astro:end--></astro-island> </div> </div>  </div> </div> </header>  <div class="wrapper hero brand-bg-gradient" data-astro-cid-vva3ln22>  <div class="content" data-astro-cid-vva3ln22>  <div class="fixed-width">  <h1>Django Model Behaviors</h1> <p class="sub-heading"> <time datetime="2013-05-12T00:00:00.000Z"> May 12, 2013 </time> </p>  </div>  </div> </div>  <main> <div class="fixed-width">    <article class="prose max-w-none"> <p>As Django projects scale in complexity beyond the neat and tidy tutorial phase, how can we structure our models to keep things manageable? We’re talking 10s to 100s of models, used across numerous views, templates and tests…</p>
+<h2 id="compositional-model-behaviors">Compositional Model Behaviors</h2>
+<p>The Compositional Model pattern allows you to manage the complexity of your models through compartmentalization of functionality into manageable components.</p>
+<h4 id="the-benefits-of-fat-models">The Benefits of Fat Models</h4>
+<ul>
+<li>Encapsulation</li>
+<li>Single Path</li>
+<li>Separation of Concerns (MVC)</li>
+</ul>
+<h4 id="without-the-maintenance-cost">Without the Maintenance Cost</h4>
+<ul>
+<li>DRY</li>
+<li>Readability</li>
+<li>Reusability</li>
+<li>Single Responsibility Principle</li>
+<li>Testability</li>
+</ul>
+<h2 id="model-behaviors-example">Model Behaviors Example</h2>
+<h4 id="traditional-model">Traditional Model</h4>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">class</span> <span class="token class-name">BlogPost</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    title <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">255</span><span class="token punctuation">)</span>
+    body <span class="token operator">=</span> models<span class="token punctuation">.</span>TextField<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    slug <span class="token operator">=</span> models<span class="token punctuation">.</span>SlugField<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    author <span class="token operator">=</span> models<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span>User<span class="token punctuation">,</span> related_name<span class="token operator">=</span><span class="token string">'posts'</span><span class="token punctuation">)</span>
+    create_date <span class="token operator">=</span> models<span class="token punctuation">.</span>DateTimeField<span class="token punctuation">(</span>auto_now_add<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    modified_date <span class="token operator">=</span> models<span class="token punctuation">.</span>DateTimeField<span class="token punctuation">(</span>auto_now<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    publish_date <span class="token operator">=</span> models<span class="token punctuation">.</span>DateTimeField<span class="token punctuation">(</span>null<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+</code></pre>
+<h4 id="decomposed-into-discrete-behaviors">Decomposed into Discrete Behaviors</h4>
+<p>The goal of the behavior pattern is to decompose your models into core, reusable mixins. Create a higher level abstraction than the model field that encapsulates the intended business logic.</p>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">from</span> <span class="token punctuation">.</span>behaviors <span class="token keyword">import</span> Authorable<span class="token punctuation">,</span> Permalinkable<span class="token punctuation">,</span> Timestampable<span class="token punctuation">,</span> Publishable
+
+
+<span class="token keyword">class</span> <span class="token class-name">BlogPost</span><span class="token punctuation">(</span>Authorable<span class="token punctuation">,</span> Permalinkable<span class="token punctuation">,</span> Timestampable<span class="token punctuation">,</span> Publishable<span class="token punctuation">,</span> models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    title <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">255</span><span class="token punctuation">)</span>
+    body <span class="token operator">=</span> models<span class="token punctuation">.</span>TextField<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<h4 id="reusable-behaviors">Reusable Behaviors</h4>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">class</span> <span class="token class-name">Authorable</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    author <span class="token operator">=</span> models<span class="token punctuation">.</span>ForeignKey<span class="token punctuation">(</span>User<span class="token punctuation">)</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">Meta</span><span class="token punctuation">:</span>
+        abstract <span class="token operator">=</span> <span class="token boolean">True</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Permalinkable</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    slug <span class="token operator">=</span> models<span class="token punctuation">.</span>SlugField<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">Meta</span><span class="token punctuation">:</span>
+        abstract <span class="token operator">=</span> <span class="token boolean">True</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Publishable</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    publish_date <span class="token operator">=</span> models<span class="token punctuation">.</span>DateTimeField<span class="token punctuation">(</span>null<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">Meta</span><span class="token punctuation">:</span>
+        abstract <span class="token operator">=</span> <span class="token boolean">True</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Timestampable</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    create_date <span class="token operator">=</span> models<span class="token punctuation">.</span>DateTimeField<span class="token punctuation">(</span>auto_now_add<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    modified_date <span class="token operator">=</span> models<span class="token punctuation">.</span>DateTimeField<span class="token punctuation">(</span>auto_now<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">Meta</span><span class="token punctuation">:</span>
+        abstract <span class="token operator">=</span> <span class="token boolean">True</span>
+</code></pre>
+<h2 id="models-are-more-than-just-fields">Models are more than just Fields</h2>
+<p>Our first cut at common behaviors just captured common fields, but what about everything else models encapsulate?</p>
+<ul>
+<li>Properties</li>
+<li>Custom Methods</li>
+<li>Method Overloads (save(), etc…)</li>
+<li>Validation</li>
+<li>Querysets</li>
+</ul>
+<h4 id="capturing-model-methods">Capturing Model Methods</h4>
+<p>Let’s extend our traditional fat model with some of these encapsulated busuiness logic</p>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">class</span> <span class="token class-name">BlogPost</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+    <span class="token decorator annotation punctuation">@property</span>
+    <span class="token keyword">def</span> <span class="token function">is_published</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">from</span> django<span class="token punctuation">.</span>utils <span class="token keyword">import</span> timezone
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>publish_date <span class="token operator">&#x3C;</span> timezone<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token decorator annotation punctuation">@models<span class="token punctuation">.</span>permalink</span>
+    <span class="token keyword">def</span> <span class="token function">get_absolute_url</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token string">'blog-post'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            <span class="token string">"slug"</span><span class="token punctuation">:</span> self<span class="token punctuation">.</span>slug<span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">pre_save</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> instance<span class="token punctuation">,</span> add<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">from</span> django<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>text <span class="token keyword">import</span> slugify
+        <span class="token keyword">if</span> <span class="token keyword">not</span> instance<span class="token punctuation">.</span>slug<span class="token punctuation">:</span>
+            instance<span class="token punctuation">.</span>slug <span class="token operator">=</span> slugify<span class="token punctuation">(</span>self<span class="token punctuation">.</span>title<span class="token punctuation">)</span>
+</code></pre>
+<h4 id="behaviors-with-methods">Behaviors with Methods</h4>
+<p>In actuality, these same methods can be generalized and extracted into our behavior models</p>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">class</span> <span class="token class-name">Permalinkable</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    slug <span class="token operator">=</span> models<span class="token punctuation">.</span>SlugField<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">Meta</span><span class="token punctuation">:</span>
+        abstract <span class="token operator">=</span> <span class="token boolean">True</span>
+
+    <span class="token keyword">def</span> <span class="token function">get_url_kwargs</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        kwargs<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token builtin">getattr</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">'url_kwargs'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> kwargs
+
+    <span class="token decorator annotation punctuation">@models<span class="token punctuation">.</span>permalink</span>
+    <span class="token keyword">def</span> <span class="token function">get_absolute_url</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        url_kwargs <span class="token operator">=</span> self<span class="token punctuation">.</span>get_url_kwargs<span class="token punctuation">(</span>slug<span class="token operator">=</span>self<span class="token punctuation">.</span>slug<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>url_name<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> url_kwargs<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">pre_save</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> instance<span class="token punctuation">,</span> add<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">from</span> django<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>text <span class="token keyword">import</span> slugify
+        <span class="token keyword">if</span> <span class="token keyword">not</span> instance<span class="token punctuation">.</span>slug<span class="token punctuation">:</span>
+            instance<span class="token punctuation">.</span>slug <span class="token operator">=</span> slugify<span class="token punctuation">(</span>self<span class="token punctuation">.</span>slug_source<span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Publishable</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    publish_date <span class="token operator">=</span> models<span class="token punctuation">.</span>DateTimeField<span class="token punctuation">(</span>null<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">Meta</span><span class="token punctuation">:</span>
+        abstract <span class="token operator">=</span> <span class="token boolean">True</span>
+
+    objects <span class="token operator">=</span> PassThroughManager<span class="token punctuation">.</span>for_queryset_class<span class="token punctuation">(</span>PublishableQuerySet<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">publish_on</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> date<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">from</span> django<span class="token punctuation">.</span>utils <span class="token keyword">import</span> timezone
+        <span class="token keyword">if</span> <span class="token keyword">not</span> date<span class="token punctuation">:</span>
+            date <span class="token operator">=</span> timezone<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>publish_date <span class="token operator">=</span> date
+        self<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token decorator annotation punctuation">@property</span>
+    <span class="token keyword">def</span> <span class="token function">is_published</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">from</span> django<span class="token punctuation">.</span>utils <span class="token keyword">import</span> timezone
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>publish_date <span class="token operator">&#x3C;</span> timezone<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<h4 id="wire-up-the-concrete-model">Wire up the Concrete Model</h4>
+<p>Since we generalized our behaviors, we need to add some helpers on our concrete models to complete the functionality.</p>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">from</span> <span class="token punctuation">.</span>behaviors <span class="token keyword">import</span> Authorable<span class="token punctuation">,</span> Permalinkable<span class="token punctuation">,</span> Timestampable<span class="token punctuation">,</span> Publishable
+
+
+<span class="token keyword">class</span> <span class="token class-name">BlogPost</span><span class="token punctuation">(</span>Authorable<span class="token punctuation">,</span> Permalinkable<span class="token punctuation">,</span> Timestampable<span class="token punctuation">,</span> Publishable<span class="token punctuation">,</span> models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    title <span class="token operator">=</span> models<span class="token punctuation">.</span>CharField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">255</span><span class="token punctuation">)</span>
+    body <span class="token operator">=</span> models<span class="token punctuation">.</span>TextField<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    url_name <span class="token operator">=</span> <span class="token string">"blog-post"</span>
+
+    <span class="token decorator annotation punctuation">@property</span>
+    <span class="token keyword">def</span> <span class="token function">slug_source</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>title
+</code></pre>
+<h2 id="naming-tips">Naming Tips</h2>
+<p>Use “&#x3C;verb>-able” naming pattern for behaviors. The “-able” suffix ensures the behaviors are readily identifiable. It also prevents yet another use of the word Mixin. (Don’t worry when the naming deviates from decent english such as in the case of <code>OptionallyGenericRelateable</code>)</p>
+<h2 id="custom-queryset-chaining">Custom Queryset Chaining</h2>
+<p>We all know to chain queryset methods, but what about adding custom manager methods?</p>
+<p>Let’s Find Posts from a Given Author (username1) that are Published (publish_date in the past)</p>
+<h4 id="queryset-without-encapsulation">QuerySet without Encapsulation</h4>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>utils <span class="token keyword">import</span> timezone
+<span class="token keyword">from</span> <span class="token punctuation">.</span>models <span class="token keyword">import</span> BlogPost
+
+<span class="token operator">>></span><span class="token operator">></span> BlogPost<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>author__username<span class="token operator">=</span><span class="token string">'username1'</span><span class="token punctuation">)</span> \
+<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>publish_date__lte<span class="token operator">=</span>timezone<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<h4 id="custom-managers">Custom Managers</h4>
+<p>Let’s create methods on a custom Manager to handle the past-publication date and author filters.</p>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">class</span> <span class="token class-name">BlogPostManager</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Manager<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">def</span> <span class="token function">published</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">from</span> django<span class="token punctuation">.</span>utils <span class="token keyword">import</span> timezone
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>publish_date__lte<span class="token operator">=</span>timezone<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">authored_by</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> author<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>author__username<span class="token operator">=</span>author<span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">BlogPost</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+    objects <span class="token operator">=</span> BlogPostManager<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token operator">>></span><span class="token operator">></span> published_posts <span class="token operator">=</span> BlogPost<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>published<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> posts_by_author <span class="token operator">=</span> BlockPost<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>authored_by<span class="token punctuation">(</span><span class="token string">'username1'</span><span class="token punctuation">)</span>
+</code></pre>
+<h4 id="chaining-our-filters">Chaining our Filters?</h4>
+<p>What if we try to chain our custom filters?</p>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token operator">>></span><span class="token operator">></span> BlogPost<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>authored_by<span class="token punctuation">(</span><span class="token string">'username1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>published<span class="token punctuation">(</span><span class="token punctuation">)</span>
+AttributeError<span class="token punctuation">:</span> <span class="token string">'QuerySet'</span> <span class="token builtin">object</span> has no attribute <span class="token string">'published'</span>
+
+<span class="token operator">>></span><span class="token operator">></span> <span class="token builtin">type</span><span class="token punctuation">(</span>Blogpost<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>authored_by<span class="token punctuation">(</span><span class="token string">'username1'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">&#x3C;</span><span class="token keyword">class</span> <span class="token string">'django.db.models.query.QuerySet'</span><span class="token operator">></span>
+</code></pre>
+<h4 id="solution-custom-querysets"><em>Solution</em>: Custom Querysets</h4>
+<p>Leverage <code>PassthroughManager</code> from <a href="https://github.com/carljm/django-model-utils">django-model-utils</a> to allow chaining of custom manager methods.</p>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python">
+<span class="token keyword">from</span> model_utils<span class="token punctuation">.</span>managers <span class="token keyword">import</span> PassThroughManager
+
+<span class="token keyword">class</span> <span class="token class-name">PublishableQuerySet</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>query<span class="token punctuation">.</span>QuerySet<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">published</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">from</span> django<span class="token punctuation">.</span>utils <span class="token keyword">import</span> timezone
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>publish_date__lte<span class="token operator">=</span>timezone<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">AuthorableQuerySet</span><span class="token punctuation">(</span>models<span class="token punctuation">.</span>query<span class="token punctuation">.</span>QuerySet<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">authored_by</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> author<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>author__username<span class="token operator">=</span>author<span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">BlogPostQuerySet</span><span class="token punctuation">(</span>AuthorableQuerySet<span class="token punctuation">,</span> PublishableQuerySet<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">BlogPost</span><span class="token punctuation">(</span>Authorable<span class="token punctuation">,</span> Permalinkable<span class="token punctuation">,</span> Timestampable<span class="token punctuation">,</span> Publishable<span class="token punctuation">,</span> models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+    objects <span class="token operator">=</span> PassThroughManager<span class="token punctuation">.</span>for_queryset_class<span class="token punctuation">(</span>BlogPostQuerySet<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Now you can chain custom methods inherited from multiple behaviors.</p>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token operator">>></span><span class="token operator">></span> author_public_posts <span class="token operator">=</span> BlogPost<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>authored_by<span class="token punctuation">(</span><span class="token string">'username1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>published<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token operator">>></span><span class="token operator">></span> <span class="token builtin">type</span><span class="token punctuation">(</span>Blogpost<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>authored_by<span class="token punctuation">(</span><span class="token string">'username1'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">&#x3C;</span><span class="token keyword">class</span> <span class="token string">'example.queryset.BlogPostQuerySet'</span><span class="token operator">></span>
+</code></pre>
+<h4 id="ensulated-business-logic">Ensulated Business Logic</h4>
+<p>What’s more legible and maintainable?</p>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python">BlogPost<span class="token punctuation">.</span>objects<span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>author__username<span class="token operator">=</span><span class="token string">'username1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">filter</span><span class="token punctuation">(</span>publish_date__lte<span class="token operator">=</span>timezone<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<p>or</p>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python">BlogPost<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>authored_by<span class="token punctuation">(</span><span class="token string">'username1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>published<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="testing-behaviors">Testing Behaviors</h2>
+<p>Create matching Behavior tests to validate our models.</p>
+<h4 id="same-benefits-as-for-models">Same Benefits as for Models</h4>
+<ul>
+<li>DRY</li>
+<li>Readability</li>
+<li>Reusability</li>
+<li>Single Responsibility</li>
+</ul>
+<h2 id="unit-test-example">Unit Test Example</h2>
+<p>We can create reusuable test components that validate our behaviors. The list of test mixins then become documentation for the expected role of the model.</p>
+<h4 id="traditional-test">Traditional Test</h4>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>test <span class="token keyword">import</span> TestCase
+
+<span class="token keyword">from</span> <span class="token punctuation">.</span>models <span class="token keyword">import</span> BlogPost
+
+
+<span class="token keyword">class</span> <span class="token class-name">BlogPostTestCase</span><span class="token punctuation">(</span>TestCase<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">test_published_blogpost</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">from</span> django<span class="token punctuation">.</span>utils <span class="token keyword">import</span> timezone
+        blogpost <span class="token operator">=</span> BlogPost<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create<span class="token punctuation">(</span>publish_date<span class="token operator">=</span>timezone<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>assertTrue<span class="token punctuation">(</span>blogpost<span class="token punctuation">.</span>is_published<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>assertIn<span class="token punctuation">(</span>blogpost<span class="token punctuation">,</span> BlogPost<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>published<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<h4 id="converted-to-a-behavior-test-mixin">Converted to a Behavior Test Mixin</h4>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">class</span> <span class="token class-name">BehaviorTestCaseMixin</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">get_model</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token builtin">getattr</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">'model'</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">create_instance</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> NotImplementedError<span class="token punctuation">(</span><span class="token string">"Implement me"</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">PublishableTests</span><span class="token punctuation">(</span>BehaviorTestCaseMixin<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">test_published_blogpost</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">from</span> django<span class="token punctuation">.</span>utils <span class="token keyword">import</span> timezone
+        obj <span class="token operator">=</span> self<span class="token punctuation">.</span>create_instance<span class="token punctuation">(</span>publish_date<span class="token operator">=</span>timezone<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>assertTrue<span class="token punctuation">(</span>obj<span class="token punctuation">.</span>is_published<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>assertIn<span class="token punctuation">(</span>obj<span class="token punctuation">,</span> self<span class="token punctuation">.</span>model<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>published<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<h4 id="the-updated-unit-test">The Updated Unit Test</h4>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>test <span class="token keyword">import</span> TestCase
+
+<span class="token keyword">from</span> <span class="token punctuation">.</span>models <span class="token keyword">import</span> BlogPost
+<span class="token keyword">from</span> <span class="token punctuation">.</span>behaviors<span class="token punctuation">.</span>tests <span class="token keyword">import</span> PublishableTests
+
+
+<span class="token keyword">class</span> <span class="token class-name">BlogPostTestCase</span><span class="token punctuation">(</span>PublishableTests<span class="token punctuation">,</span> TestCase<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    model <span class="token operator">=</span> BlogPost
+
+    <span class="token keyword">def</span> <span class="token function">create_instance</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> BlogPost<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create<span class="token punctuation">(</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+</code></pre>
+<h4 id="combine-with-model-specific-tests">Combine with Model Specific Tests</h4>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">class</span> <span class="token class-name">BlogPostTestCase</span><span class="token punctuation">(</span>PublishableTests<span class="token punctuation">,</span> AuthorableTests<span class="token punctuation">,</span> PermalinkableTests<span class="token punctuation">,</span> TimestampableTests<span class="token punctuation">,</span> TestCase<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    model <span class="token operator">=</span> BlogPost
+
+    <span class="token keyword">def</span> <span class="token function">create_instance</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> BlogPost<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create<span class="token punctuation">(</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">test_blog_specific_functionality</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre>
+<h2 id="additional-model-testing-tips">Additional Model Testing Tips</h2>
+<ul>
+<li>Use <a href="https://github.com/FactoryBoy/factory_boy">Factory Boy</a> for creating test instances/fixtures</li>
+<li>Use Inherited TestCases to validate different scenarios</li>
+</ul>
+<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">class</span> <span class="token class-name">StaffBlogPostTestCase</span><span class="token punctuation">(</span>PublishableTests<span class="token punctuation">,</span> AuthorableTests<span class="token punctuation">,</span> PermalinkableTests<span class="token punctuation">,</span> TimestampableTests<span class="token punctuation">,</span> BaseBlogPostTestCase<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    det setUp<span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>user <span class="token operator">=</span> StaffUser<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">AuthorizedUserBlogPostTestCase</span><span class="token punctuation">(</span>PublishableTests<span class="token punctuation">,</span> AuthorableTests<span class="token punctuation">,</span> PermalinkableTests<span class="token punctuation">,</span> TimestampableTests<span class="token punctuation">,</span> BaseBlogPostTestCase<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    det setUp<span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>user <span class="token operator">=</span> AuthorizedUser<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>(Same behavior expected for Staff or Authorized User)</p>
+<h2 id="reusability">Reusability</h2>
+<h4 id="eventually-build-a-libray-of-behaviors">Eventually Build a Libray of Behaviors</h4>
+<ul>
+<li><em>Permalinkable</em></li>
+<li><em>Publishable</em></li>
+<li><em>Authorable</em></li>
+<li><em>Timestampable</em></li>
+</ul>
+<h4 id="reusable-both-across-our-own-apps-and-shareable-through-the-community">Reusable both across our own Apps and shareable through the Community</h4>
+<p>More Examples</p>
+<ul>
+<li><em>Moderatable</em> - <code>BooleanField('approved')</code></li>
+<li><em>Scheduleable</em> - (<code>start_date</code> and <code>end_date</code> with range queries)</li>
+<li><em>GenericRelatable</em> (the triplet of <code>content_type</code>, <code>object_id</code> and <code>GenericForeignKey</code>)</li>
+<li><em>Orderable</em> - <code>PositiveSmallIntegerField('position')</code></li>
+</ul>
+<h2 id="recommended-app-layout">Recommended App Layout</h2>
+<ul>
+<li>querysets.py</li>
+<li>behaviors.py (uses querysets)</li>
+<li>models.py (composition of querysets and behaviors)</li>
+<li>factories.py (uses models)</li>
+<li>tests.py (uses all, split this into a module for larger apps)</li>
+</ul>
+<p>I usually have a <em>common</em> app that has the shared behaviors, model and behavior test mixins with no dependencies on other apps.</p>
+<h2 id="limitationspitfalls">Limitations/Pitfalls</h2>
+<p>Basically the challenges of Django Model Inheritance.</p>
+<h4 id="leak-abstractions">Leak Abstractions</h4>
+<ul>
+<li>Meta Options don’t implicitly inherit (ordering, etc)</li>
+<li>Manager vs Queryset vs Model (some duplication of logic)</li>
+<li>ModelField options (toggling <code>default=True</code> vs <code>default=False</code>)</li>
+</ul>
+<p>You often need to handle the composition yourself such as merging custom QuerySet classes or combining Meta Options.</p>
+<h2 id="3rd-party-helpers">3rd Party Helpers</h2>
+<p>Don’t reinvent the wheel if you don’t have to.</p>
+<ul>
+<li><a href="https://github.com/django-extensions/django-extensions">Django Extensions</a> (UUIDField, AutoSlugField, etc)</li>
+<li><a href="https://github.com/carljm/django-model-utils">Django Model Utils</a> (already mentioned)</li>
+<li>Filters (<a href="https://github.com/alex/django-filter">django-filter</a>)</li>
+</ul>
+<h4 id="test-helpers">Test Helpers</h4>
+<ul>
+<li>Factories (<a href="https://github.com/FactoryBoy/factory_boy">factory boy</a>)
+Mocking (<a href="http://www.voidspace.org.uk/python/mock/">mock</a>)</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>All the example code from this post is available on a <a href="https://github.com/kevinastone/django-model-behaviors-example">GitHub Project</a>.</p> <section><script>(()=>{var a=(s,i,o)=>{let r=async()=>{await(await s())()},t=typeof i.value=="object"?i.value:void 0,c={rootMargin:t==null?void 0:t.rootMargin},n=new IntersectionObserver(e=>{for(let l of e)if(l.isIntersecting){n.disconnect(),r();break}},c);for(let e of o.children)n.observe(e)};(self.Astro||(self.Astro={})).visible=a;window.dispatchEvent(new Event("astro:visible"));})();</script><astro-island uid="Z9T4gl" prefix="r3" component-url="/assets/Disqus.BzGoIwSE.js" component-export="default" renderer-url="/assets/client.C7vZbhPY.js" props="{&quot;id&quot;:[0,&quot;django-model-behaviors&quot;],&quot;title&quot;:[0,&quot;Django Model Behaviors&quot;],&quot;shortname&quot;:[0,&quot;kevinstone&quot;]}" ssr client="visible" opts="{&quot;name&quot;:&quot;Disqus&quot;,&quot;value&quot;:true}" await-children><div id="disqus_thread"></div><!--astro:end--></astro-island></section> </article>   </div> </main> <footer data-astro-cid-sz7xmlte> <div class="fixed-width">  <p data-astro-cid-sz7xmlte>&copy; Kevin A. Stone 2026, Built with <a href="https://astro.build/" data-astro-cid-sz7xmlte>Astro</a></p>  </div> </footer>  </body></html>
