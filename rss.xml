@@ -661,362 +661,6 @@ proxies to your django code.&lt;/p&gt;
 &lt;p&gt;There&apos;s plenty of additional uses for descriptors. Please leave a comment (or
 tweet, etc) if you have addditional ideas or examples where descriptors can
 improve your model code.&lt;/p&gt;
-</content:encoded></item><item><title>Django Model Behaviors</title><link>https://blog.kevinastone.com/django-model-behaviors/</link><guid isPermaLink="true">https://blog.kevinastone.com/django-model-behaviors/</guid><description>How do we manage the growing complexity of our Django models?  Leverage the behavior pattern to keep them compartmentalized into discrete reusable functionality.</description><pubDate>Sun, 12 May 2013 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;As Django projects scale in complexity beyond the neat and tidy tutorial phase, how can we structure our models to keep things manageable? We&apos;re talking 10s to 100s of models, used across numerous views, templates and tests...&lt;/p&gt;
-&lt;h1&gt;Compositional Model Behaviors&lt;/h1&gt;
-&lt;p&gt;The Compositional Model pattern allows you to manage the complexity of your models through compartmentalization of functionality into manageable components.&lt;/p&gt;
-&lt;h3&gt;The Benefits of Fat Models&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Encapsulation&lt;/li&gt;
-&lt;li&gt;Single Path&lt;/li&gt;
-&lt;li&gt;Separation of Concerns (MVC)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Without the Maintenance Cost&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;DRY&lt;/li&gt;
-&lt;li&gt;Readability&lt;/li&gt;
-&lt;li&gt;Reusability&lt;/li&gt;
-&lt;li&gt;Single Responsibility Principle&lt;/li&gt;
-&lt;li&gt;Testability&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Model Behaviors Example&lt;/h1&gt;
-&lt;h3&gt;Traditional Model&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;class BlogPost(models.Model):
-    title = models.CharField(max_length=255)
-    body = models.TextField()
-    slug = models.SlugField()
-    author = models.ForeignKey(User, related_name=&apos;posts&apos;)
-    create_date = models.DateTimeField(auto_now_add=True)
-    modified_date = models.DateTimeField(auto_now=True)
-    publish_date = models.DateTimeField(null=True)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;Decomposed into Discrete Behaviors&lt;/h3&gt;
-&lt;p&gt;The goal of the behavior pattern is to decompose your models into core, reusable mixins. Create a higher level abstraction than the model field that encapsulates the intended business logic.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;from .behaviors import Authorable, Permalinkable, Timestampable, Publishable
-
-
-class BlogPost(Authorable, Permalinkable, Timestampable, Publishable, models.Model):
-    title = models.CharField(max_length=255)
-    body = models.TextField()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;Reusable Behaviors&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;class Authorable(models.Model):
-    author = models.ForeignKey(User)
-
-    class Meta:
-        abstract = True
-
-
-class Permalinkable(models.Model):
-    slug = models.SlugField()
-
-    class Meta:
-        abstract = True
-
-
-class Publishable(models.Model):
-    publish_date = models.DateTimeField(null=True)
-
-    class Meta:
-        abstract = True
-
-
-class Timestampable(models.Model):
-    create_date = models.DateTimeField(auto_now_add=True)
-    modified_date = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        abstract = True
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1&gt;Models are more than just Fields&lt;/h1&gt;
-&lt;p&gt;Our first cut at common behaviors just captured common fields, but what about everything else models encapsulate?&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Properties&lt;/li&gt;
-&lt;li&gt;Custom Methods&lt;/li&gt;
-&lt;li&gt;Method Overloads (save(), etc...)&lt;/li&gt;
-&lt;li&gt;Validation&lt;/li&gt;
-&lt;li&gt;Querysets&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Capturing Model Methods&lt;/h3&gt;
-&lt;p&gt;Let&apos;s extend our traditional fat model with some of these encapsulated busuiness logic&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class BlogPost(models.Model):
-    ...
-
-    @property
-    def is_published(self):
-        from django.utils import timezone
-        return self.publish_date &amp;lt; timezone.now()
-
-    @models.permalink
-    def get_absolute_url(self):
-        return (&apos;blog-post&apos;, (), {
-            &quot;slug&quot;: self.slug,
-        })
-
-    def pre_save(self, instance, add):
-        from django.utils.text import slugify
-        if not instance.slug:
-            instance.slug = slugify(self.title)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;Behaviors with Methods&lt;/h3&gt;
-&lt;p&gt;In actuality, these same methods can be generalized and extracted into our behavior models&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class Permalinkable(models.Model):
-    slug = models.SlugField()
-
-    class Meta:
-        abstract = True
-
-    def get_url_kwargs(self, **kwargs):
-        kwargs.update(getattr(self, &apos;url_kwargs&apos;, {}))
-        return kwargs
-
-    @models.permalink
-    def get_absolute_url(self):
-        url_kwargs = self.get_url_kwargs(slug=self.slug)
-        return (self.url_name, (), url_kwargs)
-
-    def pre_save(self, instance, add):
-        from django.utils.text import slugify
-        if not instance.slug:
-            instance.slug = slugify(self.slug_source)
-
-
-class Publishable(models.Model):
-    publish_date = models.DateTimeField(null=True)
-
-    class Meta:
-        abstract = True
-
-    objects = PassThroughManager.for_queryset_class(PublishableQuerySet)()
-
-    def publish_on(self, date=None):
-        from django.utils import timezone
-        if not date:
-            date = timezone.now()
-        self.publish_date = date
-        self.save()
-
-    @property
-    def is_published(self):
-        from django.utils import timezone
-        return self.publish_date &amp;lt; timezone.now()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;Wire up the Concrete Model&lt;/h3&gt;
-&lt;p&gt;Since we generalized our behaviors, we need to add some helpers on our concrete models to complete the functionality.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;from .behaviors import Authorable, Permalinkable, Timestampable, Publishable
-
-
-class BlogPost(Authorable, Permalinkable, Timestampable, Publishable, models.Model):
-    title = models.CharField(max_length=255)
-    body = models.TextField()
-
-    url_name = &quot;blog-post&quot;
-
-    @property
-    def slug_source(self):
-        return self.title
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1&gt;Naming Tips&lt;/h1&gt;
-&lt;p&gt;Use &quot;&amp;lt;verb&amp;gt;-able&quot; naming pattern for behaviors. The &quot;-able&quot; suffix ensures the behaviors are readily identifiable. It also prevents yet another use of the word Mixin. (Don&apos;t worry when the naming deviates from decent english such as in the case of &lt;code&gt;OptionallyGenericRelateable&lt;/code&gt;)&lt;/p&gt;
-&lt;h1&gt;Custom Queryset Chaining&lt;/h1&gt;
-&lt;p&gt;We all know to chain queryset methods, but what about adding custom manager methods?&lt;/p&gt;
-&lt;p&gt;Let&apos;s Find Posts from a Given Author (username1) that are Published (publish_date in the past)&lt;/p&gt;
-&lt;h3&gt;QuerySet without Encapsulation&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;from django.utils import timezone
-from .models import BlogPost
-
-&amp;gt;&amp;gt;&amp;gt; BlogPost.objects.filter(author__username=&apos;username1&apos;) \
-.filter(publish_date__lte=timezone.now())
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;Custom Managers&lt;/h3&gt;
-&lt;p&gt;Let&apos;s create methods on a custom Manager to handle the past-publication date and author filters.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class BlogPostManager(models.Manager):
-
-    def published(self):
-        from django.utils import timezone
-        return self.filter(publish_date__lte=timezone.now())
-
-    def authored_by(self, author):
-        return self.filter(author__username=author)
-
-
-class BlogPost(models.Model):
-    ...
-
-    objects = BlogPostManager()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; published_posts = BlogPost.objects.published()
-&amp;gt;&amp;gt;&amp;gt; posts_by_author = BlockPost.objects.authored_by(&apos;username1&apos;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;Chaining our Filters?&lt;/h3&gt;
-&lt;p&gt;What if we try to chain our custom filters?&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; BlogPost.objects.authored_by(&apos;username1&apos;).published()
-AttributeError: &apos;QuerySet&apos; object has no attribute &apos;published&apos;
-
-&amp;gt;&amp;gt;&amp;gt; type(Blogpost.objects.authored_by(&apos;username1&apos;))
-&amp;lt;class &apos;django.db.models.query.QuerySet&apos;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;&lt;em&gt;Solution&lt;/em&gt;: Custom Querysets&lt;/h3&gt;
-&lt;p&gt;Leverage &lt;code&gt;PassthroughManager&lt;/code&gt; from &lt;a href=&quot;https://github.com/carljm/django-model-utils&quot;&gt;django-model-utils&lt;/a&gt; to allow chaining of custom manager methods.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-from model_utils.managers import PassThroughManager
-
-class PublishableQuerySet(models.query.QuerySet):
-    def published(self):
-        from django.utils import timezone
-        return self.filter(publish_date__lte=timezone.now())
-
-
-class AuthorableQuerySet(models.query.QuerySet):
-    def authored_by(self, author):
-        return self.filter(author__username=author)
-
-class BlogPostQuerySet(AuthorableQuerySet, PublishableQuerySet):
-    pass
-
-
-class BlogPost(Authorable, Permalinkable, Timestampable, Publishable, models.Model):
-    ...
-
-    objects = PassThroughManager.for_queryset_class(BlogPostQuerySet)()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now you can chain custom methods inherited from multiple behaviors.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; author_public_posts = BlogPost.objects.authored_by(&apos;username1&apos;).published()
-
-&amp;gt;&amp;gt;&amp;gt; type(Blogpost.objects.authored_by(&apos;username1&apos;))
-&amp;lt;class &apos;example.queryset.BlogPostQuerySet&apos;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;Ensulated Business Logic&lt;/h3&gt;
-&lt;p&gt;What&apos;s more legible and maintainable?&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;BlogPost.objects.filter(author__username=&apos;username1&apos;).filter(publish_date__lte=timezone.now())
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;or&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;BlogPost.objects.authored_by(&apos;username1&apos;).published()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1&gt;Testing Behaviors&lt;/h1&gt;
-&lt;p&gt;Create matching Behavior tests to validate our models.&lt;/p&gt;
-&lt;h3&gt;Same Benefits as for Models&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;DRY&lt;/li&gt;
-&lt;li&gt;Readability&lt;/li&gt;
-&lt;li&gt;Reusability&lt;/li&gt;
-&lt;li&gt;Single Responsibility&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Unit Test Example&lt;/h1&gt;
-&lt;p&gt;We can create reusuable test components that validate our behaviors. The list of test mixins then become documentation for the expected role of the model.&lt;/p&gt;
-&lt;h3&gt;Traditional Test&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;from django.test import TestCase
-
-from .models import BlogPost
-
-
-class BlogPostTestCase(TestCase):
-    def test_published_blogpost(self):
-        from django.utils import timezone
-        blogpost = BlogPost.objects.create(publish_date=timezone.now())
-        self.assertTrue(blogpost.is_published)
-        self.assertIn(blogpost, BlogPost.objects.published())
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;Converted to a Behavior Test Mixin&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;class BehaviorTestCaseMixin(object):
-    def get_model(self):
-            return getattr(self, &apos;model&apos;)
-
-    def create_instance(self, **kwargs):
-        raise NotImplementedError(&quot;Implement me&quot;)
-
-
-class PublishableTests(BehaviorTestCaseMixin):
-    def test_published_blogpost(self):
-        from django.utils import timezone
-        obj = self.create_instance(publish_date=timezone.now())
-        self.assertTrue(obj.is_published)
-        self.assertIn(obj, self.model.objects.published())
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;The Updated Unit Test&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;from django.test import TestCase
-
-from .models import BlogPost
-from .behaviors.tests import PublishableTests
-
-
-class BlogPostTestCase(PublishableTests, TestCase):
-    model = BlogPost
-
-    def create_instance(self, **kwargs):
-        return BlogPost.objects.create(**kwargs)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;Combine with Model Specific Tests&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;class BlogPostTestCase(PublishableTests, AuthorableTests, PermalinkableTests, TimestampableTests, TestCase):
-    model = BlogPost
-
-    def create_instance(self, **kwargs):
-        return BlogPost.objects.create(**kwargs)
-
-    def test_blog_specific_functionality(self):
-        ...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1&gt;Additional Model Testing Tips&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Use &lt;a href=&quot;https://github.com/FactoryBoy/factory_boy&quot;&gt;Factory Boy&lt;/a&gt; for creating test instances/fixtures&lt;/li&gt;
-&lt;li&gt;Use Inherited TestCases to validate different scenarios&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;class StaffBlogPostTestCase(PublishableTests, AuthorableTests, PermalinkableTests, TimestampableTests, BaseBlogPostTestCase):
-    det setUp(self):
-        self.user = StaffUser()
-
-class AuthorizedUserBlogPostTestCase(PublishableTests, AuthorableTests, PermalinkableTests, TimestampableTests, BaseBlogPostTestCase):
-    det setUp(self):
-        self.user = AuthorizedUser()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;(Same behavior expected for Staff or Authorized User)&lt;/p&gt;
-&lt;h1&gt;Reusability&lt;/h1&gt;
-&lt;h3&gt;Eventually Build a Libray of Behaviors&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;Permalinkable&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Publishable&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Authorable&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Timestampable&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Reusable both across our own Apps and shareable through the Community&lt;/h3&gt;
-&lt;p&gt;More Examples&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;Moderatable&lt;/em&gt; - &lt;code&gt;BooleanField(&apos;approved&apos;)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Scheduleable&lt;/em&gt; - (&lt;code&gt;start_date&lt;/code&gt; and &lt;code&gt;end_date&lt;/code&gt; with range queries)&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;GenericRelatable&lt;/em&gt; (the triplet of &lt;code&gt;content_type&lt;/code&gt;, &lt;code&gt;object_id&lt;/code&gt; and &lt;code&gt;GenericForeignKey&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Orderable&lt;/em&gt; - &lt;code&gt;PositiveSmallIntegerField(&apos;position&apos;)&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Recommended App Layout&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;querysets.py&lt;/li&gt;
-&lt;li&gt;behaviors.py (uses querysets)&lt;/li&gt;
-&lt;li&gt;models.py (composition of querysets and behaviors)&lt;/li&gt;
-&lt;li&gt;factories.py (uses models)&lt;/li&gt;
-&lt;li&gt;tests.py (uses all, split this into a module for larger apps)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I usually have a &lt;em&gt;common&lt;/em&gt; app that has the shared behaviors, model and behavior test mixins with no dependencies on other apps.&lt;/p&gt;
-&lt;h1&gt;Limitations/Pitfalls&lt;/h1&gt;
-&lt;p&gt;Basically the challenges of Django Model Inheritance.&lt;/p&gt;
-&lt;h3&gt;Leak Abstractions&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Meta Options don&apos;t implicitly inherit (ordering, etc)&lt;/li&gt;
-&lt;li&gt;Manager vs Queryset vs Model (some duplication of logic)&lt;/li&gt;
-&lt;li&gt;ModelField options (toggling &lt;code&gt;default=True&lt;/code&gt; vs &lt;code&gt;default=False&lt;/code&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;You often need to handle the composition yourself such as merging custom QuerySet classes or combining Meta Options.&lt;/p&gt;
-&lt;h1&gt;3rd Party Helpers&lt;/h1&gt;
-&lt;p&gt;Don&apos;t reinvent the wheel if you don&apos;t have to.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/django-extensions/django-extensions&quot;&gt;Django Extensions&lt;/a&gt; (UUIDField, AutoSlugField, etc)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/carljm/django-model-utils&quot;&gt;Django Model Utils&lt;/a&gt; (already mentioned)&lt;/li&gt;
-&lt;li&gt;Filters (&lt;a href=&quot;https://github.com/alex/django-filter&quot;&gt;django-filter&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Test Helpers&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Factories (&lt;a href=&quot;https://github.com/FactoryBoy/factory_boy&quot;&gt;factory boy&lt;/a&gt;)
-Mocking (&lt;a href=&quot;http://www.voidspace.org.uk/python/mock/&quot;&gt;mock&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Conclusion&lt;/h1&gt;
-&lt;p&gt;All the example code from this post is available on a &lt;a href=&quot;https://github.com/kevinastone/django-model-behaviors-example&quot;&gt;GitHub Project&lt;/a&gt;.&lt;/p&gt;
 </content:encoded></item><item><title>Getting Started with Django Rest Framework and AngularJS</title><link>https://blog.kevinastone.com/django-rest-framework-and-angular-js/</link><guid isPermaLink="true">https://blog.kevinastone.com/django-rest-framework-and-angular-js/</guid><pubDate>Wed, 02 Oct 2013 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;A &lt;a href=&quot;http://en.wikipedia.org/wiki/Representational_state_transfer&quot;&gt;ReSTful API&lt;/a&gt; is becoming a standard component of any modern web application. The &lt;a href=&quot;http://django-rest-framework.org&quot;&gt;Django Rest Framework&lt;/a&gt; is powerful framework for developing ReST endpoints for your Django based project. &lt;a href=&quot;http://angularjs.org&quot;&gt;AngularJS&lt;/a&gt; is modern javascript framework for creating complex web applications within the browser. It focuses on strong separation of concerns (MVC) and dependency injection to encourage creating maintainable (and testable) modules that can be integrated to develop rich client side functionality.&lt;/p&gt;
 &lt;p&gt;In this blog post, I&apos;ll walk through creating a sample project that exposes a ReST API consumed by AngularJS on the client to showcase how to combine the frontend and backend frameworks to simplify creating complex applications. I&apos;ll make heavy use of code examples to demonstrate both the solution and the process and there&apos;s a companion &lt;a href=&quot;https://github.com/kevinastone/django-api-rest-and-angular&quot;&gt;Github project&lt;/a&gt; with all the code.&lt;/p&gt;
 &lt;h1&gt;Let&apos;s Build a Sample Django Project&lt;/h1&gt;
@@ -2191,4 +1835,360 @@ Ran 10 tests in 0.001s
 OK
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ah, so satisfying....&lt;/p&gt;
+</content:encoded></item><item><title>Django Model Behaviors</title><link>https://blog.kevinastone.com/django-model-behaviors/</link><guid isPermaLink="true">https://blog.kevinastone.com/django-model-behaviors/</guid><description>How do we manage the growing complexity of our Django models?  Leverage the behavior pattern to keep them compartmentalized into discrete reusable functionality.</description><pubDate>Sun, 12 May 2013 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;As Django projects scale in complexity beyond the neat and tidy tutorial phase, how can we structure our models to keep things manageable? We&apos;re talking 10s to 100s of models, used across numerous views, templates and tests...&lt;/p&gt;
+&lt;h1&gt;Compositional Model Behaviors&lt;/h1&gt;
+&lt;p&gt;The Compositional Model pattern allows you to manage the complexity of your models through compartmentalization of functionality into manageable components.&lt;/p&gt;
+&lt;h3&gt;The Benefits of Fat Models&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Encapsulation&lt;/li&gt;
+&lt;li&gt;Single Path&lt;/li&gt;
+&lt;li&gt;Separation of Concerns (MVC)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Without the Maintenance Cost&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;DRY&lt;/li&gt;
+&lt;li&gt;Readability&lt;/li&gt;
+&lt;li&gt;Reusability&lt;/li&gt;
+&lt;li&gt;Single Responsibility Principle&lt;/li&gt;
+&lt;li&gt;Testability&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Model Behaviors Example&lt;/h1&gt;
+&lt;h3&gt;Traditional Model&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;class BlogPost(models.Model):
+    title = models.CharField(max_length=255)
+    body = models.TextField()
+    slug = models.SlugField()
+    author = models.ForeignKey(User, related_name=&apos;posts&apos;)
+    create_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
+    publish_date = models.DateTimeField(null=True)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Decomposed into Discrete Behaviors&lt;/h3&gt;
+&lt;p&gt;The goal of the behavior pattern is to decompose your models into core, reusable mixins. Create a higher level abstraction than the model field that encapsulates the intended business logic.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from .behaviors import Authorable, Permalinkable, Timestampable, Publishable
+
+
+class BlogPost(Authorable, Permalinkable, Timestampable, Publishable, models.Model):
+    title = models.CharField(max_length=255)
+    body = models.TextField()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Reusable Behaviors&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;class Authorable(models.Model):
+    author = models.ForeignKey(User)
+
+    class Meta:
+        abstract = True
+
+
+class Permalinkable(models.Model):
+    slug = models.SlugField()
+
+    class Meta:
+        abstract = True
+
+
+class Publishable(models.Model):
+    publish_date = models.DateTimeField(null=True)
+
+    class Meta:
+        abstract = True
+
+
+class Timestampable(models.Model):
+    create_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;Models are more than just Fields&lt;/h1&gt;
+&lt;p&gt;Our first cut at common behaviors just captured common fields, but what about everything else models encapsulate?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Properties&lt;/li&gt;
+&lt;li&gt;Custom Methods&lt;/li&gt;
+&lt;li&gt;Method Overloads (save(), etc...)&lt;/li&gt;
+&lt;li&gt;Validation&lt;/li&gt;
+&lt;li&gt;Querysets&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Capturing Model Methods&lt;/h3&gt;
+&lt;p&gt;Let&apos;s extend our traditional fat model with some of these encapsulated busuiness logic&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class BlogPost(models.Model):
+    ...
+
+    @property
+    def is_published(self):
+        from django.utils import timezone
+        return self.publish_date &amp;lt; timezone.now()
+
+    @models.permalink
+    def get_absolute_url(self):
+        return (&apos;blog-post&apos;, (), {
+            &quot;slug&quot;: self.slug,
+        })
+
+    def pre_save(self, instance, add):
+        from django.utils.text import slugify
+        if not instance.slug:
+            instance.slug = slugify(self.title)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Behaviors with Methods&lt;/h3&gt;
+&lt;p&gt;In actuality, these same methods can be generalized and extracted into our behavior models&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class Permalinkable(models.Model):
+    slug = models.SlugField()
+
+    class Meta:
+        abstract = True
+
+    def get_url_kwargs(self, **kwargs):
+        kwargs.update(getattr(self, &apos;url_kwargs&apos;, {}))
+        return kwargs
+
+    @models.permalink
+    def get_absolute_url(self):
+        url_kwargs = self.get_url_kwargs(slug=self.slug)
+        return (self.url_name, (), url_kwargs)
+
+    def pre_save(self, instance, add):
+        from django.utils.text import slugify
+        if not instance.slug:
+            instance.slug = slugify(self.slug_source)
+
+
+class Publishable(models.Model):
+    publish_date = models.DateTimeField(null=True)
+
+    class Meta:
+        abstract = True
+
+    objects = PassThroughManager.for_queryset_class(PublishableQuerySet)()
+
+    def publish_on(self, date=None):
+        from django.utils import timezone
+        if not date:
+            date = timezone.now()
+        self.publish_date = date
+        self.save()
+
+    @property
+    def is_published(self):
+        from django.utils import timezone
+        return self.publish_date &amp;lt; timezone.now()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Wire up the Concrete Model&lt;/h3&gt;
+&lt;p&gt;Since we generalized our behaviors, we need to add some helpers on our concrete models to complete the functionality.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from .behaviors import Authorable, Permalinkable, Timestampable, Publishable
+
+
+class BlogPost(Authorable, Permalinkable, Timestampable, Publishable, models.Model):
+    title = models.CharField(max_length=255)
+    body = models.TextField()
+
+    url_name = &quot;blog-post&quot;
+
+    @property
+    def slug_source(self):
+        return self.title
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;Naming Tips&lt;/h1&gt;
+&lt;p&gt;Use &quot;&amp;lt;verb&amp;gt;-able&quot; naming pattern for behaviors. The &quot;-able&quot; suffix ensures the behaviors are readily identifiable. It also prevents yet another use of the word Mixin. (Don&apos;t worry when the naming deviates from decent english such as in the case of &lt;code&gt;OptionallyGenericRelateable&lt;/code&gt;)&lt;/p&gt;
+&lt;h1&gt;Custom Queryset Chaining&lt;/h1&gt;
+&lt;p&gt;We all know to chain queryset methods, but what about adding custom manager methods?&lt;/p&gt;
+&lt;p&gt;Let&apos;s Find Posts from a Given Author (username1) that are Published (publish_date in the past)&lt;/p&gt;
+&lt;h3&gt;QuerySet without Encapsulation&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;from django.utils import timezone
+from .models import BlogPost
+
+&amp;gt;&amp;gt;&amp;gt; BlogPost.objects.filter(author__username=&apos;username1&apos;) \
+.filter(publish_date__lte=timezone.now())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Custom Managers&lt;/h3&gt;
+&lt;p&gt;Let&apos;s create methods on a custom Manager to handle the past-publication date and author filters.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class BlogPostManager(models.Manager):
+
+    def published(self):
+        from django.utils import timezone
+        return self.filter(publish_date__lte=timezone.now())
+
+    def authored_by(self, author):
+        return self.filter(author__username=author)
+
+
+class BlogPost(models.Model):
+    ...
+
+    objects = BlogPostManager()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; published_posts = BlogPost.objects.published()
+&amp;gt;&amp;gt;&amp;gt; posts_by_author = BlockPost.objects.authored_by(&apos;username1&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Chaining our Filters?&lt;/h3&gt;
+&lt;p&gt;What if we try to chain our custom filters?&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; BlogPost.objects.authored_by(&apos;username1&apos;).published()
+AttributeError: &apos;QuerySet&apos; object has no attribute &apos;published&apos;
+
+&amp;gt;&amp;gt;&amp;gt; type(Blogpost.objects.authored_by(&apos;username1&apos;))
+&amp;lt;class &apos;django.db.models.query.QuerySet&apos;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;&lt;em&gt;Solution&lt;/em&gt;: Custom Querysets&lt;/h3&gt;
+&lt;p&gt;Leverage &lt;code&gt;PassthroughManager&lt;/code&gt; from &lt;a href=&quot;https://github.com/carljm/django-model-utils&quot;&gt;django-model-utils&lt;/a&gt; to allow chaining of custom manager methods.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+from model_utils.managers import PassThroughManager
+
+class PublishableQuerySet(models.query.QuerySet):
+    def published(self):
+        from django.utils import timezone
+        return self.filter(publish_date__lte=timezone.now())
+
+
+class AuthorableQuerySet(models.query.QuerySet):
+    def authored_by(self, author):
+        return self.filter(author__username=author)
+
+class BlogPostQuerySet(AuthorableQuerySet, PublishableQuerySet):
+    pass
+
+
+class BlogPost(Authorable, Permalinkable, Timestampable, Publishable, models.Model):
+    ...
+
+    objects = PassThroughManager.for_queryset_class(BlogPostQuerySet)()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now you can chain custom methods inherited from multiple behaviors.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; author_public_posts = BlogPost.objects.authored_by(&apos;username1&apos;).published()
+
+&amp;gt;&amp;gt;&amp;gt; type(Blogpost.objects.authored_by(&apos;username1&apos;))
+&amp;lt;class &apos;example.queryset.BlogPostQuerySet&apos;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Ensulated Business Logic&lt;/h3&gt;
+&lt;p&gt;What&apos;s more legible and maintainable?&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;BlogPost.objects.filter(author__username=&apos;username1&apos;).filter(publish_date__lte=timezone.now())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;BlogPost.objects.authored_by(&apos;username1&apos;).published()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;Testing Behaviors&lt;/h1&gt;
+&lt;p&gt;Create matching Behavior tests to validate our models.&lt;/p&gt;
+&lt;h3&gt;Same Benefits as for Models&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;DRY&lt;/li&gt;
+&lt;li&gt;Readability&lt;/li&gt;
+&lt;li&gt;Reusability&lt;/li&gt;
+&lt;li&gt;Single Responsibility&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Unit Test Example&lt;/h1&gt;
+&lt;p&gt;We can create reusuable test components that validate our behaviors. The list of test mixins then become documentation for the expected role of the model.&lt;/p&gt;
+&lt;h3&gt;Traditional Test&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;from django.test import TestCase
+
+from .models import BlogPost
+
+
+class BlogPostTestCase(TestCase):
+    def test_published_blogpost(self):
+        from django.utils import timezone
+        blogpost = BlogPost.objects.create(publish_date=timezone.now())
+        self.assertTrue(blogpost.is_published)
+        self.assertIn(blogpost, BlogPost.objects.published())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Converted to a Behavior Test Mixin&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;class BehaviorTestCaseMixin(object):
+    def get_model(self):
+            return getattr(self, &apos;model&apos;)
+
+    def create_instance(self, **kwargs):
+        raise NotImplementedError(&quot;Implement me&quot;)
+
+
+class PublishableTests(BehaviorTestCaseMixin):
+    def test_published_blogpost(self):
+        from django.utils import timezone
+        obj = self.create_instance(publish_date=timezone.now())
+        self.assertTrue(obj.is_published)
+        self.assertIn(obj, self.model.objects.published())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;The Updated Unit Test&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;from django.test import TestCase
+
+from .models import BlogPost
+from .behaviors.tests import PublishableTests
+
+
+class BlogPostTestCase(PublishableTests, TestCase):
+    model = BlogPost
+
+    def create_instance(self, **kwargs):
+        return BlogPost.objects.create(**kwargs)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Combine with Model Specific Tests&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;class BlogPostTestCase(PublishableTests, AuthorableTests, PermalinkableTests, TimestampableTests, TestCase):
+    model = BlogPost
+
+    def create_instance(self, **kwargs):
+        return BlogPost.objects.create(**kwargs)
+
+    def test_blog_specific_functionality(self):
+        ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;Additional Model Testing Tips&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Use &lt;a href=&quot;https://github.com/FactoryBoy/factory_boy&quot;&gt;Factory Boy&lt;/a&gt; for creating test instances/fixtures&lt;/li&gt;
+&lt;li&gt;Use Inherited TestCases to validate different scenarios&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;class StaffBlogPostTestCase(PublishableTests, AuthorableTests, PermalinkableTests, TimestampableTests, BaseBlogPostTestCase):
+    det setUp(self):
+        self.user = StaffUser()
+
+class AuthorizedUserBlogPostTestCase(PublishableTests, AuthorableTests, PermalinkableTests, TimestampableTests, BaseBlogPostTestCase):
+    det setUp(self):
+        self.user = AuthorizedUser()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;(Same behavior expected for Staff or Authorized User)&lt;/p&gt;
+&lt;h1&gt;Reusability&lt;/h1&gt;
+&lt;h3&gt;Eventually Build a Libray of Behaviors&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Permalinkable&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Publishable&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Authorable&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Timestampable&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Reusable both across our own Apps and shareable through the Community&lt;/h3&gt;
+&lt;p&gt;More Examples&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Moderatable&lt;/em&gt; - &lt;code&gt;BooleanField(&apos;approved&apos;)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Scheduleable&lt;/em&gt; - (&lt;code&gt;start_date&lt;/code&gt; and &lt;code&gt;end_date&lt;/code&gt; with range queries)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;GenericRelatable&lt;/em&gt; (the triplet of &lt;code&gt;content_type&lt;/code&gt;, &lt;code&gt;object_id&lt;/code&gt; and &lt;code&gt;GenericForeignKey&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Orderable&lt;/em&gt; - &lt;code&gt;PositiveSmallIntegerField(&apos;position&apos;)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Recommended App Layout&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;querysets.py&lt;/li&gt;
+&lt;li&gt;behaviors.py (uses querysets)&lt;/li&gt;
+&lt;li&gt;models.py (composition of querysets and behaviors)&lt;/li&gt;
+&lt;li&gt;factories.py (uses models)&lt;/li&gt;
+&lt;li&gt;tests.py (uses all, split this into a module for larger apps)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I usually have a &lt;em&gt;common&lt;/em&gt; app that has the shared behaviors, model and behavior test mixins with no dependencies on other apps.&lt;/p&gt;
+&lt;h1&gt;Limitations/Pitfalls&lt;/h1&gt;
+&lt;p&gt;Basically the challenges of Django Model Inheritance.&lt;/p&gt;
+&lt;h3&gt;Leak Abstractions&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Meta Options don&apos;t implicitly inherit (ordering, etc)&lt;/li&gt;
+&lt;li&gt;Manager vs Queryset vs Model (some duplication of logic)&lt;/li&gt;
+&lt;li&gt;ModelField options (toggling &lt;code&gt;default=True&lt;/code&gt; vs &lt;code&gt;default=False&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You often need to handle the composition yourself such as merging custom QuerySet classes or combining Meta Options.&lt;/p&gt;
+&lt;h1&gt;3rd Party Helpers&lt;/h1&gt;
+&lt;p&gt;Don&apos;t reinvent the wheel if you don&apos;t have to.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/django-extensions/django-extensions&quot;&gt;Django Extensions&lt;/a&gt; (UUIDField, AutoSlugField, etc)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/carljm/django-model-utils&quot;&gt;Django Model Utils&lt;/a&gt; (already mentioned)&lt;/li&gt;
+&lt;li&gt;Filters (&lt;a href=&quot;https://github.com/alex/django-filter&quot;&gt;django-filter&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Test Helpers&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Factories (&lt;a href=&quot;https://github.com/FactoryBoy/factory_boy&quot;&gt;factory boy&lt;/a&gt;)
+Mocking (&lt;a href=&quot;http://www.voidspace.org.uk/python/mock/&quot;&gt;mock&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;All the example code from this post is available on a &lt;a href=&quot;https://github.com/kevinastone/django-model-behaviors-example&quot;&gt;GitHub Project&lt;/a&gt;.&lt;/p&gt;
 </content:encoded></item></channel></rss>
