@@ -1,6 +1,6 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.16.8"><link rel="alternate" type="application/rss+xml" title="Kevin Stone" href="/rss.xml"><link rel="sitemap" href="/sitemap-index.xml"><title>Generate Your Tests</title><link rel="canonical" href="https://blog.kevinastone.com/generator-tests/"><meta name="description" content="Personal blog for Kevin Stone."><meta name="robots" content="index, follow"><meta property="og:title" content="Generate Your Tests"><meta property="og:type" content="article"><meta property="og:image" content><meta property="og:url" content="https://blog.kevinastone.com/generator-tests/"><meta name="twitter:card" content="summary"><meta name="twitter:site" content="@kevinastone"><meta name="keywords"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/assets/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js"></script><style>code[class*=language-],pre[class*=language-]{color:#f8f8f2;background:none;text-shadow:0 1px rgba(0,0,0,.3);font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#272822}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.comment,.token.prolog,.token.doctype,.token.cdata{color:#8292a2}.token.punctuation{color:#f8f8f2}.token.namespace{opacity:.7}.token.property,.token.tag,.token.constant,.token.symbol,.token.deleted{color:#f92672}.token.boolean,.token.number{color:#ae81ff}.token.selector,.token.attr-name,.token.string,.token.char,.token.builtin,.token.inserted{color:#a6e22e}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string,.token.variable{color:#f8f8f2}.token.atrule,.token.attr-value,.token.function,.token.class-name{color:#e6db74}.token.keyword{color:#66d9ef}.token.regex,.token.important{color:#fd971f}.token.important,.token.bold{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.img-wrapper[data-astro-cid-3eui6wlw]{background-color:var(--base);display:flex;position:absolute;overflow:hidden;width:100%;height:100%}.img-wrapper[data-astro-cid-3eui6wlw] .duotone-img{filter:grayscale(100%) contrast(1);mix-blend-mode:multiply;opacity:var(--opacity);object-fit:cover;width:100%;height:100%;display:block}.img-wrapper[data-astro-cid-3eui6wlw]:before{content:"";position:absolute;inset:0;background-color:var(--foreground);mix-blend-mode:overlay;z-index:1;pointer-events:none}/*! tailwindcss v4.1.18 | MIT License | https://tailwindcss.com */@layer properties{@supports (((-webkit-hyphens:none)) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from red r g b)))){*,:before,:after,::backdrop{--tw-font-weight:initial}}}.wrapper[data-astro-cid-vva3ln22]{justify-content:center;align-items:center;width:100%;display:flex;position:relative}.hero[data-astro-cid-vva3ln22]{color:#fff;margin-bottom:var(--spacing-rhythm-1\.5,calc(1.5*var(--spacing-rhythm)));padding-block:var(--spacing-rhythm-2,calc(2*var(--spacing-rhythm)));text-align:center}.hero[data-astro-cid-vva3ln22] h1{margin-top:var(--spacing-rhythm-2,calc(2*var(--spacing-rhythm)));margin-bottom:calc(var(--spacing,.25rem)*8);font-size:var(--text-4xl,2.25rem);line-height:var(--tw-leading,var(--text-4xl--line-height,calc(2.5/2.25)));--tw-font-weight:var(--font-weight-bold,700);font-weight:var(--font-weight-bold,700)}.bg[data-astro-cid-vva3ln22]{z-index:1;object-fit:cover;object-position:center;width:100%;height:100%;position:absolute;inset:0}.content[data-astro-cid-vva3ln22]{z-index:3;position:relative}@property --tw-font-weight{syntax:"*";inherits:false}
-</style>
-<link rel="stylesheet" href="/assets/_id_.2Hneyj82.css"></head> <body> <header class="brand-bg-gradient" data-astro-cid-3ef6ksr2> <div class="navbar" data-astro-cid-3ef6ksr2> <div class="fixed-width">  <div class="row" data-astro-cid-3ef6ksr2> <div class="brand" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2>Kevin Stone</a> </div> <div class="search" data-astro-cid-3ef6ksr2> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z2nfyNG" prefix="r2" component-url="/assets/app.B4Zbbe-O.js" component-export="default" renderer-url="/assets/client.Bfkaqq2T.js" props="{&quot;data-astro-cid-3ef6ksr2&quot;:[0,true]}" ssr client="load" opts="{&quot;name&quot;:&quot;Search&quot;,&quot;value&quot;:true}" await-children><form class="relative w-full m-0"><input class="
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.16.8"><link rel="alternate" type="application/rss+xml" title="Kevin Stone" href="/rss.xml"><link rel="sitemap" href="/sitemap-index.xml"><title>Generate Your Tests</title><link rel="canonical" href="https://blog.kevinastone.com/generator-tests/"><meta name="description" content="Personal blog for Kevin Stone."><meta name="robots" content="index, follow"><meta property="og:title" content="Generate Your Tests"><meta property="og:type" content="article"><meta property="og:image" content><meta property="og:url" content="https://blog.kevinastone.com/generator-tests/"><meta name="twitter:card" content="summary"><meta name="twitter:site" content="@kevinastone"><meta name="keywords"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/assets/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js"></script><link rel="stylesheet" href="/assets/_id_.f4mIkz_k.css">
+<style>.img-wrapper[data-astro-cid-3eui6wlw]{background-color:var(--base);display:flex;position:absolute;overflow:hidden;width:100%;height:100%}.img-wrapper[data-astro-cid-3eui6wlw] .duotone-img{filter:grayscale(100%) contrast(1);mix-blend-mode:multiply;opacity:var(--opacity);object-fit:cover;width:100%;height:100%;display:block}.img-wrapper[data-astro-cid-3eui6wlw]:before{content:"";position:absolute;inset:0;background-color:var(--foreground);mix-blend-mode:overlay;z-index:1;pointer-events:none}/*! tailwindcss v4.1.18 | MIT License | https://tailwindcss.com */@layer properties{@supports (((-webkit-hyphens:none)) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from red r g b)))){*,:before,:after,::backdrop{--tw-font-weight:initial}}}.wrapper[data-astro-cid-vva3ln22]{justify-content:center;align-items:center;width:100%;display:flex;position:relative}.hero[data-astro-cid-vva3ln22]{color:#fff;margin-bottom:var(--spacing-rhythm-1\.5,calc(1.5*var(--spacing-rhythm)));padding-block:var(--spacing-rhythm-2,calc(2*var(--spacing-rhythm)));text-align:center}.hero[data-astro-cid-vva3ln22] h1{margin-top:var(--spacing-rhythm-2,calc(2*var(--spacing-rhythm)));margin-bottom:calc(var(--spacing,.25rem)*8);font-size:var(--text-4xl,2.25rem);line-height:var(--tw-leading,var(--text-4xl--line-height,calc(2.5/2.25)));--tw-font-weight:var(--font-weight-bold,700);font-weight:var(--font-weight-bold,700)}.bg[data-astro-cid-vva3ln22]{z-index:1;object-fit:cover;object-position:center;width:100%;height:100%;position:absolute;inset:0}.content[data-astro-cid-vva3ln22]{z-index:3;position:relative}@property --tw-font-weight{syntax:"*";inherits:false}
+</style></head> <body> <header class="brand-bg-gradient" data-astro-cid-3ef6ksr2> <div class="navbar" data-astro-cid-3ef6ksr2> <div class="fixed-width">  <div class="row" data-astro-cid-3ef6ksr2> <div class="brand" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2>Kevin Stone</a> </div> <div class="search" data-astro-cid-3ef6ksr2> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z2nfyNG" prefix="r2" component-url="/assets/app.B4Zbbe-O.js" component-export="default" renderer-url="/assets/client.Bfkaqq2T.js" props="{&quot;data-astro-cid-3ef6ksr2&quot;:[0,true]}" ssr client="load" opts="{&quot;name&quot;:&quot;Search&quot;,&quot;value&quot;:true}" await-children><form class="relative w-full m-0"><input class="
         w-full
         bg-transparent
         border
@@ -31,47 +31,43 @@ own test generator that does.</p>
 <h2 id="our-test-case">Our Test Case</h2>
 <p>So let’s write a simple application for demonstration. We want to see if our
 input string is alphabetized.</p>
-<pre class="language-python" data-language="python"><code is:raw="" class="language-python">
-<span class="token keyword">def</span> <span class="token function">is_alphabetized</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span> <span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token builtin">sorted</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> value
-
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">def</span><span style="color:#89B4FA;font-style:italic"> is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">value</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#A6E3A1"> ''</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">join</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">sorted</span><span style="color:#9399B2">(</span><span style="color:#CDD6F4">value</span><span style="color:#9399B2">))</span><span style="color:#94E2D5"> ==</span><span style="color:#CDD6F4"> value</span></span>
+<span class="line"></span></code></pre>
 <p>Now let’s write a unit test case to check our implementation:</p>
-<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">import</span> unittest
-
-<span class="token keyword">class</span> <span class="token class-name">IsAlphabetizedTestCase</span><span class="token punctuation">(</span>unittest<span class="token punctuation">.</span>TestCase<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">test_is_alphabetized</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span><span class="token string">'abcd'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">def</span> <span class="token function">test_is_not_alphabetized</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>assertFalse<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span><span class="token string">'zyxw'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#CBA6F7">import</span><span style="color:#CDD6F4"> unittest</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">class</span><span style="color:#F9E2AF;font-style:italic"> IsAlphabetizedTestCase</span><span style="color:#9399B2">(</span><span style="color:#F9E2AF;font-style:italic">unittest</span><span style="color:#9399B2">.</span><span style="color:#F9E2AF;font-style:italic">TestCase</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#CBA6F7">    def</span><span style="color:#89B4FA;font-style:italic"> test_is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#F38BA8;font-style:italic">self</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#F38BA8;font-style:italic">        self</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">assertTrue</span><span style="color:#9399B2">(</span><span style="color:#89B4FA">is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#A6E3A1">'abcd'</span><span style="color:#9399B2">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">    def</span><span style="color:#89B4FA;font-style:italic"> test_is_not_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#F38BA8;font-style:italic">self</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#F38BA8;font-style:italic">        self</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">assertFalse</span><span style="color:#9399B2">(</span><span style="color:#89B4FA">is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#A6E3A1">'zyxw'</span><span style="color:#9399B2">))</span></span></code></pre>
 <p>We can go ahead and run these tests and they should pass:</p>
-<pre class="language-shell" data-language="shell"><code is:raw="" class="language-shell"><span class="token operator">></span> nosetests example
-<span class="token punctuation">..</span>
-----------------------------------------------------------------------
-Ran <span class="token number">2</span> tests <span class="token keyword">in</span> <span class="token number">0</span>.000s
-
-OK
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#94E2D5">></span><span style="color:#CDD6F4"> nosetests example</span></span>
+<span class="line"><span style="color:#F38BA8;font-style:italic">..</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Ran</span><span style="color:#FAB387"> 2</span><span style="color:#A6E3A1"> tests</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> 0.000s</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">OK</span></span></code></pre>
 <p>But as you can see, our two test methods only tested simple examples. What we
 really want to test is our function over a wide range of inputs to ensure our
 implementation is robust.</p>
 <p>At this point, your thought is usually to iterate over a range of cases in your method, and assert that each of them works as desired:</p>
-<pre class="language-python" data-language="python"><code is:raw="" class="language-python">
-<span class="token keyword">class</span> <span class="token class-name">IsAlphabetizedTestCase</span><span class="token punctuation">(</span>unittest<span class="token punctuation">.</span>TestCase<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">test_is_alphabetized</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        inputs <span class="token operator">=</span> <span class="token punctuation">[</span>
-            <span class="token string">''</span><span class="token punctuation">,</span>
-            <span class="token string">'a'</span><span class="token punctuation">,</span>
-            <span class="token string">'aaaaa'</span><span class="token punctuation">,</span>
-            <span class="token string">'ab'</span><span class="token punctuation">,</span>
-            <span class="token string">'abcd'</span><span class="token punctuation">,</span>
-        <span class="token punctuation">]</span>
-        <span class="token keyword">for</span> <span class="token builtin">input</span> <span class="token keyword">in</span> inputs<span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">class</span><span style="color:#F9E2AF;font-style:italic"> IsAlphabetizedTestCase</span><span style="color:#9399B2">(</span><span style="color:#F9E2AF;font-style:italic">unittest</span><span style="color:#9399B2">.</span><span style="color:#F9E2AF;font-style:italic">TestCase</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#CBA6F7">    def</span><span style="color:#89B4FA;font-style:italic"> test_is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#F38BA8;font-style:italic">self</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#CDD6F4">        inputs </span><span style="color:#94E2D5">=</span><span style="color:#9399B2"> [</span></span>
+<span class="line"><span style="color:#A6E3A1">            ''</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">            'a'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">            'aaaaa'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">            'ab'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">            'abcd'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#9399B2">        ]</span></span>
+<span class="line"><span style="color:#CBA6F7">        for</span><span style="color:#FAB387;font-style:italic"> input</span><span style="color:#CBA6F7"> in</span><span style="color:#CDD6F4"> inputs</span><span style="color:#9399B2">:</span></span>
+<span class="line"><span style="color:#F38BA8;font-style:italic">            self</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">assertTrue</span><span style="color:#9399B2">(</span><span style="color:#89B4FA">is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">))</span></span>
+<span class="line"></span></code></pre>
 <p>But you lose the benefit of having a single assertion in your test. You can’t
 isolate your test run to a single input. What if your test requires a setup
 or teardown after each case? You can’t use all the advantages of the test
@@ -79,63 +75,59 @@ framework.</p>
 <p>Let’s say you have this setup and you get bug report that our naive
 implementation above doesn’t work correctly for <code>A-Cert</code> as well as one for <code>iOS</code>. Since we’re big fans
 of TDD, we’ll plug that in our test case of expected inputs:</p>
-<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">from</span> <span class="token punctuation">.</span>alphabetical <span class="token keyword">import</span> is_alphabetized
-
-<span class="token keyword">import</span> unittest
-
-
-<span class="token keyword">class</span> <span class="token class-name">IsAlphabetizedTestCase</span><span class="token punctuation">(</span>unittest<span class="token punctuation">.</span>TestCase<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">test_is_alphabetized</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        inputs <span class="token operator">=</span> <span class="token punctuation">[</span>
-            <span class="token string">''</span><span class="token punctuation">,</span>
-            <span class="token string">'a'</span><span class="token punctuation">,</span>
-            <span class="token string">'aaaaa'</span><span class="token punctuation">,</span>
-            <span class="token string">'ab'</span><span class="token punctuation">,</span>
-            <span class="token string">'abcd'</span><span class="token punctuation">,</span>
-            <span class="token string">'A-Cert'</span><span class="token punctuation">,</span>
-            <span class="token string">'iOS'</span><span class="token punctuation">,</span>
-        <span class="token punctuation">]</span>
-        <span class="token keyword">for</span> <span class="token builtin">input</span> <span class="token keyword">in</span> inputs<span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#CBA6F7">from</span><span style="color:#9399B2"> .</span><span style="color:#CDD6F4">alphabetical </span><span style="color:#CBA6F7">import</span><span style="color:#CDD6F4"> is_alphabetized</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">import</span><span style="color:#CDD6F4"> unittest</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">class</span><span style="color:#F9E2AF;font-style:italic"> IsAlphabetizedTestCase</span><span style="color:#9399B2">(</span><span style="color:#F9E2AF;font-style:italic">unittest</span><span style="color:#9399B2">.</span><span style="color:#F9E2AF;font-style:italic">TestCase</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#CBA6F7">    def</span><span style="color:#89B4FA;font-style:italic"> test_is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#F38BA8;font-style:italic">self</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#CDD6F4">        inputs </span><span style="color:#94E2D5">=</span><span style="color:#9399B2"> [</span></span>
+<span class="line"><span style="color:#A6E3A1">            ''</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">            'a'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">            'aaaaa'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">            'ab'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">            'abcd'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">            'A-Cert'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">            'iOS'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#9399B2">        ]</span></span>
+<span class="line"><span style="color:#CBA6F7">        for</span><span style="color:#FAB387;font-style:italic"> input</span><span style="color:#CBA6F7"> in</span><span style="color:#CDD6F4"> inputs</span><span style="color:#9399B2">:</span></span>
+<span class="line"><span style="color:#F38BA8;font-style:italic">            self</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">assertTrue</span><span style="color:#9399B2">(</span><span style="color:#89B4FA">is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">))</span></span></code></pre>
 <p>And give it a run:</p>
-<pre class="language-shell" data-language="shell"><code is:raw="" class="language-shell"><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
-FAIL: test_is_alphabetized <span class="token punctuation">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="token punctuation">)</span>
-----------------------------------------------------------------------
-Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span>:
-  File <span class="token string">"example/test_alphabetical.py"</span>, line <span class="token number">34</span>, <span class="token keyword">in</span> test_is_alphabetized
-    self.assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span>input<span class="token punctuation">))</span>
-AssertionError: False is not <span class="token boolean">true</span>
-
-----------------------------------------------------------------------
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#A6E3A1">======================================================================</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">FAIL:</span><span style="color:#A6E3A1"> test_is_alphabetized</span><span style="color:#CDD6F4"> (example.test_alphabetical.IsAlphabetizedTestCase)</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Traceback</span><span style="color:#CDD6F4"> (most </span><span style="color:#A6E3A1">recent</span><span style="color:#A6E3A1"> call</span><span style="color:#A6E3A1"> last</span><span style="color:#CDD6F4">):</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  File</span><span style="color:#A6E3A1"> "example/test_alphabetical.py",</span><span style="color:#A6E3A1"> line</span><span style="color:#A6E3A1"> 34,</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> test_is_alphabetized</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">    self.assertTrue(is_alphabetized(input</span><span style="color:#CDD6F4">))</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">AssertionError:</span><span style="color:#A6E3A1"> False</span><span style="color:#A6E3A1"> is</span><span style="color:#A6E3A1"> not</span><span style="color:#FAB387"> true</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span></code></pre>
 <p>But as you can see, we don’t know which test failed. We should update our
 test case to indicate which word failed:</p>
-<pre class="language-python" data-language="python"><code is:raw="" class="language-python">
-    <span class="token keyword">def</span> <span class="token function">test_is_alphabetized</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        inputs <span class="token operator">=</span> <span class="token punctuation">[</span>
-            <span class="token string">''</span><span class="token punctuation">,</span>
-            <span class="token string">'a'</span><span class="token punctuation">,</span>
-            <span class="token string">'aaaaa'</span><span class="token punctuation">,</span>
-            <span class="token string">'ab'</span><span class="token punctuation">,</span>
-            <span class="token string">'abcd'</span><span class="token punctuation">,</span>
-            <span class="token string">'A-Cert'</span><span class="token punctuation">,</span>
-            <span class="token string">'iOS'</span><span class="token punctuation">,</span>
-        <span class="token punctuation">]</span>
-        <span class="token keyword">for</span> <span class="token builtin">input</span> <span class="token keyword">in</span> inputs<span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">u'{} was not considered alphabetized'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-</code></pre>
-<pre class="language-shell" data-language="shell"><code is:raw="" class="language-shell"><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
-FAIL: test_is_alphabetized <span class="token punctuation">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="token punctuation">)</span>
-----------------------------------------------------------------------
-Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span>:
-  File <span class="token string">"example/test_alphabetical.py"</span>, line <span class="token number">46</span>, <span class="token keyword">in</span> test_is_alphabetized
-    self.assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span>input<span class="token punctuation">)</span>, u<span class="token string">'{} was not considered alphabetized'</span>.format<span class="token punctuation">(</span>input<span class="token punctuation">))</span>
-AssertionError: A-Cert was not considered alphabetized
-
-----------------------------------------------------------------------
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">    def</span><span style="color:#89B4FA;font-style:italic"> test_is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#F38BA8;font-style:italic">self</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#CDD6F4">        inputs </span><span style="color:#94E2D5">=</span><span style="color:#9399B2"> [</span></span>
+<span class="line"><span style="color:#A6E3A1">            ''</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">            'a'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">            'aaaaa'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">            'ab'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">            'abcd'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">            'A-Cert'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">            'iOS'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#9399B2">        ]</span></span>
+<span class="line"><span style="color:#CBA6F7">        for</span><span style="color:#FAB387;font-style:italic"> input</span><span style="color:#CBA6F7"> in</span><span style="color:#CDD6F4"> inputs</span><span style="color:#9399B2">:</span></span>
+<span class="line"><span style="color:#F38BA8;font-style:italic">            self</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">assertTrue</span><span style="color:#9399B2">(</span><span style="color:#89B4FA">is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">),</span><span style="color:#A6E3A1;font-style:italic"> u</span><span style="color:#A6E3A1">'</span><span style="color:#F5C2E7">{}</span><span style="color:#A6E3A1"> was not considered alphabetized'</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">format</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">))</span></span>
+<span class="line"></span></code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#A6E3A1">======================================================================</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">FAIL:</span><span style="color:#A6E3A1"> test_is_alphabetized</span><span style="color:#CDD6F4"> (example.test_alphabetical.IsAlphabetizedTestCase)</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Traceback</span><span style="color:#CDD6F4"> (most </span><span style="color:#A6E3A1">recent</span><span style="color:#A6E3A1"> call</span><span style="color:#A6E3A1"> last</span><span style="color:#CDD6F4">):</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  File</span><span style="color:#A6E3A1"> "example/test_alphabetical.py",</span><span style="color:#A6E3A1"> line</span><span style="color:#A6E3A1"> 46,</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> test_is_alphabetized</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">    self.assertTrue(is_alphabetized(input</span><span style="color:#CDD6F4">), u</span><span style="color:#A6E3A1">'{} was not considered alphabetized'</span><span style="color:#CDD6F4">.format(</span><span style="color:#89B4FA;font-style:italic">input</span><span style="color:#CDD6F4">))</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">AssertionError:</span><span style="color:#A6E3A1"> A-Cert</span><span style="color:#A6E3A1"> was</span><span style="color:#A6E3A1"> not</span><span style="color:#A6E3A1"> considered</span><span style="color:#A6E3A1"> alphabetized</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span></code></pre>
 <p>Now we at least know which word failed. But what about <code>iOS</code>? Because the
 test exits on the first failure, we’re unsure if that bug report was valid or
 not.</p>
@@ -143,19 +135,18 @@ not.</p>
 punctuation and capitalization, let’s figure out how to get both inputs to
 fail.</p>
 <p>Instead of looping in our test method, we could instead write separate test methods for each input:</p>
-<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">class</span> <span class="token class-name">IsAlphabetizedTestCase</span><span class="token punctuation">(</span>unittest<span class="token punctuation">.</span>TestCase<span class="token punctuation">)</span><span class="token punctuation">:</span>
-
-    <span class="token keyword">def</span> <span class="token function">test_is_alphabetized_empty</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">def</span> <span class="token function">test_is_alphabetized_a</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">def</span> <span class="token function">test_is_alphabetized_aaaaa</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span><span class="token string">'aaaaa'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#CBA6F7">class</span><span style="color:#F9E2AF;font-style:italic"> IsAlphabetizedTestCase</span><span style="color:#9399B2">(</span><span style="color:#F9E2AF;font-style:italic">unittest</span><span style="color:#9399B2">.</span><span style="color:#F9E2AF;font-style:italic">TestCase</span><span style="color:#9399B2">):</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">    def</span><span style="color:#89B4FA;font-style:italic"> test_is_alphabetized_empty</span><span style="color:#9399B2">(</span><span style="color:#F38BA8;font-style:italic">self</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#F38BA8;font-style:italic">        self</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">assertTrue</span><span style="color:#9399B2">(</span><span style="color:#89B4FA">is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#A6E3A1">''</span><span style="color:#9399B2">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">    def</span><span style="color:#89B4FA;font-style:italic"> test_is_alphabetized_a</span><span style="color:#9399B2">(</span><span style="color:#F38BA8;font-style:italic">self</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#F38BA8;font-style:italic">        self</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">assertTrue</span><span style="color:#9399B2">(</span><span style="color:#89B4FA">is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#A6E3A1">'a'</span><span style="color:#9399B2">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">    def</span><span style="color:#89B4FA;font-style:italic"> test_is_alphabetized_aaaaa</span><span style="color:#9399B2">(</span><span style="color:#F38BA8;font-style:italic">self</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#F38BA8;font-style:italic">        self</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">assertTrue</span><span style="color:#9399B2">(</span><span style="color:#89B4FA">is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#A6E3A1">'aaaaa'</span><span style="color:#9399B2">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CDD6F4">    ...</span></span></code></pre>
 <p>But boy is that exhausting having to repeat ourselves for each test. Instead,
 we’d like to provide the list of inputs as before, but have individual test
 methods generated for us. Nose actually supports this out of the box with
@@ -167,85 +158,81 @@ other test method.</p>
 <p>What we need to do is transform that list of inputs into individual test
 methods. Instead of us manually writing all those test methods, what if we
 wrote a function that wrote the test class for us?</p>
-<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">class</span> <span class="token class-name">IsAlphabetizedTestCase</span><span class="token punctuation">(</span>unittest<span class="token punctuation">.</span>TestCase<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">pass</span>
-
-
-<span class="token keyword">def</span> <span class="token function">add_methods</span><span class="token punctuation">(</span>klass<span class="token punctuation">,</span> <span class="token operator">*</span>inputs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token triple-quoted-string string">"""
-    Take a TestCase and add a test method for each input
-    """</span>
-    <span class="token keyword">for</span> <span class="token builtin">input</span> <span class="token keyword">in</span> inputs<span class="token punctuation">:</span>
-        <span class="token keyword">def</span> <span class="token function">test_input</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">u'{} was not considered alphabetized'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-        klass<span class="token punctuation">.</span>test_input <span class="token operator">=</span> test_input
-
-
-add_methods<span class="token punctuation">(</span>
-    IsAlphabetizedTestCase<span class="token punctuation">,</span>
-    <span class="token string">''</span><span class="token punctuation">,</span>
-    <span class="token string">'a'</span><span class="token punctuation">,</span>
-    <span class="token string">'aaaaa'</span><span class="token punctuation">,</span>
-    <span class="token string">'ab'</span><span class="token punctuation">,</span>
-    <span class="token string">'abcd'</span><span class="token punctuation">,</span>
-    <span class="token string">'A-Cert'</span><span class="token punctuation">,</span>
-    <span class="token string">'iOS'</span><span class="token punctuation">,</span>
-<span class="token punctuation">)</span>
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#CBA6F7">class</span><span style="color:#F9E2AF;font-style:italic"> IsAlphabetizedTestCase</span><span style="color:#9399B2">(</span><span style="color:#F9E2AF;font-style:italic">unittest</span><span style="color:#9399B2">.</span><span style="color:#F9E2AF;font-style:italic">TestCase</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#CBA6F7">    pass</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">def</span><span style="color:#89B4FA;font-style:italic"> add_methods</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">klass</span><span style="color:#9399B2">,</span><span style="color:#94E2D5"> *</span><span style="color:#EBA0AC;font-style:italic">inputs</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#A6E3A1">    """</span></span>
+<span class="line"><span style="color:#A6E3A1">    Take a TestCase and add a test method for each input</span></span>
+<span class="line"><span style="color:#A6E3A1">    """</span></span>
+<span class="line"><span style="color:#CBA6F7">    for</span><span style="color:#FAB387;font-style:italic"> input</span><span style="color:#CBA6F7"> in</span><span style="color:#CDD6F4"> inputs</span><span style="color:#9399B2">:</span></span>
+<span class="line"><span style="color:#CBA6F7">        def</span><span style="color:#89B4FA;font-style:italic"> test_input</span><span style="color:#9399B2">(</span><span style="color:#F38BA8;font-style:italic">self</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#F38BA8;font-style:italic">            self</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">assertTrue</span><span style="color:#9399B2">(</span><span style="color:#89B4FA">is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">),</span><span style="color:#A6E3A1;font-style:italic"> u</span><span style="color:#A6E3A1">'</span><span style="color:#F5C2E7">{}</span><span style="color:#A6E3A1"> was not considered alphabetized'</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">format</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CDD6F4">        klass</span><span style="color:#9399B2">.</span><span style="color:#CDD6F4">test_input </span><span style="color:#94E2D5">=</span><span style="color:#CDD6F4"> test_input</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA">add_methods</span><span style="color:#9399B2">(</span></span>
+<span class="line"><span style="color:#CDD6F4">    IsAlphabetizedTestCase</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">    ''</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">    'a'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">    'aaaaa'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">    'ab'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">    'abcd'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">    'A-Cert'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#A6E3A1">    'iOS'</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#9399B2">)</span></span></code></pre>
 <p>Running those tests, we see:</p>
-<pre class="language-shell" data-language="shell"><code is:raw="" class="language-shell"><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
-FAIL: test_input <span class="token punctuation">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="token punctuation">)</span>
-----------------------------------------------------------------------
-Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span>:
-  File <span class="token string">"example/test_alphabetical.py"</span>, line <span class="token number">16</span>, <span class="token keyword">in</span> test_input
-    self.assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span>input<span class="token punctuation">)</span>, u<span class="token string">'{} was not considered alphabetized'</span>.format<span class="token punctuation">(</span>input<span class="token punctuation">))</span>
-AssertionError: iOS was not considered alphabetized
-
-----------------------------------------------------------------------
-Ran <span class="token number">2</span> tests <span class="token keyword">in</span> <span class="token number">0</span>.001s
-
-FAILED <span class="token punctuation">(</span>errors<span class="token operator">=</span><span class="token number">1</span>, <span class="token assign-left variable">failures</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#A6E3A1">======================================================================</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">FAIL:</span><span style="color:#A6E3A1"> test_input</span><span style="color:#CDD6F4"> (example.test_alphabetical.IsAlphabetizedTestCase)</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Traceback</span><span style="color:#CDD6F4"> (most </span><span style="color:#A6E3A1">recent</span><span style="color:#A6E3A1"> call</span><span style="color:#A6E3A1"> last</span><span style="color:#CDD6F4">):</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  File</span><span style="color:#A6E3A1"> "example/test_alphabetical.py",</span><span style="color:#A6E3A1"> line</span><span style="color:#A6E3A1"> 16,</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> test_input</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">    self.assertTrue(is_alphabetized(input</span><span style="color:#CDD6F4">), u</span><span style="color:#A6E3A1">'{} was not considered alphabetized'</span><span style="color:#CDD6F4">.format(</span><span style="color:#89B4FA;font-style:italic">input</span><span style="color:#CDD6F4">))</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">AssertionError:</span><span style="color:#A6E3A1"> iOS</span><span style="color:#A6E3A1"> was</span><span style="color:#A6E3A1"> not</span><span style="color:#A6E3A1"> considered</span><span style="color:#A6E3A1"> alphabetized</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Ran</span><span style="color:#FAB387"> 2</span><span style="color:#A6E3A1"> tests</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> 0.001s</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">FAILED</span><span style="color:#CDD6F4"> (errors=1, </span><span style="color:#A6E3A1">failures=</span><span style="color:#FAB387">1</span><span style="color:#CDD6F4">)</span></span></code></pre>
 <p>What happened? Shouldn’t there be more tests? Well, we kept clobbering our
 test in the klass. The trick is to give each test a unique name.</p>
 <p>Let’s assign the test to the class using <code>setattr</code> with a custom name:</p>
-<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">def</span> <span class="token function">add_methods</span><span class="token punctuation">(</span>klass<span class="token punctuation">,</span> <span class="token operator">*</span>inputs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token triple-quoted-string string">"""
-    Take a TestCase and add a test method for each input
-    """</span>
-    <span class="token keyword">for</span> <span class="token builtin">input</span> <span class="token keyword">in</span> inputs<span class="token punctuation">:</span>
-        test_name <span class="token operator">=</span> <span class="token string">'test_alphabetical_{}'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span>
-
-        <span class="token keyword">def</span> <span class="token function">test_input</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">u'{} was not considered alphabetized'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-        <span class="token builtin">setattr</span><span class="token punctuation">(</span>klass<span class="token punctuation">,</span> test_name<span class="token punctuation">,</span> test_input<span class="token punctuation">)</span>
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#CBA6F7">def</span><span style="color:#89B4FA;font-style:italic"> add_methods</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">klass</span><span style="color:#9399B2">,</span><span style="color:#94E2D5"> *</span><span style="color:#EBA0AC;font-style:italic">inputs</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#A6E3A1">    """</span></span>
+<span class="line"><span style="color:#A6E3A1">    Take a TestCase and add a test method for each input</span></span>
+<span class="line"><span style="color:#A6E3A1">    """</span></span>
+<span class="line"><span style="color:#CBA6F7">    for</span><span style="color:#FAB387;font-style:italic"> input</span><span style="color:#CBA6F7"> in</span><span style="color:#CDD6F4"> inputs</span><span style="color:#9399B2">:</span></span>
+<span class="line"><span style="color:#CDD6F4">        test_name </span><span style="color:#94E2D5">=</span><span style="color:#A6E3A1"> 'test_alphabetical_</span><span style="color:#F5C2E7">{}</span><span style="color:#A6E3A1">'</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">format</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">        def</span><span style="color:#89B4FA;font-style:italic"> test_input</span><span style="color:#9399B2">(</span><span style="color:#F38BA8;font-style:italic">self</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#F38BA8;font-style:italic">            self</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">assertTrue</span><span style="color:#9399B2">(</span><span style="color:#89B4FA">is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">),</span><span style="color:#A6E3A1;font-style:italic"> u</span><span style="color:#A6E3A1">'</span><span style="color:#F5C2E7">{}</span><span style="color:#A6E3A1"> was not considered alphabetized'</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">format</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#FAB387;font-style:italic">        setattr</span><span style="color:#9399B2">(</span><span style="color:#CDD6F4">klass</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> test_name</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> test_input</span><span style="color:#9399B2">)</span></span></code></pre>
 <p>Now running the tests:</p>
-<pre class="language-shell" data-language="shell"><code is:raw="" class="language-shell"><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
-FAIL: test_alphabetical_ <span class="token punctuation">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="token punctuation">)</span>
-----------------------------------------------------------------------
-Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span>:
-  File <span class="token string">"example/test_alphabetical.py"</span>, line <span class="token number">18</span>, <span class="token keyword">in</span> test_input
-    self.assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span>input<span class="token punctuation">)</span>, u<span class="token string">'{} was not considered alphabetized'</span>.format<span class="token punctuation">(</span>input<span class="token punctuation">))</span>
-AssertionError: iOS was not considered alphabetized
-
-<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
-FAIL: test_alphabetical_A-Cert <span class="token punctuation">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="token punctuation">)</span>
-----------------------------------------------------------------------
-Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span>:
-  File <span class="token string">"example/test_alphabetical.py"</span>, line <span class="token number">18</span>, <span class="token keyword">in</span> test_input
-    self.assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span>input<span class="token punctuation">)</span>, u<span class="token string">'{} was not considered alphabetized'</span>.format<span class="token punctuation">(</span>input<span class="token punctuation">))</span>
-AssertionError: iOS was not considered alphabetized
-
-<span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span>
-
-----------------------------------------------------------------------
-Ran <span class="token number">7</span> tests <span class="token keyword">in</span> <span class="token number">0</span>.001s
-
-FAILED <span class="token punctuation">(</span>failures<span class="token operator">=</span><span class="token number">7</span><span class="token punctuation">)</span>
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#A6E3A1">======================================================================</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">FAIL:</span><span style="color:#A6E3A1"> test_alphabetical_</span><span style="color:#CDD6F4"> (example.test_alphabetical.IsAlphabetizedTestCase)</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Traceback</span><span style="color:#CDD6F4"> (most </span><span style="color:#A6E3A1">recent</span><span style="color:#A6E3A1"> call</span><span style="color:#A6E3A1"> last</span><span style="color:#CDD6F4">):</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  File</span><span style="color:#A6E3A1"> "example/test_alphabetical.py",</span><span style="color:#A6E3A1"> line</span><span style="color:#A6E3A1"> 18,</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> test_input</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">    self.assertTrue(is_alphabetized(input</span><span style="color:#CDD6F4">), u</span><span style="color:#A6E3A1">'{} was not considered alphabetized'</span><span style="color:#CDD6F4">.format(</span><span style="color:#89B4FA;font-style:italic">input</span><span style="color:#CDD6F4">))</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">AssertionError:</span><span style="color:#A6E3A1"> iOS</span><span style="color:#A6E3A1"> was</span><span style="color:#A6E3A1"> not</span><span style="color:#A6E3A1"> considered</span><span style="color:#A6E3A1"> alphabetized</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6E3A1">======================================================================</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">FAIL:</span><span style="color:#A6E3A1"> test_alphabetical_A-Cert</span><span style="color:#CDD6F4"> (example.test_alphabetical.IsAlphabetizedTestCase)</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Traceback</span><span style="color:#CDD6F4"> (most </span><span style="color:#A6E3A1">recent</span><span style="color:#A6E3A1"> call</span><span style="color:#A6E3A1"> last</span><span style="color:#CDD6F4">):</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  File</span><span style="color:#A6E3A1"> "example/test_alphabetical.py",</span><span style="color:#A6E3A1"> line</span><span style="color:#A6E3A1"> 18,</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> test_input</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">    self.assertTrue(is_alphabetized(input</span><span style="color:#CDD6F4">), u</span><span style="color:#A6E3A1">'{} was not considered alphabetized'</span><span style="color:#CDD6F4">.format(</span><span style="color:#89B4FA;font-style:italic">input</span><span style="color:#CDD6F4">))</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">AssertionError:</span><span style="color:#A6E3A1"> iOS</span><span style="color:#A6E3A1"> was</span><span style="color:#A6E3A1"> not</span><span style="color:#A6E3A1"> considered</span><span style="color:#A6E3A1"> alphabetized</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9399B2">[</span><span style="color:#CDD6F4">...</span><span style="color:#9399B2">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Ran</span><span style="color:#FAB387"> 7</span><span style="color:#A6E3A1"> tests</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> 0.001s</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">FAILED</span><span style="color:#CDD6F4"> (failures=7)</span></span></code></pre>
 <p>Why are all tests failing with <code>iOS</code>? It should be running with each variant
 of our input. Turns out this is due to variable scoping in python. In
 python2, there’s only two levels of scoping: function and global. So as we
@@ -254,45 +241,43 @@ test methods are actually evaluated, it’s always equal to the last value
 (<code>iOS</code>).</p>
 <p>To fix that, we’ll define yet another function to capture the value of input
 (remember there’s function scoping):</p>
-<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">def</span> <span class="token function">make_method</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    test_name <span class="token operator">=</span> <span class="token string">'test_alphabetical_{}'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">def</span> <span class="token function">test_input</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">u'{} was not considered alphabetized'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">return</span> test_name<span class="token punctuation">,</span> test_input
-
-
-<span class="token keyword">def</span> <span class="token function">add_methods</span><span class="token punctuation">(</span>klass<span class="token punctuation">,</span> <span class="token operator">*</span>inputs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token triple-quoted-string string">"""
-    Take a TestCase and add a test method for each input
-    """</span>
-    <span class="token keyword">for</span> <span class="token builtin">input</span> <span class="token keyword">in</span> inputs<span class="token punctuation">:</span>
-        test_name<span class="token punctuation">,</span> test_input <span class="token operator">=</span> make_method<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span>
-        <span class="token builtin">setattr</span><span class="token punctuation">(</span>klass<span class="token punctuation">,</span> test_name<span class="token punctuation">,</span> test_input<span class="token punctuation">)</span>
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#CBA6F7">def</span><span style="color:#89B4FA;font-style:italic"> make_method</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">input</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#CDD6F4">    test_name </span><span style="color:#94E2D5">=</span><span style="color:#A6E3A1"> 'test_alphabetical_</span><span style="color:#F5C2E7">{}</span><span style="color:#A6E3A1">'</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">format</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">    def</span><span style="color:#89B4FA;font-style:italic"> test_input</span><span style="color:#9399B2">(</span><span style="color:#F38BA8;font-style:italic">self</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#F38BA8;font-style:italic">        self</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">assertTrue</span><span style="color:#9399B2">(</span><span style="color:#89B4FA">is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">),</span><span style="color:#A6E3A1;font-style:italic"> u</span><span style="color:#A6E3A1">'</span><span style="color:#F5C2E7">{}</span><span style="color:#A6E3A1"> was not considered alphabetized'</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">format</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#CDD6F4"> test_name</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> test_input</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">def</span><span style="color:#89B4FA;font-style:italic"> add_methods</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">klass</span><span style="color:#9399B2">,</span><span style="color:#94E2D5"> *</span><span style="color:#EBA0AC;font-style:italic">inputs</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#A6E3A1">    """</span></span>
+<span class="line"><span style="color:#A6E3A1">    Take a TestCase and add a test method for each input</span></span>
+<span class="line"><span style="color:#A6E3A1">    """</span></span>
+<span class="line"><span style="color:#CBA6F7">    for</span><span style="color:#FAB387;font-style:italic"> input</span><span style="color:#CBA6F7"> in</span><span style="color:#CDD6F4"> inputs</span><span style="color:#9399B2">:</span></span>
+<span class="line"><span style="color:#CDD6F4">        test_name</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> test_input </span><span style="color:#94E2D5">=</span><span style="color:#89B4FA"> make_method</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">)</span></span>
+<span class="line"><span style="color:#FAB387;font-style:italic">        setattr</span><span style="color:#9399B2">(</span><span style="color:#CDD6F4">klass</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> test_name</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> test_input</span><span style="color:#9399B2">)</span></span></code></pre>
 <p>With these changes, we finally get the results we expected:</p>
-<pre class="language-shell" data-language="shell"><code is:raw="" class="language-shell"><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
-FAIL: test_alphabetical_A-Cert <span class="token punctuation">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="token punctuation">)</span>
-----------------------------------------------------------------------
-Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span>:
-  File <span class="token string">"example/test_alphabetical.py"</span>, line <span class="token number">14</span>, <span class="token keyword">in</span> test_input
-    self.assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span>input<span class="token punctuation">)</span>, u<span class="token string">'{} was not considered alphabetized'</span>.format<span class="token punctuation">(</span>input<span class="token punctuation">))</span>
-AssertionError: A-Cert was not considered alphabetized
-
-<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
-FAIL: test_alphabetical_iOS <span class="token punctuation">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="token punctuation">)</span>
-----------------------------------------------------------------------
-Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span>:
-  File <span class="token string">"example/test_alphabetical.py"</span>, line <span class="token number">14</span>, <span class="token keyword">in</span> test_input
-    self.assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span>input<span class="token punctuation">)</span>, u<span class="token string">'{} was not considered alphabetized'</span>.format<span class="token punctuation">(</span>input<span class="token punctuation">))</span>
-AssertionError: iOS was not considered alphabetized
-
-----------------------------------------------------------------------
-Ran <span class="token number">7</span> tests <span class="token keyword">in</span> <span class="token number">0</span>.001s
-
-FAILED <span class="token punctuation">(</span>failures<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#A6E3A1">======================================================================</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">FAIL:</span><span style="color:#A6E3A1"> test_alphabetical_A-Cert</span><span style="color:#CDD6F4"> (example.test_alphabetical.IsAlphabetizedTestCase)</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Traceback</span><span style="color:#CDD6F4"> (most </span><span style="color:#A6E3A1">recent</span><span style="color:#A6E3A1"> call</span><span style="color:#A6E3A1"> last</span><span style="color:#CDD6F4">):</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  File</span><span style="color:#A6E3A1"> "example/test_alphabetical.py",</span><span style="color:#A6E3A1"> line</span><span style="color:#A6E3A1"> 14,</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> test_input</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">    self.assertTrue(is_alphabetized(input</span><span style="color:#CDD6F4">), u</span><span style="color:#A6E3A1">'{} was not considered alphabetized'</span><span style="color:#CDD6F4">.format(</span><span style="color:#89B4FA;font-style:italic">input</span><span style="color:#CDD6F4">))</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">AssertionError:</span><span style="color:#A6E3A1"> A-Cert</span><span style="color:#A6E3A1"> was</span><span style="color:#A6E3A1"> not</span><span style="color:#A6E3A1"> considered</span><span style="color:#A6E3A1"> alphabetized</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6E3A1">======================================================================</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">FAIL:</span><span style="color:#A6E3A1"> test_alphabetical_iOS</span><span style="color:#CDD6F4"> (example.test_alphabetical.IsAlphabetizedTestCase)</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Traceback</span><span style="color:#CDD6F4"> (most </span><span style="color:#A6E3A1">recent</span><span style="color:#A6E3A1"> call</span><span style="color:#A6E3A1"> last</span><span style="color:#CDD6F4">):</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  File</span><span style="color:#A6E3A1"> "example/test_alphabetical.py",</span><span style="color:#A6E3A1"> line</span><span style="color:#A6E3A1"> 14,</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> test_input</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">    self.assertTrue(is_alphabetized(input</span><span style="color:#CDD6F4">), u</span><span style="color:#A6E3A1">'{} was not considered alphabetized'</span><span style="color:#CDD6F4">.format(</span><span style="color:#89B4FA;font-style:italic">input</span><span style="color:#CDD6F4">))</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">AssertionError:</span><span style="color:#A6E3A1"> iOS</span><span style="color:#A6E3A1"> was</span><span style="color:#A6E3A1"> not</span><span style="color:#A6E3A1"> considered</span><span style="color:#A6E3A1"> alphabetized</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Ran</span><span style="color:#FAB387"> 7</span><span style="color:#A6E3A1"> tests</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> 0.001s</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">FAILED</span><span style="color:#CDD6F4"> (failures=2)</span></span></code></pre>
 <p>There you go, we are able to generate N test methods to validate our
 alphabetical function. Adding a new test is as simple as extending the list
 of inputs.</p>
@@ -303,156 +288,148 @@ Let’s improve this so we can use this more universally.</p>
 <p>First thing to notice is that <code>add_methods</code> takes a class as the first
 argument. That looks awfully like a decorator. Let’s make a few tweaks so we
 can use it to decorate our test class:</p>
-<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">def</span> <span class="token function">add_methods</span><span class="token punctuation">(</span><span class="token operator">*</span>inputs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token triple-quoted-string string">"""
-    Take a TestCase and add a test method for each input
-    """</span>
-    <span class="token keyword">def</span> <span class="token function">decorator</span><span class="token punctuation">(</span>klass<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">for</span> <span class="token builtin">input</span> <span class="token keyword">in</span> inputs<span class="token punctuation">:</span>
-            test_name<span class="token punctuation">,</span> test_input <span class="token operator">=</span> make_method<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span>
-            <span class="token builtin">setattr</span><span class="token punctuation">(</span>klass<span class="token punctuation">,</span> test_name<span class="token punctuation">,</span> test_input<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> klass
-
-    <span class="token keyword">return</span> decorator
-
-
-<span class="token decorator annotation punctuation">@add_methods</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'aaaaa'</span><span class="token punctuation">,</span> <span class="token string">'ab'</span><span class="token punctuation">,</span> <span class="token string">'abcd'</span><span class="token punctuation">,</span> <span class="token string">'A-Cert'</span><span class="token punctuation">,</span> <span class="token string">'iOS'</span><span class="token punctuation">)</span>
-<span class="token keyword">class</span> <span class="token class-name">IsAlphabetizedTestCase</span><span class="token punctuation">(</span>unittest<span class="token punctuation">.</span>TestCase<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">pass</span>
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#CBA6F7">def</span><span style="color:#89B4FA;font-style:italic"> add_methods</span><span style="color:#9399B2">(</span><span style="color:#94E2D5">*</span><span style="color:#EBA0AC;font-style:italic">inputs</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#A6E3A1">    """</span></span>
+<span class="line"><span style="color:#A6E3A1">    Take a TestCase and add a test method for each input</span></span>
+<span class="line"><span style="color:#A6E3A1">    """</span></span>
+<span class="line"><span style="color:#CBA6F7">    def</span><span style="color:#89B4FA;font-style:italic"> decorator</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">klass</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#CBA6F7">        for</span><span style="color:#FAB387;font-style:italic"> input</span><span style="color:#CBA6F7"> in</span><span style="color:#CDD6F4"> inputs</span><span style="color:#9399B2">:</span></span>
+<span class="line"><span style="color:#CDD6F4">            test_name</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> test_input </span><span style="color:#94E2D5">=</span><span style="color:#89B4FA"> make_method</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">)</span></span>
+<span class="line"><span style="color:#FAB387;font-style:italic">            setattr</span><span style="color:#9399B2">(</span><span style="color:#CDD6F4">klass</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> test_name</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> test_input</span><span style="color:#9399B2">)</span></span>
+<span class="line"><span style="color:#CBA6F7">        return</span><span style="color:#CDD6F4"> klass</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#CDD6F4"> decorator</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#FAB387;font-style:italic">@add_methods</span><span style="color:#9399B2">(</span><span style="color:#A6E3A1">''</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> 'a'</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> 'aaaaa'</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> 'ab'</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> 'abcd'</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> 'A-Cert'</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> 'iOS'</span><span style="color:#9399B2">)</span></span>
+<span class="line"><span style="color:#CBA6F7">class</span><span style="color:#F9E2AF;font-style:italic"> IsAlphabetizedTestCase</span><span style="color:#9399B2">(</span><span style="color:#F9E2AF;font-style:italic">unittest</span><span style="color:#9399B2">.</span><span style="color:#F9E2AF;font-style:italic">TestCase</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#CBA6F7">    pass</span></span></code></pre>
 <p>All we did was wrap our method generation in a <code>decorator</code> function that takes
 an input class, adds the method and returns the class.</p>
 <h3 id="naming-the-test-functions">Naming the Test Functions</h3>
 <p>if you inspect the test class, even though we have methods under unique names
 based on the input (like <code>test_input_iOS</code>), we can’t reference those class
 names when using nose because they all are still just named <code>test_input</code>:</p>
-<pre class="language-python" data-language="python"><code is:raw="" class="language-python">ipdb<span class="token operator">></span> pp IsAlphabetizedTestCase<span class="token punctuation">.</span>test_alphabetical_iOS
-<span class="token operator">&#x3C;</span>unbound method IsAlphabetizedTestCase<span class="token punctuation">.</span>test_input<span class="token operator">></span>
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#CDD6F4">ipdb</span><span style="color:#94E2D5">></span><span style="color:#CDD6F4"> pp IsAlphabetizedTestCase</span><span style="color:#9399B2">.</span><span style="color:#CDD6F4">test_alphabetical_iOS</span></span>
+<span class="line"><span style="color:#94E2D5">&#x3C;</span><span style="color:#CDD6F4">unbound method IsAlphabetizedTestCase</span><span style="color:#9399B2">.</span><span style="color:#CDD6F4">test_input</span><span style="color:#94E2D5">></span></span></code></pre>
 <p>To fix this, we need to set the <code>__name__</code> attribute on the function when
 generating it. This has the extra benefit of not needing to return a name for
 the assignment, we can just use the same:</p>
-<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">def</span> <span class="token function">make_method</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">test_input</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">u'{} was not considered alphabetized'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-    test_input<span class="token punctuation">.</span>__name__ <span class="token operator">=</span> <span class="token string">'test_alphabetical_{}'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> test_input
-
-
-<span class="token keyword">def</span> <span class="token function">add_methods</span><span class="token punctuation">(</span><span class="token operator">*</span>inputs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token triple-quoted-string string">"""
-    Take a TestCase and add a test method for each input
-    """</span>
-    <span class="token keyword">def</span> <span class="token function">decorator</span><span class="token punctuation">(</span>klass<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">for</span> <span class="token builtin">input</span> <span class="token keyword">in</span> inputs<span class="token punctuation">:</span>
-            test_input <span class="token operator">=</span> make_method<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span>
-            <span class="token builtin">setattr</span><span class="token punctuation">(</span>klass<span class="token punctuation">,</span> test_input<span class="token punctuation">.</span>__name__<span class="token punctuation">,</span> test_input<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> klass
-
-    <span class="token keyword">return</span> decorator
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#CBA6F7">def</span><span style="color:#89B4FA;font-style:italic"> make_method</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">input</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#CBA6F7">    def</span><span style="color:#89B4FA;font-style:italic"> test_input</span><span style="color:#9399B2">(</span><span style="color:#F38BA8;font-style:italic">self</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#F38BA8;font-style:italic">        self</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">assertTrue</span><span style="color:#9399B2">(</span><span style="color:#89B4FA">is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">),</span><span style="color:#A6E3A1;font-style:italic"> u</span><span style="color:#A6E3A1">'</span><span style="color:#F5C2E7">{}</span><span style="color:#A6E3A1"> was not considered alphabetized'</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">format</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CDD6F4">    test_input</span><span style="color:#9399B2">.</span><span style="color:#CDD6F4">__name__ </span><span style="color:#94E2D5">=</span><span style="color:#A6E3A1"> 'test_alphabetical_</span><span style="color:#F5C2E7">{}</span><span style="color:#A6E3A1">'</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">format</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">)</span></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#CDD6F4"> test_input</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">def</span><span style="color:#89B4FA;font-style:italic"> add_methods</span><span style="color:#9399B2">(</span><span style="color:#94E2D5">*</span><span style="color:#EBA0AC;font-style:italic">inputs</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#A6E3A1">    """</span></span>
+<span class="line"><span style="color:#A6E3A1">    Take a TestCase and add a test method for each input</span></span>
+<span class="line"><span style="color:#A6E3A1">    """</span></span>
+<span class="line"><span style="color:#CBA6F7">    def</span><span style="color:#89B4FA;font-style:italic"> decorator</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">klass</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#CBA6F7">        for</span><span style="color:#FAB387;font-style:italic"> input</span><span style="color:#CBA6F7"> in</span><span style="color:#CDD6F4"> inputs</span><span style="color:#9399B2">:</span></span>
+<span class="line"><span style="color:#CDD6F4">            test_input </span><span style="color:#94E2D5">=</span><span style="color:#89B4FA"> make_method</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">)</span></span>
+<span class="line"><span style="color:#FAB387;font-style:italic">            setattr</span><span style="color:#9399B2">(</span><span style="color:#CDD6F4">klass</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> test_input</span><span style="color:#9399B2">.</span><span style="color:#CDD6F4">__name__</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> test_input</span><span style="color:#9399B2">)</span></span>
+<span class="line"><span style="color:#CBA6F7">        return</span><span style="color:#CDD6F4"> klass</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#CDD6F4"> decorator</span></span></code></pre>
 <p>Now with the function named accurately, we can specify a single test method to run:</p>
-<pre class="language-shell" data-language="shell"><code is:raw="" class="language-shell">nosetests example/test_alphabetical.py:IsAlphabetizedTestCase.test_alphabetical_iOS
-F
-<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
-FAIL: test_alphabetical_iOS <span class="token punctuation">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="token punctuation">)</span>
-----------------------------------------------------------------------
-Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span>:
-  File <span class="token string">"example/test_alphabetical.py"</span>, line <span class="token number">8</span>, <span class="token keyword">in</span> test_input
-    self.assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span>input<span class="token punctuation">)</span>, u<span class="token string">'{} was not considered alphabetized'</span>.format<span class="token punctuation">(</span>input<span class="token punctuation">))</span>
-AssertionError: iOS was not considered alphabetized
-
-----------------------------------------------------------------------
-Ran <span class="token number">1</span> <span class="token builtin class-name">test</span> <span class="token keyword">in</span> <span class="token number">0</span>.001s
-
-FAILED <span class="token punctuation">(</span>failures<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#89B4FA;font-style:italic">nosetests</span><span style="color:#A6E3A1"> example/test_alphabetical.py:IsAlphabetizedTestCase.test_alphabetical_iOS</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">F</span></span>
+<span class="line"><span style="color:#A6E3A1">======================================================================</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">FAIL:</span><span style="color:#A6E3A1"> test_alphabetical_iOS</span><span style="color:#CDD6F4"> (example.test_alphabetical.IsAlphabetizedTestCase)</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Traceback</span><span style="color:#CDD6F4"> (most </span><span style="color:#A6E3A1">recent</span><span style="color:#A6E3A1"> call</span><span style="color:#A6E3A1"> last</span><span style="color:#CDD6F4">):</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  File</span><span style="color:#A6E3A1"> "example/test_alphabetical.py",</span><span style="color:#A6E3A1"> line</span><span style="color:#A6E3A1"> 8,</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> test_input</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">    self.assertTrue(is_alphabetized(input</span><span style="color:#CDD6F4">), u</span><span style="color:#A6E3A1">'{} was not considered alphabetized'</span><span style="color:#CDD6F4">.format(</span><span style="color:#89B4FA;font-style:italic">input</span><span style="color:#CDD6F4">))</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">AssertionError:</span><span style="color:#A6E3A1"> iOS</span><span style="color:#A6E3A1"> was</span><span style="color:#A6E3A1"> not</span><span style="color:#A6E3A1"> considered</span><span style="color:#A6E3A1"> alphabetized</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Ran</span><span style="color:#FAB387"> 1</span><span style="color:#A6E3A1"> test</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> 0.001s</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">FAILED</span><span style="color:#CDD6F4"> (failures=1)</span></span></code></pre>
 <h2 id="generalize-the-test-method-factory">Generalize the Test Method Factory</h2>
 <p>So our class decorator works well for our single test method generator. But
 what if we have multiple test methods we want to generate? Remember our
 initial example also included expected False results? Let’s make it so we can
 pass in the test method:</p>
-<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">from</span> <span class="token punctuation">.</span>alphabetical <span class="token keyword">import</span> is_alphabetized
-
-<span class="token keyword">import</span> unittest
-
-
-<span class="token keyword">def</span> <span class="token function">assert_is_alphabetized</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    self<span class="token punctuation">.</span>assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">u'{} was not considered alphabetized'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">def</span> <span class="token function">assert_is_not_alphabetized</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    self<span class="token punctuation">.</span>assertFalse<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">u'{} was considered alphabetized'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">def</span> <span class="token function">make_method</span><span class="token punctuation">(</span>func<span class="token punctuation">,</span> <span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-
-    <span class="token keyword">def</span> <span class="token function">test_input</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        func<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token builtin">input</span><span class="token punctuation">)</span>
-
-    test_input<span class="token punctuation">.</span>__name__ <span class="token operator">=</span> <span class="token string">'test_{func}_{input}'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>func<span class="token operator">=</span>func<span class="token punctuation">.</span>__name__<span class="token punctuation">,</span> <span class="token builtin">input</span><span class="token operator">=</span><span class="token builtin">input</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> test_input
-
-
-<span class="token keyword">def</span> <span class="token function">generate</span><span class="token punctuation">(</span>func<span class="token punctuation">,</span> <span class="token operator">*</span>inputs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token triple-quoted-string string">"""
-    Take a TestCase and add a test method for each input
-    """</span>
-    <span class="token keyword">def</span> <span class="token function">decorator</span><span class="token punctuation">(</span>klass<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">for</span> <span class="token builtin">input</span> <span class="token keyword">in</span> inputs<span class="token punctuation">:</span>
-            test_input <span class="token operator">=</span> make_method<span class="token punctuation">(</span>func<span class="token punctuation">,</span> <span class="token builtin">input</span><span class="token punctuation">)</span>
-            <span class="token builtin">setattr</span><span class="token punctuation">(</span>klass<span class="token punctuation">,</span> test_input<span class="token punctuation">.</span>__name__<span class="token punctuation">,</span> test_input<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> klass
-
-    <span class="token keyword">return</span> decorator
-
-
-<span class="token decorator annotation punctuation">@generate</span><span class="token punctuation">(</span>assert_is_alphabetized<span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'aaaaa'</span><span class="token punctuation">,</span> <span class="token string">'ab'</span><span class="token punctuation">,</span> <span class="token string">'abcd'</span><span class="token punctuation">,</span> <span class="token string">'A-Cert'</span><span class="token punctuation">,</span> <span class="token string">'iOS'</span><span class="token punctuation">)</span>
-<span class="token decorator annotation punctuation">@generate</span><span class="token punctuation">(</span>assert_is_not_alphabetized<span class="token punctuation">,</span> <span class="token string">'ba'</span><span class="token punctuation">,</span> <span class="token string">'aba'</span><span class="token punctuation">,</span> <span class="token string">'bob'</span><span class="token punctuation">)</span>
-<span class="token keyword">class</span> <span class="token class-name">IsAlphabetizedTestCase</span><span class="token punctuation">(</span>unittest<span class="token punctuation">.</span>TestCase<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">pass</span>
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#CBA6F7">from</span><span style="color:#9399B2"> .</span><span style="color:#CDD6F4">alphabetical </span><span style="color:#CBA6F7">import</span><span style="color:#CDD6F4"> is_alphabetized</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">import</span><span style="color:#CDD6F4"> unittest</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">def</span><span style="color:#89B4FA;font-style:italic"> assert_is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#F38BA8;font-style:italic">self</span><span style="color:#9399B2">,</span><span style="color:#EBA0AC;font-style:italic"> input</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#F38BA8;font-style:italic">    self</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">assertTrue</span><span style="color:#9399B2">(</span><span style="color:#89B4FA">is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">),</span><span style="color:#A6E3A1;font-style:italic"> u</span><span style="color:#A6E3A1">'</span><span style="color:#F5C2E7">{}</span><span style="color:#A6E3A1"> was not considered alphabetized'</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">format</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">))</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">def</span><span style="color:#89B4FA;font-style:italic"> assert_is_not_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#F38BA8;font-style:italic">self</span><span style="color:#9399B2">,</span><span style="color:#EBA0AC;font-style:italic"> input</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#F38BA8;font-style:italic">    self</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">assertFalse</span><span style="color:#9399B2">(</span><span style="color:#89B4FA">is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">),</span><span style="color:#A6E3A1;font-style:italic"> u</span><span style="color:#A6E3A1">'</span><span style="color:#F5C2E7">{}</span><span style="color:#A6E3A1"> was considered alphabetized'</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">format</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">))</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">def</span><span style="color:#89B4FA;font-style:italic"> make_method</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">func</span><span style="color:#9399B2">,</span><span style="color:#EBA0AC;font-style:italic"> input</span><span style="color:#9399B2">):</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">    def</span><span style="color:#89B4FA;font-style:italic"> test_input</span><span style="color:#9399B2">(</span><span style="color:#F38BA8;font-style:italic">self</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#89B4FA">        func</span><span style="color:#9399B2">(</span><span style="color:#F38BA8;font-style:italic">self</span><span style="color:#9399B2">,</span><span style="color:#FAB387;font-style:italic"> input</span><span style="color:#9399B2">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CDD6F4">    test_input</span><span style="color:#9399B2">.</span><span style="color:#CDD6F4">__name__ </span><span style="color:#94E2D5">=</span><span style="color:#A6E3A1"> 'test_</span><span style="color:#F5C2E7">{func}</span><span style="color:#A6E3A1">_</span><span style="color:#F5C2E7">{input}</span><span style="color:#A6E3A1">'</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">format</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">func</span><span style="color:#94E2D5">=</span><span style="color:#CDD6F4">func</span><span style="color:#9399B2">.</span><span style="color:#CDD6F4">__name__</span><span style="color:#9399B2">,</span><span style="color:#EBA0AC;font-style:italic"> input</span><span style="color:#94E2D5">=</span><span style="color:#FAB387;font-style:italic">input</span><span style="color:#9399B2">)</span></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#CDD6F4"> test_input</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">def</span><span style="color:#89B4FA;font-style:italic"> generate</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">func</span><span style="color:#9399B2">,</span><span style="color:#94E2D5"> *</span><span style="color:#EBA0AC;font-style:italic">inputs</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#A6E3A1">    """</span></span>
+<span class="line"><span style="color:#A6E3A1">    Take a TestCase and add a test method for each input</span></span>
+<span class="line"><span style="color:#A6E3A1">    """</span></span>
+<span class="line"><span style="color:#CBA6F7">    def</span><span style="color:#89B4FA;font-style:italic"> decorator</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">klass</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#CBA6F7">        for</span><span style="color:#FAB387;font-style:italic"> input</span><span style="color:#CBA6F7"> in</span><span style="color:#CDD6F4"> inputs</span><span style="color:#9399B2">:</span></span>
+<span class="line"><span style="color:#CDD6F4">            test_input </span><span style="color:#94E2D5">=</span><span style="color:#89B4FA"> make_method</span><span style="color:#9399B2">(</span><span style="color:#CDD6F4">func</span><span style="color:#9399B2">,</span><span style="color:#FAB387;font-style:italic"> input</span><span style="color:#9399B2">)</span></span>
+<span class="line"><span style="color:#FAB387;font-style:italic">            setattr</span><span style="color:#9399B2">(</span><span style="color:#CDD6F4">klass</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> test_input</span><span style="color:#9399B2">.</span><span style="color:#CDD6F4">__name__</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> test_input</span><span style="color:#9399B2">)</span></span>
+<span class="line"><span style="color:#CBA6F7">        return</span><span style="color:#CDD6F4"> klass</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#CDD6F4"> decorator</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#FAB387;font-style:italic">@generate</span><span style="color:#9399B2">(</span><span style="color:#CDD6F4">assert_is_alphabetized</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> ''</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> 'a'</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> 'aaaaa'</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> 'ab'</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> 'abcd'</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> 'A-Cert'</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> 'iOS'</span><span style="color:#9399B2">)</span></span>
+<span class="line"><span style="color:#FAB387;font-style:italic">@generate</span><span style="color:#9399B2">(</span><span style="color:#CDD6F4">assert_is_not_alphabetized</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> 'ba'</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> 'aba'</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> 'bob'</span><span style="color:#9399B2">)</span></span>
+<span class="line"><span style="color:#CBA6F7">class</span><span style="color:#F9E2AF;font-style:italic"> IsAlphabetizedTestCase</span><span style="color:#9399B2">(</span><span style="color:#F9E2AF;font-style:italic">unittest</span><span style="color:#9399B2">.</span><span style="color:#F9E2AF;font-style:italic">TestCase</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#CBA6F7">    pass</span></span></code></pre>
 <p>Now we can run all</p>
-<pre class="language-shell" data-language="shell"><code is:raw="" class="language-shell"><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
-FAIL: test_assert_is_alphabetized_A-Cert <span class="token punctuation">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="token punctuation">)</span>
-----------------------------------------------------------------------
-Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span>:
-  File <span class="token string">"example/test_alphabetical.py"</span>, line <span class="token number">17</span>, <span class="token keyword">in</span> test_input
-    func<span class="token punctuation">(</span>self, input<span class="token punctuation">)</span>
-  File <span class="token string">"example/test_alphabetical.py"</span>, line <span class="token number">7</span>, <span class="token keyword">in</span> assert_is_alphabetized
-    self.assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span>input<span class="token punctuation">)</span>, u<span class="token string">'{} was not considered alphabetized'</span>.format<span class="token punctuation">(</span>input<span class="token punctuation">))</span>
-AssertionError: A-Cert was not considered alphabetized
-
-<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
-FAIL: test_assert_is_alphabetized_iOS <span class="token punctuation">(</span>example.test_alphabetical.IsAlphabetizedTestCase<span class="token punctuation">)</span>
-----------------------------------------------------------------------
-Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span>:
-  File <span class="token string">"example/test_alphabetical.py"</span>, line <span class="token number">17</span>, <span class="token keyword">in</span> test_input
-    func<span class="token punctuation">(</span>self, input<span class="token punctuation">)</span>
-  File <span class="token string">"example/test_alphabetical.py"</span>, line <span class="token number">7</span>, <span class="token keyword">in</span> assert_is_alphabetized
-    self.assertTrue<span class="token punctuation">(</span>is_alphabetized<span class="token punctuation">(</span>input<span class="token punctuation">)</span>, u<span class="token string">'{} was not considered alphabetized'</span>.format<span class="token punctuation">(</span>input<span class="token punctuation">))</span>
-AssertionError: iOS was not considered alphabetized
-
-----------------------------------------------------------------------
-Ran <span class="token number">10</span> tests <span class="token keyword">in</span> <span class="token number">0</span>.001s
-
-FAILED <span class="token punctuation">(</span>failures<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#A6E3A1">======================================================================</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">FAIL:</span><span style="color:#A6E3A1"> test_assert_is_alphabetized_A-Cert</span><span style="color:#CDD6F4"> (example.test_alphabetical.IsAlphabetizedTestCase)</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Traceback</span><span style="color:#CDD6F4"> (most </span><span style="color:#A6E3A1">recent</span><span style="color:#A6E3A1"> call</span><span style="color:#A6E3A1"> last</span><span style="color:#CDD6F4">):</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  File</span><span style="color:#A6E3A1"> "example/test_alphabetical.py",</span><span style="color:#A6E3A1"> line</span><span style="color:#A6E3A1"> 17,</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> test_input</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">    func(self,</span><span style="color:#A6E3A1"> input</span><span style="color:#CDD6F4">)</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  File</span><span style="color:#A6E3A1"> "example/test_alphabetical.py",</span><span style="color:#A6E3A1"> line</span><span style="color:#A6E3A1"> 7,</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> assert_is_alphabetized</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">    self.assertTrue(is_alphabetized(input</span><span style="color:#CDD6F4">), u</span><span style="color:#A6E3A1">'{} was not considered alphabetized'</span><span style="color:#CDD6F4">.format(</span><span style="color:#89B4FA;font-style:italic">input</span><span style="color:#CDD6F4">))</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">AssertionError:</span><span style="color:#A6E3A1"> A-Cert</span><span style="color:#A6E3A1"> was</span><span style="color:#A6E3A1"> not</span><span style="color:#A6E3A1"> considered</span><span style="color:#A6E3A1"> alphabetized</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6E3A1">======================================================================</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">FAIL:</span><span style="color:#A6E3A1"> test_assert_is_alphabetized_iOS</span><span style="color:#CDD6F4"> (example.test_alphabetical.IsAlphabetizedTestCase)</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Traceback</span><span style="color:#CDD6F4"> (most </span><span style="color:#A6E3A1">recent</span><span style="color:#A6E3A1"> call</span><span style="color:#A6E3A1"> last</span><span style="color:#CDD6F4">):</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  File</span><span style="color:#A6E3A1"> "example/test_alphabetical.py",</span><span style="color:#A6E3A1"> line</span><span style="color:#A6E3A1"> 17,</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> test_input</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">    func(self,</span><span style="color:#A6E3A1"> input</span><span style="color:#CDD6F4">)</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">  File</span><span style="color:#A6E3A1"> "example/test_alphabetical.py",</span><span style="color:#A6E3A1"> line</span><span style="color:#A6E3A1"> 7,</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> assert_is_alphabetized</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">    self.assertTrue(is_alphabetized(input</span><span style="color:#CDD6F4">), u</span><span style="color:#A6E3A1">'{} was not considered alphabetized'</span><span style="color:#CDD6F4">.format(</span><span style="color:#89B4FA;font-style:italic">input</span><span style="color:#CDD6F4">))</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">AssertionError:</span><span style="color:#A6E3A1"> iOS</span><span style="color:#A6E3A1"> was</span><span style="color:#A6E3A1"> not</span><span style="color:#A6E3A1"> considered</span><span style="color:#A6E3A1"> alphabetized</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Ran</span><span style="color:#FAB387"> 10</span><span style="color:#A6E3A1"> tests</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> 0.001s</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">FAILED</span><span style="color:#CDD6F4"> (failures=2)</span></span></code></pre>
 <h2 id="conclusion">Conclusion</h2>
 <p>Now with these handy generated test methods, we can make the necessary fixes
 to our <code>is_alphabetical</code> function:</p>
-<pre class="language-python" data-language="python"><code is:raw="" class="language-python"><span class="token keyword">import</span> re
-
-<span class="token keyword">def</span> <span class="token function">is_alphabetized</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    value <span class="token operator">=</span> value<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    value <span class="token operator">=</span> re<span class="token punctuation">.</span>sub<span class="token punctuation">(</span><span class="token string">r'[^a-z]'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> <span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token builtin">sorted</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> value
-
-</code></pre>
-<pre class="language-shell" data-language="shell"><code is:raw="" class="language-shell">----------------------------------------------------------------------
-Ran <span class="token number">10</span> tests <span class="token keyword">in</span> <span class="token number">0</span>.001s
-
-OK
-</code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#CBA6F7">import</span><span style="color:#CDD6F4"> re</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#CBA6F7">def</span><span style="color:#89B4FA;font-style:italic"> is_alphabetized</span><span style="color:#9399B2">(</span><span style="color:#EBA0AC;font-style:italic">value</span><span style="color:#9399B2">):</span></span>
+<span class="line"><span style="color:#CDD6F4">    value </span><span style="color:#94E2D5">=</span><span style="color:#CDD6F4"> value</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">lower</span><span style="color:#9399B2">()</span></span>
+<span class="line"><span style="color:#CDD6F4">    value </span><span style="color:#94E2D5">=</span><span style="color:#CDD6F4"> re</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">sub</span><span style="color:#9399B2">(</span><span style="color:#A6E3A1;font-style:italic">r</span><span style="color:#F5C2E7">'</span><span style="color:#9399B2">[</span><span style="color:#94E2D5">^</span><span style="color:#A6E3A1">a-z</span><span style="color:#9399B2">]</span><span style="color:#F5C2E7">'</span><span style="color:#9399B2">,</span><span style="color:#A6E3A1"> ''</span><span style="color:#9399B2">,</span><span style="color:#CDD6F4"> value</span><span style="color:#9399B2">)</span></span>
+<span class="line"><span style="color:#CBA6F7">    return</span><span style="color:#A6E3A1"> ''</span><span style="color:#9399B2">.</span><span style="color:#89B4FA">join</span><span style="color:#9399B2">(</span><span style="color:#FAB387;font-style:italic">sorted</span><span style="color:#9399B2">(</span><span style="color:#CDD6F4">value</span><span style="color:#9399B2">))</span><span style="color:#94E2D5"> ==</span><span style="color:#CDD6F4"> value</span></span>
+<span class="line"></span></code></pre>
+<pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#89B4FA;font-style:italic">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">Ran</span><span style="color:#FAB387"> 10</span><span style="color:#A6E3A1"> tests</span><span style="color:#A6E3A1"> in</span><span style="color:#A6E3A1"> 0.001s</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89B4FA;font-style:italic">OK</span></span></code></pre>
 <p>Ah, so satisfying…</p> <section><script>(()=>{var a=(s,i,o)=>{let r=async()=>{await(await s())()},t=typeof i.value=="object"?i.value:void 0,c={rootMargin:t==null?void 0:t.rootMargin},n=new IntersectionObserver(e=>{for(let l of e)if(l.isIntersecting){n.disconnect(),r();break}},c);for(let e of o.children)n.observe(e)};(self.Astro||(self.Astro={})).visible=a;window.dispatchEvent(new Event("astro:visible"));})();</script><astro-island uid="uEEMB" prefix="r3" component-url="/assets/Disqus.ZXPp-emh.js" component-export="default" renderer-url="/assets/client.Bfkaqq2T.js" props="{&quot;id&quot;:[0,&quot;generator-tests&quot;],&quot;title&quot;:[0,&quot;Generate Your Tests&quot;],&quot;shortname&quot;:[0,&quot;kevinstone&quot;]}" ssr client="visible" opts="{&quot;name&quot;:&quot;Disqus&quot;,&quot;value&quot;:true}" await-children><div id="disqus_thread"></div><!--astro:end--></astro-island></section> </article>   </div> </main> <footer data-astro-cid-sz7xmlte> <div class="fixed-width">  <p data-astro-cid-sz7xmlte>&copy; Kevin A. Stone 2026, Built with <a href="https://astro.build/" data-astro-cid-sz7xmlte>Astro</a></p>  </div> </footer>  </body></html>
