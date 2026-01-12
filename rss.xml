@@ -39,8 +39,7 @@ query = S().filter(is_visible=True).query(_all__query_string=&apos;nike air max&
 &lt;h2&gt;Assembling your Mappings&lt;/h2&gt;
 &lt;p&gt;To define your indexes in &lt;a href=&quot;https://github.com/mozilla/elasticutils&quot;&gt;ElasticUtils&lt;/a&gt;, you define a &lt;code&gt;MappingType&lt;/code&gt; class much like in the Django ORM, you&apos;d define a &lt;code&gt;Model&lt;/code&gt;. This allows you to provide the necessary parameters to ElasticSearch to define the properties of the index and provide helper methods to perform the indexing and construct the searches.&lt;/p&gt;
 &lt;p&gt;The amount of boilerplate code required depends on whether you&apos;re using the base &lt;code&gt;MappingType&lt;/code&gt; or the django-ized version. The django version leverages the Django ORM for retrieval of documents to index as an example.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-from elasticutils.contrib.django import Indexable, MappingType
+&lt;pre&gt;&lt;code&gt;from elasticutils.contrib.django import Indexable, MappingType
 from example.product.models import Product
 
 
@@ -103,8 +102,7 @@ def get_mapping(cls):
 &lt;p&gt;This is just the tip of the iceberg. There&apos;s a multitude of configuration parameters for each field in your mapping.&lt;/p&gt;
 &lt;h2&gt;Extracting Fields during Indexing&lt;/h2&gt;
 &lt;p&gt;After defining the index mapping fields, let&apos;s implement the other un-implemented method, &lt;code&gt;extract_document()&lt;/code&gt;, that captures and prepares your data into the relevant fields. This provides you the control in extracting and transforming your data prior to ingestion by elasticsearch.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-    @classmethod
+&lt;pre&gt;&lt;code&gt;    @classmethod
     def extract_document(cls, obj_id, obj=None):
         if obj is None:
             obj = cls.get_model().get(pk=obj_id)
@@ -121,8 +119,7 @@ def get_mapping(cls):
 &lt;p&gt;Here we&apos;ve extracted several attributes on our model as well the product category from a related model.&lt;/p&gt;
 &lt;h2&gt;Create Indexes&lt;/h2&gt;
 &lt;p&gt;Finally, With all your mappings configured, you can now create or update your indexes using elasticsearch. We simply generate a settings configuration based on the elasticsearch options and elasticutils does the work for us.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-es = ProductMapping.get_es()
+&lt;pre&gt;&lt;code&gt;es = ProductMapping.get_es()
 settings = {}
 
 # Add our mapping configuration to the index settings
@@ -733,8 +730,7 @@ AttributeError: &apos;QuerySet&apos; object has no attribute &apos;published&apo
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;&lt;em&gt;Solution&lt;/em&gt;: Custom Querysets&lt;/h3&gt;
 &lt;p&gt;Leverage &lt;code&gt;PassthroughManager&lt;/code&gt; from &lt;a href=&quot;https://github.com/carljm/django-model-utils&quot;&gt;django-model-utils&lt;/a&gt; to allow chaining of custom manager methods.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-from model_utils.managers import PassThroughManager
+&lt;pre&gt;&lt;code&gt;from model_utils.managers import PassThroughManager
 
 class PublishableQuerySet(models.query.QuerySet):
     def published(self):
@@ -903,8 +899,7 @@ own test generator that does.&lt;/p&gt;
 &lt;h1&gt;Our Test Case&lt;/h1&gt;
 &lt;p&gt;So let&apos;s write a simple application for demonstration. We want to see if our
 input string is alphabetized.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-def is_alphabetized(value):
+&lt;pre&gt;&lt;code&gt;def is_alphabetized(value):
     return &apos;&apos;.join(sorted(value)) == value
 
 &lt;/code&gt;&lt;/pre&gt;
@@ -930,8 +925,7 @@ OK
 really want to test is our function over a wide range of inputs to ensure our
 implementation is robust.&lt;/p&gt;
 &lt;p&gt;At this point, your thought is usually to iterate over a range of cases in your method, and assert that each of them works as desired:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-class IsAlphabetizedTestCase(unittest.TestCase):
+&lt;pre&gt;&lt;code&gt;class IsAlphabetizedTestCase(unittest.TestCase):
     def test_is_alphabetized(self):
         inputs = [
             &apos;&apos;,
@@ -983,8 +977,7 @@ AssertionError: False is not true
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;But as you can see, we don&apos;t know which test failed. We should update our
 test case to indicate which word failed:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-    def test_is_alphabetized(self):
+&lt;pre&gt;&lt;code&gt;    def test_is_alphabetized(self):
         inputs = [
             &apos;&apos;,
             &apos;a&apos;,
