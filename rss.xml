@@ -1,190 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Kevin Stone</title><description>Personal blog for Kevin Stone.</description><link>https://blog.kevinastone.com/</link><item><title>ElasticSearch Bliss with ElasticUtils</title><link>https://blog.kevinastone.com/elasticutils/</link><guid isPermaLink="true">https://blog.kevinastone.com/elasticutils/</guid><pubDate>Mon, 30 Dec 2013 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;While &lt;a href=&quot;http://haystacksearch.org&quot;&gt;Django Haystack&lt;/a&gt; remains the go to recommendation for adding simple search indexing to your Django sites, you can quickly outgrow the simplified &quot;bag of text&quot; data model that haystack attempts to unify the various supported indexing engines. Depending on your use case, you eventually need to customize the tokenizers, scoring, spell correct, autocomplete, etc. These more advanced use cases no longer work commonly across backends forcing you to leave the comfort of Haystack for native APIs for your chosen indexer. &lt;a href=&quot;https://github.com/mozilla/elasticutils&quot;&gt;ElasticUtils&lt;/a&gt; is a newer project from the fine folks at &lt;a href=&quot;http://www.mozilla.org/&quot;&gt;Mozilla&lt;/a&gt; that exposes much of the rich capabilities of &lt;a href=&quot;http://www.elasticsearch.org&quot;&gt;ElasticSearch&lt;/a&gt; in a more elegant, pythonic interface. Much like an &lt;a href=&quot;http://en.wikipedia.org/wiki/Object-relational_mapping&quot;&gt;ORM&lt;/a&gt; can simplify the process of generating SQL for your databsae queries, ElasticUtils provides a streamlined interface for generating search queries for the &lt;a href=&quot;http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl.html&quot;&gt;ElasticSearch Query DSL&lt;/a&gt;.&lt;/p&gt;
-&lt;h1&gt;Why ElasticSearch&lt;/h1&gt;
-&lt;p&gt;Why &lt;a href=&quot;http://www.elasticsearch.org&quot;&gt;ElasticSearch&lt;/a&gt; could really be its own blog post. It&apos;s an immensely powerful search indexing system built on top of the rock solid &lt;a href=&quot;http://lucene.apache.org&quot;&gt;Lucene&lt;/a&gt; library. It features a considerable number of built in query and filter types that allow great range in the type of search conditions allowed. In addition, it has many customizable tokenizers, analyzers and filters to transform your documents into readily identified search results. It&apos;s most frequently compared to &lt;a href=&quot;http://lucene.apache.org/solr/&quot;&gt;SOLR&lt;/a&gt; (which is also Lucene based), which provides similar features. Comparatively, the ReST based API interface of ElasticSearch shifts much of the data definition and configuration to the client, eliminating the burdensome and more rigid system administration challenges of SOLR. Finally, ElasticSearch (as the name gives away), was built with clustering in mind from the start, providing a pathway to sharding your dataset relatively seamlessly for scalability as your system grows.&lt;/p&gt;
-&lt;p&gt;Having said that, ElasticSearch is a powerful, but intricate search system. Don&apos;t expect to be able to bolt it on to a project for a simple full-text search, there&apos;s likely easier solutions on the market. There&apos;s a lot of knobs and parameters, and you&apos;re going to need to make an investment to fully understand the ElasticSearch architecture. ElasticUtils doesn&apos;t really attempt to abstract away those details in the way that &lt;a href=&quot;http://haystacksearch.org&quot;&gt;Django Haystack&lt;/a&gt; may. It does have rather sensible defaults though, that make getting started more of a weekend project than a month long sabbatical.&lt;/p&gt;
-&lt;p&gt;Ironically, ElasticSearch&apos;s flexibility has opened it up to non-traditional indexing use cases such as &lt;a href=&quot;http://logstash.net&quot;&gt;log management&lt;/a&gt;, analytics and data mining.&lt;/p&gt;
-&lt;h1&gt;ElasticUtils in Action&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.elasticsearch.org&quot;&gt;ElasticSearch&lt;/a&gt; allows creating rich, complex search queries using a &lt;a href=&quot;http://en.wikipedia.org/wiki/Representational_state_transfer&quot;&gt;ReSTful API&lt;/a&gt;. Beyond the basic, find documents that match the given terms, you can filter your searches by categories or other criteria (usually called faceting, such as those tag clouds or drill-downs). It features considerable function to develop powerful and specialized search applications.&lt;/p&gt;
-&lt;p&gt;The challenge with many rich, expressive query languages, is how to generate these expressions reliability without a significant maintenance cost to the development team. Enter &lt;a href=&quot;https://github.com/mozilla/elasticutils&quot;&gt;ElasticUtils&lt;/a&gt;, which provides access to most of ElasticSearch&apos;s features, but using a chainable queryset-like expression API for generating search parameters.&lt;/p&gt;
-&lt;p&gt;As a case, here&apos;s an actual (relatively simply) query generated from our search system looking for products related to &quot;nike air max&quot; (a line of shoes):&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;{
-    &quot;filter&quot;: {
-        &quot;term&quot;: {
-            &quot;is_visible&quot;: true
-        }
-    },
-    &quot;query&quot;: {
-        &quot;query_string&quot;: {
-            &quot;default_field&quot;: &quot;_all&quot;,
-            &quot;query&quot;: &quot;nike air max&quot;
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This query, takes our user supplied input: &quot;nike air max&quot;, and generates a &lt;code&gt;query_string&lt;/code&gt; type query against the &lt;code&gt;_all&lt;/code&gt; field (which is a combination of all the indexed fields), and filters the results to ones that are marked public (&lt;code&gt;is_visible = true&lt;/code&gt;).&lt;/p&gt;
-&lt;p&gt;As you can see, ElasticSearch queries are a highly nested JSON structure. Having to manage all these nodes and keep them in order can be complex and error prone.&lt;/p&gt;
-&lt;p&gt;Contrast the same query using ElasticUtils:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;from elasticutils import S
-
-query = S().filter(is_visible=True).query(_all__query_string=&apos;nike air max&apos;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Notice how we can construct the same nested structure, in a chainable fashion that allows us to augment or enhance our existing queries? What if we wanted to restrict our query just to products in our &lt;code&gt;shoes&lt;/code&gt; category?&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;query = query.filter(category=&quot;shoes&quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1&gt;Django Integration&lt;/h1&gt;
-&lt;p&gt;While &lt;a href=&quot;https://github.com/mozilla/elasticutils&quot;&gt;ElasticUtils&lt;/a&gt; is a general python library, it comes with some django integration out of the box to simplify integration. First, if you use the django-ized versions of the API constructs (&lt;code&gt;S&lt;/code&gt;, &lt;code&gt;F&lt;/code&gt;, etc), they will leverage the django settings system for configuration like ElasticSearch server URLs.&lt;/p&gt;
-&lt;p&gt;Second, ElasticUtils has pre-defined &lt;a href=&quot;http://www.celeryproject.org&quot;&gt;Celery&lt;/a&gt; tasks for indexing and un-indexing your django models. This Makes it really straightforward to hook up a &lt;code&gt;post_save&lt;/code&gt; signal handler to your models to have them re-indexed when updated in real-time (vs the traditional overnight batch re-index).&lt;/p&gt;
-&lt;p&gt;The one missing out-of-the-box component for Django is a management command for indexing your data. There&apos;s an incomplete &lt;a href=&quot;https://github.com/mozilla/elasticutils/pull/168&quot;&gt;pull-request&lt;/a&gt; that&apos;s unfortunately been sidelined for now. Hopefully the team behind ElasticUtils can come together and finish it off. In the meantime, you can easily roll your own in less than 100 lines of code.&lt;/p&gt;
-&lt;h1&gt;Indexing your Data&lt;/h1&gt;
-&lt;h2&gt;Assembling your Mappings&lt;/h2&gt;
-&lt;p&gt;To define your indexes in &lt;a href=&quot;https://github.com/mozilla/elasticutils&quot;&gt;ElasticUtils&lt;/a&gt;, you define a &lt;code&gt;MappingType&lt;/code&gt; class much like in the Django ORM, you&apos;d define a &lt;code&gt;Model&lt;/code&gt;. This allows you to provide the necessary parameters to ElasticSearch to define the properties of the index and provide helper methods to perform the indexing and construct the searches.&lt;/p&gt;
-&lt;p&gt;The amount of boilerplate code required depends on whether you&apos;re using the base &lt;code&gt;MappingType&lt;/code&gt; or the django-ized version. The django version leverages the Django ORM for retrieval of documents to index as an example.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;from elasticutils.contrib.django import Indexable, MappingType
-from example.product.models import Product
-
-
-class ProductMapping(MappingType, Indexable):
-    @classmethod
-    def get_index(cls):
-        return &apos;products&apos;
-
-    @classmethod
-    def get_mapping_type_name(cls):
-        return &quot;product&quot;
-
-    @classmethod
-    def get_model(cls):
-        return Product
-
-    @classmethod
-    def get_mapping(cls):
-        return {
-            # TBD
-        }
-
-    @classmethod
-    def extract_document(cls, obj_id, obj=None):
-        return {
-            # TBD
-        }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;There&apos;s a couple methods with TBDs (&lt;code&gt;extract_document()&lt;/code&gt;, &lt;code&gt;get_mapping()&lt;/code&gt;) in there that we&apos;ll revisit individually, but you can see much of this is scaffolding not unlike the &lt;code&gt;Meta&lt;/code&gt; class on Django models (but using classmethods rather than a nested inner class). These configuration methods for the most part just convert their output to JSON and are delivered to ElasticSearch un-modified.&lt;/p&gt;
-&lt;h2&gt;Defining your Data Mapping&lt;/h2&gt;
-&lt;p&gt;The mapping configuration ultimately defines how ElasticSearch stores and indexes your data. It needs to know what fields are available in a given index, and parameters on how to consume and process those fields. If you&apos;ve ever used &lt;a href=&quot;http://lucene.apache.org/solr/&quot;&gt;Apache SOLR&lt;/a&gt;, you&apos;ll be relieved how much easier this configuration is compared to the XML-hell that you&apos;ve surely experienced.&lt;/p&gt;
-&lt;p&gt;For our example Product index, let&apos;s create some common fields that might be associated with a product listing. This isn&apos;t designed to be a full tutorial on elasticsearch, so we&apos;ll have to skip over some of the more complex configuration options around analyzers, tokenizers and other indexing controls.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@classmethod
-def get_mapping(cls):
-    return {
-        &apos;properties&apos;: {
-            &apos;name&apos;: {
-                &apos;type&apos;: &apos;string&apos;,
-            },
-            &apos;description&apos;: {
-                &apos;type&apos;: &apos;string&apos;,
-                &apos;analyzer&apos;: &apos;snowball&apos;,
-            },
-            &apos;sku&apos;: {
-                &apos;type&apos;: &apos;string&apos;,
-                &apos;index&apos;: &apos;not_analyzed&apos;,
-            },
-            &apos;price&apos;: {
-                &apos;type&apos;: &apos;integer&apos;,
-                &apos;index&apos;: &apos;not_analyzed&apos;,
-            },
-            &apos;category&apos;: {
-                &apos;type&apos;: &apos;string&apos;,
-                &apos;index&apos;: &apos;not_analyzed&apos;,
-            },
-        }
-    }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Most of our fields are designated as type &lt;code&gt;string&lt;/code&gt;, while our &lt;em&gt;price&lt;/em&gt; field is an integer (it will be number of cents, so &lt;code&gt;price_in_dollars * 100&lt;/code&gt;). You&apos;ll notice that many of the fields have an attribute &lt;code&gt;analyzer: not_analyzed&lt;/code&gt;. This is an instruction to ElasticSearch not to attempt to parse the field and just leave it as is. Normally, ElasticSearch would split the field into terms based on word boundaries (see the &lt;a href=&quot;http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html&quot;&gt;standard analyzer&lt;/a&gt; which is the default). But for many of the fields, we want to it to be indexed and stored exactly as we delivered (such as for &lt;em&gt;sku&lt;/em&gt; which should be treated as a single term). For &lt;em&gt;description&lt;/em&gt;, we&apos;ve used the &lt;a href=&quot;http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/analysis-snowball-analyzer.html&quot;&gt;snowball analyzer&lt;/a&gt; which provides additional filtering around stop words and stemming. You can also create your own analyzers for more custom indexing of a given field.&lt;/p&gt;
-&lt;p&gt;This is just the tip of the iceberg. There&apos;s a multitude of configuration parameters for each field in your mapping.&lt;/p&gt;
-&lt;h2&gt;Extracting Fields during Indexing&lt;/h2&gt;
-&lt;p&gt;After defining the index mapping fields, let&apos;s implement the other un-implemented method, &lt;code&gt;extract_document()&lt;/code&gt;, that captures and prepares your data into the relevant fields. This provides you the control in extracting and transforming your data prior to ingestion by elasticsearch.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    @classmethod
-    def extract_document(cls, obj_id, obj=None):
-        if obj is None:
-            obj = cls.get_model().get(pk=obj_id)
-
-        return {
-            &apos;id&apos;: obj.pk,
-            &apos;name&apos;: obj.name,
-            &apos;description&apos;: obj.description,
-            &apos;sku&apos;: obj.sku,
-            &apos;price&apos;: int(obj.price * 100),  # Convert to cents
-            &apos;category&apos;: obj.category.name.lower(),   # assuming `category` is a foreign key
-        }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Here we&apos;ve extracted several attributes on our model as well the product category from a related model.&lt;/p&gt;
-&lt;h2&gt;Create Indexes&lt;/h2&gt;
-&lt;p&gt;Finally, With all your mappings configured, you can now create or update your indexes using elasticsearch. We simply generate a settings configuration based on the elasticsearch options and elasticutils does the work for us.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;es = ProductMapping.get_es()
-settings = {}
-
-# Add our mapping configuration to the index settings
-settings.update(ProductMapping.get_mapping())
-
-# TBD: Add index settings here such as custom analyzers
-
-es.create_index(ProductMapping.get_index(), settings=settings)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Finally, let&apos;s leverage the built-in celery tasks to perform the index on our model data. To index a model, you simply provide its primary key to the &lt;code&gt;index_objects&lt;/code&gt; task, which as we&apos;ve defined above in &lt;code&gt;extract_document()&lt;/code&gt;, will pull it from the database and extract the fields for indexing.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;from elasticutils.contrib.django import tasks
-
-
-model_objs = ProductMapping.get_model().objects.all()
-model_ids = list(model_objs.values_list(&apos;pk&apos;, flat=True))
-tasks.index_objects(ProductMapping, model_ids)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1&gt;Searching your Index&lt;/h1&gt;
-&lt;p&gt;Now that we&apos;ve indexed our data, let&apos;s walk through a couple example searches that can demonstration the richness of the ElasticSearch and ElasticUtils query expression API.&lt;/p&gt;
-&lt;p&gt;Couple of notes on the ElasticUtils &lt;code&gt;S&lt;/code&gt; class that handles your search queries. They mimic many of the attributes of Django&apos;s querysets.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;They&apos;re chainable, so you can build up your search parameters through successive calls to add filters, queries and other parameters. Likewise, you can build-up common base search parameters and re-use it for a number of sub-queries that share those common parameters.&lt;/li&gt;
-&lt;li&gt;They&apos;re lazy, so search is only performed when you try to act on the data such as iterating, or calling specific methods like &lt;code&gt;count()&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Search for Matching Terms&lt;/h2&gt;
-&lt;p&gt;Let&apos;s start with the obvious use case, we want to find all products who&apos;s name contains the key search terms. With &lt;a href=&quot;http://lucene.apache.org&quot;&gt;Lucene&lt;/a&gt; based indexes, you usually can choose between a rich user supplied query language like a google search or constructing your search parameters more programatically (or a combination of both). If you&apos;re looking to give your users a free-form input (again, like Google) to specify their search parameters with operators and other modifiers (for example: &lt;code&gt;nike AND &quot;air max&quot; or category:shoes&lt;/code&gt;), you&apos;re like going to want to use ElasticSearch&apos;s &lt;a href=&quot;http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html&quot;&gt;query string query&lt;/a&gt;. On the other hand, if your interface is more data oriented (say a bunch of checkboxes and sliders for controlling the search parameters), you&apos;ll want more exact search controls, you&apos;ll want to leverage ElasticSearch&apos;s &lt;a href=&quot;http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-queries.html&quot;&gt;many other queries&lt;/a&gt; including &lt;code&gt;match&lt;/code&gt;, &lt;code&gt;range&lt;/code&gt; and &lt;code&gt;bool&lt;/code&gt; queries.&lt;/p&gt;
-&lt;p&gt;ElasticUtils takes a cue from django&apos;s querysets and allows you to specify the type of query using a double underscore qualifier. So you can search a given field using a type of query like: &lt;code&gt;[field_name]__[query_type]&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;s = ProductMapping.search()
-results = s.query(name__query_string=&apos;nike &quot;air max&quot; or category:shoes&apos;)
-for result in results:
-    # process the results
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If instead of a free-form query string, we could instead build up a search programmatically using another query type. ElasticSearch provides a &lt;a href=&quot;http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-prefix-query.html&quot;&gt;prefix query&lt;/a&gt; that can provide a good way to autocomplete search terms that begin with the inputted search phrase. They&apos;re are more efficient methods using ngrams, but this will suffice for our example.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;s = ProductMapping.search()
-# Returns all results that start with &apos;nik&apos; in the `shoes` category
-results = s.query(name__prefix=&apos;nik&apos;).filter(category=&apos;shoes&apos;)
-for result in results:
-    # process the results
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Faceted Search Results&lt;/h2&gt;
-&lt;p&gt;One of the powerful features of ElasticSearch is the ability to quickly generate facets based on your indexed fields. If you&apos;re unfamiliar with facets, think of a tag cloud, or a list of categories (such as brands on an e-commerce site) that allow you to drill-down through a list of results to find your intended document.&lt;/p&gt;
-&lt;p&gt;In our example mapping, we have a &lt;em&gt;category&lt;/em&gt; field that would be a nice facet to help our users select which category they&apos;re looking for within our search results. Let&apos;s first search for &quot;nike&quot; and then display a list of categories that have matches for that product name.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;s = ProductMapping.search()
-# Add facet results for `category`
-query = s.query(name=&apos;nike&apos;).facet(&apos;category&apos;)
-facets = query.facet_counts()
-# Let&apos;s iterate the category facets
-for facet in facets[&apos;category&apos;]:
-    category = facet[&apos;term&apos;]
-    count = facet[&apos;count&apos;]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Counts&lt;/h2&gt;
-&lt;p&gt;Sometimes, you don&apos;t necessarily need to retrieve the search results, but just want to display the number of results. Like the Django ORM, you can call &lt;code&gt;.count()&lt;/code&gt; to retrieve the number of results for a given query.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;s = ProductMapping.search()
-# Returns all results that start with &apos;nik&apos; in the `shoes` category
-num_results = s.query(name__prefix=&apos;nik&apos;).filter(category=&apos;shoes&apos;).count()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Again, this is just a sampler. There are numerous ways to search in elasticsearch and these are but a few simple examples. As your queries grow in complexity, the chain-ability of ElasticUtils search API keeps everything manageable.&lt;/p&gt;
-&lt;h1&gt;Conclusion&lt;/h1&gt;
-&lt;p&gt;There you have it, a method to build complex search systems using the powerful &lt;a href=&quot;http://www.elasticsearch.org&quot;&gt;ElasticSearch&lt;/a&gt; systsem in a very pythonic manner. If you&apos;re familiar with the common Django ORM patterns, it&apos;s even better.&lt;/p&gt;
-&lt;p&gt;Hopefully this gives you an overview of the &lt;a href=&quot;https://github.com/mozilla/elasticutils&quot;&gt;ElasticUtils&lt;/a&gt; python library as a powerful interface to the ElasticSearch indexing and retrieval system. Much like the Django ORM makes working with databases easier compared with raw SQL, ElasticUtils makes performing complex search queries easier than building your own ElasticSearch ReST calls.&lt;/p&gt;
-&lt;p&gt;This was really just an introduction, we only showed simple field extraction and text searching. Much of the power of elasticsearch is realized when you start implementing more complex patterns like faceting, range queries, autocomplete, spell correction and suggestions. If there&apos;s interest (leave me a comment), I&apos;ll work on follow-up posts on how to construct those patterns on top of ElasticUtils.&lt;/p&gt;
-&lt;h2&gt;Caveats&lt;/h2&gt;
-&lt;p&gt;I wrote this guide based on ElasticUtils v0.80. The development trunk recently ported from the underlying &lt;a href=&quot;https://github.com/rhec/pyelasticsearch&quot;&gt;pyelasticsearch&lt;/a&gt; library, to the officially blessed, &lt;a href=&quot;https://github.com/elasticsearch/elasticsearch-py&quot;&gt;elasticsearch-py&lt;/a&gt; python bindings. While ElasticUtils for the most part masks the need to understand the underlying library, esoteric or management commands may require direct library access.&lt;/p&gt;
-</content:encoded></item><item><title>Django Model Descriptors</title><link>https://blog.kevinastone.com/django-descriptors/</link><guid isPermaLink="true">https://blog.kevinastone.com/django-descriptors/</guid><description>How we can use Python Descriptors to create enhanced Django model fields that better encapsulate their functionality.  This will help keep our code more modular and reusable and well as cleaner and more maintainable.</description><pubDate>Wed, 26 Nov 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;How can we enhance our Django model fields to act beyond simple database types
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Kevin Stone</title><description>Personal blog for Kevin Stone.</description><link>https://blog.kevinastone.com/</link><item><title>Django Model Descriptors</title><link>https://blog.kevinastone.com/django-descriptors/</link><guid isPermaLink="true">https://blog.kevinastone.com/django-descriptors/</guid><description>How we can use Python Descriptors to create enhanced Django model fields that better encapsulate their functionality.  This will help keep our code more modular and reusable and well as cleaner and more maintainable.</description><pubDate>Wed, 26 Nov 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;How can we enhance our Django model fields to act beyond simple database types
 to encapsulate their associated business logic? Leveraging Python&apos;s
 descriptor protocol, we provide additional processing on retrieval and update
 to allow more re-usable fields.&lt;/p&gt;
@@ -2184,4 +1998,190 @@ app.controller &apos;DeleteController&apos;, [&apos;$scope&apos;, &apos;AuthUser
 &lt;li&gt;Richer Validation&lt;/li&gt;
 &lt;li&gt;Testing&lt;/li&gt;
 &lt;/ul&gt;
+</content:encoded></item><item><title>ElasticSearch Bliss with ElasticUtils</title><link>https://blog.kevinastone.com/elasticutils/</link><guid isPermaLink="true">https://blog.kevinastone.com/elasticutils/</guid><pubDate>Mon, 30 Dec 2013 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;While &lt;a href=&quot;http://haystacksearch.org&quot;&gt;Django Haystack&lt;/a&gt; remains the go to recommendation for adding simple search indexing to your Django sites, you can quickly outgrow the simplified &quot;bag of text&quot; data model that haystack attempts to unify the various supported indexing engines. Depending on your use case, you eventually need to customize the tokenizers, scoring, spell correct, autocomplete, etc. These more advanced use cases no longer work commonly across backends forcing you to leave the comfort of Haystack for native APIs for your chosen indexer. &lt;a href=&quot;https://github.com/mozilla/elasticutils&quot;&gt;ElasticUtils&lt;/a&gt; is a newer project from the fine folks at &lt;a href=&quot;http://www.mozilla.org/&quot;&gt;Mozilla&lt;/a&gt; that exposes much of the rich capabilities of &lt;a href=&quot;http://www.elasticsearch.org&quot;&gt;ElasticSearch&lt;/a&gt; in a more elegant, pythonic interface. Much like an &lt;a href=&quot;http://en.wikipedia.org/wiki/Object-relational_mapping&quot;&gt;ORM&lt;/a&gt; can simplify the process of generating SQL for your databsae queries, ElasticUtils provides a streamlined interface for generating search queries for the &lt;a href=&quot;http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl.html&quot;&gt;ElasticSearch Query DSL&lt;/a&gt;.&lt;/p&gt;
+&lt;h1&gt;Why ElasticSearch&lt;/h1&gt;
+&lt;p&gt;Why &lt;a href=&quot;http://www.elasticsearch.org&quot;&gt;ElasticSearch&lt;/a&gt; could really be its own blog post. It&apos;s an immensely powerful search indexing system built on top of the rock solid &lt;a href=&quot;http://lucene.apache.org&quot;&gt;Lucene&lt;/a&gt; library. It features a considerable number of built in query and filter types that allow great range in the type of search conditions allowed. In addition, it has many customizable tokenizers, analyzers and filters to transform your documents into readily identified search results. It&apos;s most frequently compared to &lt;a href=&quot;http://lucene.apache.org/solr/&quot;&gt;SOLR&lt;/a&gt; (which is also Lucene based), which provides similar features. Comparatively, the ReST based API interface of ElasticSearch shifts much of the data definition and configuration to the client, eliminating the burdensome and more rigid system administration challenges of SOLR. Finally, ElasticSearch (as the name gives away), was built with clustering in mind from the start, providing a pathway to sharding your dataset relatively seamlessly for scalability as your system grows.&lt;/p&gt;
+&lt;p&gt;Having said that, ElasticSearch is a powerful, but intricate search system. Don&apos;t expect to be able to bolt it on to a project for a simple full-text search, there&apos;s likely easier solutions on the market. There&apos;s a lot of knobs and parameters, and you&apos;re going to need to make an investment to fully understand the ElasticSearch architecture. ElasticUtils doesn&apos;t really attempt to abstract away those details in the way that &lt;a href=&quot;http://haystacksearch.org&quot;&gt;Django Haystack&lt;/a&gt; may. It does have rather sensible defaults though, that make getting started more of a weekend project than a month long sabbatical.&lt;/p&gt;
+&lt;p&gt;Ironically, ElasticSearch&apos;s flexibility has opened it up to non-traditional indexing use cases such as &lt;a href=&quot;http://logstash.net&quot;&gt;log management&lt;/a&gt;, analytics and data mining.&lt;/p&gt;
+&lt;h1&gt;ElasticUtils in Action&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.elasticsearch.org&quot;&gt;ElasticSearch&lt;/a&gt; allows creating rich, complex search queries using a &lt;a href=&quot;http://en.wikipedia.org/wiki/Representational_state_transfer&quot;&gt;ReSTful API&lt;/a&gt;. Beyond the basic, find documents that match the given terms, you can filter your searches by categories or other criteria (usually called faceting, such as those tag clouds or drill-downs). It features considerable function to develop powerful and specialized search applications.&lt;/p&gt;
+&lt;p&gt;The challenge with many rich, expressive query languages, is how to generate these expressions reliability without a significant maintenance cost to the development team. Enter &lt;a href=&quot;https://github.com/mozilla/elasticutils&quot;&gt;ElasticUtils&lt;/a&gt;, which provides access to most of ElasticSearch&apos;s features, but using a chainable queryset-like expression API for generating search parameters.&lt;/p&gt;
+&lt;p&gt;As a case, here&apos;s an actual (relatively simply) query generated from our search system looking for products related to &quot;nike air max&quot; (a line of shoes):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{
+    &quot;filter&quot;: {
+        &quot;term&quot;: {
+            &quot;is_visible&quot;: true
+        }
+    },
+    &quot;query&quot;: {
+        &quot;query_string&quot;: {
+            &quot;default_field&quot;: &quot;_all&quot;,
+            &quot;query&quot;: &quot;nike air max&quot;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This query, takes our user supplied input: &quot;nike air max&quot;, and generates a &lt;code&gt;query_string&lt;/code&gt; type query against the &lt;code&gt;_all&lt;/code&gt; field (which is a combination of all the indexed fields), and filters the results to ones that are marked public (&lt;code&gt;is_visible = true&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;As you can see, ElasticSearch queries are a highly nested JSON structure. Having to manage all these nodes and keep them in order can be complex and error prone.&lt;/p&gt;
+&lt;p&gt;Contrast the same query using ElasticUtils:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from elasticutils import S
+
+query = S().filter(is_visible=True).query(_all__query_string=&apos;nike air max&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice how we can construct the same nested structure, in a chainable fashion that allows us to augment or enhance our existing queries? What if we wanted to restrict our query just to products in our &lt;code&gt;shoes&lt;/code&gt; category?&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;query = query.filter(category=&quot;shoes&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;Django Integration&lt;/h1&gt;
+&lt;p&gt;While &lt;a href=&quot;https://github.com/mozilla/elasticutils&quot;&gt;ElasticUtils&lt;/a&gt; is a general python library, it comes with some django integration out of the box to simplify integration. First, if you use the django-ized versions of the API constructs (&lt;code&gt;S&lt;/code&gt;, &lt;code&gt;F&lt;/code&gt;, etc), they will leverage the django settings system for configuration like ElasticSearch server URLs.&lt;/p&gt;
+&lt;p&gt;Second, ElasticUtils has pre-defined &lt;a href=&quot;http://www.celeryproject.org&quot;&gt;Celery&lt;/a&gt; tasks for indexing and un-indexing your django models. This Makes it really straightforward to hook up a &lt;code&gt;post_save&lt;/code&gt; signal handler to your models to have them re-indexed when updated in real-time (vs the traditional overnight batch re-index).&lt;/p&gt;
+&lt;p&gt;The one missing out-of-the-box component for Django is a management command for indexing your data. There&apos;s an incomplete &lt;a href=&quot;https://github.com/mozilla/elasticutils/pull/168&quot;&gt;pull-request&lt;/a&gt; that&apos;s unfortunately been sidelined for now. Hopefully the team behind ElasticUtils can come together and finish it off. In the meantime, you can easily roll your own in less than 100 lines of code.&lt;/p&gt;
+&lt;h1&gt;Indexing your Data&lt;/h1&gt;
+&lt;h2&gt;Assembling your Mappings&lt;/h2&gt;
+&lt;p&gt;To define your indexes in &lt;a href=&quot;https://github.com/mozilla/elasticutils&quot;&gt;ElasticUtils&lt;/a&gt;, you define a &lt;code&gt;MappingType&lt;/code&gt; class much like in the Django ORM, you&apos;d define a &lt;code&gt;Model&lt;/code&gt;. This allows you to provide the necessary parameters to ElasticSearch to define the properties of the index and provide helper methods to perform the indexing and construct the searches.&lt;/p&gt;
+&lt;p&gt;The amount of boilerplate code required depends on whether you&apos;re using the base &lt;code&gt;MappingType&lt;/code&gt; or the django-ized version. The django version leverages the Django ORM for retrieval of documents to index as an example.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from elasticutils.contrib.django import Indexable, MappingType
+from example.product.models import Product
+
+
+class ProductMapping(MappingType, Indexable):
+    @classmethod
+    def get_index(cls):
+        return &apos;products&apos;
+
+    @classmethod
+    def get_mapping_type_name(cls):
+        return &quot;product&quot;
+
+    @classmethod
+    def get_model(cls):
+        return Product
+
+    @classmethod
+    def get_mapping(cls):
+        return {
+            # TBD
+        }
+
+    @classmethod
+    def extract_document(cls, obj_id, obj=None):
+        return {
+            # TBD
+        }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There&apos;s a couple methods with TBDs (&lt;code&gt;extract_document()&lt;/code&gt;, &lt;code&gt;get_mapping()&lt;/code&gt;) in there that we&apos;ll revisit individually, but you can see much of this is scaffolding not unlike the &lt;code&gt;Meta&lt;/code&gt; class on Django models (but using classmethods rather than a nested inner class). These configuration methods for the most part just convert their output to JSON and are delivered to ElasticSearch un-modified.&lt;/p&gt;
+&lt;h2&gt;Defining your Data Mapping&lt;/h2&gt;
+&lt;p&gt;The mapping configuration ultimately defines how ElasticSearch stores and indexes your data. It needs to know what fields are available in a given index, and parameters on how to consume and process those fields. If you&apos;ve ever used &lt;a href=&quot;http://lucene.apache.org/solr/&quot;&gt;Apache SOLR&lt;/a&gt;, you&apos;ll be relieved how much easier this configuration is compared to the XML-hell that you&apos;ve surely experienced.&lt;/p&gt;
+&lt;p&gt;For our example Product index, let&apos;s create some common fields that might be associated with a product listing. This isn&apos;t designed to be a full tutorial on elasticsearch, so we&apos;ll have to skip over some of the more complex configuration options around analyzers, tokenizers and other indexing controls.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@classmethod
+def get_mapping(cls):
+    return {
+        &apos;properties&apos;: {
+            &apos;name&apos;: {
+                &apos;type&apos;: &apos;string&apos;,
+            },
+            &apos;description&apos;: {
+                &apos;type&apos;: &apos;string&apos;,
+                &apos;analyzer&apos;: &apos;snowball&apos;,
+            },
+            &apos;sku&apos;: {
+                &apos;type&apos;: &apos;string&apos;,
+                &apos;index&apos;: &apos;not_analyzed&apos;,
+            },
+            &apos;price&apos;: {
+                &apos;type&apos;: &apos;integer&apos;,
+                &apos;index&apos;: &apos;not_analyzed&apos;,
+            },
+            &apos;category&apos;: {
+                &apos;type&apos;: &apos;string&apos;,
+                &apos;index&apos;: &apos;not_analyzed&apos;,
+            },
+        }
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Most of our fields are designated as type &lt;code&gt;string&lt;/code&gt;, while our &lt;em&gt;price&lt;/em&gt; field is an integer (it will be number of cents, so &lt;code&gt;price_in_dollars * 100&lt;/code&gt;). You&apos;ll notice that many of the fields have an attribute &lt;code&gt;analyzer: not_analyzed&lt;/code&gt;. This is an instruction to ElasticSearch not to attempt to parse the field and just leave it as is. Normally, ElasticSearch would split the field into terms based on word boundaries (see the &lt;a href=&quot;http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html&quot;&gt;standard analyzer&lt;/a&gt; which is the default). But for many of the fields, we want to it to be indexed and stored exactly as we delivered (such as for &lt;em&gt;sku&lt;/em&gt; which should be treated as a single term). For &lt;em&gt;description&lt;/em&gt;, we&apos;ve used the &lt;a href=&quot;http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/analysis-snowball-analyzer.html&quot;&gt;snowball analyzer&lt;/a&gt; which provides additional filtering around stop words and stemming. You can also create your own analyzers for more custom indexing of a given field.&lt;/p&gt;
+&lt;p&gt;This is just the tip of the iceberg. There&apos;s a multitude of configuration parameters for each field in your mapping.&lt;/p&gt;
+&lt;h2&gt;Extracting Fields during Indexing&lt;/h2&gt;
+&lt;p&gt;After defining the index mapping fields, let&apos;s implement the other un-implemented method, &lt;code&gt;extract_document()&lt;/code&gt;, that captures and prepares your data into the relevant fields. This provides you the control in extracting and transforming your data prior to ingestion by elasticsearch.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    @classmethod
+    def extract_document(cls, obj_id, obj=None):
+        if obj is None:
+            obj = cls.get_model().get(pk=obj_id)
+
+        return {
+            &apos;id&apos;: obj.pk,
+            &apos;name&apos;: obj.name,
+            &apos;description&apos;: obj.description,
+            &apos;sku&apos;: obj.sku,
+            &apos;price&apos;: int(obj.price * 100),  # Convert to cents
+            &apos;category&apos;: obj.category.name.lower(),   # assuming `category` is a foreign key
+        }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here we&apos;ve extracted several attributes on our model as well the product category from a related model.&lt;/p&gt;
+&lt;h2&gt;Create Indexes&lt;/h2&gt;
+&lt;p&gt;Finally, With all your mappings configured, you can now create or update your indexes using elasticsearch. We simply generate a settings configuration based on the elasticsearch options and elasticutils does the work for us.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;es = ProductMapping.get_es()
+settings = {}
+
+# Add our mapping configuration to the index settings
+settings.update(ProductMapping.get_mapping())
+
+# TBD: Add index settings here such as custom analyzers
+
+es.create_index(ProductMapping.get_index(), settings=settings)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Finally, let&apos;s leverage the built-in celery tasks to perform the index on our model data. To index a model, you simply provide its primary key to the &lt;code&gt;index_objects&lt;/code&gt; task, which as we&apos;ve defined above in &lt;code&gt;extract_document()&lt;/code&gt;, will pull it from the database and extract the fields for indexing.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from elasticutils.contrib.django import tasks
+
+
+model_objs = ProductMapping.get_model().objects.all()
+model_ids = list(model_objs.values_list(&apos;pk&apos;, flat=True))
+tasks.index_objects(ProductMapping, model_ids)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;Searching your Index&lt;/h1&gt;
+&lt;p&gt;Now that we&apos;ve indexed our data, let&apos;s walk through a couple example searches that can demonstration the richness of the ElasticSearch and ElasticUtils query expression API.&lt;/p&gt;
+&lt;p&gt;Couple of notes on the ElasticUtils &lt;code&gt;S&lt;/code&gt; class that handles your search queries. They mimic many of the attributes of Django&apos;s querysets.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;They&apos;re chainable, so you can build up your search parameters through successive calls to add filters, queries and other parameters. Likewise, you can build-up common base search parameters and re-use it for a number of sub-queries that share those common parameters.&lt;/li&gt;
+&lt;li&gt;They&apos;re lazy, so search is only performed when you try to act on the data such as iterating, or calling specific methods like &lt;code&gt;count()&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Search for Matching Terms&lt;/h2&gt;
+&lt;p&gt;Let&apos;s start with the obvious use case, we want to find all products who&apos;s name contains the key search terms. With &lt;a href=&quot;http://lucene.apache.org&quot;&gt;Lucene&lt;/a&gt; based indexes, you usually can choose between a rich user supplied query language like a google search or constructing your search parameters more programatically (or a combination of both). If you&apos;re looking to give your users a free-form input (again, like Google) to specify their search parameters with operators and other modifiers (for example: &lt;code&gt;nike AND &quot;air max&quot; or category:shoes&lt;/code&gt;), you&apos;re like going to want to use ElasticSearch&apos;s &lt;a href=&quot;http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html&quot;&gt;query string query&lt;/a&gt;. On the other hand, if your interface is more data oriented (say a bunch of checkboxes and sliders for controlling the search parameters), you&apos;ll want more exact search controls, you&apos;ll want to leverage ElasticSearch&apos;s &lt;a href=&quot;http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-queries.html&quot;&gt;many other queries&lt;/a&gt; including &lt;code&gt;match&lt;/code&gt;, &lt;code&gt;range&lt;/code&gt; and &lt;code&gt;bool&lt;/code&gt; queries.&lt;/p&gt;
+&lt;p&gt;ElasticUtils takes a cue from django&apos;s querysets and allows you to specify the type of query using a double underscore qualifier. So you can search a given field using a type of query like: &lt;code&gt;[field_name]__[query_type]&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;s = ProductMapping.search()
+results = s.query(name__query_string=&apos;nike &quot;air max&quot; or category:shoes&apos;)
+for result in results:
+    # process the results
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If instead of a free-form query string, we could instead build up a search programmatically using another query type. ElasticSearch provides a &lt;a href=&quot;http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-prefix-query.html&quot;&gt;prefix query&lt;/a&gt; that can provide a good way to autocomplete search terms that begin with the inputted search phrase. They&apos;re are more efficient methods using ngrams, but this will suffice for our example.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;s = ProductMapping.search()
+# Returns all results that start with &apos;nik&apos; in the `shoes` category
+results = s.query(name__prefix=&apos;nik&apos;).filter(category=&apos;shoes&apos;)
+for result in results:
+    # process the results
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Faceted Search Results&lt;/h2&gt;
+&lt;p&gt;One of the powerful features of ElasticSearch is the ability to quickly generate facets based on your indexed fields. If you&apos;re unfamiliar with facets, think of a tag cloud, or a list of categories (such as brands on an e-commerce site) that allow you to drill-down through a list of results to find your intended document.&lt;/p&gt;
+&lt;p&gt;In our example mapping, we have a &lt;em&gt;category&lt;/em&gt; field that would be a nice facet to help our users select which category they&apos;re looking for within our search results. Let&apos;s first search for &quot;nike&quot; and then display a list of categories that have matches for that product name.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;s = ProductMapping.search()
+# Add facet results for `category`
+query = s.query(name=&apos;nike&apos;).facet(&apos;category&apos;)
+facets = query.facet_counts()
+# Let&apos;s iterate the category facets
+for facet in facets[&apos;category&apos;]:
+    category = facet[&apos;term&apos;]
+    count = facet[&apos;count&apos;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Counts&lt;/h2&gt;
+&lt;p&gt;Sometimes, you don&apos;t necessarily need to retrieve the search results, but just want to display the number of results. Like the Django ORM, you can call &lt;code&gt;.count()&lt;/code&gt; to retrieve the number of results for a given query.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;s = ProductMapping.search()
+# Returns all results that start with &apos;nik&apos; in the `shoes` category
+num_results = s.query(name__prefix=&apos;nik&apos;).filter(category=&apos;shoes&apos;).count()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Again, this is just a sampler. There are numerous ways to search in elasticsearch and these are but a few simple examples. As your queries grow in complexity, the chain-ability of ElasticUtils search API keeps everything manageable.&lt;/p&gt;
+&lt;h1&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;There you have it, a method to build complex search systems using the powerful &lt;a href=&quot;http://www.elasticsearch.org&quot;&gt;ElasticSearch&lt;/a&gt; systsem in a very pythonic manner. If you&apos;re familiar with the common Django ORM patterns, it&apos;s even better.&lt;/p&gt;
+&lt;p&gt;Hopefully this gives you an overview of the &lt;a href=&quot;https://github.com/mozilla/elasticutils&quot;&gt;ElasticUtils&lt;/a&gt; python library as a powerful interface to the ElasticSearch indexing and retrieval system. Much like the Django ORM makes working with databases easier compared with raw SQL, ElasticUtils makes performing complex search queries easier than building your own ElasticSearch ReST calls.&lt;/p&gt;
+&lt;p&gt;This was really just an introduction, we only showed simple field extraction and text searching. Much of the power of elasticsearch is realized when you start implementing more complex patterns like faceting, range queries, autocomplete, spell correction and suggestions. If there&apos;s interest (leave me a comment), I&apos;ll work on follow-up posts on how to construct those patterns on top of ElasticUtils.&lt;/p&gt;
+&lt;h2&gt;Caveats&lt;/h2&gt;
+&lt;p&gt;I wrote this guide based on ElasticUtils v0.80. The development trunk recently ported from the underlying &lt;a href=&quot;https://github.com/rhec/pyelasticsearch&quot;&gt;pyelasticsearch&lt;/a&gt; library, to the officially blessed, &lt;a href=&quot;https://github.com/elasticsearch/elasticsearch-py&quot;&gt;elasticsearch-py&lt;/a&gt; python bindings. While ElasticUtils for the most part masks the need to understand the underlying library, esoteric or management commands may require direct library access.&lt;/p&gt;
 </content:encoded></item></channel></rss>
