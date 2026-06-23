@@ -322,7 +322,7 @@ our fields to both support a datetime and a boolean interface.</p>
 <p>Now, let’s extend the built-in <code>DateTimeField</code> to use our descriptor class to
 provide both interfaces. Our field adds two capabilities: first, we want to
 add a second property on the given model for the boolean access (it defaults
-to <code>is_&#x3C;field_name></code>). Second, we again use <code>contribute_to_class</code> to add our
+to <code>is_&lt;field_name&gt;</code>). Second, we again use <code>contribute_to_class</code> to add our
 additional boolean property on the model class.</p>
 <pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#CBA6F7">class</span><span style="color:#F9E2AF;font-style:italic"> TimestampedBooleanField</span><span style="color:#9399B2">(</span><span style="color:#F9E2AF;font-style:italic">models</span><span style="color:#9399B2">.</span><span style="color:#F9E2AF;font-style:italic">DateTimeField</span><span style="color:#9399B2">):</span></span>
 <span class="line"><span style="color:#A6E3A1">    """</span></span>
@@ -378,7 +378,8 @@ stored in the database as pathnames to the file, but provided as a file-like
 proxies to your django code.</p>
 <p>There’s plenty of additional uses for descriptors. Please leave a comment (or
 tweet, etc) if you have addditional ideas or examples where descriptors can
-improve your model code.</p><section><script>(()=>{var a=(s,i,o)=>{let r=async()=>{await(await s())()},t=typeof i.value=="object"?i.value:void 0,c={rootMargin:t==null?void 0:t.rootMargin},n=new IntersectionObserver(e=>{for(let l of e)if(l.isIntersecting){n.disconnect(),r();break}},c);for(let e of o.children)n.observe(e)};(self.Astro||(self.Astro={})).visible=a;window.dispatchEvent(new Event("astro:visible"));})();</script><astro-island uid="1ddNFu" prefix="r5" component-url="/assets/Disqus.BV9Ky16A.js" component-export="default" renderer-url="/assets/client.C0spD8Y1.js" props="{&quot;id&quot;:[0,&quot;django-descriptors&quot;],&quot;title&quot;:[0,&quot;Django Model Descriptors&quot;],&quot;shortname&quot;:[0,&quot;kevinstone&quot;]}" ssr client="visible" opts="{&quot;name&quot;:&quot;Disqus&quot;,&quot;value&quot;:true}" await-children><div id="disqus_thread"></div><!--astro:end--></astro-island></section></article>
+improve your model code.</p>
+<section><script>(()=>{var a=(s,i,o)=>{let r=async()=>{await(await s())()},t=typeof i.value=="object"?i.value:void 0,c={rootMargin:t==null?void 0:t.rootMargin},n=new IntersectionObserver(e=>{for(let l of e)if(l.isIntersecting){n.disconnect(),r();break}},c);for(let e of o.children)n.observe(e)};(self.Astro||(self.Astro={})).visible=a;window.dispatchEvent(new Event("astro:visible"));})();</script><astro-island uid="1ddNFu" prefix="r5" component-url="/assets/Disqus.BV9Ky16A.js" component-export="default" renderer-url="/assets/client.C0spD8Y1.js" props="{&quot;id&quot;:[0,&quot;django-descriptors&quot;],&quot;title&quot;:[0,&quot;Django Model Descriptors&quot;],&quot;shortname&quot;:[0,&quot;kevinstone&quot;]}" ssr client="visible" opts="{&quot;name&quot;:&quot;Disqus&quot;,&quot;value&quot;:true}" await-children><div id="disqus_thread"></div><!--astro:end--></astro-island></section></article>
 
 			</div></main><footer data-astro-cid-jo6i4kqk><div class="fixed-width">
     <p data-astro-cid-jo6i4kqk>&copy; Kevin A. Stone 2026, Built with <a href="https://astro.build/" data-astro-cid-jo6i4kqk>Astro</a></p>
