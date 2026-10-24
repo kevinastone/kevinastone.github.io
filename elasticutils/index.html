@@ -46,17 +46,17 @@
 <p>The challenge with many rich, expressive query languages, is how to generate these expressions reliability without a significant maintenance cost to the development team. Enter <a href="https://github.com/mozilla/elasticutils">ElasticUtils</a>, which provides access to most of ElasticSearch’s features, but using a chainable queryset-like expression API for generating search parameters.</p>
 <p>As a case, here’s an actual (relatively simply) query generated from our search system looking for products related to “nike air max” (a line of shoes):</p>
 <pre class="astro-code catppuccin-mocha" style="background-color:#1e1e2e;color:#cdd6f4; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#9399B2">{</span></span>
-<span class="line"><span style="color:#9399B2">    "</span><span style="color:#89B4FA">filter</span><span style="color:#9399B2">"</span><span style="color:#9399B2">:</span><span style="color:#9399B2"> {</span></span>
-<span class="line"><span style="color:#9399B2">        "</span><span style="color:#89B4FA">term</span><span style="color:#9399B2">"</span><span style="color:#9399B2">:</span><span style="color:#9399B2"> {</span></span>
-<span class="line"><span style="color:#9399B2">            "</span><span style="color:#89B4FA">is_visible</span><span style="color:#9399B2">"</span><span style="color:#9399B2">:</span><span style="color:#FAB387"> true</span></span>
-<span class="line"><span style="color:#9399B2">        }</span></span>
-<span class="line"><span style="color:#9399B2">    },</span></span>
-<span class="line"><span style="color:#9399B2">    "</span><span style="color:#89B4FA">query</span><span style="color:#9399B2">"</span><span style="color:#9399B2">:</span><span style="color:#9399B2"> {</span></span>
-<span class="line"><span style="color:#9399B2">        "</span><span style="color:#89B4FA">query_string</span><span style="color:#9399B2">"</span><span style="color:#9399B2">:</span><span style="color:#9399B2"> {</span></span>
-<span class="line"><span style="color:#9399B2">            "</span><span style="color:#89B4FA">default_field</span><span style="color:#9399B2">"</span><span style="color:#9399B2">:</span><span style="color:#A6E3A1"> "_all"</span><span style="color:#9399B2">,</span></span>
-<span class="line"><span style="color:#9399B2">            "</span><span style="color:#89B4FA">query</span><span style="color:#9399B2">"</span><span style="color:#9399B2">:</span><span style="color:#A6E3A1"> "nike air max"</span></span>
-<span class="line"><span style="color:#9399B2">        }</span></span>
+<span class="line"><span style="color:#9399B2">  "</span><span style="color:#89B4FA">filter</span><span style="color:#9399B2">"</span><span style="color:#9399B2">:</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#9399B2">    "</span><span style="color:#89B4FA">term</span><span style="color:#9399B2">"</span><span style="color:#9399B2">:</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#9399B2">      "</span><span style="color:#89B4FA">is_visible</span><span style="color:#9399B2">"</span><span style="color:#9399B2">:</span><span style="color:#FAB387"> true</span></span>
 <span class="line"><span style="color:#9399B2">    }</span></span>
+<span class="line"><span style="color:#9399B2">  },</span></span>
+<span class="line"><span style="color:#9399B2">  "</span><span style="color:#89B4FA">query</span><span style="color:#9399B2">"</span><span style="color:#9399B2">:</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#9399B2">    "</span><span style="color:#89B4FA">query_string</span><span style="color:#9399B2">"</span><span style="color:#9399B2">:</span><span style="color:#9399B2"> {</span></span>
+<span class="line"><span style="color:#9399B2">      "</span><span style="color:#89B4FA">default_field</span><span style="color:#9399B2">"</span><span style="color:#9399B2">:</span><span style="color:#A6E3A1"> "_all"</span><span style="color:#9399B2">,</span></span>
+<span class="line"><span style="color:#9399B2">      "</span><span style="color:#89B4FA">query</span><span style="color:#9399B2">"</span><span style="color:#9399B2">:</span><span style="color:#A6E3A1"> "nike air max"</span></span>
+<span class="line"><span style="color:#9399B2">    }</span></span>
+<span class="line"><span style="color:#9399B2">  }</span></span>
 <span class="line"><span style="color:#9399B2">}</span></span></code></pre>
 <p>This query, takes our user supplied input: “nike air max”, and generates a <code>query_string</code> type query against the <code>_all</code> field (which is a combination of all the indexed fields), and filters the results to ones that are marked public (<code>is_visible = true</code>).</p>
 <p>As you can see, ElasticSearch queries are a highly nested JSON structure. Having to manage all these nodes and keep them in order can be complex and error prone.</p>
